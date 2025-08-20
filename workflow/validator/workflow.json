@@ -1,0 +1,30 @@
+{
+    "vertices": [
+        {
+            "id": "1",
+            "metamodelId": "d6515edc-dc01-4f12-a7eb-ab9d062f266d"
+        },
+        {
+            
+        }
+    ],
+    "edges": [
+        {
+            "sourceNodeId": "1",
+            "targetNodeId": "2"
+        }
+    ],
+    "handledIntents": [
+        {
+            "intentId": ""
+        }
+    ],
+    "name": "PDF Validator",
+    "description": "Validates against the extracted features a pdf document (give it's filepath)",
+    "enabled": true,
+    "version": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+    }
+}

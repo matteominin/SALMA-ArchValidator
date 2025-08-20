@@ -1,0 +1,130 @@
+{
+  "_id": "a15337ce-fdf6-42ca-bcb9-9f0a4d5b7436",
+  "nodes": [
+    {
+      "_id": "1",
+      "metamodelId": "666df592-77ca-401c-94a9-407dfeb12891",
+      "type": "NODE",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "2",
+      "metamodelId": "9ebed6da-fc37-4cd5-9764-76cb11f882e6",
+      "type": "NODE",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "3",
+      "metamodelId": "db395f3d-d8d2-4ee7-b01f-fae4f3f4022f",
+      "type": "NODE",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "4",
+      "metamodelId": "e4dea87a-8742-486c-91c4-44200b020fde",
+      "type": "NODE",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "5",
+      "metamodelId": "4c60bcca-1a3c-4ced-9475-31c5a2a0d48e",
+      "loopSettings": {
+        "loopType": "FOR_EACH",
+        "outputKey": "features",
+        "iterations": 0,
+        "collectionPort": {
+          "key": "sections",
+          "schema": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "section": {
+                  "type": "STRING"
+                },
+                "text": {
+                  "type": "STRING"
+                }
+              }
+            }
+          },
+          "portType": "STANDARD",
+          "_class": "org.stlab.sallma.knowledge.model.node.port.StandardPort"
+        },
+        "itemPort": {
+          "key": "section",
+          "schema": {
+            "type": "OBJECT",
+            "properties": {
+              "section": {
+                "type": "STRING"
+              },
+              "text": {
+                "type": "STRING"
+              }
+            }
+          },
+          "portType": "STANDARD",
+          "_class": "org.stlab.sallma.knowledge.model.node.port.StandardPort"
+        }
+      },
+      "type": "NODE",
+      "executionMode": "JOIN"
+    }
+  ],
+  "edges": [
+    {
+      "_id": "d792b815-f23a-4a06-92f0-48cbd9636f7d",
+      "sourceNodeId": "1",
+      "targetNodeId": "2"
+    },
+    {
+      "_id": "f0279697-cc3f-4ab6-8321-266b9711a9a0",
+      "sourceNodeId": "2",
+      "targetNodeId": "3",
+      "bindings": {
+        "text": "raw_text"
+      }
+    },
+    {
+      "_id": "70485dde-97a2-4df1-a029-92017a0f4bb3",
+      "sourceNodeId": "1",
+      "targetNodeId": "4"
+    },
+    {
+      "_id": "6d9ea746-f4aa-467d-9530-56cc8db52d54",
+      "sourceNodeId": "3",
+      "targetNodeId": "4"
+    },
+    {
+      "_id": "af559a53-4c64-484e-900b-a697754fe170",
+      "sourceNodeId": "4",
+      "targetNodeId": "5"
+    },
+    {
+      "_id": "d3e61b0c-3e69-4ba2-a371-3353d97503a2",
+      "sourceNodeId": "1",
+      "targetNodeId": "5"
+    }
+  ],
+  "handledIntents": [
+    {
+      "intentId": "353023c1-16fd-4b33-a9a8-9b8f62803da3"
+    }
+  ],
+  "name": "Features extractor",
+  "description": "Extracts features from a pdf document (given the filepath)",
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "createdAt": {
+    "$date": "2025-08-18T12:44:30.218Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-18T12:44:30.240Z"
+  },
+  "_class": "org.stlab.sallma.knowledge.model.workflow.WorkflowMetamodel"
+}

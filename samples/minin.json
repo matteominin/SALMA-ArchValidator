@@ -1,0 +1,112 @@
+{
+    "report": {
+        "coverage": {
+            "coveredFeatures": [
+                {
+                    "feature": "Clear Problem Definition",
+                    "similarity": 0.896663874916447,
+                    "count": "6",
+                    "description": "Contains a clear and concise definition of the problem being addressed, explaining the need for the proposed solution and its advantages over existing approaches.",
+                    "matchedWith": "Clear problem definition",
+                    "example": "The project originated from the need to propose a more effective solution compared to traditional platforms for travel organization, highlighting the inadequacy of current systems and the motivation for the new approach."
+                },
+                {
+                    "feature": "Clear Objectives and Stakeholder Needs Addressed",
+                    "similarity": 0.8697702137965309,
+                    "count": "6",
+                    "description": "Provides clear objectives in project documentation to ensure the needs of all stakeholders are addressed, including users, operators, and administrators. It illustrates how the project's goals resolve identified problems and enhance user experiences.",
+                    "matchedWith": "Well-Stated Objectives",
+                    "example": "The document states the primary goal is to create an integrated, simple, and secure platform that supports both end users and system operators, improving user interactions and management processes."
+                },
+                {
+                    "feature": "Logical and Modular Structure",
+                    "similarity": 0.8830073269545136,
+                    "count": "2",
+                    "description": "Contains a clear and coherent organizational framework by integrating various system components such as business logic, data access, and user roles to facilitate separate concerns and expected behaviors.",
+                    "matchedWith": "Modular architecture with clear separation of concerns",
+                    "example": "The architecture divides use cases based on user roles, ensuring expected behavior consistency, and separates business logic from request handling to maintain modularity."
+                },
+                {
+                    "feature": "Role-Based Access and Management",
+                    "similarity": 0.9006039774537863,
+                    "count": "14",
+                    "description": "Contains mechanisms to define clear roles and responsibilities within the system, provide differentiated login experiences and interfaces based on user roles, ensure secure access through authentication, and manage user accounts with distinct functionalities per role. Incorporates design elements that facilitate role-specific navigation and interaction while safeguarding sensitive operations through authorization checks.",
+                    "matchedWith": "Role-Based Access Control",
+                    "example": "The system incorporates different user roles such as admin, worker, and customer, each with specific access rights and interfaces tailored to their functions, ensuring only authorized users perform administrative tasks."
+                },
+                {
+                    "feature": "User-Focused Design and Mockups",
+                    "similarity": 0.9044088371859585,
+                    "count": "8",
+                    "description": "Contains the incorporation of user-centric principles in both interface design and documentation, outlining intuitive operation through simplified interfaces and clearly visualizing use cases via detailed mockups to enhance user experience and accessibility.",
+                    "matchedWith": "User-Centric Interface Design",
+                    "example": "Design interfaces to emphasize user operational efficiency and usability, using mockups to illustrate interaction flow and roles."
+                },
+                {
+                    "feature": "Modularity and Scalability",
+                    "similarity": 0.8942188278954458,
+                    "count": "5",
+                    "description": "Provides a structured project approach by using modular architecture, ensuring components have well-defined interactions, promoting maintainability, scalability, and independence. This includes incorporating standard APIs and frameworks for data management and transaction handling to facilitate clear system component encapsulation.",
+                    "matchedWith": "Modular architecture with clear separation of concerns",
+                    "example": "The project is divided into modules, each with specific responsibilities and interfaces, to ensure clarity and future expandability."
+                },
+                {
+                    "feature": "Efficient and Reliable Database Testing",
+                    "similarity": 0.9074619695243401,
+                    "count": "11",
+                    "description": "Contains mechanisms for ensuring testing environments are isolated and efficient by using in-memory databases to ensure rapid execution, separating test from production databases, and initializing databases to a known state using preset scripts. It supports consistent CRUD operations and simulates realistic scenarios to verify the system's robustness and reliability.",
+                    "matchedWith": "Use of In-memory Databases for Testing",
+                    "example": "Provides an in-memory database to execute tests rapidly and safely, without interfering with production data."
+                },
+                {
+                    "feature": "Integrated Use Case Documentation",
+                    "similarity": 0.9131284573479816,
+                    "count": "8",
+                    "description": "Contains standardized and modular use case templates that clearly depict actor interactions, system functionalities, preconditions, and test scenarios. Provides use case diagrams for visual representation and ensures alignment with implementation to support system functionality and stakeholder needs.",
+                    "matchedWith": "Standardized Use Case Template",
+                    "example": "Standardized use case templates describe actor interactions and system functionalities, and are accompanied by diagrams illustrating these interactions."
+                },
+                {
+                    "feature": "Separation of Concerns and Modularity in Architecture",
+                    "similarity": 0.9314226884681776,
+                    "count": "19",
+                    "description": "Provides a structured approach to system architecture by organizing components into distinct layers or modules, each responsible for specific functionalities. This includes separating business logic, data access, and user interface into different sections to enhance modularity, maintainability, flexibility, and reusability.",
+                    "matchedWith": "Modular architecture with clear separation of concerns",
+                    "example": "The architecture organizes code into distinct layers such as controllers for handling requests, services for business logic, and data access objects (DAOs) for data persistence, ensuring modularity and separation of concerns."
+                },
+                {
+                    "feature": "Implementation of Design Patterns",
+                    "similarity": 0.9157298230720812,
+                    "count": "7",
+                    "description": "Contains methods and strategies to improve architecture and maintainability by applying design patterns such as Builder, Data Mapper, Strategy, and encapsulation through getter and setter methods. These patterns facilitate modular design, enhance code readability, maintain separation of concerns, and ensure data encapsulation.",
+                    "matchedWith": "Use of Design Patterns",
+                    "example": "Applying the Strategy pattern to adapt functionality based on user roles and using getter and setter methods for managing attributes."
+                },
+                {
+                    "feature": "DAO-based Modularity and CRUD operations",
+                    "similarity": 0.8609701785665498,
+                    "count": "4",
+                    "description": "Contains Data Access Object (DAO) classes and interfaces to segregate database interaction logic, implement comprehensive CRUD (Create, Read, Update, Delete) functionality, promote modularity and encapsulation, and provide an abstraction layer between business logic and data storage.",
+                    "matchedWith": "Modularity",
+                    "example": "DAO classes like UtenteDAO or AdminDAO manage the persistence of objects through support for standard CRUD operations, ensuring that each entity's data access logic is encapsulated within dedicated classes."
+                },
+                {
+                    "feature": "Singleton Pattern for Database and Resource Management",
+                    "similarity": 0.8945916799738745,
+                    "count": "9",
+                    "description": "Ensures a unique and global access point for managing database connections and system resources efficiently, optimizing the architecture for scalability and maintainability. Contains mechanisms for centralized management of data access and interactions with persistent storage while adhering to the Singleton pattern to manage shared resources across the system.",
+                    "matchedWith": "Singleton Pattern",
+                    "example": "The database manager is designed following the Singleton pattern to ensure that there is only one instance for managing connections."
+                }
+            ],
+            "coveredCount": 12,
+            "uncoveredCount": 0,
+            "uncoveredFeatures": [],
+            "coveragePercentage": 100.0
+        },
+        "providedFeatures": 103,
+        "success": true,
+        "threshold": 0.85,
+        "totalSummaryFeatures": 12
+    }
+}

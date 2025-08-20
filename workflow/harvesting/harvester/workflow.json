@@ -1,0 +1,44 @@
+{
+  "_id": "af30e82f-c5b6-4473-a8a7-81a550edd7e9",
+  "nodes": [
+    {
+      "_id": "1",
+      "metamodelId": "a15337ce-fdf6-42ca-bcb9-9f0a4d5b7436",
+      "type": "SUB_WORKFLOW",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "2",
+      "metamodelId": "c2147b24-9d75-47fc-801f-3a8e58cf957a",
+      "type": "NODE",
+      "executionMode": "JOIN"
+    }
+  ],
+  "edges": [
+    {
+      "_id": "dc300a44-e61b-44f2-b568-59dcf03ef5f8",
+      "sourceNodeId": "1",
+      "targetNodeId": "2"
+    }
+  ],
+  "handledIntents": [
+    {
+      "intentId": "dee250b2-53ce-4c15-8098-2d66608745b7"
+    }
+  ],
+  "name": "Harvester",
+  "description": "Extracts features from a pdf file (given the filepath) and saves them on mongodb",
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "createdAt": {
+    "$date": "2025-08-18T12:53:54.814Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-18T12:53:54.816Z"
+  },
+  "_class": "org.stlab.sallma.knowledge.model.workflow.WorkflowMetamodel"
+}

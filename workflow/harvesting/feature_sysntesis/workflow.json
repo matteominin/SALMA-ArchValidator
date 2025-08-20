@@ -1,0 +1,150 @@
+{
+  "_id": "16639c98-e87e-41b5-b137-8a0a775863a2",
+  "nodes": [
+    {
+      "_id": "1",
+      "metamodelId": "d6515edc-dc01-4f12-a7eb-ab9d062f266d",
+      "type": "NODE",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "2",
+      "metamodelId": "38695f59-0024-479b-a0e3-93d48def6289",
+      "loopSettings": {
+        "loopType": "FOR_EACH",
+        "outputKey": "summarized_features",
+        "iterations": 0,
+        "collectionPort": {
+          "key": "clusters",
+          "schema": {
+            "type": "ARRAY",
+            "items": {
+              "type": "ARRAY",
+              "items": {
+                "type": "OBJECT",
+                "properties": {
+                  "id": {
+                    "type": "STRING"
+                  },
+                  "feature": {
+                    "type": "STRING"
+                  },
+                  "description": {
+                    "type": "STRING"
+                  },
+                  "category": {
+                    "type": "STRING"
+                  },
+                  "evidence": {
+                    "type": "STRING"
+                  },
+                  "confidence": {
+                    "type": "FLOAT"
+                  },
+                  "sourceTitle": {
+                    "type": "STRING"
+                  },
+                  "embedding": {
+                    "type": "ARRAY",
+                    "items": {
+                      "type": "FLOAT"
+                    }
+                  },
+                  "createdAt": {
+                    "type": "STRING"
+                  },
+                  "updatedAt": {
+                    "type": "STRING"
+                  }
+                }
+              }
+            }
+          },
+          "portType": "STANDARD",
+          "_class": "org.stlab.sallma.knowledge.model.node.port.StandardPort"
+        },
+        "itemPort": {
+          "key": "cluster",
+          "schema": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "id": {
+                  "type": "STRING"
+                },
+                "feature": {
+                  "type": "STRING"
+                },
+                "description": {
+                  "type": "STRING"
+                },
+                "category": {
+                  "type": "STRING"
+                },
+                "evidence": {
+                  "type": "STRING"
+                },
+                "confidence": {
+                  "type": "FLOAT"
+                },
+                "sourceTitle": {
+                  "type": "STRING"
+                },
+                "embedding": {
+                  "type": "FLOAT"
+                },
+                "createdAt": {
+                  "type": "STRING"
+                },
+                "updatedAt": {
+                  "type": "STRING"
+                }
+              }
+            }
+          },
+          "portType": "STANDARD",
+          "_class": "org.stlab.sallma.knowledge.model.node.port.StandardPort"
+        }
+      },
+      "type": "NODE",
+      "executionMode": "JOIN"
+    },
+    {
+      "_id": "3",
+      "metamodelId": "c916b07b-a6c6-44ee-9003-c33f6b8fc66c",
+      "type": "NODE"
+    }
+  ],
+  "edges": [
+    {
+      "_id": "c2f173f6-71b6-4231-ba03-89c27e22960d",
+      "sourceNodeId": "1",
+      "targetNodeId": "2"
+    },
+    {
+      "sourceNodeId": "2",
+      "targetNodeId": "3"
+    }
+  ],
+  "handledIntents": [
+    {
+      "intentId": "f31aabf5-418d-4c62-acfb-6ff893bbb8ee"
+    }
+  ],
+  "name": "Feature sysntesis",
+  "description": "Abstract and generalize the extracted features",
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "createdAt": {
+    "$date": "2025-08-14T16:35:11.546Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-14T16:35:11.829Z"
+  },
+  "_class": "org.stlab.sallma.knowledge.model.workflow.WorkflowMetamodel"
+}

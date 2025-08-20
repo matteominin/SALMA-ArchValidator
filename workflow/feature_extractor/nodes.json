@@ -1,0 +1,324 @@
+[{
+  "_id": "4c60bcca-1a3c-4ced-9475-31c5a2a0d48e",
+  "systemPromptTemplate": "You are reviewing a section of a software engineering project report.\n\nYour goal: extract ONLY high-level, universal good practices that a well-written report should demonstrate.\n\nAdapt your analysis depending on whether the section is technical or non-technical:\n\nIf the section is technical (e.g., architecture, database, APIs, algorithms):\nIdentify universal engineering features such as scalability, modularity, error handling, maintainability, security practices, performance considerations.\nIf the section is non-technical (e.g., introduction, requirements, conclusion, project management):\nIdentify universal documentation/reporting features such as clear problem definition, well-stated objectives, rationale, stakeholder needs, completeness, clarity, logical structure.\nAdditional Instructions:\nAlways generalize the feature so it applies to any software engineering project, not just the one described in the text.\nAvoid domain-specific references (e.g., “vending machines”, “QR codes”, “wallets”) unless rephrased into a universal concept (e.g., “digital payment methods” → “secure transaction mechanisms”).\nIf a domain-specific example implies a universal practice, rewrite it in a domain-neutral way.\nPrefer quality over quantity — output fewer but stronger universal features.\nDo not invent features not supported by the text.\nIf no valid universal features are found in the section, output a JSON object with only the source_title and all the other fileds empty.\nOutput format (JSON array):\nEach feature must have:\n\n  \"feature\": \"general universal feature\",\n  \"description\": \"short description of the feature, will be used at inference time\",\n  \"category\": \"Problem Definition, Architecture, Security, Performance, Maintainability, Testing, Project Management, Documentation\",\n  \"explicit\": true/false,\n  \"evidence\": \"short exact quote from text\",\n  \"confidence\": 0.0-1.0,\n  \"source_title\": \"section title\"\n  \"file\": \"filepath\"\n\n\nIf no feature is found for a section:\n\n  \"feature\": \"\",\n  \"description\": \"\",\n  \"category\": \"\",\n  \"explicit\": false,\n  \"evidence\": \"\",\n  \"confidence\": 0.0,\n  \"source_title\": \"section title\"\n\nSection to analyze: {section}\nfilePath: {filePath}",
+  "inputPorts": [
+    {
+      "role": "SYSTEM_PROMPT_VARIABLE",
+      "key": "section",
+      "schema": {
+        "type": "OBJECT",
+        "properties": {
+          "section": {
+            "type": "STRING"
+          },
+          "text": {
+            "type": "STRING"
+          }
+        }
+      },
+      "portType": "LLM"
+    },
+    {
+      "role": "SYSTEM_PROMPT_VARIABLE",
+      "key": "filePath",
+      "schema": {
+        "type": "STRING"
+      },
+      "portType": "LLM"
+    }
+  ],
+  "outputPorts": [
+    {
+      "role": "RESPONSE",
+      "key": "feature",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "OBJECT",
+          "properties": {
+            "feature": {
+              "type": "STRING"
+            },
+            "category": {
+              "type": "STRING"
+            },
+            "description": {
+              "type": "STRING"
+            },
+            "explicit": {
+              "type": "BOOLEAN"
+            },
+            "evidence": {
+              "type": "STRING"
+            },
+            "confidence": {
+              "type": "FLOAT"
+            },
+            "source_title": {
+              "type": "STRING"
+            },
+            "filePath": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "portType": "LLM"
+    }
+  ],
+  "modelType": "LLM",
+  "provider": "openai",
+  "modelName": "gpt-4o",
+  "familyId": "cad49708-9dd9-4c7d-ae59-6b07c25cf7ed",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Feature Extractor",
+  "type": "AI",
+  "description": "Extract abstract feature from text of a single section",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-13T09:03:31.031Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-13T09:03:31.039Z"
+  },
+  "_class": "llm"
+},
+{
+  "_id": "666df592-77ca-401c-94a9-407dfeb12891",
+  "inputPorts": [
+    {
+      "key": "filePath",
+      "schema": {
+        "type": "STRING"
+      },
+      "portType": "STANDARD"
+    }
+  ],
+  "controlType": "GATEWAY",
+  "familyId": "5af5c6e8-8682-4d90-8555-6fde889c2a69",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "gateway",
+  "type": "FLOW",
+  "description": "Gateway node for reusing the initial input",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-11T14:09:44.287Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-11T14:09:44.292Z"
+  },
+  "_class": "gateway"
+},
+{
+  "_id": "9ebed6da-fc37-4cd5-9764-76cb11f882e6",
+  "invocationMethod": "POST",
+  "inputPorts": [
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "filePath",
+      "schema": {
+        "type": "STRING"
+      },
+      "portType": "REST"
+    },
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "startPage",
+      "schema": {
+        "type": "INT"
+      },
+      "portType": "REST",
+      "defaultValue": 1
+    },
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "endPage",
+      "schema": {
+        "type": "INT"
+      },
+      "portType": "REST",
+      "defaultValue": 5
+    }
+  ],
+  "outputPorts": [
+    {
+      "role": "RES_FULL_BODY",
+      "key": "text",
+      "schema": {
+        "type": "STRING"
+      },
+      "portType": "REST"
+    }
+  ],
+  "toolType": "REST",
+  "uri": "http://host.docker.internal:8080/api/pdf/extract-index",
+  "familyId": "6e163d89-c58b-4f3a-a260-94d2a1153980",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Index extractor",
+  "type": "TOOL",
+  "description": "Extracts index from a pdf file",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-11T12:19:58.777Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-11T12:19:58.783Z"
+  },
+  "_class": "rest"
+},
+{
+  "_id": "db395f3d-d8d2-4ee7-b01f-fae4f3f4022f",
+  "systemPromptTemplate": "You are a PDF index parsing assistant.\n\nYou will be given the text of a table of contents from a PDF document.  \nYour task is to identify each section or subsection listed and its corresponding starting and ending page number.\n\nRules:\n1. Ignore dots used for alignment (e.g., \".....\").\n2. Keep the section title exactly as it appears, without changing its wording.\n3. The starting page is always the number at the end of the line.\n4. The ending page is always the starting page of the next section or -1 if the section is the last of the index.\n\nExtract from the following chunk: {raw_text}",
+  "inputPorts": [
+    {
+      "role": "SYSTEM_PROMPT_VARIABLE",
+      "key": "raw_text",
+      "schema": {
+        "type": "STRING"
+      },
+      "portType": "LLM"
+    }
+  ],
+  "outputPorts": [
+    {
+      "role": "RESPONSE",
+      "key": "index",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "OBJECT",
+          "properties": {
+            "section": {
+              "type": "STRING"
+            },
+            "start": {
+              "type": "INT"
+            },
+            "end": {
+              "type": "INT"
+            }
+          }
+        }
+      },
+      "portType": "LLM"
+    }
+  ],
+  "modelType": "LLM",
+  "provider": "openai",
+  "modelName": "gpt-4o",
+  "familyId": "7cba269b-eb5c-4986-984a-eb1a2116db43",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Index Extractor",
+  "type": "AI",
+  "description": "Extract index from pdf text",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-11T12:34:22.600Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-11T12:34:22.619Z"
+  },
+  "_class": "llm"
+},
+{
+  "_id": "e4dea87a-8742-486c-91c4-44200b020fde",
+  "invocationMethod": "POST",
+  "inputPorts": [
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "filePath",
+      "schema": {
+        "type": "STRING"
+      },
+      "portType": "REST"
+    },
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "index",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "OBJECT",
+          "properties": {
+            "section": {
+              "type": "STRING"
+            },
+            "start": {
+              "type": "INT"
+            },
+            "end": {
+              "type": "INT"
+            }
+          }
+        }
+      },
+      "portType": "REST"
+    }
+  ],
+  "outputPorts": [
+    {
+      "role": "RES_FULL_BODY",
+      "key": "sections",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "OBJECT",
+          "properties": {
+            "section": {
+              "type": "STRING"
+            },
+            "text": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "portType": "REST"
+    }
+  ],
+  "toolType": "REST",
+  "uri": "http://host.docker.internal:8080/api/pdf/extract-sections",
+  "familyId": "3478316f-0c82-49df-8ad4-9d34c4e02c78",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Section extractor",
+  "type": "TOOL",
+  "description": "Extract every single section from a pdf file given the index",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-12T16:58:04.671Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-12T16:58:04.676Z"
+  },
+  "_class": "rest"
+}]

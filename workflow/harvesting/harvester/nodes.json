@@ -1,0 +1,88 @@
+[{
+  "_id": "c2147b24-9d75-47fc-801f-3a8e58cf957a",
+  "invocationMethod": "POST",
+  "inputPorts": [
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "features",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "ARRAY",
+          "items": {
+            "type": "OBJECT",
+            "properties": {
+              "feature": {
+                "type": "STRING"
+              },
+              "category": {
+                "type": "STRING"
+              },
+              "description": {
+                "type": "STRING"
+              },
+              "explicit": {
+                "type": "BOOLEAN"
+              },
+              "evidence": {
+                "type": "STRING"
+              },
+              "confidence": {
+                "type": "FLOAT"
+              },
+              "source_title": {
+                "type": "STRING"
+              },
+              "filePath": {
+                "type": "STRING"
+              }
+            }
+          }
+        }
+      },
+      "portType": "REST"
+    }
+  ],
+  "outputPorts": [
+    {
+      "portType": "REST",
+      "role": "RES_FULL_BODY",
+      "key": "res",
+      "schema": {
+        "type": "OBJECT",
+        "properties": {
+          "success": {
+            "type": "BOOLEAN"
+          },
+          "processed": {
+            "type": "INT"
+          },
+          "message": {
+            "type": "STRING"
+          }
+        }
+      }
+    }
+  ],
+  "toolType": "REST",
+  "uri": "http://host.docker.internal:8080/api/features/add-batch",
+  "familyId": "06465821-32c1-4ad0-8c31-8f37207eb059",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Save features",
+  "type": "TOOL",
+  "description": "Save features to mongodb",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-16T10:42:42.131Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-16T10:42:42.141Z"
+  },
+  "_class": "rest"
+}]

@@ -1,0 +1,254 @@
+[{
+  "_id": "38695f59-0024-479b-a0e3-93d48def6289",
+  "systemPromptTemplate": "You are a system that consolidates multiple related features into a single abstract, domain-independent feature.\nInput: A list of features.\nTask:\nSummarize all similar features into one unified feature.\nWrite the description as a structured statement that explains how the feature is manifested in a project document (e.g., “Contains …, States …, Provides …”).\nProvide one representative example (generalized, without domain-specific terms).\nIndicate how many original features were merged.\nOutput format (JSON):\n  \"count\": number,\n  \"feature\": \"abstract, general feature name\",\n  \"description\": \"Contains …, States …, Provides …\",\n  \"example\": \"representative evidence, generalized if needed\"\n\nRules:\nMerge duplicates and variations into one abstract feature.\nIn the description, explicitly say what the feature should include (avoid vague phrasing).\nRemove project-specific details while preserving meaning.\nUse the strongest or clearest evidence as the example, but generalize it so it applies broadly.\nThe feature must be applicable to any type of project documentation.\n\ncluster: {cluster}",
+  "inputPorts": [
+    {
+      "role": "SYSTEM_PROMPT_VARIABLE",
+      "key": "cluster",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "OBJECT",
+          "properties": {
+            "id": {
+              "type": "STRING"
+            },
+            "feature": {
+              "type": "STRING"
+            },
+            "description": {
+              "type": "STRING"
+            },
+            "category": {
+              "type": "STRING"
+            },
+            "evidence": {
+              "type": "STRING"
+            },
+            "confidence": {
+              "type": "FLOAT"
+            },
+            "sourceTitle": {
+              "type": "STRING"
+            },
+            "embedding": {
+              "type": "ARRAY",
+              "items": {
+                "type": "FLOAT"
+              }
+            },
+            "createdAt": {
+              "type": "STRING"
+            },
+            "updatedAt": {
+              "type": "STRING"
+            }
+          }
+        }
+      },
+      "portType": "LLM"
+    }
+  ],
+  "outputPorts": [
+    {
+      "role": "RESPONSE",
+      "key": "feature",
+      "schema": {
+        "type": "OBJECT",
+        "properties": {
+          "feature": {
+            "type": "STRING"
+          },
+          "description": {
+            "type": "STRING"
+          },
+          "example": {
+            "type": "STRING"
+          },
+          "count": {
+            "type": "INT"
+          }
+        }
+      },
+      "portType": "LLM"
+    }
+  ],
+  "modelType": "LLM",
+  "provider": "openai",
+  "modelName": "gpt-4o",
+  "familyId": "69f0a6b5-5270-45a4-9f65-01b948432255",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Cluster feature summarizer",
+  "type": "AI",
+  "description": "Summarizes a cluster of features into a single abstract feature",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-14T15:22:46.979Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-14T15:22:46.982Z"
+  },
+  "_class": "llm"
+},
+{
+  "_id": "c916b07b-a6c6-44ee-9003-c33f6b8fc66c",
+  "invocationMethod": "POST",
+  "inputPorts": [
+    {
+      "role": "REQ_BODY_FIELD",
+      "key": "summarized_features",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "OBJECT",
+          "properties": {
+            "feature": {
+              "type": "STRING"
+            },
+            "description": {
+              "type": "STRING"
+            },
+            "example": {
+              "type": "STRING"
+            },
+            "count": {
+              "type": "INT"
+            }
+          }
+        }
+      },
+      "portType": "REST"
+    }
+  ],
+  "outputPorts": [
+    {
+      "role": "RES_FULL_BODY",
+      "key": "out",
+      "schema": {
+        "type": "OBJECT",
+        "properties": {
+          "success": {
+            "type": "STRING"
+          },
+          "processed": {
+            "type": "INT"
+          },
+          "ids": {
+            "type": "ARRAY",
+            "items": {
+              "type": "STRING"
+            }
+          },
+          "message": {
+            "type": "STRING"
+          }
+        }
+      },
+      "portType": "REST"
+    }
+  ],
+  "toolType": "REST",
+  "uri": "http://host.docker.internal:8080/api/summary-features/add-batch",
+  "familyId": "21cd9739-1699-4411-a7e5-ecc46c2de566",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Save summary-features",
+  "type": "TOOL",
+  "description": "Save summary-features to mongodb",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-16T12:50:11.077Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-16T12:50:11.087Z"
+  },
+  "_class": "rest"
+},
+{
+  "_id": "d6515edc-dc01-4f12-a7eb-ab9d062f266d",
+  "invocationMethod": "POST",
+  "inputPorts": [],
+  "outputPorts": [
+    {
+      "role": "RES_FULL_BODY",
+      "key": "clusters",
+      "schema": {
+        "type": "ARRAY",
+        "items": {
+          "type": "ARRAY",
+          "items": {
+            "type": "OBJECT",
+            "properties": {
+              "id": {
+                "type": "STRING"
+              },
+              "feature": {
+                "type": "STRING"
+              },
+              "description": {
+                "type": "STRING"
+              },
+              "category": {
+                "type": "STRING"
+              },
+              "evidence": {
+                "type": "STRING"
+              },
+              "confidence": {
+                "type": "FLOAT"
+              },
+              "sourceTitle": {
+                "type": "STRING"
+              },
+              "embedding": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "FLOAT"
+                }
+              },
+              "createdAt": {
+                "type": "STRING"
+              },
+              "updatedAt": {
+                "type": "STRING"
+              }
+            }
+          }
+        }
+      },
+      "portType": "REST"
+    }
+  ],
+  "toolType": "REST",
+  "uri": "http://host.docker.internal:8080/api/features/cluster",
+  "familyId": "4d22de06-d406-4216-b91e-4a0f93284fb9",
+  "isLatest": true,
+  "enabled": true,
+  "version": {
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  },
+  "name": "Feature clustering",
+  "type": "TOOL",
+  "description": "Creates clusters of similar features",
+  "author": "matteo",
+  "createdAt": {
+    "$date": "2025-08-14T14:53:56.753Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-14T14:53:56.762Z"
+  },
+  "_class": "rest"
+}]
