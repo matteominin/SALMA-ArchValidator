@@ -21,7 +21,7 @@ public class FeatureService {
     
     @Autowired
     private EmbeddingService embeddingService;
-    
+
     public Feature addFeature(Feature feature) {
         validateFeature(feature);
         

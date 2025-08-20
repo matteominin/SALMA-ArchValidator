@@ -44,7 +44,7 @@ public class FeatureController {
     
     @Autowired
     private ObjectMapper objectMapper;
-    
+
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> addFeature(@RequestBody Feature feature) {
         Map<String, Object> response = new HashMap<>();
@@ -228,8 +228,7 @@ public class FeatureController {
             
             // Save the report in validation_reports collection with feature_coverage document
             try {
-                CoverageReport savedReport = coverageReportService.saveCoverageReportToCustomCollection(
-                    report, "validation_reports", "feature_coverage");
+                CoverageReport savedReport = coverageReportService.saveCoverageReport(report);
                 logger.info("Coverage report saved with name: {}", savedReport.getReportName());
             } catch (Exception e) {
                 logger.warn("Failed to save coverage report: {}", e.getMessage());
@@ -282,13 +281,7 @@ public class FeatureController {
                     logger.warn("Skipping similarity check for empty embedding in feature: {}", providedFeature.getFeature());
                 }
             }
-            
-            // Create reference feature from summary feature  
-            ReferenceFeature referenceFeature = ReferenceFeature.builder()
-                .feature(summaryFeature.getFeature())
-                .description(summaryFeature.getDescription())
-                .build();
-            
+
             if (bestMatch != null && bestSimilarity >= threshold) {
                 // Create matched feature from best match
                 MatchedFeature matchedFeature = MatchedFeature.builder()
@@ -299,7 +292,7 @@ public class FeatureController {
                 
                 // Create covered feature
                 CoveredFeature coveredFeature = CoveredFeature.builder()
-                    .referenceFeature(referenceFeature)
+                        .referenceFeatureId(summaryFeature.getId())
                     .matchedFeature(matchedFeature)
                     .similarity(bestSimilarity)
                     .build();
@@ -308,8 +301,7 @@ public class FeatureController {
             } else {
                 // Create uncovered feature  
                 UncoveredFeature uncoveredFeature = UncoveredFeature.builder()
-                    .referenceFeature(referenceFeature)
-                    .matchedFeature(null)
+                        .referenceFeatureId(summaryFeature.getId())
                     .similarity(bestSimilarity)
                     .build();
                 

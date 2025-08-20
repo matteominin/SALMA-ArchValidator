@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class SummaryFeature {
+    private String id;
     private String feature;
     private String description;
     private List<Double> embedding;

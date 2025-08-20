@@ -80,4 +80,21 @@ public class SummaryFeatureService {
             throw new RuntimeException("Failed to retrieve summary features", e);
         }
     }
+
+    /**
+     * Get summary feature by ID.
+     * 
+     * @param id The ID of the summary feature to retrieve
+     * @return The summary feature or null if not found
+     */
+    public SummaryFeature getSummaryFeatureById(String id) {
+        try {
+            SummaryFeature summaryFeature = summaryFeatureRepository.findById(id);
+            logger.debug("Retrieved summary feature with ID: {}", id);
+            return summaryFeature;
+        } catch (Exception e) {
+            logger.error("Failed to retrieve summary feature by ID {}: {}", id, e.getMessage(), e);
+            throw new RuntimeException("Failed to retrieve summary feature", e);
+        }
+    }
 }

@@ -80,6 +80,23 @@ public class SummaryFeatureRepository {
     }
     
     /**
+     * Find summary feature by ID.
+     * 
+     * @param id The ID of the summary feature to find
+     * @return The summary feature or null if not found
+     */
+    public SummaryFeature findById(String id) {
+        try {
+            MongoCollection<Document> collection = getCollection();
+            Document doc = collection.find(new Document("_id", new ObjectId(id))).first();
+            return doc != null ? convertFromDocument(doc) : null;
+        } catch (Exception e) {
+            logger.error("Error retrieving summary feature by ID {}: {}", id, e.getMessage(), e);
+            throw new RuntimeException("Database retrieval operation failed", e);
+        }
+    }
+
+    /**
      * Delete all summary features.
      * 
      * @return number of deleted documents
@@ -125,6 +142,7 @@ public class SummaryFeatureRepository {
     
     private SummaryFeature convertFromDocument(Document doc) {
         return SummaryFeature.builder()
+                .id(doc.getObjectId("_id") != null ? doc.getObjectId("_id").toString() : null)
             .feature(doc.getString("feature"))
             .description(doc.getString("description"))
             .count(doc.getString("count"))

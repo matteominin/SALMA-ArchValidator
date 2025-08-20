@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UncoveredFeature {
-    private ReferenceFeature referenceFeature;
-    private MatchedFeature matchedFeature; // Will be null for uncovered
-    private double similarity; // Will be 0.0 for uncovered
+    private String referenceFeatureId;
+    private double similarity;
 }

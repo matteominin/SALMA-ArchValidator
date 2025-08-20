@@ -105,32 +105,7 @@ public class CoverageReportController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-    
-    /**
-     * Get all coverage reports
-     * GET /api/coverage-reports
-     */
-    @GetMapping
-    public ResponseEntity<Map<String, Object>> getAllCoverageReports() {
-        Map<String, Object> response = new HashMap<>();
-        
-        try {
-            List<CoverageReport> reports = coverageReportService.getAllCoverageReports();
-            
-            response.put("success", true);
-            response.put("count", reports.size());
-            response.put("reports", reports);
-            
-            return ResponseEntity.ok(response);
-            
-        } catch (Exception e) {
-            logger.error("Error retrieving coverage reports: {}", e.getMessage(), e);
-            response.put("success", false);
-            response.put("error", "Failed to retrieve coverage reports: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }
-    
+
     /**
      * Get coverage report by ID
      * GET /api/coverage-reports/{id}
@@ -141,7 +116,6 @@ public class CoverageReportController {
         
         try {
             CoverageReport report = coverageReportService.getCoverageReportById(id);
-            
             response.put("success", true);
             response.put("report", report);
             
@@ -165,52 +139,70 @@ public class CoverageReportController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-    
+
     /**
-     * Validate and analyze features (without saving)
-     * POST /api/coverage-reports/analyze
+     * Get covered features by report Id
+     * GET /api/coverage-reports/{id}/covered-features
      */
-    @PostMapping("/analyze")
-    public ResponseEntity<Map<String, Object>> analyzeCoverage(@RequestBody Map<String, Object> requestBody) {
+    @GetMapping("/{id}/covered-features")
+    public ResponseEntity<Map<String, Object>> getCoveredFeaturesByReportId(@PathVariable String id) {
         Map<String, Object> response = new HashMap<>();
         
         try {
-            Double threshold = requestBody.get("threshold") != null ? 
-                              ((Number) requestBody.get("threshold")).doubleValue() : 0.85;
-            
-            // Extract and convert features
-            Object featuresObj = requestBody.get("features");
-            List<Feature> providedFeatures = extractFeatures(featuresObj);
-            
-            if (providedFeatures.isEmpty()) {
+            CoverageReport report = coverageReportService.getCoverageReportById(id);
+            if (report == null) {
                 response.put("success", false);
-                response.put("error", "Features list cannot be null or empty");
+                response.put("error", "Coverage report not found with ID: " + id);
+                return ResponseEntity.notFound().build();
+            }
+
+            if (report.getCoverage() == null) {
+                response.put("success", false);
+                response.put("error", "No coverage data found for report ID: " + id);
                 return ResponseEntity.badRequest().body(response);
             }
-            
-            // Get summary features and perform analysis
-            var summaryFeatures = summaryFeatureService.getAllSummaryFeatures();
-            Coverage coverage = coverageReportService.convertToCoverageModel(
-                summaryFeatures, providedFeatures, threshold
-            );
-            
+
+            List<Map<String, Object>> enrichedCoveredFeatures = new ArrayList<>();
+            if (report.getCoverage().getCoveredFeatures() != null) {
+                for (CoveredFeature coveredFeature : report.getCoverage().getCoveredFeatures()) {
+                    Map<String, Object> enrichedFeature = new HashMap<>();
+
+                    // Include the matched feature and similarity
+                    enrichedFeature.put("matchedFeature", coveredFeature.getMatchedFeature());
+                    enrichedFeature.put("similarity", coveredFeature.getSimilarity());
+
+                    // Include reference feature (already has ID inside)
+                    if (coveredFeature.getReferenceFeatureId() != null) {
+                        Map<String, Object> referenceFeature = new HashMap<>();
+                        String featureId = coveredFeature.getReferenceFeatureId();
+                        SummaryFeature refFeature = summaryFeatureService.getSummaryFeatureById(featureId);
+                        referenceFeature.put("referenceFeatureId", featureId);
+                        referenceFeature.put("feature", refFeature.getFeature());
+                        referenceFeature.put("description", refFeature.getDescription());
+                        referenceFeature.put("checklist", refFeature.getChecklist());
+                        enrichedFeature.put("referenceFeature", referenceFeature);
+                    }
+
+                    enrichedCoveredFeatures.add(enrichedFeature);
+                }
+            }
+
             response.put("success", true);
-            response.put("threshold", threshold);
-            response.put("totalSummaryFeatures", summaryFeatures.size());
-            response.put("providedFeatures", providedFeatures.size());
-            response.put("coverage", coverage);
-            
-            logger.info("Coverage analysis completed");
+            response.put("reportId", id);
+            response.put("coveredFeatures", enrichedCoveredFeatures);
+            response.put("count", enrichedCoveredFeatures.size());
+
+            logger.info("Retrieved {} covered features for report ID: {}", enrichedCoveredFeatures.size(), id);
             return ResponseEntity.ok(response);
-            
-        } catch (Exception e) {
-            logger.error("Error during coverage analysis: {}", e.getMessage(), e);
+
+        } catch (RuntimeException e) {
+            logger.error("Error retrieving covered features for report ID {}: {}", id, e.getMessage(), e);
             response.put("success", false);
-            response.put("error", "Failed to analyze coverage: " + e.getMessage());
+            response.put("error", "Failed to retrieve covered features: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-    
+
     private List<Feature> extractFeatures(Object featuresObj) {
         List<Feature> providedFeatures = new ArrayList<>();
         

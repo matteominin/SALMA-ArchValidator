@@ -1,7 +1,11 @@
 package com.matteominin.pdf_extractor.repository;
 
 import com.matteominin.pdf_extractor.config.DBManager;
+import com.matteominin.pdf_extractor.model.Coverage;
 import com.matteominin.pdf_extractor.model.CoverageReport;
+import com.matteominin.pdf_extractor.model.CoveredFeature;
+import com.matteominin.pdf_extractor.model.MatchedFeature;
+import com.matteominin.pdf_extractor.model.UncoveredFeature;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
@@ -29,10 +33,6 @@ public class CoverageReportRepository {
     
     private MongoCollection<Document> getCollection() {
         return dbManager.getCollection(collectionName);
-    }
-    
-    private MongoCollection<Document> getCustomCollection(String customCollectionName) {
-        return dbManager.getCollection(customCollectionName);
     }
 
     public List<CoverageReport> findAll() {
@@ -80,31 +80,6 @@ public class CoverageReportRepository {
             throw new RuntimeException("Database save operation failed", e);
         }
     }
-    
-    public String saveToCustomCollection(CoverageReport coverageReport, String customCollectionName, String documentName) {
-        try {
-            coverageReport.setCreatedAt(new Date());
-            coverageReport.setUpdatedAt(new Date());
-            coverageReport.setReportName(documentName);
-            
-            MongoCollection<Document> collection = getCustomCollection(customCollectionName);
-            Document doc = convertToDocument(coverageReport);
-            
-            // Replace existing document with same reportName or insert new one
-            collection.replaceOne(
-                new Document("reportName", documentName),
-                doc,
-                new com.mongodb.client.model.ReplaceOptions().upsert(true)
-            );
-            
-            logger.debug("Coverage report saved to collection '{}' with document name '{}'", customCollectionName, documentName);
-            return documentName; // Return document name as identifier
-            
-        } catch (Exception e) {
-            logger.error("Error saving coverage report to custom collection: {}", e.getMessage(), e);
-            throw new RuntimeException("Database save operation failed", e);
-        }
-    }
 
     private CoverageReport convertToCoverageReport(Document doc) {
         CoverageReport report = new CoverageReport();
@@ -127,9 +102,8 @@ public class CoverageReportRepository {
         return report;
     }
     
-    private com.matteominin.pdf_extractor.model.Coverage convertDocumentToCoverage(Document coverageDoc) {
-        com.matteominin.pdf_extractor.model.Coverage coverage = 
-            com.matteominin.pdf_extractor.model.Coverage.builder().build();
+    private Coverage convertDocumentToCoverage(Document coverageDoc) {
+        Coverage coverage = Coverage.builder().build();
         
         coverage.setCoveragePercentage(coverageDoc.getDouble("coveragePercentage"));
         coverage.setCoveredCount(coverageDoc.getInteger("coveredCount", 0));
@@ -139,7 +113,7 @@ public class CoverageReportRepository {
         List<Document> coveredFeaturesDocs = coverageDoc.getList("coveredFeatures", Document.class);
         if (coveredFeaturesDocs != null) {
             for (Document coveredDoc : coveredFeaturesDocs) {
-                com.matteominin.pdf_extractor.model.CoveredFeature coveredFeature = 
+                CoveredFeature coveredFeature = 
                     convertDocumentToCoveredFeature(coveredDoc);
                 coverage.addCoveredFeature(coveredFeature);
             }
@@ -149,7 +123,7 @@ public class CoverageReportRepository {
         List<Document> uncoveredFeaturesDocs = coverageDoc.getList("uncoveredFeatures", Document.class);
         if (uncoveredFeaturesDocs != null) {
             for (Document uncoveredDoc : uncoveredFeaturesDocs) {
-                com.matteominin.pdf_extractor.model.UncoveredFeature uncoveredFeature = 
+                UncoveredFeature uncoveredFeature = 
                     convertDocumentToUncoveredFeature(uncoveredDoc);
                 coverage.addUncoveredFeature(uncoveredFeature);
             }
@@ -158,26 +132,19 @@ public class CoverageReportRepository {
         return coverage;
     }
     
-    private com.matteominin.pdf_extractor.model.CoveredFeature convertDocumentToCoveredFeature(Document doc) {
-        com.matteominin.pdf_extractor.model.CoveredFeature.CoveredFeatureBuilder builder = 
-            com.matteominin.pdf_extractor.model.CoveredFeature.builder();
+    private CoveredFeature convertDocumentToCoveredFeature(Document doc) {
+        CoveredFeature.CoveredFeatureBuilder builder = CoveredFeature.builder();
         
-        // Reference feature
-        Document refDoc = doc.get("referenceFeature", Document.class);
-        if (refDoc != null) {
-            com.matteominin.pdf_extractor.model.ReferenceFeature refFeature = 
-                com.matteominin.pdf_extractor.model.ReferenceFeature.builder()
-                    .feature(refDoc.getString("feature"))
-                    .description(refDoc.getString("description"))
-                    .build();
-            builder.referenceFeature(refFeature);
+        // Reference feature ID (stored as string)
+        String referenceFeatureId = doc.getString("referenceFeatureId");
+        if (referenceFeatureId != null) {
+            builder.referenceFeatureId(referenceFeatureId);
         }
         
         // Matched feature
         Document matchedDoc = doc.get("matchedFeature", Document.class);
         if (matchedDoc != null) {
-            com.matteominin.pdf_extractor.model.MatchedFeature matchedFeature = 
-                com.matteominin.pdf_extractor.model.MatchedFeature.builder()
+            MatchedFeature matchedFeature = MatchedFeature.builder()
                     .feature(matchedDoc.getString("feature"))
                     .description(matchedDoc.getString("description"))
                     .sectionText(matchedDoc.getString("sectionText"))
@@ -189,33 +156,15 @@ public class CoverageReportRepository {
         return builder.build();
     }
     
-    private com.matteominin.pdf_extractor.model.UncoveredFeature convertDocumentToUncoveredFeature(Document doc) {
-        com.matteominin.pdf_extractor.model.UncoveredFeature.UncoveredFeatureBuilder builder = 
-            com.matteominin.pdf_extractor.model.UncoveredFeature.builder();
+    private UncoveredFeature convertDocumentToUncoveredFeature(Document doc) {
+        UncoveredFeature.UncoveredFeatureBuilder builder = UncoveredFeature.builder();
         
-        // Reference feature
-        Document refDoc = doc.get("referenceFeature", Document.class);
-        if (refDoc != null) {
-            com.matteominin.pdf_extractor.model.ReferenceFeature refFeature = 
-                com.matteominin.pdf_extractor.model.ReferenceFeature.builder()
-                    .feature(refDoc.getString("feature"))
-                    .description(refDoc.getString("description"))
-                    .build();
-            builder.referenceFeature(refFeature);
+        // Reference feature ID (stored as string)
+        String referenceFeatureId = doc.getString("referenceFeatureId");
+        if (referenceFeatureId != null) {
+            builder.referenceFeatureId(referenceFeatureId);
         }
-        
-        // Matched feature (usually null for uncovered)
-        Document matchedDoc = doc.get("matchedFeature", Document.class);
-        if (matchedDoc != null) {
-            com.matteominin.pdf_extractor.model.MatchedFeature matchedFeature = 
-                com.matteominin.pdf_extractor.model.MatchedFeature.builder()
-                    .feature(matchedDoc.getString("feature"))
-                    .description(matchedDoc.getString("description"))
-                    .sectionText(matchedDoc.getString("sectionText"))
-                    .build();
-            builder.matchedFeature(matchedFeature);
-        }
-        
+
         builder.similarity(doc.getDouble("similarity"));
         return builder.build();
     }
@@ -233,7 +182,7 @@ public class CoverageReportRepository {
             .append("updatedAt", report.getUpdatedAt());
     }
     
-    private Document convertCoverageToDocument(com.matteominin.pdf_extractor.model.Coverage coverage) {
+    private Document convertCoverageToDocument(Coverage coverage) {
         if (coverage == null) return null;
         
         Document coverageDoc = new Document()
@@ -244,17 +193,12 @@ public class CoverageReportRepository {
         // Convert covered features with full details
         List<Document> coveredFeaturesDocs = new ArrayList<>();
         if (coverage.getCoveredFeatures() != null) {
-            for (com.matteominin.pdf_extractor.model.CoveredFeature coveredFeature : coverage.getCoveredFeatures()) {
+            for (CoveredFeature coveredFeature : coverage.getCoveredFeatures()) {
                 Document coveredDoc = new Document();
-                
-                // Reference feature details
-                if (coveredFeature.getReferenceFeature() != null) {
-                    Document refDoc = new Document()
-                        .append("feature", coveredFeature.getReferenceFeature().getFeature())
-                        .append("description", coveredFeature.getReferenceFeature().getDescription());
-                    coveredDoc.append("referenceFeature", refDoc);
-                }
-                
+
+                // Add reference feature ID
+                coveredDoc.append("referenceFeatureId", coveredFeature.getReferenceFeatureId());
+
                 // Matched feature details
                 if (coveredFeature.getMatchedFeature() != null) {
                     Document matchedDoc = new Document()
@@ -273,26 +217,10 @@ public class CoverageReportRepository {
         // Convert uncovered features with full details
         List<Document> uncoveredFeaturesDocs = new ArrayList<>();
         if (coverage.getUncoveredFeatures() != null) {
-            for (com.matteominin.pdf_extractor.model.UncoveredFeature uncoveredFeature : coverage.getUncoveredFeatures()) {
+            for (UncoveredFeature uncoveredFeature : coverage.getUncoveredFeatures()) {
                 Document uncoveredDoc = new Document();
-                
-                // Reference feature details
-                if (uncoveredFeature.getReferenceFeature() != null) {
-                    Document refDoc = new Document()
-                        .append("feature", uncoveredFeature.getReferenceFeature().getFeature())
-                        .append("description", uncoveredFeature.getReferenceFeature().getDescription());
-                    uncoveredDoc.append("referenceFeature", refDoc);
-                }
-                
-                // Matched feature (usually null for uncovered, but include if present)
-                if (uncoveredFeature.getMatchedFeature() != null) {
-                    Document matchedDoc = new Document()
-                        .append("feature", uncoveredFeature.getMatchedFeature().getFeature())
-                        .append("description", uncoveredFeature.getMatchedFeature().getDescription())
-                        .append("sectionText", uncoveredFeature.getMatchedFeature().getSectionText());
-                    uncoveredDoc.append("matchedFeature", matchedDoc);
-                }
-                
+
+                uncoveredDoc.append("referenceFeatureId", uncoveredFeature.getReferenceFeatureId());
                 uncoveredDoc.append("similarity", uncoveredFeature.getSimilarity());
                 uncoveredFeaturesDocs.add(uncoveredDoc);
             }

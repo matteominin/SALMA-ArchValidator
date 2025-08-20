@@ -38,29 +38,7 @@ public class CoverageReportService {
             throw new RuntimeException("Failed to save coverage report", e);
         }
     }
-    
-    /**
-     * Save a coverage report to a custom collection with specific document name
-     */
-    public CoverageReport saveCoverageReportToCustomCollection(CoverageReport coverageReport, String collectionName, String documentName) {
-        try {
-            validateCoverageReport(coverageReport);
-            
-            String reportId = coverageReportRepository.saveToCustomCollection(coverageReport, collectionName, documentName);
-            coverageReport.setId(reportId);
-            
-            logger.info("Coverage report saved successfully to collection '{}' with document name '{}'", collectionName, documentName);
-            return coverageReport;
-            
-        } catch (IllegalArgumentException e) {
-            logger.warn("Invalid coverage report data: {}", e.getMessage());
-            throw e;
-        } catch (Exception e) {
-            logger.error("Error saving coverage report to custom collection: {}", e.getMessage(), e);
-            throw new RuntimeException("Failed to save coverage report", e);
-        }
-    }
-    
+
     /**
      * Create a coverage report from validation results
      */
@@ -81,19 +59,7 @@ public class CoverageReportService {
                 .description(description)
                 .build();
     }
-    
-    /**
-     * Get all coverage reports
-     */
-    public List<CoverageReport> getAllCoverageReports() {
-        try {
-            return coverageReportRepository.findAll();
-        } catch (Exception e) {
-            logger.error("Error retrieving coverage reports: {}", e.getMessage(), e);
-            throw new RuntimeException("Failed to retrieve coverage reports", e);
-        }
-    }
-    
+
     /**
      * Get coverage report by ID
      */
@@ -121,8 +87,8 @@ public class CoverageReportService {
     /**
      * Convert the current analyzeCoverage result format to the new Coverage model
      */
-    public Coverage convertToCoverageModel(List<com.matteominin.pdf_extractor.model.SummaryFeature> summaryFeatures,
-                                         List<Feature> providedFeatures,
+    public Coverage convertToCoverageModel(List<SummaryFeature> summaryFeatures,
+                                                 List<Feature> providedFeatures,
                                          double threshold) {
         
         Coverage coverage = Coverage.builder().build();
@@ -149,14 +115,7 @@ public class CoverageReportService {
                     }
                 }
             }
-            
-            // Create reference feature
-            ReferenceFeature referenceFeature = ReferenceFeature.builder()
-                    .feature(summaryFeature.getFeature())
-                    .description(summaryFeature.getDescription())
-                    .sectionText(null)
-                    .build();
-            
+
             if (isCovered) {
                 // Create matched feature
                 MatchedFeature matchedFeature = MatchedFeature.builder()
@@ -166,7 +125,7 @@ public class CoverageReportService {
                         .build();
                 
                 CoveredFeature coveredFeature = CoveredFeature.builder()
-                        .referenceFeature(referenceFeature)
+                        .referenceFeatureId(summaryFeature.getId())
                         .matchedFeature(matchedFeature)
                         .similarity(bestSimilarity)
                         .build();
@@ -174,8 +133,7 @@ public class CoverageReportService {
                 coverage.addCoveredFeature(coveredFeature);
             } else {
                 UncoveredFeature uncoveredFeature = UncoveredFeature.builder()
-                        .referenceFeature(referenceFeature)
-                        .matchedFeature(null)
+                        .referenceFeatureId(summaryFeature.getId())
                         .similarity(0.0)
                         .build();
                 

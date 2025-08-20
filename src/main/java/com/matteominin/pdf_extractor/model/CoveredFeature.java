@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoveredFeature {
-    private ReferenceFeature referenceFeature;
+    private String referenceFeatureId;
     private MatchedFeature matchedFeature;
     private double similarity;
 }
