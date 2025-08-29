@@ -1,7 +1,7 @@
 package com.matteominin.pdf_extractor.repository;
 
 import com.matteominin.pdf_extractor.config.DBManager;
-import com.matteominin.pdf_extractor.model.SummaryFeature;
+import com.matteominin.pdf_extractor.model.feature.SummaryFeature;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.bson.types.ObjectId;

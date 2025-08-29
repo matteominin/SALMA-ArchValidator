@@ -1,6 +1,6 @@
 package com.matteominin.pdf_extractor.service;
 
-import com.matteominin.pdf_extractor.model.Feature;
+import com.matteominin.pdf_extractor.model.pdf.Feature;
 import com.matteominin.pdf_extractor.repository.FeatureRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,12 @@
 package com.matteominin.pdf_extractor.service;
 
-import com.matteominin.pdf_extractor.model.*;
+import com.matteominin.pdf_extractor.model.coverage.Coverage;
+import com.matteominin.pdf_extractor.model.coverage.CoverageReport;
+import com.matteominin.pdf_extractor.model.coverage.CoveredFeature;
+import com.matteominin.pdf_extractor.model.coverage.UncoveredFeature;
+import com.matteominin.pdf_extractor.model.feature.MatchedFeature;
+import com.matteominin.pdf_extractor.model.feature.SummaryFeature;
+import com.matteominin.pdf_extractor.model.pdf.Feature;
 import com.matteominin.pdf_extractor.repository.CoverageReportRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

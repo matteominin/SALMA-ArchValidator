@@ -1,6 +1,12 @@
 package com.matteominin.pdf_extractor.controller;
 
-import com.matteominin.pdf_extractor.model.*;
+import com.matteominin.pdf_extractor.model.pdf.Feature;
+import com.matteominin.pdf_extractor.model.coverage.Coverage;
+import com.matteominin.pdf_extractor.model.coverage.CoverageReport;
+import com.matteominin.pdf_extractor.model.coverage.CoveredFeature;
+import com.matteominin.pdf_extractor.model.coverage.UncoveredFeature;
+import com.matteominin.pdf_extractor.model.feature.MatchedFeature;
+import com.matteominin.pdf_extractor.model.feature.SummaryFeature;
 import com.matteominin.pdf_extractor.service.FeatureService;
 import com.matteominin.pdf_extractor.service.FeatureClusteringService;
 import com.matteominin.pdf_extractor.service.SummaryFeatureService;
@@ -254,8 +260,8 @@ public class FeatureController {
         }
     }
     
-    private Coverage analyzeCoverage(List<com.matteominin.pdf_extractor.model.SummaryFeature> summaryFeatures, 
-                                               List<Feature> providedFeatures, double threshold) {
+    private Coverage analyzeCoverage(List<SummaryFeature> summaryFeatures,
+                                                       List<Feature> providedFeatures, double threshold) {
         
         Coverage coverage = Coverage.builder().build();
         

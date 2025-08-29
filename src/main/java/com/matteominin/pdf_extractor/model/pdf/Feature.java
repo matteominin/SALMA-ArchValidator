@@ -1,4 +1,4 @@
-package com.matteominin.pdf_extractor.model;
+package com.matteominin.pdf_extractor.model.pdf;
 
 import java.util.Date;
 import java.util.List;

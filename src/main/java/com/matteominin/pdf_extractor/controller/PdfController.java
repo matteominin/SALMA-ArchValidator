@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.matteominin.pdf_extractor.model.ExtractedSection;
-import com.matteominin.pdf_extractor.model.PdfIndex;
+import com.matteominin.pdf_extractor.model.pdf.ExtractedSection;
+import com.matteominin.pdf_extractor.model.pdf.PdfIndex;
 import com.matteominin.pdf_extractor.service.PdfService;
 
 @RestController

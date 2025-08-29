@@ -1,4 +1,4 @@
-package com.matteominin.pdf_extractor.model;
+package com.matteominin.pdf_extractor.model.coverage;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

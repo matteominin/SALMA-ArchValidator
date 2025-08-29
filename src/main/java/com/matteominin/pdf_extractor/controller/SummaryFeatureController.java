@@ -1,6 +1,6 @@
 package com.matteominin.pdf_extractor.controller;
 
-import com.matteominin.pdf_extractor.model.SummaryFeature;
+import com.matteominin.pdf_extractor.model.feature.SummaryFeature;
 import com.matteominin.pdf_extractor.service.SummaryFeatureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,6 @@
-package com.matteominin.pdf_extractor.model;
+package com.matteominin.pdf_extractor.model.coverage;
 
+import com.matteominin.pdf_extractor.model.feature.MatchedFeature;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

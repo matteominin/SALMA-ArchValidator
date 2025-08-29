@@ -1,11 +1,11 @@
 package com.matteominin.pdf_extractor.repository;
 
 import com.matteominin.pdf_extractor.config.DBManager;
-import com.matteominin.pdf_extractor.model.Coverage;
-import com.matteominin.pdf_extractor.model.CoverageReport;
-import com.matteominin.pdf_extractor.model.CoveredFeature;
-import com.matteominin.pdf_extractor.model.MatchedFeature;
-import com.matteominin.pdf_extractor.model.UncoveredFeature;
+import com.matteominin.pdf_extractor.model.coverage.Coverage;
+import com.matteominin.pdf_extractor.model.coverage.CoverageReport;
+import com.matteominin.pdf_extractor.model.coverage.CoveredFeature;
+import com.matteominin.pdf_extractor.model.feature.MatchedFeature;
+import com.matteominin.pdf_extractor.model.coverage.UncoveredFeature;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;

@@ -1,6 +1,10 @@
 package com.matteominin.pdf_extractor.controller;
 
-import com.matteominin.pdf_extractor.model.*;
+import com.matteominin.pdf_extractor.model.pdf.Feature;
+import com.matteominin.pdf_extractor.model.coverage.Coverage;
+import com.matteominin.pdf_extractor.model.coverage.CoverageReport;
+import com.matteominin.pdf_extractor.model.coverage.CoveredFeature;
+import com.matteominin.pdf_extractor.model.feature.SummaryFeature;
 import com.matteominin.pdf_extractor.service.CoverageReportService;
 import com.matteominin.pdf_extractor.service.SummaryFeatureService;
 import com.fasterxml.jackson.databind.ObjectMapper;

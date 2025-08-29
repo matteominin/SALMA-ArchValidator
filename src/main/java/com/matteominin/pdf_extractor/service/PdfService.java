@@ -6,8 +6,8 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
-import com.matteominin.pdf_extractor.model.ExtractedSection;
-import com.matteominin.pdf_extractor.model.PdfIndex;
+import com.matteominin.pdf_extractor.model.pdf.ExtractedSection;
+import com.matteominin.pdf_extractor.model.pdf.PdfIndex;
 
 import java.io.File;
 import java.io.IOException;
