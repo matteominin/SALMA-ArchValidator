@@ -1,5 +1,6 @@
 package com.matteominin.pdf_extractor.service;
 
+import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class EmbeddingService {
     
     public List<Double> generateEmbedding(String text) {
         // Prima controlliamo se l'API key è configurata
-        if (apiKey == null || apiKey.trim().isEmpty() || "${OPENAI_API_KEY}".equals(apiKey)) {
+        if (apiKey == null || apiKey.trim().isEmpty()) {
             logger.error("OpenAI API key is not configured. Current value: {}", 
                         apiKey == null ? "null" : (apiKey.isEmpty() ? "empty" : "placeholder"));
             throw new RuntimeException("OpenAI API key is not configured. Please set the OPENAI_API_KEY environment variable.");
@@ -103,6 +104,74 @@ public class EmbeddingService {
         }
     }
 
+    public List<List<Double>> generateEmbedding(List<String> texts) {
+
+        EmbeddingResponse res = embeddingModel.embedForResponse(texts);
+
+        if (res == null) {
+            throw new RuntimeException("Failed to generate embeddings");
+        }
+
+        List<List<Double>> embeddings = new ArrayList<>();
+        for (Embedding e : res.getResults()) {
+            float[] embeddingArray = e.getOutput();
+            if (embeddingArray == null || embeddingArray.length == 0) {
+                throw new RuntimeException("Received empty embedding array from OpenAI API");
+            }
+
+            List<Double> embedding = new ArrayList<>();
+            for (float f : embeddingArray) {
+                embedding.add((double) f);
+            }
+            embeddings.add(embedding);
+        }
+
+        if (embeddings == null || embeddings.isEmpty()) {
+            throw new RuntimeException("Received empty embeddings from OpenAI API");
+        }
+
+        return embeddings;
+    }
+
+    /**
+     * Converts List<List<Double>> embeddings to double[][] format.
+     * 
+     * @param embeddings list of embedding vectors
+     * @return 2D double array suitable for machine learning libraries
+     */
+    public static double[][] convertToDoubleMatrix(List<List<Double>> embeddings) {
+        if (embeddings == null || embeddings.isEmpty()) {
+            return new double[0][0];
+        }
+
+        int numVectors = embeddings.size();
+        int vectorDimension = embeddings.get(0).size();
+        double[][] result = new double[numVectors][vectorDimension];
+
+        for (int i = 0; i < numVectors; i++) {
+            List<Double> embedding = embeddings.get(i);
+            for (int j = 0; j < vectorDimension; j++) {
+                result[i][j] = embedding.get(j);
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Converts a single List<Double> embedding to double[] format.
+     * 
+     * @param embedding single embedding vector
+     * @return double array
+     */
+    public static double[] convertToDoubleArray(List<Double> embedding) {
+        if (embedding == null || embedding.isEmpty()) {
+            return new double[0];
+        }
+
+        return embedding.stream().mapToDouble(Double::doubleValue).toArray();
+    }
+
     /**
      * Calculates cosine similarity between two embedding vectors.
      * 
@@ -117,8 +186,8 @@ public class EmbeddingService {
 
         try {
             // Convert to Apache Commons Math vectors
-            double[] array1 = vector1.stream().mapToDouble(Double::doubleValue).toArray();
-            double[] array2 = vector2.stream().mapToDouble(Double::doubleValue).toArray();
+            double[] array1 = convertToDoubleArray(vector1);
+            double[] array2 = convertToDoubleArray(vector2);
             
             RealVector v1 = new ArrayRealVector(array1);
             RealVector v2 = new ArrayRealVector(array2);
