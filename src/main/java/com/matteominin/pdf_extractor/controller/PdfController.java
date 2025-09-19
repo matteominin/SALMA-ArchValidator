@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.matteominin.pdf_extractor.model.pdf.ExtractedSection;
 import com.matteominin.pdf_extractor.model.pdf.PdfIndex;
 import com.matteominin.pdf_extractor.service.PdfService;
+import com.matteominin.pdf_extractor.service.VerificationReportService;
 
 @RestController
 @RequestMapping("/api/pdf")
@@ -105,6 +109,39 @@ public class PdfController {
             log.error("Error processing PDF section extraction", e);
             Map<String, String> errorResponse = new HashMap<>();
             errorResponse.put("error", "Error processing PDF: " + e.getMessage());
+            return ResponseEntity.internalServerError().body(errorResponse);
+        }
+    }
+
+    @PostMapping("/save-report")
+    private ResponseEntity<?> saveReport(@RequestBody Map<String, Object> request) {
+        try {
+            String outputPath = "./out/report.md";
+            Path file = null;
+
+            String summaryReport = (String) request.get("summary_report");
+            Object verificationObject = request.get("verification_report");
+
+            if (summaryReport == null || summaryReport.isEmpty() || verificationObject == null
+                    || verificationObject.toString().isEmpty()) {
+                throw new IllegalArgumentException("No report content provided");
+            }
+
+            if (!Files.exists(Paths.get(outputPath))) {
+                Files.createDirectories(Paths.get("./out"));
+            }
+            String text = summaryReport + "\n\n"
+                    + VerificationReportService.generateVerificationReport(verificationObject);
+            file = Paths.get(outputPath);
+            Files.writeString(file, text);
+
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Report saved successfully");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            log.error("Error saving report", e);
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Error saving report: " + e.getMessage());
             return ResponseEntity.internalServerError().body(errorResponse);
         }
     }
