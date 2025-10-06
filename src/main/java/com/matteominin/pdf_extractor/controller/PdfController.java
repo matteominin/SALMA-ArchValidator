@@ -34,12 +34,14 @@ public class PdfController {
     public ResponseEntity<?> extractTextFromPdf(@RequestBody Map<String, String> request) {
         try {
             String filePath = request.get("filepath");
+            String outputDirectory = request.getOrDefault("outputDirectory", "extracted_images");
             log.info("Processing PDF extraction request for: {}", filePath);
 
-            String extractedText = pdfService.extractText(filePath);
+            String extractedContent = pdfService.extractText(filePath, outputDirectory);
 
-            Map<String, String> response = new HashMap<>();
-            response.put("text", extractedText);
+            Map<String, Object> response = new HashMap<>();
+            response.put("text", extractedContent);
+            response.put("outputDirectory", outputDirectory);
             return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             log.warn("Invalid request parameters: {}", e.getMessage());

@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.matteominin.pdf_extractor.model.content.Architecture;
 import com.matteominin.pdf_extractor.model.content.ContentReport;
 import com.matteominin.pdf_extractor.model.content.Requirement;
-import com.matteominin.pdf_extractor.model.content.UseCase;
 import com.matteominin.pdf_extractor.service.ContentReportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,25 +39,24 @@ public class ContentReportController {
         }
 
         try {
-            // Properly convert LinkedHashMap objects to ContentReport objects
-            List<ContentReport> content = objectMapper.convertValue(rawReportObj,
-                    new TypeReference<List<ContentReport>>() {
-                    });
+            // Parse the raw_report as a list of lists of maps (matching the input structure)
+            List<List<Map<String, Object>>> rawLists = objectMapper.convertValue(rawReportObj,
+                    new TypeReference<List<List<Map<String, Object>>>>() {});
 
-            List<UseCase> useCases = new ArrayList<>();
-            List<Requirement> requirements = new ArrayList<>();
-            List<Architecture> architectures = new ArrayList<>();
-
-            for (ContentReport c : content) {
-                useCases.addAll(c.getUseCases());
-                requirements.addAll(c.getRequirements());
-                architectures.addAll(c.getArchitectures());
+            // Assuming all inner lists contain Requirement objects, collect them all
+            List<Requirement> allRequirements = new ArrayList<>();
+            for (List<Map<String, Object>> innerList : rawLists) {
+                List<Requirement> reqs = objectMapper.convertValue(innerList,
+                        new TypeReference<List<Requirement>>() {});
+                allRequirements.addAll(reqs);
             }
 
-            ContentReport consolidatedReport = contentReportService.consolidateReport(useCases, requirements,
-                    architectures);
+            // Consolidate into a single ContentReport (with all as requirements, others empty)
+            ContentReport consolidatedReport = contentReportService.consolidateReport(
+                    new ArrayList<>(), allRequirements, new ArrayList<>(), new ArrayList<>());
             return ResponseEntity.ok(consolidatedReport);
         } catch (Exception e) {
+            System.out.println(e);
             return ResponseEntity.badRequest().body("Invalid raw_report format: " + e.getMessage());
         }
     }

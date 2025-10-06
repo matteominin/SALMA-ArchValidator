@@ -12,6 +12,9 @@ public class Requirement {
     private String description;
     private String type;    // type of requirement (functional, non-functional)
 
+    @JsonProperty("source_text")
+    private String sourceText;
+
     @JsonProperty("quality_notes")
     private String qualityNotes;
 

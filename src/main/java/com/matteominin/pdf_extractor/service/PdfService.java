@@ -1,13 +1,19 @@
 package com.matteominin.pdf_extractor.service;
 
 import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDResources;
+import org.apache.pdfbox.pdmodel.graphics.PDXObject;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 import com.matteominin.pdf_extractor.model.pdf.ExtractedSection;
 import com.matteominin.pdf_extractor.model.pdf.PdfIndex;
+import com.matteominin.pdf_extractor.util.ImageAwareTextStripper;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,25 +22,44 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
+
+import java.awt.image.BufferedImage;
+
 @Service
 @Slf4j
 public class PdfService {
-    public String extractText(String filePath) {
-        log.info("Extracting full text from PDF: {}", filePath);
+    public String extractText(String filePath, String outputDirectory) {
+        log.info("Starting text and image extraction for: {}", filePath);
         validateFilePath(filePath);
+
+        StringBuilder result = new StringBuilder();
         PDDocument document = null;
+
         try {
             document = loadPDF(filePath);
-            PDFTextStripper stripper = new PDFTextStripper();
-            String text = stripper.getText(document);
-            log.debug("Successfully extracted text from document, length: {}", text.length());
-            return text;
+            int totalPages = document.getNumberOfPages();
+            log.info("Processing {} pages for extraction", totalPages);
+
+            ImageAwareTextStripper stripper = new ImageAwareTextStripper();
+            String extractedText = stripper.getText(document);
+
+            result.append(extractedText);
         } catch (IOException e) {
-            log.error("Error extracting text from PDF document", e);
-            throw new RuntimeException("Error extracting text from PDF document", e);
+            log.error("Error during text extraction", e);
+            throw new RuntimeException("Error during text extraction", e);
         } finally {
             closeDocument(document);
         }
+
+        String finalResult = result.toString();
+        log.info("Completed extraction - total {} characters", finalResult.length());
+
+        return finalResult;
+    }
+
+    public String extractText(String filePath) {
+        return extractText(filePath, "extracted_images");
     }
 
     public String extractPages(String filePath, int startPage, int endPage) {
@@ -123,7 +148,7 @@ public class PdfService {
     private PDDocument loadPDF(String filePath) throws IOException{
         File file = new File(filePath);
         if (!file.exists()) {
-            throw new IllegalArgumentException("PDF file not found: " + filePath);
+            throw new IllegalArgumentException("PDF file not found, filepath:" + filePath);
         }
         return Loader.loadPDF(file);
     }
@@ -240,6 +265,50 @@ public class PdfService {
         } catch (IOException e) {
             log.error("Error removing index from PDF text", e);
             throw new RuntimeException("Error removing index from PDF text", e);
+        }
+    }
+
+    public void extractImages(String filePath) {
+        String outputFolder = "extracted_images";
+        PDDocument document = null;
+        try {
+            document = loadPDF(filePath);
+        } catch (IOException e) {
+            log.error("Error loading PDF for image extraction", e);
+            throw new RuntimeException("Error loading PDF for image extraction", e);
+        }
+
+        // Create the output folder if it doesn't exist
+        File outputDir = new File(outputFolder);
+        if (!outputDir.exists()) {
+            boolean created = outputDir.mkdirs();
+            if (created) {
+                log.info("Created output directory: {}", outputFolder);
+            } else {
+                log.warn("Failed to create output directory: {}", outputFolder);
+            }
+        }
+
+        PDPage page = document.getPage(5);
+        PDResources resources = page.getResources();
+        Iterable<COSName> xObjectNames = resources.getXObjectNames();
+        for (COSName xObjectName : xObjectNames) {
+            try {
+                PDXObject xObject = resources.getXObject(xObjectName);
+                if (xObject instanceof PDImageXObject) {
+                    PDImageXObject PDImage = (PDImageXObject) xObject;
+                    BufferedImage image = PDImage.getImage();
+
+                    String imagePath = outputFolder + File.separator + "image_" + xObjectName.getName() + ".png";
+                    File imageFile = new File(imagePath);
+
+                    ImageIO.write(image, "png", imageFile);
+                    log.info("Saved image to: {}", imagePath);
+                }
+            } catch (IOException e) {
+                log.error("Error retrieving XObject from resources", e);
+                throw new RuntimeException("Error retrieving XObject from resources", e);
+            }
         }
     }
 

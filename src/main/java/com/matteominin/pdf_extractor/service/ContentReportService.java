@@ -7,16 +7,19 @@ import org.springframework.stereotype.Service;
 import com.matteominin.pdf_extractor.model.content.Architecture;
 import com.matteominin.pdf_extractor.model.content.ContentReport;
 import com.matteominin.pdf_extractor.model.content.Requirement;
+import com.matteominin.pdf_extractor.model.content.Test;
 import com.matteominin.pdf_extractor.model.content.UseCase;
 
 @Service
 public class ContentReportService {
 
-    public ContentReport consolidateReport(List<UseCase> useCases, List<Requirement> requirements, List<Architecture> architectures) {
+    public ContentReport consolidateReport(List<UseCase> useCases, List<Requirement> requirements,
+            List<Architecture> architectures, List<Test> tests) {
         ContentReport report = ContentReport.builder()
                 .useCases(useCases)
                 .requirements(requirements)
                 .architectures(architectures)
+                .tests(tests)
                 .build();
         return report;
     }

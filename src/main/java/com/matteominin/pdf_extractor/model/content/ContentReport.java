@@ -23,4 +23,6 @@ public class ContentReport {
     
     @JsonProperty("architecture")
     List<Architecture> architectures;
+
+    List<Test> tests;
 }
