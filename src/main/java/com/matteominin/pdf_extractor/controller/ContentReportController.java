@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.matteominin.pdf_extractor.model.content.Architecture;
 import com.matteominin.pdf_extractor.model.content.ContentReport;
 import com.matteominin.pdf_extractor.model.content.Requirement;
+import com.matteominin.pdf_extractor.model.content.Test;
+import com.matteominin.pdf_extractor.model.content.UseCase;
 import com.matteominin.pdf_extractor.service.ContentReportService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,21 +42,26 @@ public class ContentReportController {
         }
 
         try {
-            // Parse the raw_report as a list of lists of maps (matching the input structure)
-            List<List<Map<String, Object>>> rawLists = objectMapper.convertValue(rawReportObj,
-                    new TypeReference<List<List<Map<String, Object>>>>() {});
+            // Properly convert LinkedHashMap objects to ContentReport objects
+            List<ContentReport> content = objectMapper.convertValue(rawReportObj,
+                    new TypeReference<List<ContentReport>>() {
+                    });
 
-            // Assuming all inner lists contain Requirement objects, collect them all
-            List<Requirement> allRequirements = new ArrayList<>();
-            for (List<Map<String, Object>> innerList : rawLists) {
-                List<Requirement> reqs = objectMapper.convertValue(innerList,
-                        new TypeReference<List<Requirement>>() {});
-                allRequirements.addAll(reqs);
+            List<UseCase> useCases = new ArrayList<>();
+            List<Requirement> requirements = new ArrayList<>();
+            List<Architecture> architectures = new ArrayList<>();
+            List<Test> tests = new ArrayList<>();
+
+            for (ContentReport c : content) {
+                useCases.addAll(c.getUseCases());
+                requirements.addAll(c.getRequirements());
+                architectures.addAll(c.getArchitectures());
+                // tests.addAll(c.getTests());
+                // TODO: add tests when available
             }
 
-            // Consolidate into a single ContentReport (with all as requirements, others empty)
-            ContentReport consolidatedReport = contentReportService.consolidateReport(
-                    new ArrayList<>(), allRequirements, new ArrayList<>(), new ArrayList<>());
+            ContentReport consolidatedReport = contentReportService.consolidateReport(useCases, requirements,
+                    architectures, tests);
             return ResponseEntity.ok(consolidatedReport);
         } catch (Exception e) {
             System.out.println(e);

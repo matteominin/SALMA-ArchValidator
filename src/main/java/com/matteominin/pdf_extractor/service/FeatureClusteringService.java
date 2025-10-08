@@ -45,7 +45,8 @@ public class FeatureClusteringService {
                     continue; // Already assigned
                 }
 
-                double similarity = EmbeddingService.calculateCosineSimilarity(feature.getEmbedding(), otherFeature.getEmbedding());
+                double similarity = ClusteringService.calculateCosineSimilarity(feature.getEmbedding(),
+                        otherFeature.getEmbedding());
                 if (similarity >= threshold) {
                     cluster.add(otherFeature);
                     assignedFeatures.add(otherFeature.getId());

@@ -20,6 +20,6 @@ public class Requirement {
 
     @Override
     public String toString() {
-        return description;
+        return "Description: " + description + "\nSource Text: " + sourceText;
     }
 }

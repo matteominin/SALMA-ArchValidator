@@ -109,7 +109,7 @@ public class CoverageReportService {
                 if (providedFeature.getEmbedding() != null && !providedFeature.getEmbedding().isEmpty() &&
                     summaryFeature.getEmbedding() != null && !summaryFeature.getEmbedding().isEmpty()) {
                     
-                    double similarity = EmbeddingService.calculateCosineSimilarity(
+                    double similarity = ClusteringService.calculateCosineSimilarity(
                         summaryFeature.getEmbedding(), 
                         providedFeature.getEmbedding()
                     );

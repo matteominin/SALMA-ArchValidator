@@ -10,7 +10,7 @@ import com.matteominin.pdf_extractor.model.feature.SummaryFeature;
 import com.matteominin.pdf_extractor.service.FeatureService;
 import com.matteominin.pdf_extractor.service.FeatureClusteringService;
 import com.matteominin.pdf_extractor.service.SummaryFeatureService;
-import com.matteominin.pdf_extractor.service.EmbeddingService;
+import com.matteominin.pdf_extractor.service.ClusteringService;
 import com.matteominin.pdf_extractor.service.CoverageReportService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -274,7 +274,7 @@ public class FeatureController {
                 if (providedFeature.getEmbedding() != null && !providedFeature.getEmbedding().isEmpty() &&
                     summaryFeature.getEmbedding() != null && !summaryFeature.getEmbedding().isEmpty()) {
                     
-                    double similarity = EmbeddingService.calculateCosineSimilarity(
+                    double similarity = ClusteringService.calculateCosineSimilarity(
                         summaryFeature.getEmbedding(), 
                         providedFeature.getEmbedding()
                     );

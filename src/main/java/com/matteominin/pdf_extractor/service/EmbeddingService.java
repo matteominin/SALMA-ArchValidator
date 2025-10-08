@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
-import org.apache.commons.math3.linear.ArrayRealVector;
-import org.apache.commons.math3.linear.RealVector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -139,7 +137,7 @@ public class EmbeddingService {
      * @param embeddings list of embedding vectors
      * @return 2D double array suitable for machine learning libraries
      */
-    public static double[][] convertToDoubleMatrix(List<List<Double>> embeddings) {
+    public double[][] convertToDoubleMatrix(List<List<Double>> embeddings) {
         if (embeddings == null || embeddings.isEmpty()) {
             return new double[0][0];
         }
@@ -156,55 +154,5 @@ public class EmbeddingService {
         }
 
         return result;
-    }
-
-    /**
-     * Converts a single List<Double> embedding to double[] format.
-     * 
-     * @param embedding single embedding vector
-     * @return double array
-     */
-    public static double[] convertToDoubleArray(List<Double> embedding) {
-        if (embedding == null || embedding.isEmpty()) {
-            return new double[0];
-        }
-
-        return embedding.stream().mapToDouble(Double::doubleValue).toArray();
-    }
-
-    /**
-     * Calculates cosine similarity between two embedding vectors.
-     * 
-     * @param vector1 first embedding vector
-     * @param vector2 second embedding vector
-     * @return cosine similarity value between 0.0 and 1.0
-     */
-    public static double calculateCosineSimilarity(List<Double> vector1, List<Double> vector2) {
-        if (vector1 == null || vector2 == null || vector1.size() != vector2.size()) {
-            return 0.0;
-        }
-
-        try {
-            // Convert to Apache Commons Math vectors
-            double[] array1 = convertToDoubleArray(vector1);
-            double[] array2 = convertToDoubleArray(vector2);
-            
-            RealVector v1 = new ArrayRealVector(array1);
-            RealVector v2 = new ArrayRealVector(array2);
-
-            // Calculate cosine similarity
-            double dotProduct = v1.dotProduct(v2);
-            double norm1 = v1.getNorm();
-            double norm2 = v2.getNorm();
-
-            if (norm1 == 0.0 || norm2 == 0.0) {
-                return 0.0;
-            }
-
-            return dotProduct / (norm1 * norm2);
-        } catch (Exception e) {
-            // Log error in real application
-            return 0.0;
-        }
     }
 }
