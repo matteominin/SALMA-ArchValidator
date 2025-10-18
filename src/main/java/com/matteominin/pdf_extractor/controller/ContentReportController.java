@@ -56,8 +56,7 @@ public class ContentReportController {
                 useCases.addAll(c.getUseCases());
                 requirements.addAll(c.getRequirements());
                 architectures.addAll(c.getArchitectures());
-                // tests.addAll(c.getTests());
-                // TODO: add tests when available
+                tests.addAll(c.getTests());
             }
 
             ContentReport consolidatedReport = contentReportService.consolidateReport(useCases, requirements,

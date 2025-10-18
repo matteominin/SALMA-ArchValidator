@@ -1,7 +1,6 @@
 package com.matteominin.pdf_extractor.model.content;
 
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,5 +17,5 @@ public class Component {
     private String designNotes;
 
     @JsonProperty("communicates_with")
-    private List<Map<String, String>> communicatesWith;
+    private List<String> communicatesWith;
 }
