@@ -1,0 +1,1913 @@
+{"report": {
+            "treaceability_matrix": [
+                {
+                    "req_id": "REQ-1",
+                    "use_cases": [
+                        "UC-4",
+                        "UC-1",
+                        "UC-3",
+                        "UC-6"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "UserService",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "Transaction",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "MachineStatus",
+                        "worker"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest",
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials",
+                        "RechargeBalanceController TEST-1",
+                        "TransactionServiceTest.testCreateTransactionValid",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-2",
+                    "use_cases": [
+                        "UC-3",
+                        "UC-11"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "Transaction",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-3",
+                    "use_cases": [
+                        "UC-4",
+                        "UC-14",
+                        "UC-6"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin",
+                        "TransactionDao",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "worker"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest",
+                        "ViewAnalyticsTest (success and error)",
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-4",
+                    "use_cases": [
+                        "UC-4",
+                        "UC-6",
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "worker"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest",
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-5",
+                    "use_cases": [
+                        "UC-3",
+                        "UC-4",
+                        "UC-6",
+                        "UC-16"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "Transaction",
+                        "TransactionDao",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "MachineStatus",
+                        "worker",
+                        "Mockups",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest",
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-6",
+                    "use_cases": [
+                        "UC-6",
+                        "UC-13",
+                        "UC-18"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker",
+                        "User Interface (UI)",
+                        "TaskDaoImpl",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "Technician",
+                        "admin"
+                    ],
+                    "tests": [
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests",
+                        "TaskCompletionController tests",
+                        "WorkerController tests",
+                        "TaskServiceTest",
+                        "WorkerControllerTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-7",
+                    "use_cases": [
+                        "UC-6"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker"
+                    ],
+                    "tests": [
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-8",
+                    "use_cases": [
+                        "UC-2",
+                        "UC-12",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionItem",
+                        "TransactionDao",
+                        "UserDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item"
+                    ],
+                    "tests": [
+                        "RechargeBalanceController TEST-1",
+                        "CustomerServiceTest.testUpdateBalanceSuccess",
+                        "TransactionServiceTest.testCreateTransactionValid",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-9",
+                    "use_cases": [
+                        "UC-4",
+                        "UC-5",
+                        "UC-6",
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin",
+                        "UserDao",
+                        "TaskDao",
+                        "UserDaoImpl",
+                        "TaskDaoImpl",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "worker"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest",
+                        "UserDaoImplTest.findAll",
+                        "CustomerDaoImplTest.findAll_returnsListWithCustomers",
+                        "AdminServiceTest.createRetrieveTests",
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-10",
+                    "use_cases": [
+                        "UC-2",
+                        "UC-3",
+                        "UC-6",
+                        "UC-18"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionItem",
+                        "TransactionDao",
+                        "UserDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "Technician",
+                        "worker"
+                    ],
+                    "tests": [
+                        "RechargeBalanceController TEST-1",
+                        "CustomerServiceTest.testUpdateBalanceSuccess",
+                        "TransactionServiceTest.testCreateTransactionValid",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-11",
+                    "use_cases": [
+                        "UC-1",
+                        "UC-8"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials",
+                        "RechargeBalanceController TEST-1",
+                        "TransactionServiceTest.testCreateTransactionValid",
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserServiceTest.loginWithInvalidPassword"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-12",
+                    "use_cases": [
+                        "UC-2",
+                        "UC-12"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionItem",
+                        "TransactionDao",
+                        "UserDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "RechargeBalanceController TEST-1",
+                        "CustomerServiceTest.testUpdateBalanceSuccess",
+                        "TransactionServiceTest.testCreateTransactionValid",
+                        "RechargeBalanceController TEST-2"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-13",
+                    "use_cases": [
+                        "UC-4",
+                        "UC-15",
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin",
+                        "Builder",
+                        "ConcreteVendingMachine",
+                        "Inventory"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "CreateNewVendingMachineController TEST-2",
+                        "CreateNewVendingMachineController TEST-3",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-14",
+                    "use_cases": [
+                        "UC-5",
+                        "UC-15"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TaskDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "Builder",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "admin"
+                    ],
+                    "tests": [
+                        "UserDaoImplTest.findAll",
+                        "CustomerDaoImplTest.findAll_returnsListWithCustomers",
+                        "AdminServiceTest.createRetrieveTests",
+                        "CreateNewVendingMachineController TEST-1",
+                        "CreateNewVendingMachineController TEST-2",
+                        "CreateNewVendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-15",
+                    "use_cases": [
+                        "UC-6",
+                        "UC-13"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker",
+                        "User Interface (UI)",
+                        "TaskDaoImpl"
+                    ],
+                    "tests": [
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests",
+                        "TaskCompletionController tests",
+                        "WorkerController tests",
+                        "TaskServiceTest",
+                        "WorkerControllerTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-16",
+                    "use_cases": [
+                        "UC-6",
+                        "UC-11",
+                        "UC-17"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker",
+                        "User Interface (UI)",
+                        "ConnectionDao",
+                        "ConnectionMapper"
+                    ],
+                    "tests": [
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "ConnectionDaoImplTest.unit_createConnection_persists",
+                        "ConnectionDaoImplTest.integration_CRUD_flow"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-17",
+                    "use_cases": [
+                        "UC-17"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "ConnectionMapper",
+                        "ConcreteVendingMachine",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "ConnectionDaoImplTest.unit_createConnection_persists",
+                        "ConnectionDaoImplTest.integration_CRUD_flow",
+                        "CustomerServiceTest.testConnectSuccess"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-18",
+                    "use_cases": [],
+                    "components": [],
+                    "tests": [],
+                    "mockups": [],
+                    "staus": "Unsupported"
+                },
+                {
+                    "req_id": "REQ-19",
+                    "use_cases": [],
+                    "components": [],
+                    "tests": [],
+                    "mockups": [],
+                    "staus": "Unsupported"
+                },
+                {
+                    "req_id": "REQ-20",
+                    "use_cases": [],
+                    "components": [],
+                    "tests": [],
+                    "mockups": [],
+                    "staus": "Unsupported"
+                },
+                {
+                    "req_id": "REQ-21",
+                    "use_cases": [
+                        "UC-6",
+                        "UC-4"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker",
+                        "User Interface (UI)",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TransactionDao",
+                        "admin"
+                    ],
+                    "tests": [
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests",
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-22",
+                    "use_cases": [
+                        "UC-5",
+                        "UC-4"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "VendingMachineDao",
+                        "ItemDao",
+                        "TaskDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "UserDaoImplTest.findAll",
+                        "CustomerDaoImplTest.findAll_returnsListWithCustomers",
+                        "AdminServiceTest.createRetrieveTests",
+                        "CreateNewVendingMachineController TEST-1",
+                        "AdminServiceTest.*",
+                        "ViewAnalyticsTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-23",
+                    "use_cases": [
+                        "UC-8",
+                        "UC-1"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-24",
+                    "use_cases": [
+                        "UC-8",
+                        "UC-1"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-25",
+                    "use_cases": [
+                        "UC-8",
+                        "UC-1"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-26",
+                    "use_cases": [
+                        "UC-8"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserServiceTest.loginWithInvalidPassword"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-27",
+                    "use_cases": [
+                        "UC-1"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-28",
+                    "use_cases": [
+                        "UC-1"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserRegistrationFlow TEST-1",
+                        "UserRegistrationFlow TEST-2",
+                        "UserServiceTest.loginWithValidCredentials"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-29",
+                    "use_cases": [
+                        "UC-8",
+                        "UC-15"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model",
+                        "VendingMachineDao",
+                        "ConcreteVendingMachine",
+                        "Builder",
+                        "Inventory",
+                        "admin"
+                    ],
+                    "tests": [
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserServiceTest.loginWithInvalidPassword",
+                        "CreateNewVendingMachineController TEST-1",
+                        "CreateNewVendingMachineController TEST-2",
+                        "CreateNewVendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-30",
+                    "use_cases": [
+                        "UC-10",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "TransactionItem",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-31",
+                    "use_cases": [
+                        "UC-10",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "TransactionItem",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-32",
+                    "use_cases": [
+                        "UC-10",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "TransactionItem",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-33",
+                    "use_cases": [
+                        "UC-10"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CustomerServiceTest.testBuyItemInsufficientBalance",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "VendingMachineController TEST-2",
+                        "VendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-34",
+                    "use_cases": [
+                        "UC-10",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CustomerServiceTest.testBuyItemInsufficientBalance",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "VendingMachineController TEST-2",
+                        "VendingMachineController TEST-3",
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-35",
+                    "use_cases": [
+                        "UC-10",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CustomerServiceTest.testBuyItemInsufficientBalance",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "VendingMachineController TEST-2",
+                        "VendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-36",
+                    "use_cases": [
+                        "UC-3",
+                        "UC-10",
+                        "UC-8"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "Transaction",
+                        "TransactionDao",
+                        "VendingMachineDao",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "model"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CustomerServiceTest.testBuyItemInsufficientBalance",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-37",
+                    "use_cases": [
+                        "UC-10",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "Inventory",
+                        "item",
+                        "ConcreteVendingMachine",
+                        "VendingMachineDao",
+                        "ConnectionDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CustomerServiceTest.testBuyItemInsufficientBalance",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "VendingMachineController TEST-2",
+                        "VendingMachineController TEST-3",
+                        "UserVendingMachineConnection TEST-1"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-38",
+                    "use_cases": [
+                        "UC-11",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "item",
+                        "Transaction",
+                        "TransactionDao"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection TEST-1",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-39",
+                    "use_cases": [
+                        "UC-11"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-40",
+                    "use_cases": [
+                        "UC-11"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-41",
+                    "use_cases": [
+                        "UC-11"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-42",
+                    "use_cases": [
+                        "UC-11"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-43",
+                    "use_cases": [
+                        "UC-2",
+                        "UC-12"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionItem",
+                        "TransactionDao",
+                        "UserDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "RechargeBalanceController TEST-1",
+                        "CustomerServiceTest.testUpdateBalanceSuccess",
+                        "TransactionServiceTest.testCreateTransactionValid",
+                        "RechargeBalanceController TEST-2"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-44",
+                    "use_cases": [
+                        "UC-12",
+                        "UC-2"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionItem",
+                        "TransactionDao",
+                        "UserDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "RechargeBalanceController TEST-1",
+                        "CustomerServiceTest.testUpdateBalanceSuccess",
+                        "RechargeBalanceController TEST-2",
+                        "TransactionServiceTest.testCreateTransactionValid"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-45",
+                    "use_cases": [
+                        "UC-12"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "Transaction",
+                        "TransactionDao",
+                        "UserDao",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "RechargeBalanceController TEST-2",
+                        "RechargeBalanceController TEST-1",
+                        "CustomerServiceTest.testUpdateBalanceSuccess"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-46",
+                    "use_cases": [
+                        "UC-13"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TaskDao",
+                        "TaskDaoImpl",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker"
+                    ],
+                    "tests": [
+                        "TaskCompletionController tests",
+                        "WorkerController tests",
+                        "TaskServiceTest",
+                        "WorkerControllerTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-47",
+                    "use_cases": [
+                        "UC-13"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TaskDao",
+                        "TaskDaoImpl",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker"
+                    ],
+                    "tests": [
+                        "TaskCompletionController tests",
+                        "WorkerController tests",
+                        "TaskServiceTest",
+                        "WorkerControllerTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-48",
+                    "use_cases": [
+                        "UC-13"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TaskDao",
+                        "TaskDaoImpl",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker"
+                    ],
+                    "tests": [
+                        "TaskServiceTest",
+                        "WorkerControllerTest",
+                        "TaskCompletionController tests",
+                        "WorkerController tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-49",
+                    "use_cases": [
+                        "UC-13"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TaskDao",
+                        "TaskDaoImpl",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "worker"
+                    ],
+                    "tests": [
+                        "TaskCompletionController tests",
+                        "WorkerController tests",
+                        "TaskServiceTest",
+                        "WorkerControllerTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-50",
+                    "use_cases": [
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "ViewAnalyticsTest",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-51",
+                    "use_cases": [
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "ViewAnalyticsTest",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-52",
+                    "use_cases": [
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "ViewAnalyticsTest",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-53",
+                    "use_cases": [
+                        "UC-15"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ConcreteVendingMachine",
+                        "Builder",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "CreateNewVendingMachineController TEST-2",
+                        "CreateNewVendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-54",
+                    "use_cases": [
+                        "UC-15"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ConcreteVendingMachine",
+                        "Builder",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "CreateNewVendingMachineController TEST-2",
+                        "CreateNewVendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-55",
+                    "use_cases": [
+                        "UC-15"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "VendingMachineDao",
+                        "ConcreteVendingMachine",
+                        "Builder",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "CreateNewVendingMachineController TEST-1",
+                        "CreateNewVendingMachineController TEST-2",
+                        "CreateNewVendingMachineController TEST-3"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-56",
+                    "use_cases": [
+                        "UC-16",
+                        "UC-3",
+                        "UC-10"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "Mockups",
+                        "controllers",
+                        "services",
+                        "model",
+                        "ConnectionDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "item",
+                        "Transaction",
+                        "TransactionDao",
+                        "VendingMachineDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "UserVendingMachineConnection TEST-1",
+                        "VendingMachineController TEST-1",
+                        "CustomerServiceTest.testBuyItemSuccessSingleItem",
+                        "CustomerServiceTest.testBuyItemInsufficientBalance",
+                        "CustomerServiceTest.testBuyItemOutOfStock"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-57",
+                    "use_cases": [
+                        "UC-16",
+                        "UC-8"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "Mockups",
+                        "controllers",
+                        "services",
+                        "model",
+                        "UserDao",
+                        "UserDaoImpl",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "UserLoginController TEST-1",
+                        "UserLoginController TEST-2",
+                        "UserLoginController TEST-3",
+                        "UserServiceTest.loginWithInvalidPassword"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-58",
+                    "use_cases": [
+                        "UC-16",
+                        "UC-14"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "Mockups",
+                        "controllers",
+                        "services",
+                        "model",
+                        "TransactionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "admin"
+                    ],
+                    "tests": [
+                        "ViewAnalyticsTest",
+                        "ViewAnalyticsTest (success and error)"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-59",
+                    "use_cases": [
+                        "UC-11",
+                        "UC-17",
+                        "UC-3"
+                    ],
+                    "components": [
+                        "User Interface (UI)",
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "item",
+                        "Transaction",
+                        "TransactionDao",
+                        "ConnectionMapper"
+                    ],
+                    "tests": [
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest",
+                        "ConnectionDaoImplTest.unit_createConnection_persists",
+                        "ConnectionDaoImplTest.integration_CRUD_flow",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "UserVendingMachineConnection TEST-1"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-60",
+                    "use_cases": [
+                        "UC-17"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "ConnectionMapper",
+                        "ConcreteVendingMachine",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)"
+                    ],
+                    "tests": [
+                        "ConnectionDaoImplTest.unit_createConnection_persists",
+                        "ConnectionDaoImplTest.integration_CRUD_flow",
+                        "CustomerServiceTest.testConnectSuccess"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-61",
+                    "use_cases": [
+                        "UC-17",
+                        "UC-11"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "ConnectionDao",
+                        "ConnectionMapper",
+                        "ConcreteVendingMachine",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "Inventory"
+                    ],
+                    "tests": [
+                        "ConnectionDaoImplTest.unit_createConnection_persists",
+                        "ConnectionDaoImplTest.integration_CRUD_flow",
+                        "CustomerServiceTest.testConnectSuccess",
+                        "UserVendingMachineConnection integration test",
+                        "ErrorHandlingTest"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                },
+                {
+                    "req_id": "REQ-62",
+                    "use_cases": [
+                        "UC-18",
+                        "UC-6"
+                    ],
+                    "components": [
+                        "controllers",
+                        "services",
+                        "MaintenanceDao",
+                        "TaskDao",
+                        "ConcreteVendingMachine",
+                        "Inventory",
+                        "MachineStatus",
+                        "Mapper Classes (TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper)",
+                        "DBManager",
+                        "JPA (Jakarta Persistence API)",
+                        "Hibernate (hibernate-core)",
+                        "Database Production (PostgreSQL)",
+                        "Technician",
+                        "admin",
+                        "worker"
+                    ],
+                    "tests": [
+                        "WorkerServiceTest",
+                        "CustomerServiceTest.testBuyItemOutOfStock",
+                        "TaskCompletion tests"
+                    ],
+                    "mockups": [],
+                    "staus": "Fully Covered"
+                }
+            ],
+            "orphans": {
+                "requirements": [
+                    "REQ-18",
+                    "REQ-19",
+                    "REQ-20"
+                ],
+                "use_cases": [
+                    "UC-7",
+                    "UC-9"
+                ],
+                "tests": [],
+                "mockups": []
+            }
+        }
+    }

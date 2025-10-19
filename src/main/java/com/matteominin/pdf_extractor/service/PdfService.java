@@ -1,34 +1,35 @@
 package com.matteominin.pdf_extractor.service;
 
 import org.apache.pdfbox.Loader;
-import org.apache.pdfbox.cos.COSName;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDResources;
-import org.apache.pdfbox.pdmodel.graphics.PDXObject;
-import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClient;
 import lombok.extern.slf4j.Slf4j;
 
 import com.matteominin.pdf_extractor.model.pdf.ExtractedSection;
 import com.matteominin.pdf_extractor.model.pdf.PdfIndex;
-import com.matteominin.pdf_extractor.util.ImageAwareTextStripper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.imageio.ImageIO;
-
-import java.awt.image.BufferedImage;
 
 @Service
 @Slf4j
 public class PdfService {
+
+    @Value("${app.api.base-url}")
+    private String apiUrl;
+    
     public String extractText(String filePath, String outputDirectory) {
         log.info("Starting text and image extraction for: {}", filePath);
         validateFilePath(filePath);
@@ -41,7 +42,7 @@ public class PdfService {
             int totalPages = document.getNumberOfPages();
             log.info("Processing {} pages for extraction", totalPages);
 
-            ImageAwareTextStripper stripper = new ImageAwareTextStripper();
+            PDFTextStripper stripper = new PDFTextStripper();
             String extractedText = stripper.getText(document);
 
             result.append(extractedText);
@@ -89,29 +90,31 @@ public class PdfService {
 
     public List<ExtractedSection> extractSections(String filePath, PdfIndex index) {
         log.info("Extracting {} sections from PDF: {}", index.getSections().size(), filePath);
-        
+
         validateExtractionRequest(filePath, index);
-        
+
         List<ExtractedSection> sections = new ArrayList<>();
         PDDocument document = null;
-        
+
         try {
             document = loadPDF(filePath);
-            
+            String pdfText = extractTextViaPythonApi(filePath, 1, document.getNumberOfPages(),  false);
+            pdfText = removeIndexFromText(pdfText, index);
             // Extract all sections except the last one
             for (int i = 0; i < index.getSections().size() - 1; i++) {
                 PdfIndex.Section currentSection = index.getSections().get(i);
                 PdfIndex.Section nextSection = index.getSections().get(i + 1);
-                
+
                 String text = extractSingleSection(
-                    document, 
-                    currentSection.getSection(), 
-                    nextSection.getSection(), 
-                    currentSection.getStart(), 
-                    nextSection.getStart(), 
+                    document,
+                    pdfText,
+                    currentSection.getSection(),
+                    nextSection.getSection(),
+                    currentSection.getStart(),
+                    nextSection.getStart(),
                     index
                 );
-                
+
                 sections.add(ExtractedSection.builder()
                     .section(currentSection.getSection())
                     .text(text)
@@ -121,22 +124,23 @@ public class PdfService {
             // Extract the last section
             PdfIndex.Section lastSection = index.getSections().get(index.getSections().size() - 1);
             String text = extractSingleSection(
-                document, 
-                lastSection.getSection(), 
-                null, 
-                lastSection.getStart(), 
-                lastSection.getEnd(), 
+                document,
+                pdfText,
+                lastSection.getSection(),
+                null,
+                lastSection.getStart(),
+                lastSection.getEnd(),
                 index
             );
-            
+
             sections.add(ExtractedSection.builder()
                 .section(lastSection.getSection())
                 .text(text)
                 .build());
-                
+
             log.info("Successfully extracted {} sections from PDF", sections.size());
             return sections;
-            
+
         } catch (IOException e) {
             log.error("Error extracting sections from PDF: {}", filePath, e);
             throw new RuntimeException("Error extracting sections from PDF: " + filePath, e);
@@ -164,38 +168,15 @@ public class PdfService {
         }
     }
 
-    private String extractSingleSection(PDDocument document, String currentSectionTitle, String nextSectionTitle, 
-                                     int startPage, int endPage, PdfIndex index) {
+    private String extractSingleSection(PDDocument document, String pdfText, String currentSectionTitle, String nextSectionTitle,
+                                             int startPage, int endPage, PdfIndex index) {
         try {
-            PDFTextStripper stripper = new PDFTextStripper();
-            
-            int offset = calculateOffset(document, index);
-            stripper.setStartPage(startPage);
-
-            if (endPage == -1) {
-                endPage = document.getNumberOfPages();
-                stripper.setEndPage(endPage);
-            } else if (endPage + offset <= document.getNumberOfPages()) {
-                stripper.setEndPage(endPage + offset);
-            } else {
-                stripper.setEndPage(document.getNumberOfPages());
-            }
-            
-            // Remove index from text before extracting section
-            int indexEnd = index.getSections().get(0).getStart();
-            
-            String extractedText;
-            if (startPage <= indexEnd) {
-                extractedText = removeIndex(stripper, document, index);
-            } else {
-                extractedText = stripper.getText(document);
-            }
-
-            String pattern = "(?s)" + Pattern.quote(currentSectionTitle) + "(.*?)" + 
+            // Extract the specific section using regex
+            String pattern = "(?s)" + Pattern.quote(currentSectionTitle) + "(.*?)" +
                            (nextSectionTitle != null ? Pattern.quote(nextSectionTitle) : "$");
             Pattern regex = Pattern.compile(pattern);
-            Matcher matcher = regex.matcher(extractedText);
-            
+            Matcher matcher = regex.matcher(pdfText);
+
             if (matcher.find()) {
                 String sectionText = matcher.group(1).trim();
                 log.debug("Successfully extracted section '{}', length: {}", currentSectionTitle, sectionText.length());
@@ -204,111 +185,71 @@ public class PdfService {
                 log.warn("No content found for section: {}", currentSectionTitle);
                 return "";
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Error extracting section '{}' from PDF", currentSectionTitle, e);
             throw new RuntimeException("Error extracting section from PDF", e);
         }
     }
 
-    private int calculateOffset(PDDocument document, PdfIndex index) {
+    public String extractTextViaPythonApi(String filePath, int startPage, int endPage, boolean usePlaceholder) {
         try {
-            PDFTextStripper stripper = new PDFTextStripper();
-            String firstSectionTitle = index.getSections().get(0).getSection();
-            int occurrence = 0;
+            final String url = apiUrl + "/extract";
+            File file = new File(filePath);
 
-            for (int page = 1; page <= document.getNumberOfPages(); page++) {
-                stripper.setStartPage(page);
-                stripper.setEndPage(page);
-                String text = stripper.getText(document);
-                
-                if (text.contains(firstSectionTitle) && occurrence == 0) {
-                    occurrence++;
-                } else if (text.contains(firstSectionTitle) && occurrence > 0) {
-                    int offset = page - 1;
-                    log.debug("Calculated page offset: {}", offset);
-                    return offset;
-                }
+            if (!file.exists()) {
+                throw new IllegalArgumentException("File not found: " + filePath);
             }
-            
-            log.debug("No offset calculated, using default: 0");
-            return 0;
-        } catch (IOException e) {
-            log.error("Error calculating page offset", e);
-            throw new RuntimeException("Error calculating page offset", e);
+
+            MultiValueMap<String, Object> parts = new LinkedMultiValueMap<>();
+            parts.add("file", new FileSystemResource(file));
+            parts.add("mode", "pages");
+            parts.add("start_page", String.valueOf(startPage));
+            parts.add("end_page", String.valueOf(endPage));
+            parts.add("use_placeholder", String.valueOf(usePlaceholder));
+
+            RestClient restClient = RestClient.create();
+
+            @SuppressWarnings("unchecked")
+            Map<String, Object> pythonResponse = restClient.post()
+                    .uri(url)
+                    .contentType(MediaType.MULTIPART_FORM_DATA)
+                    .body(parts)
+                    .retrieve()
+                    .body(Map.class);
+
+            if (pythonResponse == null) {
+                throw new RuntimeException("No response from PDF extraction service");
+            }
+
+            String text = pythonResponse.get("text").toString();
+            log.debug("Extracted {} characters from pages {}-{} via Python API", text.length(), startPage, endPage);
+            return text;
+
+        } catch (Exception e) {
+            log.error("Error calling Python API for text extraction", e);
+            throw new RuntimeException("Error calling Python API for text extraction", e);
         }
     }
 
-    private String removeIndex(PDFTextStripper stripper, PDDocument document, PdfIndex index) {
-        try {
-            stripper.setStartPage(1);
-            String firstContentTitle = index.getSections().get(0).getSection();
-            String fullText = stripper.getText(document);
+    private String removeIndexFromText(String fullText, PdfIndex index) {
+        String firstContentTitle = index.getSections().get(0).getSection();
 
-            // Build regex to match everything between the first occurrence and the next occurrence of the first section title
-            String pattern = "(?s)" + Pattern.quote(firstContentTitle) + "(.*?)" + Pattern.quote(firstContentTitle);
-            Pattern regex = Pattern.compile(pattern);
-            Matcher matcher = regex.matcher(fullText);
+        // Build regex to match everything between the first occurrence and the next occurrence of the first section title
+        String pattern = "(?s)" + Pattern.quote(firstContentTitle) + "(.*?)" + Pattern.quote(firstContentTitle);
+        Pattern regex = Pattern.compile(pattern);
+        Matcher matcher = regex.matcher(fullText);
 
-            String cleanedText;
-            if (matcher.find()) {
-                StringBuilder sb = new StringBuilder();
-                sb.append(fullText.substring(0, matcher.start()));
-                sb.append(firstContentTitle);
-                sb.append(fullText.substring(matcher.end()));
-                cleanedText = sb.toString();
-                log.debug("Successfully removed index from text");
-            } else {
-                cleanedText = fullText;
-                log.debug("No index pattern found, returning original text");
-            }
+        if (matcher.find()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(fullText.substring(0, matcher.start()));
+            sb.append(firstContentTitle);
+            sb.append(fullText.substring(matcher.end()));
+            String cleanedText = sb.toString();
+            log.debug("Successfully removed index from text");
             return cleanedText;
-        } catch (IOException e) {
-            log.error("Error removing index from PDF text", e);
-            throw new RuntimeException("Error removing index from PDF text", e);
-        }
-    }
-
-    public void extractImages(String filePath) {
-        String outputFolder = "extracted_images";
-        PDDocument document = null;
-        try {
-            document = loadPDF(filePath);
-        } catch (IOException e) {
-            log.error("Error loading PDF for image extraction", e);
-            throw new RuntimeException("Error loading PDF for image extraction", e);
-        }
-
-        // Create the output folder if it doesn't exist
-        File outputDir = new File(outputFolder);
-        if (!outputDir.exists()) {
-            boolean created = outputDir.mkdirs();
-            if (created) {
-                log.info("Created output directory: {}", outputFolder);
-            } else {
-                log.warn("Failed to create output directory: {}", outputFolder);
-            }
-        }
-
-        PDPage page = document.getPage(5);
-        PDResources resources = page.getResources();
-        Iterable<COSName> xObjectNames = resources.getXObjectNames();
-        for (COSName xObjectName : xObjectNames) {
-            try {
-                PDXObject xObject = resources.getXObject(xObjectName);
-                if (xObject instanceof PDImageXObject) {
-                    PDImageXObject PDImage = (PDImageXObject) xObject;
-                    BufferedImage image = PDImage.getImage();
-
-                    String imagePath = outputFolder + File.separator + "image_" + xObjectName.getName() + ".png";
-                    File imageFile = new File(imagePath);
-
-                    ImageIO.write(image, "png", imageFile);
-                    log.info("Saved image to: {}", imagePath);
-                }
-            } catch (IOException e) {
-                log.error("Error retrieving XObject from resources", e);
-                throw new RuntimeException("Error retrieving XObject from resources", e);
-            }
+        } else {
+            log.debug("No index pattern found, returning original text");
+            return fullText;
         }
     }
 

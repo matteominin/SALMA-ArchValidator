@@ -7,126 +7,64 @@ Handles patterns like {key=value} and converts to {"key":"value"}
 import re
 import json
 
+
 def fix_json_content(content):
     """
     Fix JSON content by converting Python dict-like syntax to proper JSON
+    Recursively processes all key=value patterns
     """
     # Remove smart quotes
     content = content.replace(''', "'").replace(''', "'")
     content = content.replace('"', '"').replace('"', '"')
 
-    # Strategy: Use regex to find all key=value patterns and convert them
+    # Use a simple regex replacement that works on the whole content
+    # Pattern: word= followed by a value
+    # We'll keep replacing until no more matches are found
 
-    # Pattern 1: {key=value -> {"key":"value"
-    # Pattern 2: , key=value -> , "key":"value"
-    # Pattern 3: [key=value -> [{"key":"value"
+    max_iterations = 10
+    iteration = 0
 
-    # We need to be careful about values that are:
-    # - Strings (need quotes)
-    # - Numbers (no quotes)
-    # - Booleans true/false (no quotes)
-    # - Arrays [] (no quotes, keep as is)
-    # - Objects {} (no quotes, keep as is)
+    while iteration < max_iterations:
+        iteration += 1
+        original = content
 
-    def replace_key_value(match):
-        key = match.group(1)
-        value = match.group(2)
+        # Find all key=value patterns and replace them
+        # We need to carefully extract the value, which ends at: , } ] or newline (at depth 0)
+        pattern = r'(\w+)=([^,}\]]+?)(?=,|(?<!\\)\}|(?<!\\)\]|$)'
 
-        # Determine if value needs quotes
-        value_stripped = value.strip()
+        def replace_match(match):
+            key = match.group(1)
+            value = match.group(2).strip()
 
-        # Check if it's a number
-        if value_stripped.replace('.', '').replace('-', '').isdigit():
-            return f'"{key}":{value_stripped}'
+            # Check if value is a number
+            if re.match(r'^-?\d+(\.\d+)?$', value):
+                return f'"{key}":{value}'
 
-        # Check if it's a boolean
-        if value_stripped in ['true', 'false']:
-            return f'"{key}":{value_stripped}'
+            # Check if value is boolean or null
+            if value in ['true', 'false', 'null']:
+                return f'"{key}":{value}'
 
-        # Check if it starts with [ or { (array or object)
-        if value_stripped.startswith('[') or value_stripped.startswith('{'):
-            return f'"{key}":{value_stripped}'
+            # Check if value starts with [ or { (nested structure)
+            if value.startswith('[') or value.startswith('{'):
+                return f'"{key}":{value}'
 
-        # Check if already quoted
-        if value_stripped.startswith('"') and value_stripped.endswith('"'):
-            return f'"{key}":{value_stripped}'
+            # Everything else is a string
+            # Escape backslashes and quotes
+            value = value.replace('\\', '\\\\').replace('"', '\\"')
+            return f'"{key}":"{value}"'
 
-        # Otherwise it's a string that needs quotes
-        # Find where the value ends (at , or } or ])
-        return f'"{key}":"{value_stripped}"'
+        content = re.sub(pattern, replace_match, content)
 
-    # This is complex because values can span multiple patterns
-    # Let's use a state machine approach
+        # If nothing changed, we're done
+        if content == original:
+            break
 
-    result = []
-    i = 0
-    while i < len(content):
-        # Check if we're at a key=value pattern
-        if i < len(content) - 1:
-            # Look for word=
-            match = re.match(r'(\w+)=', content[i:])
-            if match:
-                key = match.group(1)
-                result.append(f'"{key}":')
-                i += len(match.group(0))
-
-                # Now extract the value until we hit a delimiter
-                value_start = i
-                in_string = False
-                in_array = 0
-                in_object = 0
-
-                while i < len(content):
-                    char = content[i]
-
-                    if char == '[' and not in_string:
-                        in_array += 1
-                    elif char == ']' and not in_string:
-                        in_array -= 1
-                    elif char == '{' and not in_string:
-                        in_object += 1
-                    elif char == '}' and not in_string:
-                        in_object -= 1
-                        if in_object < 0:
-                            break
-                    elif char == ',' and in_array == 0 and in_object == 0:
-                        break
-
-                    i += 1
-
-                value = content[value_start:i]
-                value_stripped = value.strip()
-
-                # Decide if we need to quote the value
-                needs_quotes = True
-
-                if value_stripped.replace('.', '').replace('-', '').isdigit():
-                    needs_quotes = False
-                elif value_stripped in ['true', 'false', 'null']:
-                    needs_quotes = False
-                elif value_stripped.startswith('[') or value_stripped.startswith('{'):
-                    needs_quotes = False
-                elif value_stripped.startswith('"'):
-                    needs_quotes = False
-
-                if needs_quotes:
-                    # Escape any quotes in the value
-                    value_stripped = value_stripped.replace('"', '\\"')
-                    result.append(f'"{value_stripped}"')
-                else:
-                    result.append(value_stripped)
-
-                continue
-
-        result.append(content[i])
-        i += 1
-
-    return ''.join(result)
+    return content
 
 
 def main():
-    input_file = '/Users/matteominin/Desktop/tesi/pdf_extractor/samples/minin_extraction.json'
-    output_file = '/Users/matteominin/Desktop/tesi/pdf_extractor/samples/minin_extraction_fixed.json'
+    input_file = '/Users/matteominin/Desktop/tesi/pdf_extractor/samples/index.json'
+    output_file = '/Users/matteominin/Desktop/tesi/pdf_extractor/samples/index1.json'
 
     # Read input
     with open(input_file, 'r', encoding='utf-8') as f:
