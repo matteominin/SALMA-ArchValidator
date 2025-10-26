@@ -1,0 +1,29 @@
+Diagram Type: UML/Software Architecture Diagram
+
+Elements:
+- User
+- Interface
+- Controllers
+- Services
+- Model
+- DAO
+- ORM (Hibernate)
+- RDBMS (PostgreSQL)
+
+Relationships:
+- User interacts with the Interface.
+- Interface connects to Controllers.
+- Controllers connect to Services.
+- Controllers connect to both Model and DAO.
+- DAO connects to Model and ORM (Hibernate).
+- ORM (Hibernate) connects to RDBMS (PostgreSQL).
+
+Text:
+- User
+- Interface
+- Controllers
+- Services
+- Model
+- DAO
+- ORM (Hibernate)
+- RDBMS (PostgreSQL)

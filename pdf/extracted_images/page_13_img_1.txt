@@ -1,0 +1,29 @@
+1. Image Type: Diagram (Use Case Diagram)
+
+2. Analysis:
+   - **Diagram Type:** Use Case Diagram
+   - **Elements:**
+     - Actor: Admin
+     - Use Cases: 
+       - View Analytics
+       - Manage Workers CRUD
+       - Manage Users CRUD
+       - Manage Items CRUD
+       - Manage Vending Machines CRUD
+       - Assign Task
+       - View Workers
+       - View Tasks
+   - **Relationships:**
+     - The Admin is associated with all listed use cases.
+     - Use cases “View Workers” and “View Tasks” are included by “Assign Task”.
+     - <<summary>> relationships connect the Admin with management use cases.
+   - **Text:**
+     - 7 View Analytics
+     - 11 Manage Workers CRUD
+     - 10 Manage Users CRUD
+     - 9 Manage Items CRUD
+     - 8 Manage Vending Machines CRUD
+     - 13 Assign Task
+     - 15 View Workers
+     - 14 View Tasks
+     - Admin

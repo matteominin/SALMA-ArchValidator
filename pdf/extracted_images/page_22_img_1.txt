@@ -1,0 +1,56 @@
+Diagram Type: UML Class Diagram
+
+Elements:
+- User
+  - Admin
+  - Worker
+  - Customer
+- Maintenance
+  - MaintenanceStatus (enumeration)
+  - Task
+  - maintenanceReport
+- VendingMachine
+  - MachineType (enumeration)
+  - MachineStatus (enumeration)
+  - ConcreteVendingMachine
+  - ItemType (enumeration)
+  - Item
+  - Inventory
+- Connection
+- Transaction
+  - PaymentMethod (enumeration)
+  - Transaction
+  - Analytics
+
+Relationships:
+- User has a general association with Admin, Worker, and Customer.
+- Worker associates with Task.
+- Task is assigned to a Worker and linked to a VendingMachine.
+- maintenanceReport is associated with Task.
+- VendingMachine has a general association with ConcreteVendingMachine.
+- ConcreteVendingMachine includes Item.
+- Inventory maps to ConcreteVendingMachine and Item.
+- Customer maps to Transaction which involves Machine and TransactionItem.
+
+Text:
+- User: 
+  - attributes: id, email, name, surname, password, role
+- Worker:
+  - attributes: isActive
+- Task:
+  - attributes: assignedAt
+- maintenanceReport:
+  - attributes: issueDescription, issueDate
+- ConcreteVendingMachine:
+  - attributes: serialNumber, location, capacity, lastMaintenance, createdAt
+- Item:
+  - attributes: id, name, description, volume, quantity, price, createdAt, position
+- Transaction:
+  - attributes: date, initialBalance, updatedBalance
+- PaymentMethod (enumeration): Card, Cash, Wallet
+- MaintenanceStatus (enumeration): reported, assigned, completed, inProgress, deleted
+- MachineType (enumeration): coffee, snack, pizzaoverFabricio
+- MachineStatus (enumeration): operative, outOfService
+- ItemType (enumeration): snack, bottle, expressBeverage
+
+Note: Descriptions are based on visible text within the diagram.

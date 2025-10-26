@@ -75,11 +75,18 @@
       <version>4.11.1</version>
     </dependency>
 
-    <!-- Spring AI OpenAI -->
+    <!-- Spring AI Anthropic -->
     <dependency>
       <groupId>org.springframework.ai</groupId>
-      <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+      <artifactId>spring-ai-starter-model-anthropic</artifactId>
       <version>${spring-ai.version}</version>
+    </dependency>
+
+    <!-- Spring AI OpenAI -->
+    <dependency>
+        <groupId>org.springframework.ai</groupId>
+        <artifactId>spring-ai-starter-model-openai</artifactId>
+        <version>${spring-ai.version}</version>
     </dependency>
     
     <!-- Spring AI Core (required for FunctionCallbackResolver) -->

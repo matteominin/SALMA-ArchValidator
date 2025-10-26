@@ -1,0 +1,18 @@
+1. Diagram Type: Use Case Diagram
+
+2. Elements:
+   - Actor: Customer
+   - Use Cases: Buy item, Recharge account, Connect to Vending Machine
+
+3. Relationships:
+   - Customer interacts with "Buy item" and "Recharge account"
+   - "Buy item" includes "Connect to Vending Machine"
+   - "Recharge account" extends "Connect to Vending Machine"
+
+4. Text:
+   - Customer
+   - 3 Buy item
+   - 5 Recharge account
+   - 4 <<function>> Connect to Vending Machine
+   - <<include>>
+   - <<extends>>

@@ -1,0 +1,46 @@
+Diagram Type: Flowchart
+
+Elements:
+- Welcome Page
+- Log in Page
+- Sign up Page
+- Diamond decision node
+- Customer Dashboard
+- Worker Dashboard
+- Admin Dashboard
+- Balance Page
+- Transaction History
+- Checkout page
+- Scan QR Code
+- Vending Machine Menu
+- Task Detail
+- View analytics
+- Manage workers
+- Manage Users
+- Manage Vending Machines
+- Manage Items
+
+Relationships:
+- Welcome Page leads to Log in Page and Sign up Page.
+- Log in Page leads to a decision node with "Log in successful".
+- Sign up Page leads to the decision node with "Registration successful".
+- Decision node directs to Customer Dashboard (Is Customer), Worker Dashboard (Is Worker), Admin Dashboard (Is Admin).
+- Customer Dashboard connects to Balance Page, Transaction History, Checkout page, Scan QR Code.
+- Worker Dashboard connects to Task Detail, and returns on task completion.
+- Admin Dashboard connects to tasks such as View analytics, Manage workers, Manage Users, Manage Vending Machines, and Manage Items.
+
+Text:
+- Log in
+- Sign up
+- Log in successful
+- Registration successful
+- Is Customer
+- Is Worker
+- Is Admin
+- Go back
+- Transaction
+- Complete
+- Connect machine
+- Connection successful
+- Select a task
+- Task completed

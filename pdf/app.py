@@ -101,8 +101,11 @@ def extract():
             file.save(temp_file.name)
             temp_path = temp_file.name
 
+        openai_api_key = os.getenv('OPENAI_API_KEY')
+
         pdf_service = PdfService(
             use_image_extraction=True,
+            openai_api_key=openai_api_key,
             save_images=save_images,
             output_folder=output_folder,
             placeholder_mode=use_placeholder,

@@ -1,0 +1,74 @@
+Diagram Type: UML Class Diagram
+
+Elements:
+- UserService
+- WorkerService
+- TaskService
+- CustomerService
+- InventoryService
+- TransactionService
+- MachineService
+- AdminService
+
+Relationships:
+- Services connect to UserService, WorkerService, TaskService, CustomerService, InventoryService, TransactionService, MachineService, AdminService.
+- CustomerService is connected to TransactionService.
+
+Text:
+- **UserService**
+  - -userDao: UserDaoImpl
+  - +login(email, password): User
+  - +signUp(email, name, surname, password): User
+  - +logOut(userId: long): void
+
+- **WorkerService**
+  - -taskDao: TaskDaoImpl
+  - +getWorkerTasks(workerId: long): List<long>
+  - +changeTaskStatus(taskId: long, status: MaintenanceStatus)
+
+- **TaskService**
+  - -taskDaoImpl: TaskDaoImpl
+  - +getTaskDetails(taskId: long): String
+
+- **CustomerService**
+  - -connectionDao: ConnectionDaoImpl
+  - -inventoryDao: InventoryDaoImpl
+  - -itemDao: ItemDaoImpl
+  - -userDao: UserDaoImpl
+  - +connect(customerId: long, machineId: long): Connection
+  - +getInventory(connection: Connection): List<Item>
+  - +checkBalance(customerId: long, amount: double): double
+  - +buyItem(connection: Connection, itemId: long): void
+  - +updateBalance(customerId: long, amount: double)
+  - +getTransactionHistory(customerId: long): List<Transaction>
+  - +disconnect(): void
+
+- **InventoryService**
+  - -inventoryDaoImpl: InventoryDaoImpl
+  - -taskDaoImpl: TaskDaoImpl
+  - +addItemToInventory(machineId: String): void
+  - +getInventory(long id): Inventory
+
+- **TransactionService**
+  - -transactionDao: TransactionDaoImpl
+  - +createTransaction(transaction: Transaction): Transaction
+  - +getCustomerTransactions(customerId: long): List<Transaction>
+
+- **MachineService**
+  - -itemDao: itemDaoImpl
+  - -machineDao: VendingMachineDaoImpl
+  - -maintenanceDao: MaintenanceDaoImpl
+  - +deployItem(machineId: long, itemId: String)
+  - +reportIssue(report: MaintenanceReport)
+  - +runSelfDiagnostic(machineId: long)
+  - +getStatus(machineId: long)
+
+- **AdminService**
+  - -machineDao: VendingMachineDaoImpl
+  - -userDao: UserDaoImpl
+  - +getMachines()
+  - +viewAnalytics(machineId: long): Analytics
+  - +userCRUD()
+  - +machineCRUD()
+  - +workerCRUD()
+  - +itemCRUD()

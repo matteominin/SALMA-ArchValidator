@@ -36,7 +36,21 @@ class PdfService:
         self.placeholder_text = placeholder_text
         self.save_images = save_images
         self.output_folder = output_folder
-        self.image_extractor = PDFImageExtractor(openai_api_key) if (use_image_extraction and not placeholder_mode) else None
+
+        # Crea image extractor solo se necessario
+        if use_image_extraction and not placeholder_mode:
+            if openai_api_key:
+                self.image_extractor = PDFImageExtractor(openai_api_key)
+                logger.info("PDFImageExtractor initialized with OpenAI API key")
+            else:
+                self.image_extractor = None
+                logger.warning("Image extraction enabled but no OpenAI API key provided - images will be skipped")
+        else:
+            self.image_extractor = None
+            if placeholder_mode:
+                logger.info("Using placeholder mode for images")
+            else:
+                logger.info("Image extraction disabled")
 
     def extract_text(self, file_path: str) -> str:
         """
@@ -67,12 +81,16 @@ class PdfService:
                     logger.info("Extracting text from images using OpenAI Vision")
                     images_data = self._extract_images_data(file_path)
 
+                logger.info(f"Found {len(images_data)} images to process")
+
                 # Organizza le immagini per pagina
                 for img_data in images_data:
                     page_num = img_data['page']
                     if page_num not in images_by_page:
                         images_by_page[page_num] = []
                     images_by_page[page_num].append(img_data)
+
+                logger.info(f"Images organized across {len(images_by_page)} pages")
 
             # Estrai il testo pagina per pagina, integrando le immagini nelle posizioni corrette
             result = []
@@ -660,6 +678,9 @@ class PdfService:
                 page = document.load_page(page_num)
                 images = page.get_images(full=True)
 
+                if images:
+                    logger.info(f"Found {len(images)} image(s) on page {page_num + 1}")
+
                 for img_index, img in enumerate(images):
                     xref = img[0]
                     base_image = document.extract_image(xref)
@@ -693,7 +714,8 @@ class PdfService:
             document.close()
 
             if not all_image_info:
-                return ""
+                logger.info("No images found in PDF")
+                return []
 
             logger.info(f"Processing {len(all_image_info)} images in parallel")
 
@@ -717,7 +739,8 @@ class PdfService:
                             result_data = {
                                 'page': img_info['page'],
                                 'image_index': img_info['image_index'],
-                                'text': extracted_text
+                                'text': extracted_text,
+                                'y_position': img_info.get('y_position')
                             }
                             if self.save_images and img_info.get('saved_path'):
                                 result_data['image_path'] = img_info['saved_path']

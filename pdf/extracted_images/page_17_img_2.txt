@@ -1,0 +1,28 @@
+1. Image Type: Screenshot or UI mockup
+
+2. Description:
+
+   - Title: "JavaBrew"
+   - Subtitle: "Worker Dashboard"
+   - Role: "Maintenance Technician"
+   
+   - Task Summary:
+     - "5" Pending Tasks
+     - "2" In Progress
+     - "12" Completed Today
+     - "7.5" Hours Worked
+
+   - Assigned Tasks:
+     - Task 1:
+       - Title: "Clean Coffee Machine #03"
+       - Priority: "HIGH"
+       - Description: "Deep cleaning and descaling required. Machine showing slow brew times and temperature inconsistencies."
+       - Location: "Machine #03 - Lobby"
+       - Status: "Pending"
+
+     - Task 2:
+       - Title: "Refill Bean Hopper #07"
+       - Priority: "MEDIUM"
+       - Description: "Coffee bean levels are low. Refill with Colombian blend and check grinder calibration."
+       - Location: "Machine #07 - Cafeteria"
+       - Status: "In Progress"

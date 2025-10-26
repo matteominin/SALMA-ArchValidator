@@ -1,0 +1,20 @@
+1. Type of image: Screenshot or UI mockup
+
+2. Analysis:
+   - Brief description: The image shows a smartphone screen displaying a coffee ordering application interface.
+   - Elements:
+     - Logo: “JavaBrew”
+     - Title: "Espresso Collection"
+     - Subtitle: "Authentic Italian espresso experience"
+     - Product 1: 
+       - Name: "Espresso"
+       - Description: "The real Italian espresso, creamy and intense"
+       - Price: "€1.20"
+       - Quantity: "1"
+       - Button: "Aggiungi" (meaning “Add” in Italian)
+     - Product 2:
+       - Name: "Double Espresso"
+       - Description: "Double dose for a more intense experience"
+       - Price: "€2.00"
+       - Quantity: "1"
+       - Button: "Aggiungi"

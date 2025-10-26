@@ -1,0 +1,18 @@
+1. Image Type: Screenshot or UI mockup
+
+2. Description: 
+
+- The image shows a mobile app login screen for "JavaBrew."
+- Key Elements:
+  - Logo: "JavaBrew" with a coffee cup icon.
+  - Text:
+    - "Welcome! Sign in to your account to continue"
+    - Email: "enter your email"
+    - Password: "enter your password"
+    - "Forgot password?"
+    - "Log in" button
+    - "or"
+    - "Don't have an account yet?"
+    - "Create Account" button
+
+- Status bar elements at the top include time, signal, and battery percentage.

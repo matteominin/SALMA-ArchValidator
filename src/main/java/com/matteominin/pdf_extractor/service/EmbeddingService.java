@@ -4,7 +4,6 @@ import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.embedding.EmbeddingResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.HttpClientErrorException;
@@ -24,24 +23,9 @@ public class EmbeddingService {
     @Autowired
     private EmbeddingModel embeddingModel;
     
-    @Value("${spring.ai.openai.api-key:#{null}}")
-    private String apiKey;
-    
     public List<Double> generateEmbedding(String text) {
-        // Prima controlliamo se l'API key è configurata
-        if (apiKey == null || apiKey.trim().isEmpty()) {
-            logger.error("OpenAI API key is not configured. Current value: {}", 
-                        apiKey == null ? "null" : (apiKey.isEmpty() ? "empty" : "placeholder"));
-            throw new RuntimeException("OpenAI API key is not configured. Please set the OPENAI_API_KEY environment variable.");
-        }
-        
-        if (text == null || text.trim().isEmpty()) {
-            throw new IllegalArgumentException("Text cannot be null or empty");
-        }
-        
         try {
             logger.info("Generating embedding for text: {}", text.substring(0, Math.min(50, text.length())));
-            logger.debug("Using API key starting with: {}...", apiKey.substring(0, Math.min(7, apiKey.length())));
             
             EmbeddingResponse response = embeddingModel.embedForResponse(List.of(text));
             

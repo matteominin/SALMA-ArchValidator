@@ -1,0 +1,16 @@
+1. Type of image: Table or data
+
+2. Extracted text:
+
+```
+smartVend
+
+Element                                                | Missed Instructions ▮ Cov. ▮ | Missed Branches ▮ Cov. ▮ | Missed | Cxty | Missed | Lines | Missed | Methods | Missed | Classes |
+---------------------------------------------------------------------------------------------------------
+com.smartvend.app                                      | 0%                          | 0%                      | 28     | 28   | 144    | 144   | 7      | 7       | 1      | 1       |
+com.smartvend.app.dao.impl                             | 82%                         | 36%                     | 30     | 97   | 91     | 434   | 2      | 60      | 0      | 11      |
+com.smartvend.app.services                             | 90%                         | 88%                     | 31     | 201  | 37     | 394   | 6      | 66      | 1      | 9       |
+com.smartvend.app.controllers                          | 81%                         | 80%                     | 7      | 34   | 9      | 56    | 4      | 21      | 0      | 4       |
+com.smartvend.app.db                                   | 57%                         | 83%                     | 3      | 8    | 8      | 20    | 2      | 5       | 0      | 1       |
+Total                                                  |                             |                         | 99     | 368  | 289    | 1.048 | 21     | 159     | 2      | 26      |
+```

@@ -2,15 +2,28 @@ server:
   port: 8080
 
 spring:
+  config.import: optional:file:.env[.properties]
+  
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
   ai:
+    chat.client.enabled: false
+
     openai:
       api-key: ${OPENAI_API_KEY:}
       embedding:
         model: text-embedding-3-small
+
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY:}
+      chat:
+        options:
+          model: claude-haiku-4-5-20251001
+          max-tokens: 20000
+      
+      
   data:
     mongodb:
       uri: mongodb://localhost:27017

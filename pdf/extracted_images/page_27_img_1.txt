@@ -1,0 +1,95 @@
+Diagram Type: UML (Entity-Relationship Diagram)
+
+Elements:
+
+1. transaction
+   - id (int8)
+   - initialbalance (float8)
+   - updatedbalance (float8)
+   - customer_id (int8)
+   - date (timestamptz(6))
+   - paymentmethod (varchar(255))
+
+2. transactionitem
+   - id (int8)
+   - amount (float8)
+   - item_id (int8)
+   - transaction_id (int8)
+   - machine_id (varchar(255))
+
+3. item
+   - id (int8)
+   - position (int4)
+   - price (float8)
+   - quantity (int4)
+   - volume (int4)
+   - createdat (timestamptz(6))
+   - inventory_id (int8)
+   - description (varchar(255))
+   - name (varchar(255))
+   - type (varchar(255))
+
+4. task
+   - id (int8)
+   - assignedat (timestamptz(6))
+   - report_id (int8)
+   - supervisor_id (int8)
+   - worker_id (int8)
+   - status (varchar(255))
+
+5. customer
+   - id (int8)
+   - balance (float8)
+   - user_id (int8)
+
+6. admin
+   - id (int8)
+   - user_id (int8)
+
+7. worker
+   - id (int8)
+   - isactive (bool)
+   - user_id (int8)
+
+8. app_user
+   - id (int8)
+   - role (int2)
+   - email (varchar(255))
+   - name (varchar(255))
+   - password (varchar(255))
+   - surname (varchar(255))
+
+9. connection
+   - id (int8)
+   - start (timestamptz(6))
+   - user_id (int8)
+   - machine_id (varchar(255))
+
+10. vendingmachine
+    - modelnumber (varchar(255))
+    - type (varchar(255))
+
+11. maintenancereport
+    - id (int8)
+    - issuedate (timestamptz(6))
+    - issuedescription (varchar(255))
+    - machine_id (varchar(255))
+
+12. inventory
+    - id (int8)
+    - occupiedspace (int4)
+    - machine_id (varchar(255))
+
+13. concretevendingmachine
+    - serialnumber (varchar(255))
+    - capacity (int4)
+    - createdat (timestamptz(6))
+    - lastmaintenance (timestamptz(6))
+    - location (varchar(255))
+    - status (varchar(255))
+    - vending_machine_model (varchar(255))
+
+Relationships:
+- One-to-many and zero-to-one relationships are defined using connecting lines and symbols between entities. Each entity is related to others indicating database tables' foreign key relationships.
+
+Text: Extracted as shown in elements list.

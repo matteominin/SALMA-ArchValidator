@@ -1,12 +1,14 @@
-- Diagram Type: Use Case Diagram
-- Elements: 
-  - Actor: User
-  - Use Cases: 
-    - 1: Login
-    - 2: Sign up
-- Relationships: 
-  - The User interacts with both the "Login" and "Sign up" use cases.
-- Text:
+- **Diagram Type:** Use Case Diagram
+
+- **Elements:** 
+  - Use Case: "Login", "Sign up"
+  - Actor: "User"
+
+- **Relationships:** 
+  - "User" interacts with "Login"
+  - "User" interacts with "Sign up"
+
+- **Text:**
   - "1"
   - "Login"
   - "2"

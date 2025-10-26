@@ -1,0 +1,22 @@
+1. Image Type: Screenshot or UI mockup
+
+2. Description:
+   - This image shows a mobile app's customer dashboard for "JavaBrew."
+   - Current balance displayed: € 24.50
+   - Quick actions available:
+     - Check Balance
+     - Connect Machine
+     - Transaction History
+     - Recharge Balance
+   - Logout button at the bottom.
+
+3. Text:
+   - JavaBrew
+   - Customer Dashboard
+   - Il tuo saldo attuale € 24.50
+   - Azioni rapide
+   - Check Balance
+   - Connect Machine
+   - Transaction History
+   - Recharge Balance
+   - Logout

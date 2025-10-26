@@ -1,0 +1,18 @@
+1. Image Type: Screenshot or UI mockup
+
+2. Description:
+   - A mobile app sign-up screen for "JavaBrew."
+
+3. Text:
+   - Time and Battery: 14:27, 82%
+   - Logo: JavaBrew
+   - Join JavaBrew!
+   - Create your account to get started
+   - Email: enter your email
+   - Password: create a password
+   - Confirm Password: confirm your password
+   - I agree to the Terms of Service and Privacy Policy
+   - Create Account
+   - or
+   - Already have an account?
+   - Sign In

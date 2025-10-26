@@ -1,0 +1,32 @@
+1. Type of image: Diagram
+
+   - Diagram Type: UML Class Diagram
+
+2. Elements:
+
+   - UserController
+     - Attributes: -userService
+     - Methods: +login(email: String, password: String): User, +signUp(user: User): User
+
+   - WorkerController
+     - Attributes: -workerService: WorkerService, -taskService: TaskService
+     - Methods: +getTasks(workerId: long), +getTaskDetails(taskId: long), +taskCompleted(taskId: long)
+
+   - AdminController
+     - Attributes: -adminService: AdminService
+     - Methods: +UserCRUD(), +vendingMachineCRUD(), +itemCRUD(), +workerCRUD(), +salesAnalytics(machineId: long)
+
+   - CustomerController
+     - Attributes: -customerService: CustomerService
+     - Methods: +connect(machineId: long): connection, +getInventory(machineId: long): List<Item>, +buyItem(connectionId: long, itemId: long): void, +rechargeBalance(double amount): void, +disconnect(connection: Connection): void
+
+   - MachineController
+     - Attributes: -machineService: MachineService
+     - Methods: +deployItem(machineId: long, item: Item): void, +getStatus(machineId: long): MachineStatus, +runDiagnostic(machineId: long): maintenanceReport
+
+3. Relationships:
+
+   - UserController has directional relationships with WorkerController and AdminController.
+   - CustomerController and MachineController appear independently without direct connections in this diagram.
+
+4. Text: All relevant text is included under "Elements" and "Relationships".

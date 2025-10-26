@@ -1,0 +1,19 @@
+1. Diagram Type: Use Case Diagram
+
+2. Elements:
+   - Actor: Worker
+   - Use Cases: 
+     - View task details
+     - Mark task as completed
+
+3. Relationships:
+   - The "Worker" has an association with "View task details".
+   - "View task details" has an <<extends>> relationship with "Mark task as completed".
+
+4. Text:
+   - Worker
+   - View task details
+   - 12
+   - Mark task as completed
+   - 6
+   - <<extends>>

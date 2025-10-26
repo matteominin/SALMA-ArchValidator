@@ -1,0 +1,436 @@
+[
+  {
+    "uc_id": "UC-1",
+    "implemented_by_components": [
+      "Applicazione mobile",
+      "JavaBrew Software",
+      "Wallet digitale",
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "VendingMachineController",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Mobile app initiates purchase; JavaBrew backend orchestrates flow; wallet handles payment; controllers/services create transaction, check inventory and update DB; vending controller dispenses product."
+  },
+  {
+    "uc_id": "UC-2",
+    "implemented_by_components": [
+      "Dashboard",
+      "AdminController",
+      "AdminService",
+      "Analytics",
+      "JavaBrew Software",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Dashboard UI backed by admin controllers/services and analytics in the platform, reading sales and machine status from the database."
+  },
+  {
+    "uc_id": "UC-3",
+    "implemented_by_components": [
+      "UserController",
+      "UserService",
+      "UserDao",
+      "PostgreSQL 16",
+      "Applicazione mobile"
+    ],
+    "status": "Covered",
+    "rationale": "Controllers and services handle registration/login flows, persist user and wallet data via DAOs to the database; mobile front-end provides the UI."
+  },
+  {
+    "uc_id": "UC-4",
+    "implemented_by_components": [
+      "Wallet digitale",
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "TransactionDao",
+      "PostgreSQL 16",
+      "Applicazione mobile"
+    ],
+    "status": "Covered",
+    "rationale": "Wallet component and transaction services record and process recharges (cash reconciliation or online), persisted through the transaction DAO to the DB and initiated from the app or machine UI."
+  },
+  {
+    "uc_id": "UC-5",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "Dashboard",
+      "VendingMachineDao",
+      "ItemDao",
+      "UserDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Admin controllers/services expose configuration, pricing and reporting functions and persist changes via DAOs to the database; dashboard surfaces results."
+  },
+  {
+    "uc_id": "UC-6",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "UserDao",
+      "VendingMachineDao",
+      "ItemDao",
+      "DBManager",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "CRUD operations are provided by admin controllers/services and implemented by DAOs and the DB manager, storing data in the relational database."
+  },
+  {
+    "uc_id": "UC-7",
+    "implemented_by_components": [
+      "WorkerController",
+      "WorkerService",
+      "TaskDao",
+      "MaintenanceDao",
+      "MachineService",
+      "Dashboard",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Worker-facing controllers/services and task/maintenance DAOs present automatic reports, enable task creation/assignment and persistence; machine service provides diagnostics."
+  },
+  {
+    "uc_id": "UC-8",
+    "implemented_by_components": [],
+    "status": "Not Covered",
+    "rationale": "This is a documentation/template use case rather than a runtime feature; no runtime component implements it."
+  },
+  {
+    "uc_id": "UC-9",
+    "implemented_by_components": [
+      "UserController",
+      "UserService",
+      "UserDao",
+      "PostgreSQL 16",
+      "Applicazione mobile"
+    ],
+    "status": "Covered",
+    "rationale": "Login is handled by user controller/service which validates credentials against persisted user data and returns the authenticated session to the client app."
+  },
+  {
+    "uc_id": "UC-10",
+    "implemented_by_components": [
+      "UserController",
+      "UserService",
+      "UserDao",
+      "PostgreSQL 16",
+      "Applicazione mobile"
+    ],
+    "status": "Covered",
+    "rationale": "Detailed login flow (credential check, success/failure messages) is implemented by the user controller/service with persistence in the database and UI in the app."
+  },
+  {
+    "uc_id": "UC-11",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "InventoryDao",
+      "ItemDao",
+      "VendingMachineController",
+      "Wallet digitale",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Buying an item uses customer controllers/services to check inventory, process the transaction via transaction service/wallet and instruct the vending controller to dispense, persisting changes in the DB."
+  },
+  {
+    "uc_id": "UC-12",
+    "implemented_by_components": [
+      "Wallet digitale",
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "TransactionDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Recharge flows are implemented by customer and transaction services interacting with the wallet component and persisting transactions to the database."
+  },
+  {
+    "uc_id": "UC-13",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "ConnectionDao",
+      "VendingMachineController",
+      "ConcreteVendingMachine",
+      "DBManager",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Establishing a connection to a machine is handled by customer controllers/services which create connection records via the connection DAO and communicate with the vending machine controller."
+  },
+  {
+    "uc_id": "UC-14",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "InventoryDao",
+      "ItemDao",
+      "ConnectionDao",
+      "VendingMachineController",
+      "Wallet digitale",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Complete buy flow including balance/availability check, balance decrement, product dispensing and disconnection is implemented by controllers/services and DAOs with wallet and vending controller interaction."
+  },
+  {
+    "uc_id": "UC-15",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "PaymentMethod",
+      "Wallet digitale",
+      "TransactionDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Recharge via chosen payment method is processed by transaction and customer services, interacting with payment method/wallet and persisting results to the DB."
+  },
+  {
+    "uc_id": "UC-16",
+    "implemented_by_components": [
+      "WorkerController",
+      "WorkerService",
+      "TaskService",
+      "TaskDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Viewing task details is provided by worker/task controllers and services which fetch task data from the task DAO."
+  },
+  {
+    "uc_id": "UC-17",
+    "implemented_by_components": [
+      "WorkerController",
+      "WorkerService",
+      "TaskDao",
+      "DBManager",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Marking tasks complete is implemented by worker service which updates task status via the task DAO and DB manager to persist logs."
+  },
+  {
+    "uc_id": "UC-18",
+    "implemented_by_components": [
+      "WorkerController",
+      "WorkerService",
+      "TaskDao",
+      "DBManager",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "The Italian-detailed task completion flow is implemented by the same worker/task controllers and DAOs that update and log task completion."
+  },
+  {
+    "uc_id": "UC-19",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "Analytics",
+      "Dashboard",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Analytics page load is handled by admin controllers/services which query analytics data stored in the database and render it on the dashboard."
+  },
+  {
+    "uc_id": "UC-20",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "UserDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Worker management CRUD is implemented via admin controllers/services using the user DAO (role-based) to persist worker records."
+  },
+  {
+    "uc_id": "UC-21",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "VendingMachineDao",
+      "MachineService",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Vending machine CRUD is provided by admin and machine services/controllers and persisted through the vending machine DAO to the database."
+  },
+  {
+    "uc_id": "UC-22",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "TaskDao",
+      "WorkerService",
+      "DBManager",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Task assignment is implemented by admin controllers/services which create/update tasks via the task DAO and notify worker services."
+  },
+  {
+    "uc_id": "UC-23",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "TaskDao",
+      "Dashboard",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Admin viewing of tasks is implemented by admin controllers/services and the dashboard which query task data from the task DAO."
+  },
+  {
+    "uc_id": "UC-24",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "MachineService",
+      "VendingMachineDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Creating a new vending machine is handled by admin and machine services which validate and persist machine data via the vending machine DAO to the DB."
+  },
+  {
+    "uc_id": "UC-25",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "Dashboard",
+      "Applicazione mobile",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Accessing the customer dashboard is implemented by customer controllers/services which assemble user-specific data from the DB and present it in the UI."
+  },
+  {
+    "uc_id": "UC-26",
+    "implemented_by_components": [
+      "WorkerController",
+      "WorkerService",
+      "Dashboard",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Worker dashboard access is provided by worker controllers/services pulling tasks and maintenance info from the database and displaying via the dashboard."
+  },
+  {
+    "uc_id": "UC-27",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "Dashboard",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Admin dashboard access is implemented by admin controllers/services retrieving administrative data and analytics from the DB for the dashboard."
+  },
+  {
+    "uc_id": "UC-28",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "Wallet digitale",
+      "UserDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Balance viewing is provided by customer service which reads wallet/balance data from the user/wallet records persisted in the database."
+  },
+  {
+    "uc_id": "UC-29",
+    "implemented_by_components": [
+      "TransactionService",
+      "TransactionDao",
+      "CustomerService",
+      "UserController",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Transaction history retrieval is implemented by transaction service/DAO and exposed to users via customer/user controllers, reading from the DB."
+  },
+  {
+    "uc_id": "UC-30",
+    "implemented_by_components": [
+      "CustomerController",
+      "CustomerService",
+      "TransactionService",
+      "Wallet digitale",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Checkout flow is implemented by customer and transaction services coordinating payment (wallet) and persisting the completed transaction to the database."
+  },
+  {
+    "uc_id": "UC-31",
+    "implemented_by_components": [
+      "WorkerController",
+      "WorkerService",
+      "TaskDao",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Worker task selection and completion uses worker controller/service and task DAO to update task status in the database."
+  },
+  {
+    "uc_id": "UC-32",
+    "implemented_by_components": [
+      "AdminController",
+      "AdminService",
+      "Analytics",
+      "Dashboard",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Admin analytics viewing uses admin controllers/services and the analytics component to fetch and display aggregated data from the DB."
+  },
+  {
+    "uc_id": "UC-33",
+    "implemented_by_components": [],
+    "status": "Not Covered",
+    "rationale": "This describes use case documentation structure rather than a system feature; no runtime component implements it."
+  },
+  {
+    "uc_id": "UC-34",
+    "implemented_by_components": [
+      "Connection",
+      "ConnectionDao",
+      "ConnectionController",
+      "CustomerService",
+      "MachineService",
+      "DBManager",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Active connection tracking is implemented by connection controller/service and persisted via the connection DAO/DB manager, recording user, machine and timestamps."
+  },
+  {
+    "uc_id": "UC-35",
+    "implemented_by_components": [
+      "MachineController",
+      "MachineService",
+      "MaintenanceController",
+      "MaintenanceDao",
+      "VendingMachineController",
+      "WorkerController",
+      "AdminController",
+      "PostgreSQL 16"
+    ],
+    "status": "Covered",
+    "rationale": "Remote maintenance (unlocking stuck product, remote diagnostics) is provided by machine/vending controllers and services with maintenance DAOs to persist actions and controllers to authorize/administer operations."
+  }
+]
