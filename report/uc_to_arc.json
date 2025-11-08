@@ -4,433 +4,302 @@
     "implemented_by_components": [
       "Applicazione mobile",
       "JavaBrew Software",
-      "Wallet digitale",
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "VendingMachineController",
-      "PostgreSQL 16"
+      "Wallet digitale"
     ],
     "status": "Covered",
-    "rationale": "Mobile app initiates purchase; JavaBrew backend orchestrates flow; wallet handles payment; controllers/services create transaction, check inventory and update DB; vending controller dispenses product."
+    "rationale": "The mobile app enables users to scan the QR code and select items, JavaBrew Software processes the transactions, and the Wallet facilitates payment."
   },
   {
     "uc_id": "UC-2",
     "implemented_by_components": [
       "Dashboard",
-      "AdminController",
-      "AdminService",
-      "Analytics",
-      "JavaBrew Software",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Dashboard UI backed by admin controllers/services and analytics in the platform, reading sales and machine status from the database."
+    "rationale": "The Dashboard allows admins to monitor statistics and sales, while JavaBrew Software manages overall vending operations."
   },
   {
     "uc_id": "UC-3",
     "implemented_by_components": [
-      "UserController",
-      "UserService",
-      "UserDao",
-      "PostgreSQL 16",
-      "Applicazione mobile"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Controllers and services handle registration/login flows, persist user and wallet data via DAOs to the database; mobile front-end provides the UI."
+    "rationale": "The mobile app enables user registration and login, connecting to the JavaBrew Software for account details."
   },
   {
     "uc_id": "UC-4",
     "implemented_by_components": [
-      "Wallet digitale",
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "TransactionDao",
-      "PostgreSQL 16",
-      "Applicazione mobile"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Wallet component and transaction services record and process recharges (cash reconciliation or online), persisted through the transaction DAO to the DB and initiated from the app or machine UI."
+    "rationale": "The mobile app facilitates wallet recharges, working with the JavaBrew Software for processing transactions."
   },
   {
     "uc_id": "UC-5",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
       "Dashboard",
-      "VendingMachineDao",
-      "ItemDao",
-      "UserDao",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Admin controllers/services expose configuration, pricing and reporting functions and persist changes via DAOs to the database; dashboard surfaces results."
+    "rationale": "The Dashboard allows admins to manage and configure machines, while JavaBrew Software handles backend updates and configurations."
   },
   {
     "uc_id": "UC-6",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "UserDao",
-      "VendingMachineDao",
-      "ItemDao",
-      "DBManager",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "CRUD operations are provided by admin controllers/services and implemented by DAOs and the DB manager, storing data in the relational database."
+    "rationale": "JavaBrew Software allows admins to perform CRUD operations for users, distributors, and items."
   },
   {
     "uc_id": "UC-7",
-    "implemented_by_components": [
-      "WorkerController",
-      "WorkerService",
-      "TaskDao",
-      "MaintenanceDao",
-      "MachineService",
-      "Dashboard",
-      "PostgreSQL 16"
-    ],
-    "status": "Covered",
-    "rationale": "Worker-facing controllers/services and task/maintenance DAOs present automatic reports, enable task creation/assignment and persistence; machine service provides diagnostics."
+    "implemented_by_components": [],
+    "status": "Not Covered",
+    "rationale": "This use case does not involve any architectural components as it describes a generic maintenance process."
   },
   {
     "uc_id": "UC-8",
     "implemented_by_components": [],
     "status": "Not Covered",
-    "rationale": "This is a documentation/template use case rather than a runtime feature; no runtime component implements it."
+    "rationale": "This use case is a generic description template and does not correspond to specific components."
   },
   {
     "uc_id": "UC-9",
     "implemented_by_components": [
-      "UserController",
-      "UserService",
-      "UserDao",
-      "PostgreSQL 16",
-      "Applicazione mobile"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Login is handled by user controller/service which validates credentials against persisted user data and returns the authenticated session to the client app."
+    "rationale": "The mobile app manages user login and connects to JavaBrew Software for authentication."
   },
   {
     "uc_id": "UC-10",
     "implemented_by_components": [
-      "UserController",
-      "UserService",
-      "UserDao",
-      "PostgreSQL 16",
-      "Applicazione mobile"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Detailed login flow (credential check, success/failure messages) is implemented by the user controller/service with persistence in the database and UI in the app."
+    "rationale": "The mobile app handles the user login process, which interfaces with the JavaBrew Software for credential validation."
   },
   {
     "uc_id": "UC-11",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "InventoryDao",
-      "ItemDao",
-      "VendingMachineController",
-      "Wallet digitale",
-      "PostgreSQL 16"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Buying an item uses customer controllers/services to check inventory, process the transaction via transaction service/wallet and instruct the vending controller to dispense, persisting changes in the DB."
+    "rationale": "The mobile app allows customers to buy items, while JavaBrew Software processes the transactions."
   },
   {
     "uc_id": "UC-12",
     "implemented_by_components": [
-      "Wallet digitale",
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "TransactionDao",
-      "PostgreSQL 16"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Recharge flows are implemented by customer and transaction services interacting with the wallet component and persisting transactions to the database."
+    "rationale": "The mobile app allows customers to recharge their accounts, working with the JavaBrew Software for transaction handling."
   },
   {
     "uc_id": "UC-13",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "ConnectionDao",
-      "VendingMachineController",
-      "ConcreteVendingMachine",
-      "DBManager",
-      "PostgreSQL 16"
+      "Applicazione mobile",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Establishing a connection to a machine is handled by customer controllers/services which create connection records via the connection DAO and communicate with the vending machine controller."
+    "rationale": "The mobile app connects users to the vending machines via the system's backend (JavaBrew Software)."
   },
   {
     "uc_id": "UC-14",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "InventoryDao",
-      "ItemDao",
-      "ConnectionDao",
-      "VendingMachineController",
-      "Wallet digitale",
-      "PostgreSQL 16"
+      "Applicazione mobile",
+      "JavaBrew Software",
+      "Wallet digitale"
     ],
     "status": "Covered",
-    "rationale": "Complete buy flow including balance/availability check, balance decrement, product dispensing and disconnection is implemented by controllers/services and DAOs with wallet and vending controller interaction."
+    "rationale": "The mobile app facilitates the buying process, JavaBrew Software validates transactions, and the Wallet handles payments."
   },
   {
     "uc_id": "UC-15",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "PaymentMethod",
-      "Wallet digitale",
-      "TransactionDao",
-      "PostgreSQL 16"
+      "Applicazione mobile",
+      "JavaBrew Software",
+      "Wallet digitale"
     ],
     "status": "Covered",
-    "rationale": "Recharge via chosen payment method is processed by transaction and customer services, interacting with payment method/wallet and persisting results to the DB."
+    "rationale": "The app allows customers to choose payment methods for recharging, JavaBrew Software processes the transactions, and the Wallet manages funds."
   },
   {
     "uc_id": "UC-16",
     "implemented_by_components": [
-      "WorkerController",
-      "WorkerService",
-      "TaskService",
-      "TaskDao",
-      "PostgreSQL 16"
+      "Worker",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Viewing task details is provided by worker/task controllers and services which fetch task data from the task DAO."
+    "rationale": "Workers view task details through the system managed by JavaBrew Software."
   },
   {
     "uc_id": "UC-17",
     "implemented_by_components": [
-      "WorkerController",
-      "WorkerService",
-      "TaskDao",
-      "DBManager",
-      "PostgreSQL 16"
+      "Worker",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Marking tasks complete is implemented by worker service which updates task status via the task DAO and DB manager to persist logs."
+    "rationale": "Workers mark tasks as completed in the system, which is handled via JavaBrew Software."
   },
   {
     "uc_id": "UC-18",
     "implemented_by_components": [
-      "WorkerController",
-      "WorkerService",
-      "TaskDao",
-      "DBManager",
-      "PostgreSQL 16"
+      "Worker",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "The Italian-detailed task completion flow is implemented by the same worker/task controllers and DAOs that update and log task completion."
+    "rationale": "Workers complete tasks in the system, recorded and managed by JavaBrew Software."
   },
   {
     "uc_id": "UC-19",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "Analytics",
       "Dashboard",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Analytics page load is handled by admin controllers/services which query analytics data stored in the database and render it on the dashboard."
+    "rationale": "The Dashboard provides analytics for admins, backed by data provided from JavaBrew Software."
   },
   {
     "uc_id": "UC-20",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "UserDao",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Worker management CRUD is implemented via admin controllers/services using the user DAO (role-based) to persist worker records."
+    "rationale": "Admin management of workers is facilitated through JavaBrew Software."
   },
   {
     "uc_id": "UC-21",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "VendingMachineDao",
-      "MachineService",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Vending machine CRUD is provided by admin and machine services/controllers and persisted through the vending machine DAO to the database."
+    "rationale": "Admin management of vending machines is executed via the JavaBrew Software."
   },
   {
     "uc_id": "UC-22",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "TaskDao",
-      "WorkerService",
-      "DBManager",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Task assignment is implemented by admin controllers/services which create/update tasks via the task DAO and notify worker services."
+    "rationale": "Task assignment by admins is managed through JavaBrew Software."
   },
   {
     "uc_id": "UC-23",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "TaskDao",
-      "Dashboard",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Admin viewing of tasks is implemented by admin controllers/services and the dashboard which query task data from the task DAO."
+    "rationale": "Viewing tasks is facilitated through the JavaBrew Software for admin access."
   },
   {
     "uc_id": "UC-24",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "MachineService",
-      "VendingMachineDao",
-      "PostgreSQL 16"
+      "Admin",
+      "Dashboard",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Creating a new vending machine is handled by admin and machine services which validate and persist machine data via the vending machine DAO to the DB."
+    "rationale": "Admins create new vending machines using the Dashboard interface, interfacing with JavaBrew Software for backend operations."
   },
   {
     "uc_id": "UC-25",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "Dashboard",
-      "Applicazione mobile",
-      "PostgreSQL 16"
+      "Customer",
+      "Dashboard"
     ],
     "status": "Covered",
-    "rationale": "Accessing the customer dashboard is implemented by customer controllers/services which assemble user-specific data from the DB and present it in the UI."
+    "rationale": "Customer access to dashboards is facilitated through the Dashboard component."
   },
   {
     "uc_id": "UC-26",
     "implemented_by_components": [
-      "WorkerController",
-      "WorkerService",
-      "Dashboard",
-      "PostgreSQL 16"
+      "Worker",
+      "Dashboard"
     ],
     "status": "Covered",
-    "rationale": "Worker dashboard access is provided by worker controllers/services pulling tasks and maintenance info from the database and displaying via the dashboard."
+    "rationale": "Workers access their dashboard through the Dashboard component."
   },
   {
     "uc_id": "UC-27",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "Dashboard",
-      "PostgreSQL 16"
+      "Admin",
+      "Dashboard"
     ],
     "status": "Covered",
-    "rationale": "Admin dashboard access is implemented by admin controllers/services retrieving administrative data and analytics from the DB for the dashboard."
+    "rationale": "Admins access their dashboards via the Dashboard component."
   },
   {
     "uc_id": "UC-28",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "Wallet digitale",
-      "UserDao",
-      "PostgreSQL 16"
+      "Customer",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Balance viewing is provided by customer service which reads wallet/balance data from the user/wallet records persisted in the database."
+    "rationale": "Customers view their balance through interactions with JavaBrew Software."
   },
   {
     "uc_id": "UC-29",
     "implemented_by_components": [
-      "TransactionService",
-      "TransactionDao",
-      "CustomerService",
-      "UserController",
-      "PostgreSQL 16"
+      "Customer",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Transaction history retrieval is implemented by transaction service/DAO and exposed to users via customer/user controllers, reading from the DB."
+    "rationale": "Transaction history is accessed by customers through JavaBrew Software."
   },
   {
     "uc_id": "UC-30",
     "implemented_by_components": [
-      "CustomerController",
-      "CustomerService",
-      "TransactionService",
-      "Wallet digitale",
-      "PostgreSQL 16"
+      "Customer",
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Checkout flow is implemented by customer and transaction services coordinating payment (wallet) and persisting the completed transaction to the database."
+    "rationale": "Checkout processing is done through interactions with JavaBrew Software."
   },
   {
     "uc_id": "UC-31",
     "implemented_by_components": [
-      "WorkerController",
-      "WorkerService",
-      "TaskDao",
-      "PostgreSQL 16"
+      "Worker",
+      "Dashboard"
     ],
     "status": "Covered",
-    "rationale": "Worker task selection and completion uses worker controller/service and task DAO to update task status in the database."
+    "rationale": "Workers select tasks via the Dashboard, which integrates with the backend system."
   },
   {
     "uc_id": "UC-32",
     "implemented_by_components": [
-      "AdminController",
-      "AdminService",
-      "Analytics",
-      "Dashboard",
-      "PostgreSQL 16"
+      "Admin",
+      "Dashboard"
     ],
     "status": "Covered",
-    "rationale": "Admin analytics viewing uses admin controllers/services and the analytics component to fetch and display aggregated data from the DB."
+    "rationale": "Admins view analytics through their Dashboard."
   },
   {
     "uc_id": "UC-33",
     "implemented_by_components": [],
     "status": "Not Covered",
-    "rationale": "This describes use case documentation structure rather than a system feature; no runtime component implements it."
+    "rationale": "This use case is a schema description and lacks relevant components."
   },
   {
     "uc_id": "UC-34",
     "implemented_by_components": [
-      "Connection",
-      "ConnectionDao",
-      "ConnectionController",
-      "CustomerService",
-      "MachineService",
-      "DBManager",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Active connection tracking is implemented by connection controller/service and persisted via the connection DAO/DB manager, recording user, machine and timestamps."
+    "rationale": "Tracking connections between users and machines is managed through JavaBrew Software."
   },
   {
     "uc_id": "UC-35",
     "implemented_by_components": [
-      "MachineController",
-      "MachineService",
-      "MaintenanceController",
-      "MaintenanceDao",
-      "VendingMachineController",
-      "WorkerController",
-      "AdminController",
-      "PostgreSQL 16"
+      "JavaBrew Software"
     ],
     "status": "Covered",
-    "rationale": "Remote maintenance (unlocking stuck product, remote diagnostics) is provided by machine/vending controllers and services with maintenance DAOs to persist actions and controllers to authorize/administer operations."
+    "rationale": "The remote maintenance feature is handled by the JavaBrew Software to enable technical actions."
   }
 ]

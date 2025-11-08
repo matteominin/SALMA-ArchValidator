@@ -1,0 +1,2410 @@
+{
+  "requirements": [
+    {
+      "description": "The system must modernize the management and delivery of products through automatic vending machines.",
+      "type": "goal/background",
+      "req_id": "REQ-1",
+      "source_text": "Il progetto, JavaBrew nasce dall’esigenza di modernizzare la gestione e l’erogazione di prodotti attraverso i distributori automatici per snack e bevande.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must create an integrated and secure platform to fully support end-users, operators, and system administrators.",
+      "type": "goal/background",
+      "req_id": "REQ-2",
+      "source_text": "L’obiettivo principale è creare una piattaforma integrata, semplice e sicura, che supporti in modo completo l’utente finale quanto gli operatori e gli amministratori del sistema.",
+      "quality_notes": "Needs Detail – specify what aspects of integration and security are required."
+    },
+    {
+      "description": "The system must enable users to purchase items by scanning a unique QR code displayed on the machine using a mobile application.",
+      "type": "functional",
+      "req_id": "REQ-3",
+      "source_text": "Grazie all’applicazione mobile e a un wallet digitale associato all’account personale, l’utente può acquistare articoli inquadrando con lo smartphone il codice QR univoco visualizzato sulla macchina.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must offer a dashboard that displays statistics on sales and malfunctions.",
+      "type": "functional",
+      "req_id": "REQ-4",
+      "source_text": "Il gestionale della piattaforma offre una dashboard che mostra statistiche sulle vendite e sui malfunzionamenti.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow administrators to monitor sales, stock levels, and efficiently plan maintenance and replenishment activities.",
+      "type": "functional",
+      "req_id": "REQ-5",
+      "source_text": "permettendo agli amministratori di monitorare vendite, scorte e pianificare in modo efficiente le attività di manutenzione e rifornimento.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must improve the user experience.",
+      "type": "goal/background",
+      "req_id": "REQ-6",
+      "source_text": "migliorare l’esperienza d’uso degli utenti.",
+      "quality_notes": "Vague/Unquantified – specify what metrics will define an improved experience."
+    },
+    {
+      "description": "The system must reduce response times for operators.",
+      "type": "goal/background",
+      "req_id": "REQ-7",
+      "source_text": "ridurre i tempi di intervento per gli operatori.",
+      "quality_notes": "Needs Detail – specify expected response time metrics."
+    },
+    {
+      "description": "The system must provide a scalable service that aligns with modern technologies.",
+      "type": "non-functional",
+      "req_id": "REQ-8",
+      "source_text": "tramite un servizio scalabile e in linea con le tecnologie moderne.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must track inventory in real-time.",
+      "type": "functional",
+      "req_id": "REQ-9",
+      "source_text": "Non tengono traccia in tempo reale delle scorte.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must support digital payment methods.",
+      "type": "functional",
+      "req_id": "REQ-10",
+      "source_text": "Offrono pagamenti solo in contanti o chiavette prepagate (metodi di pagamento datati).",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must provide centralized tools for management and maintenance.",
+      "type": "functional",
+      "req_id": "REQ-11",
+      "source_text": "Non dispongono di strumenti centralizzati per la gestione e la manutenzione.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must integrate digital payments and remote monitoring.",
+      "type": "goal/background",
+      "req_id": "REQ-12",
+      "source_text": "JavaBrew intende risolvere queste lacune, offrendo una piattaforma che unisce pagamenti digi- tali e monitoraggio remoto.",
+      "quality_notes": "Needs Detail – specify what types of digital payments are supported."
+    },
+    {
+      "description": "The system must allow users to register or log in to view the wallet balance and transaction history.",
+      "type": "functional",
+      "req_id": "REQ-13",
+      "source_text": "L’utente può registrarsi o accedere con il proprio account per visualizzare il saldo del wallet (borsellino digitale) e lo storico delle transazioni.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow users to recharge their account using cash through a machine or other online payment methods.",
+      "type": "functional",
+      "req_id": "REQ-14",
+      "source_text": "Può ricaricare il conto in contanti recandosi presso una macchinetta oppure tramite altri metodi di pagamento online.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must automatically deduct the purchase amount from the user's digital wallet when a product is selected.",
+      "type": "functional",
+      "req_id": "REQ-15",
+      "source_text": "il saldo verrà scalato automaticamente dal wallet digitale.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must provide the platform administrator with configuration capabilities for the vending machines, price management, sales reporting, and general statistics.",
+      "type": "functional",
+      "req_id": "REQ-16",
+      "source_text": "L’amministratore della piattaforma è responsabile della configurazione delle macchine, della gestione dei prezzi, dei report di vendita e delle statistiche generali.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow the administrator access to CRUD functionality for all users, specific vending machines, and items.",
+      "type": "functional",
+      "req_id": "REQ-17",
+      "source_text": "Ha accesso a funzionalità CRUD per tutti gli utenti (in particolare i manutentori), per i singoli distributori e gli articoli.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must generate automatic reports for maintenance workers regarding insufficient supplies or malfunctioning vending machines.",
+      "type": "functional",
+      "req_id": "REQ-18",
+      "source_text": "È guidato da report automatici generati dall’autodiagnosi dei distributori che segnalano scorte insufficienti o malfunzionamenti.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must be able to detect vending machines that are not connected to the Internet.",
+      "type": "functional",
+      "req_id": "REQ-19",
+      "source_text": "implementando un meccani-smo di rilevamento dei distributori non connessi (ad esempio tramite polling)",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must maintain an offline register to locally track transactions during periods of disconnection.",
+      "type": "functional",
+      "req_id": "REQ-20",
+      "source_text": "introducendo un offline register per tracciare localmente le transazioni avvenute durante il periodo di disconnessione",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must synchronize local transactions with the central database once the Internet connection is restored.",
+      "type": "functional",
+      "req_id": "REQ-21",
+      "source_text": "Una volta ristabilita la connessione, tali transazioni verrebbero sincronizzate e inserite nel database centrale.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow anonymous users to complete transactions using cash only.",
+      "type": "functional",
+      "req_id": "REQ-22",
+      "source_text": "permettendo a utenti non registrati (anonymous users) di effettuare transazioni solamente in contante",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must supply the necessary infrastructure, including modems and servers, for its operation.",
+      "type": "constraint",
+      "req_id": "REQ-23",
+      "source_text": "L’installazione di modem e server comporta un investimento iniziale considerevole",
+      "quality_notes": "Needs Detail – specify the infrastructure requirements."
+    },
+    {
+      "description": "The system must authenticate the user to provide access to the personalized interface.",
+      "type": "functional",
+      "req_id": "REQ-24",
+      "source_text": "Lo user è autenticato e ha accesso all’interfaccia personalizzata del sistema.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must verify user credentials during the login process.",
+      "type": "functional",
+      "req_id": "REQ-25",
+      "source_text": "Il sistema verifica le credenziali.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must display an error message if the user enters incorrect credentials.",
+      "type": "functional",
+      "req_id": "REQ-26",
+      "source_text": "Credenziali errate: messaggio di errore che invita a riprovare.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow the user to register a new account by entering their first name, last name, email, and password.",
+      "type": "functional",
+      "req_id": "REQ-27",
+      "source_text": "2. Inserisce nome, cognome, email e password.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must validate the entered fields during user registration.",
+      "type": "functional",
+      "req_id": "REQ-28",
+      "source_text": "3. Il sistema valida i campi inseriti.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow an admin to create a new vending machine.",
+      "type": "functional",
+      "req_id": "REQ-29",
+      "source_text": "Il sistema contiene una nuova vending machine che appare nelle analytics.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must store the new vending machine information in the database.",
+      "type": "functional",
+      "req_id": "REQ-30",
+      "source_text": "Il sistema salva la vending machine nel database.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must verify the data provided for creating the vending machine.",
+      "type": "functional",
+      "req_id": "REQ-31",
+      "source_text": "Il sistema verifica i dati.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must display error messages and request retry if there is an error during saving.",
+      "type": "functional",
+      "req_id": "REQ-32",
+      "source_text": "4.1 Errore nel salvataggio: messaggio e richiesta di riprovare.",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must support communication between clients and machines.",
+      "type": "functional",
+      "req_id": "REQ-33",
+      "source_text": "Supporta la comunicazione tra clienti e macchine:",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must track the active connections between users and machines, including user_id, machine_id, and the start time of the connection.",
+      "type": "functional",
+      "req_id": "REQ-34",
+      "source_text": "• connection: Traccia le connessioni attive tra utenti e macchina (es. user_id, machine_id, start istante in cui inizia la connessione).",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must establish connections specifically between a user and a concrete vending machine.",
+      "type": "functional",
+      "req_id": "REQ-35",
+      "source_text": "La connessione avviene tra un user e una concrete vending machine (invece che tra un customer e una vending machine).",
+      "quality_notes": "Well-defined"
+    },
+    {
+      "description": "The system must allow for future development of features such as remote maintenance by technicians or administrators.",
+      "type": "goal/background",
+      "req_id": "REQ-36",
+      "source_text": "in modo da rendere possibile in un futuro sviluppo dell’applicazione la gestione di feature come manutenzione remota (es. sblocco di un prodotto rimasto bloccato) da parte del tecnico o dell’admin.",
+      "quality_notes": "Needs Detail – specify what features will be included in the future."
+    }
+  ],
+  "tests": [
+    {
+      "test_id": "TEST-1",
+      "test_type": "Integration",
+      "tested_artifact_name": "H2 Database",
+      "coverage_hint": "Automatic testing setup",
+      "description_summary": "Verifies the ability to use H2 in-memory database for rapid testing."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Integration",
+      "tested_artifact_name": "Jakarta Persistence API",
+      "coverage_hint": "ORM management",
+      "description_summary": "Validates the compliance of persistence management with JPA standards."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Integration",
+      "tested_artifact_name": "Hibernate ORM",
+      "coverage_hint": "Object-Relational Mapping",
+      "description_summary": "Checks the generation of database schema from object model using Hibernate."
+    },
+    {
+      "test_id": "TEST-4",
+      "test_type": "Integration",
+      "tested_artifact_name": "Jakarta Transaction API",
+      "coverage_hint": "Distributed transaction management",
+      "description_summary": "Ensures proper handling of distributed transactions through the Jakarta Transaction API."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "JUnit 5.11.0",
+      "coverage_hint": "Test execution framework",
+      "description_summary": "Verifies the functionality of the unit testing framework."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Unit",
+      "tested_artifact_name": "Mockito 5.18.0",
+      "coverage_hint": "Dependency mocking during tests",
+      "description_summary": "Validates the mocking capabilities for simulating dependencies."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Integration",
+      "tested_artifact_name": "Jacoco",
+      "coverage_hint": "Code coverage reporting",
+      "description_summary": "Checks the effectiveness of code coverage generation reports."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Integration",
+      "tested_artifact_name": "Use Case Integration Tests",
+      "coverage_hint": "Correct functioning of use case",
+      "description_summary": "Verifies the integration of various components to ensure the overall use case works as expected."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Functional",
+      "tested_artifact_name": "Use Case Functional Tests",
+      "coverage_hint": "Verification of use case requirements",
+      "description_summary": "Tests to ensure that the application meets the requirements of the identified use cases."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "UserLoginTest",
+      "coverage_hint": "User Login success scenario",
+      "description_summary": "Verifies that a user can successfully log in with valid credentials."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "System",
+      "tested_artifact_name": "UserLoginTest",
+      "coverage_hint": "User Login failure due to incorrect credentials",
+      "description_summary": "Tests that an error message is displayed when the user enters incorrect credentials."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "System",
+      "tested_artifact_name": "UserLoginTest",
+      "coverage_hint": "User Login failure due to system error",
+      "description_summary": "Verifies that an appropriate error message is presented to the user when a system error occurs during login."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "UserRegistrationFlow",
+      "coverage_hint": "User Registration process",
+      "description_summary": "Verifies the successful registration of a user and access to a personalized interface."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "System",
+      "tested_artifact_name": "UserRegistrationFlow",
+      "coverage_hint": "User Registration error handling",
+      "description_summary": "Tests that the system displays an error message when the input fields are incorrect or empty."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "System",
+      "tested_artifact_name": "UserRegistrationFlow",
+      "coverage_hint": "User Registration authentication failure",
+      "description_summary": "Verifies that an appropriate error message is shown when there is an authentication issue during registration."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "BuyItemController",
+      "coverage_hint": "Product purchase flow",
+      "description_summary": "Verifies that a customer can successfully buy an item and update their balance."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "System",
+      "tested_artifact_name": "BuyItemController",
+      "coverage_hint": "Insufficient balance error handling",
+      "description_summary": "Tests that an error is triggered when the customer has insufficient funds."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "System",
+      "tested_artifact_name": "BuyItemController",
+      "coverage_hint": "Out of stock product error handling",
+      "description_summary": "Verifies that an error occurs if the selected product is out of stock."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "ConnectToVendingMachine",
+      "coverage_hint": "Vending machine connection flow",
+      "description_summary": "Verifies that the customer can successfully connect to the vending machine after scanning the QR code."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "System",
+      "tested_artifact_name": "ConnectToVendingMachine",
+      "coverage_hint": "Vending machine already connected error handling",
+      "description_summary": "Tests that an error is returned when the vending machine is already connected."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "System",
+      "tested_artifact_name": "ConnectToVendingMachine",
+      "coverage_hint": "Vending machine out of service error handling",
+      "description_summary": "Verifies that an error is shown when the vending machine is out of use."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "RechargeBalanceController",
+      "coverage_hint": "Balance recharge process",
+      "description_summary": "Verifies that the customer can successfully recharge their balance and see the updated amount."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "System",
+      "tested_artifact_name": "RechargeBalanceController",
+      "coverage_hint": "Failed payment scenario",
+      "description_summary": "Tests the scenario where a payment fails during the recharge process."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "TaskCompletionTest",
+      "coverage_hint": "Marking task as completed",
+      "description_summary": "Verifies that a task marked as completed no longer appears in the user's task list."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Integration",
+      "tested_artifact_name": "TaskControllerTest",
+      "coverage_hint": "Error handling during task save",
+      "description_summary": "Tests that an error message is returned when there is an error in saving the task."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "ViewAnalytics",
+      "coverage_hint": "Admin views user and item analytics",
+      "description_summary": "Verifies that the admin can access and view analytics data successfully."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Integration",
+      "tested_artifact_name": "AssignTaskController",
+      "coverage_hint": "Task assignment flow",
+      "description_summary": "Tests that the task assignment functionality correctly includes views of workers and tasks."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerService",
+      "coverage_hint": "CRUD operations for managing workers",
+      "description_summary": "Verifies the correct handling of create/read/update/delete operations for workers."
+    },
+    {
+      "test_id": "TEST-4",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserService",
+      "coverage_hint": "CRUD operations for managing users",
+      "description_summary": "Verifies the correct handling of create/read/update/delete operations for users."
+    },
+    {
+      "test_id": "TEST-5",
+      "test_type": "Unit",
+      "tested_artifact_name": "ItemService",
+      "coverage_hint": "CRUD operations for managing items",
+      "description_summary": "Verifies the correct handling of create/read/update/delete operations for items."
+    },
+    {
+      "test_id": "TEST-6",
+      "test_type": "Unit",
+      "tested_artifact_name": "VendingMachineService",
+      "coverage_hint": "CRUD operations for managing vending machines",
+      "description_summary": "Verifies the correct handling of create/read/update/delete operations for vending machines."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "System",
+      "tested_artifact_name": "VendingMachineCreationTest",
+      "coverage_hint": "Vending Machine creation process",
+      "description_summary": "Verifies that an admin can successfully create a new vending machine when all fields are filled correctly."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "System",
+      "tested_artifact_name": "VendingMachineCreationTest",
+      "coverage_hint": "Vending Machine creation error handling",
+      "description_summary": "Tests that an error message is returned when required fields are missing or incorrect during the vending machine creation."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "System",
+      "tested_artifact_name": "VendingMachineCreationTest",
+      "coverage_hint": "Vending Machine persistence verification",
+      "description_summary": "Verifies that the newly created vending machine is saved in the database and appears in analytics."
+    },
+    {
+      "test_id": "TEST-4",
+      "test_type": "System",
+      "tested_artifact_name": "VendingMachineCreationTest",
+      "coverage_hint": "Vending Machine database saving error handling",
+      "description_summary": "Tests that an error message and prompt to retry are presented when there is a saving error during the vending machine creation."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "JUnit 5.11.0",
+      "coverage_hint": "Unit testing framework usage",
+      "description_summary": "Framework for executing unit tests to verify individual components."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Unit",
+      "tested_artifact_name": "Mockito 5.18.0",
+      "coverage_hint": "Dependency mocking functionality",
+      "description_summary": "Used for simulating dependencies in unit tests to isolate functionality."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Code Coverage",
+      "tested_artifact_name": "Jacoco",
+      "coverage_hint": "Code coverage analysis",
+      "description_summary": "Generates reports to evaluate the extent of code exercised by tests."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "JUnit 5.11.0",
+      "coverage_hint": "Unit testing framework",
+      "description_summary": "Framework for executing unit tests."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Unit",
+      "tested_artifact_name": "Mockito 5.18.0",
+      "coverage_hint": "Dependency simulation in tests",
+      "description_summary": "Used for mocking dependencies during tests."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Integration",
+      "tested_artifact_name": "Jacoco",
+      "coverage_hint": "Code coverage reporting",
+      "description_summary": "Tool for generating code coverage reports."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "Unit Tests",
+      "coverage_hint": "Logic correctness of components",
+      "description_summary": "Verifies the logical correctness of individual software components."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Integration",
+      "tested_artifact_name": "Integration Tests",
+      "coverage_hint": "Interaction between system components",
+      "description_summary": "Tests the correct interaction among components within the architecture."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemSuccessSingleItem",
+      "coverage_hint": "Purchase item success scenario",
+      "description_summary": "Verifies that the buyItem method successfully processes a transaction with a single item."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Integration",
+      "tested_artifact_name": "Service Layer, DAO Layer interaction",
+      "coverage_hint": "Database interaction and transaction management",
+      "description_summary": "Verifies correct interaction between the Service Layer and DAO Layer with the database."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "com.smartvend.app",
+      "coverage_hint": "Vending Machine core operations",
+      "description_summary": "Verifies the presence of sufficient test coverage for core vending machine operations."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Unit",
+      "tested_artifact_name": "com.smartvend.app.dao.impl",
+      "coverage_hint": "Data access object interactions",
+      "description_summary": "Ensures that DAO methods interacting with the database are well-tested."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Unit",
+      "tested_artifact_name": "com.smartvend.app.services",
+      "coverage_hint": "Service layer functionalities",
+      "description_summary": "Confirms the service layer functions perform correctly and handle business logic."
+    },
+    {
+      "test_id": "TEST-4",
+      "test_type": "Unit",
+      "tested_artifact_name": "com.smartvend.app.controllers",
+      "coverage_hint": "API request handling",
+      "description_summary": "Tests that the controller methods handle API requests properly."
+    },
+    {
+      "test_id": "TEST-5",
+      "test_type": "Unit",
+      "tested_artifact_name": "com.smartvend.app.db",
+      "coverage_hint": "Database interactions",
+      "description_summary": "Verifies that database-related functionalities are tested to ensure data integrity."
+    },
+    {
+      "test_id": "TEST-1",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserServiceTest.loginWithValidCredentials",
+      "coverage_hint": "User Login success scenario",
+      "description_summary": "Verifies that the user can log in with valid credentials."
+    },
+    {
+      "test_id": "TEST-2",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.login_ValidCredentials_CallsUserServiceAndReturnsUser",
+      "coverage_hint": "User Login success scenario",
+      "description_summary": "Checks that the controller calls the user service and returns the user object for valid credentials."
+    },
+    {
+      "test_id": "TEST-3",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserServiceTest.loginWithInvalidPassword",
+      "coverage_hint": "User Login failure scenario",
+      "description_summary": "Verifies that the user cannot log in with an invalid password."
+    },
+    {
+      "test_id": "TEST-4",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserServiceTest.loginWithNonExistingEmail",
+      "coverage_hint": "User Login failure scenario",
+      "description_summary": "Ensures login fails for a non-existing email."
+    },
+    {
+      "test_id": "TEST-5",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.login_NullEmail_ThrowsException",
+      "coverage_hint": "User Login error handling",
+      "description_summary": "Verifies that an exception is thrown when the email is null."
+    },
+    {
+      "test_id": "TEST-6",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.login_EmptyEmail_ThrowsException",
+      "coverage_hint": "User Login error handling",
+      "description_summary": "Ensures an exception is thrown when the email is empty."
+    },
+    {
+      "test_id": "TEST-7",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.login_NullPassword_ThrowsException",
+      "coverage_hint": "User Login error handling",
+      "description_summary": "Verifies that an exception is thrown when the password is null."
+    },
+    {
+      "test_id": "TEST-8",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.login_EmptyPassword_ThrowsException",
+      "coverage_hint": "User Login error handling",
+      "description_summary": "Ensures an exception is thrown when the password is empty."
+    },
+    {
+      "test_id": "TEST-9",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserServiceTest.signUpWithValidData",
+      "coverage_hint": "User Sign up success scenario",
+      "description_summary": "Verifies that a user can sign up with valid data."
+    },
+    {
+      "test_id": "TEST-10",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.signUp_ValidUser_CallsUserServiceAndReturnsUser",
+      "coverage_hint": "User Sign up success scenario",
+      "description_summary": "Checks that the sign-up controller successfully calls the user service and returns the user."
+    },
+    {
+      "test_id": "TEST-11",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserServiceTest.signUpWithExistingEmail",
+      "coverage_hint": "User Sign up failure scenario",
+      "description_summary": "Verifies that the sign-up process fails for an existing email."
+    },
+    {
+      "test_id": "TEST-12",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserServiceTest.signUpWithMissingEmail",
+      "coverage_hint": "User Sign up error handling",
+      "description_summary": "Ensures that the sign-up process fails if the email field is missing."
+    },
+    {
+      "test_id": "TEST-13",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserControllerTest.signUp_NullUser_ThrowsException",
+      "coverage_hint": "User Sign up error handling",
+      "description_summary": "Verifies that an exception is thrown when the user object is null."
+    },
+    {
+      "test_id": "TEST-14",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemSuccessSingleItem",
+      "coverage_hint": "Buy Item success scenario",
+      "description_summary": "Verifies that a single item can be successfully bought."
+    },
+    {
+      "test_id": "TEST-15",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemSuccessMultipleItems",
+      "coverage_hint": "Buy Item success scenario",
+      "description_summary": "Verifies that multiple items can be successfully purchased."
+    },
+    {
+      "test_id": "TEST-16",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerControllerTest.testBuyItem",
+      "coverage_hint": "Buy Item control flow",
+      "description_summary": "Checks that the controller manages the buying process properly."
+    },
+    {
+      "test_id": "TEST-17",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemInsufficientBalance",
+      "coverage_hint": "Buy Item error handling",
+      "description_summary": "Verifies that an appropriate response is generated when the user has insufficient balance."
+    },
+    {
+      "test_id": "TEST-18",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemOutOfStock",
+      "coverage_hint": "Buy Item error handling",
+      "description_summary": "Ensures an error is raised when the item is out of stock."
+    },
+    {
+      "test_id": "TEST-19",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemItemNotFound",
+      "coverage_hint": "Buy Item error handling",
+      "description_summary": "Verifies that an error is raised when the item to buy does not exist."
+    },
+    {
+      "test_id": "TEST-20",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemConnectionNotFound",
+      "coverage_hint": "Buy Item error handling",
+      "description_summary": "Verifies that an appropriate error is raised when there is a connection issue."
+    },
+    {
+      "test_id": "TEST-21",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testBuyItemCustomerNotFound",
+      "coverage_hint": "Buy Item error handling",
+      "description_summary": "Checks that the purchase fails and raises an error if the customer record is not found."
+    },
+    {
+      "test_id": "TEST-22",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testConnectSuccess",
+      "coverage_hint": "Connect to Vending Machine success scenario",
+      "description_summary": "Verifies a successful connection to the vending machine."
+    },
+    {
+      "test_id": "TEST-23",
+      "test_type": "Unit",
+      "tested_artifact_name": "ConnectionDaoImplTest.unit_createConnection_persistsConnection",
+      "coverage_hint": "Vending Machine connection persistence",
+      "description_summary": "Confirms that a new connection is correctly persisted in the database."
+    },
+    {
+      "test_id": "TEST-24",
+      "test_type": "Integration",
+      "tested_artifact_name": "ConnectionDaoImplTest.integration_CRUD_flow (parte CREATE)",
+      "coverage_hint": "Vending Machine connection CRUD operations",
+      "description_summary": "Tests the create operation in the connection CRUD flow."
+    },
+    {
+      "test_id": "TEST-25",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerControllerTest.testConnect",
+      "coverage_hint": "Connect to Vending Machine control flow",
+      "description_summary": "Checks that the connection process is correctly managed by the controller."
+    },
+    {
+      "test_id": "TEST-26",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testConnectCustomerNotFound",
+      "coverage_hint": "Connect to Vending Machine error handling",
+      "description_summary": "Verifies that an appropriate error is raised if the customer cannot be found while connecting."
+    },
+    {
+      "test_id": "TEST-27",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testConnectMachineNotFound",
+      "coverage_hint": "Connect to Vending Machine error handling",
+      "description_summary": "Ensures an error is raised when the specified machine is not found."
+    },
+    {
+      "test_id": "TEST-28",
+      "test_type": "Unit",
+      "tested_artifact_name": "ConnectionDaoImplTest.unit_createConnection_throwsIfUserNotFound",
+      "coverage_hint": "Vending Machine connection error handling",
+      "description_summary": "Verifies that an exception is thrown if the user does not exist during connection creation."
+    },
+    {
+      "test_id": "TEST-29",
+      "test_type": "Unit",
+      "tested_artifact_name": "ConnectionDaoImplTest.unit_createConnection_throwsIfMachineNotFound",
+      "coverage_hint": "Vending Machine connection error handling",
+      "description_summary": "Confirms that an exception is thrown if the machine is not found when creating a connection."
+    },
+    {
+      "test_id": "TEST-30",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testUpdateBalanceSuccess",
+      "coverage_hint": "Recharge Balance success scenario",
+      "description_summary": "Verifies that a user's balance can be successfully updated."
+    },
+    {
+      "test_id": "TEST-31",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerControllerTest.testRechargeBalance",
+      "coverage_hint": "Recharge Balance control flow",
+      "description_summary": "Checks that the controller handles the balance recharge process correctly."
+    },
+    {
+      "test_id": "TEST-32",
+      "test_type": "Unit",
+      "tested_artifact_name": "TransactionServiceTest.testCreateTransactionValid",
+      "coverage_hint": "Transaction creation success scenario",
+      "description_summary": "Verifies that a transaction is created successfully for a valid recharge."
+    },
+    {
+      "test_id": "TEST-33",
+      "test_type": "Integration",
+      "tested_artifact_name": "TransactionDaoImplTest.integration_CRUD_flow (parte CREATE)",
+      "coverage_hint": "Transaction management CRUD operations",
+      "description_summary": "Tests the create operation in the transaction CRUD flow."
+    },
+    {
+      "test_id": "TEST-34",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testUpdateBalanceUserNotFound",
+      "coverage_hint": "Recharge Balance error handling",
+      "description_summary": "Verifies the error handling when trying to update balance for a user that doesn't exist."
+    },
+    {
+      "test_id": "TEST-35",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerServiceTest.testUpdateBalanceInsufficientBalance",
+      "coverage_hint": "Recharge Balance error handling",
+      "description_summary": "Ensures that an error is presented when attempting to recharge a balance but insufficient funds are available."
+    },
+    {
+      "test_id": "TEST-36",
+      "test_type": "Unit",
+      "tested_artifact_name": "TransactionServiceTest.testCreateTransactionInvalid",
+      "coverage_hint": "Transaction creation error handling",
+      "description_summary": "Verifies that an error occurs when trying to create an invalid transaction."
+    },
+    {
+      "test_id": "TEST-37",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerServiceTest.testChangeTaskStatusSuccess",
+      "coverage_hint": "Finish Task success scenario",
+      "description_summary": "Verifies that changing the status of a task to completed is successful."
+    },
+    {
+      "test_id": "TEST-38",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerControllerTest.taskCompleted_returnsTrue_whenTaskIsCompletedSuccessfully",
+      "coverage_hint": "Finish Task success scenario",
+      "description_summary": "Checks that the controller returns true when a task is marked as completed successfully."
+    },
+    {
+      "test_id": "TEST-39",
+      "test_type": "Unit",
+      "tested_artifact_name": "TaskDaoImplTest.updateTask_mergesTask",
+      "coverage_hint": "Task status update logic",
+      "description_summary": "Verifies that updating a task correctly merges its status."
+    },
+    {
+      "test_id": "TEST-40",
+      "test_type": "Integration",
+      "tested_artifact_name": "TaskDaoImplTest.integration_CRUD_flow (parte UPDATE)",
+      "coverage_hint": "Task management CRUD operations",
+      "description_summary": "Tests the update operation in the task CRUD flow."
+    },
+    {
+      "test_id": "TEST-41",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerServiceTest.testChangeTaskStatusWithTaskNotFound",
+      "coverage_hint": "Finish Task error handling",
+      "description_summary": "Verifies that changing the task status fails if the task is not found."
+    },
+    {
+      "test_id": "TEST-42",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerServiceTest.testChangeTaskStatusWithNullStatus",
+      "coverage_hint": "Finish Task error handling",
+      "description_summary": "Ensures an error is raised when attempting to change status to null."
+    },
+    {
+      "test_id": "TEST-43",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerServiceTest.testChangeTaskStatusWithCompletedTask",
+      "coverage_hint": "Finish Task error handling",
+      "description_summary": "Checks that changing the status of a task to completed fails if the task is already completed."
+    },
+    {
+      "test_id": "TEST-44",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerControllerTest.taskCompleted_returnsFalse_whenTaskCompletionFails",
+      "coverage_hint": "Finish Task error handling",
+      "description_summary": "Verifies that the controller returns false when task completion fails."
+    },
+    {
+      "test_id": "TEST-45",
+      "test_type": "Unit",
+      "tested_artifact_name": "WorkerControllerTest.taskCompleted_throwsException_whenTaskIdIsInvalid",
+      "coverage_hint": "Finish Task error handling",
+      "description_summary": "Ensures that an exception is thrown when the task ID is invalid during completion."
+    },
+    {
+      "test_id": "TEST-46",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetUsersReturnsList",
+      "coverage_hint": "View Analytics user retrieval",
+      "description_summary": "Verifies that the list of users can be retrieved."
+    },
+    {
+      "test_id": "TEST-47",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetCustomersReturnsList",
+      "coverage_hint": "View Analytics customer retrieval",
+      "description_summary": "Checks that the list of customers can be successfully retrieved."
+    },
+    {
+      "test_id": "TEST-48",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetMachinesReturnsList",
+      "coverage_hint": "View Analytics machine retrieval",
+      "description_summary": "Verifies that the list of machines can be retrieved."
+    },
+    {
+      "test_id": "TEST-49",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetWorkersReturnsList",
+      "coverage_hint": "View Analytics worker retrieval",
+      "description_summary": "Confirms that the list of workers can be successfully retrieved."
+    },
+    {
+      "test_id": "TEST-50",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserDaoImplTest.findAll_empty",
+      "coverage_hint": "User retrieval error handling",
+      "description_summary": "Ensures that the user list is empty when there are no users."
+    },
+    {
+      "test_id": "TEST-51",
+      "test_type": "Unit",
+      "tested_artifact_name": "CustomerDaoImplTest.findAll_returnsListWithCustomers",
+      "coverage_hint": "Customer retrieval success scenario",
+      "description_summary": "Verifies that the list of customers is successfully returned."
+    },
+    {
+      "test_id": "TEST-52",
+      "test_type": "Unit",
+      "tested_artifact_name": "ConcreteVendingMachineDaoImplTest.findAll_oneItem",
+      "coverage_hint": "Vending Machine item retrieval",
+      "description_summary": "Checks that the retrieval of items from the vending machine returns one item."
+    },
+    {
+      "test_id": "TEST-53",
+      "test_type": "Unit",
+      "tested_artifact_name": "ItemDaoImplTest.getInventoryItems_returnsList",
+      "coverage_hint": "Inventory retrieval success scenario",
+      "description_summary": "Verifies that the inventory items list is retrieved successfully."
+    },
+    {
+      "test_id": "TEST-54",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetUsersThrowsIfDaoNull",
+      "coverage_hint": "User retrieval error handling",
+      "description_summary": "Checks that an error is thrown if the DAO for users is null."
+    },
+    {
+      "test_id": "TEST-55",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetCustomersThrowsIfDaoNull",
+      "coverage_hint": "Customer retrieval error handling",
+      "description_summary": "Ensures an error is thrown if the DAO for customers is null."
+    },
+    {
+      "test_id": "TEST-56",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetMachinesThrowsIfDaoNull",
+      "coverage_hint": "Machine retrieval error handling",
+      "description_summary": "Verifies that an error is thrown when the DAO for machines is null."
+    },
+    {
+      "test_id": "TEST-57",
+      "test_type": "Unit",
+      "tested_artifact_name": "AdminServiceTest.testGetWorkersThrowsIfDaoNull",
+      "coverage_hint": "Worker retrieval error handling",
+      "description_summary": "Checks that an error is thrown if the DAO for workers is null."
+    },
+    {
+      "test_id": "TEST-58",
+      "test_type": "Unit",
+      "tested_artifact_name": "UserDaoImplTest.findAll",
+      "coverage_hint": "User retrieval success scenario",
+      "description_summary": "Verifies that the retrieval of all users is successful."
+    }
+  ],
+  "use_case": [
+    {
+      "name": "User Product Purchase",
+      "actors": [
+        "User"
+      ],
+      "explicit": "false",
+      "case_id": "UC-1",
+      "main_flow": [
+        "User scans the unique QR code displayed on the vending machine.",
+        "User selects the item they wish to purchase.",
+        "User completes the payment via the associated digital wallet."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Admin Dashboard Monitoring",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-2",
+      "main_flow": [
+        "Admin accesses the platform's dashboard.",
+        "Admin views statistics on sales and malfunctions.",
+        "Admin monitors stock levels and sales performance.",
+        "Admin plans maintenance and restocking activities efficiently."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "User Registration and Login",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-3",
+      "main_flow": [
+        "User registers or logs in to view wallet balance and transaction history"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Wallet Recharge",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-4",
+      "main_flow": [
+        "User recharges wallet in cash at machine or online payment methods"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Admin Management",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-5",
+      "main_flow": [
+        "Admin configures machines",
+        "manages prices",
+        "sales reports",
+        "and general statistics"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "CRUD Operations for Users and Distributors",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-6",
+      "main_flow": [
+        "Admin performs CRUD operations for users",
+        "distributors",
+        "and items"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Vending Machine Maintenance",
+      "actors": [
+        "Worker"
+      ],
+      "explicit": "false",
+      "case_id": "UC-7",
+      "main_flow": [
+        "Worker maintains and replenishes vending machines based on automatic reports"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Use Case Template Description",
+      "actors": [],
+      "explicit": "true",
+      "case_id": "UC-8",
+      "main_flow": [],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "User Login",
+      "actors": [
+        "User"
+      ],
+      "explicit": "true",
+      "case_id": "UC-9",
+      "main_flow": [
+        "User logs in"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "User Login",
+      "actors": [
+        "User"
+      ],
+      "explicit": "true",
+      "case_id": "UC-10",
+      "main_flow": [
+        "Lo user apre la pagina di login (Fig. 6).",
+        "Inserisce la propria mail e password e clicca il tasto Login.",
+        "Il sistema verifica le credenziali.",
+        "Il sistema fornisce accesso all’interfaccia personalizzata."
+      ],
+      "alternative_flows": [
+        "Credenziali errate: messaggio di errore che invita a riprovare.",
+        "Errore di sistema: messaggio di errore che invita a riprovare più tardi."
+      ],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Buy item",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "true",
+      "case_id": "UC-11",
+      "main_flow": [
+        "Customer interacts with Buy item"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Recharge account",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "true",
+      "case_id": "UC-12",
+      "main_flow": [
+        "Customer interacts with Recharge account"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Connect to Vending Machine",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-13",
+      "main_flow": [
+        "Connects to Vending Machine"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Buy Item",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "true",
+      "case_id": "UC-14",
+      "main_flow": [
+        "Il customer si trova nell’interfaccia del catalogo prodotti (Fig. 10).",
+        "Seleziona un prodotto.",
+        "Il sistema controlla saldo e disponibilità.",
+        "Il sistema scala il saldo ed eroga il prodotto.",
+        "Il customer viene disconnesso."
+      ],
+      "alternative_flows": [
+        "Saldo insufficiente: errore e disconnessione.",
+        "Prodotto esaurito: errore."
+      ],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Recharge Balance",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "true",
+      "case_id": "UC-15",
+      "main_flow": [
+        "Il customer si trova nella propria pagina personale (Fig. 9a).",
+        "Sceglie metodo di pagamento e importo.",
+        "Il sistema verifica e processa la transazione."
+      ],
+      "alternative_flows": [
+        "Pagamento non riuscito."
+      ],
+      "is_explicit": "true"
+    },
+    {
+      "name": "View task details",
+      "actors": [
+        "Worker"
+      ],
+      "explicit": "true",
+      "case_id": "UC-16",
+      "main_flow": [
+        "Worker views the details of a task."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Mark task as completed",
+      "actors": [
+        "Worker"
+      ],
+      "explicit": "true",
+      "case_id": "UC-17",
+      "main_flow": [
+        "Worker marks the task as completed after viewing details."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Mark task as completed",
+      "actors": [
+        "Worker"
+      ],
+      "explicit": "true",
+      "case_id": "UC-18",
+      "main_flow": [
+        "Clicca sulla task in corso.",
+        "Clicca su 'Fine' (nella Dashboard del Tecnico",
+        "Fig. 9b).",
+        "Il sistema registra la task nei log."
+      ],
+      "alternative_flows": [
+        "Errore nel salvataggio: messaggio di errore."
+      ],
+      "is_explicit": "true"
+    },
+    {
+      "name": "View Analytics",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "true",
+      "case_id": "UC-19",
+      "main_flow": [
+        "L’admin accede alla pagina personale (Fig. 8).",
+        "Clicca su 'Analytics'.",
+        "Il sistema carica i dati."
+      ],
+      "alternative_flows": [
+        "Errore di caricamento: messaggio di errore."
+      ],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Manage Workers CRUD",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-20",
+      "main_flow": [
+        "Admin manages workers."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Manage Vending Machines CRUD",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-21",
+      "main_flow": [
+        "Admin manages vending machines."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Assign Task",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-22",
+      "main_flow": [
+        "Admin assigns tasks."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "View Tasks",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-23",
+      "main_flow": [
+        "Admin views tasks."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Create New Vending Machine",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "true",
+      "case_id": "UC-24",
+      "main_flow": [
+        "L’admin accede alla pagina di creazione.",
+        "Compila tutti i campi.",
+        "Il sistema verifica i dati.",
+        "Il sistema salva la vending machine nel database."
+      ],
+      "alternative_flows": [
+        "Campi mancanti o errati: errore.",
+        "Errore nel salvataggio: messaggio e richiesta di riprovare."
+      ],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Access Customer Dashboard",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-25",
+      "main_flow": [
+        "Decision point",
+        "Customer Dashboard"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Access Worker Dashboard",
+      "actors": [
+        "Worker"
+      ],
+      "explicit": "false",
+      "case_id": "UC-26",
+      "main_flow": [
+        "Decision point",
+        "Worker Dashboard"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Access Admin Dashboard",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-27",
+      "main_flow": [
+        "Decision point",
+        "Admin Dashboard"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "View Balance",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-28",
+      "main_flow": [
+        "Customer Dashboard",
+        "Balance Page"
+      ],
+      "alternative_flows": [
+        "Go back"
+      ],
+      "is_explicit": "false"
+    },
+    {
+      "name": "View Transaction History",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-29",
+      "main_flow": [
+        "Customer Dashboard",
+        "Transaction History"
+      ],
+      "alternative_flows": [
+        "Go back"
+      ],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Checkout",
+      "actors": [
+        "Customer"
+      ],
+      "explicit": "false",
+      "case_id": "UC-30",
+      "main_flow": [
+        "Customer Dashboard",
+        "Checkout page",
+        "Complete"
+      ],
+      "alternative_flows": [
+        "Connection successful"
+      ],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Select Task as Worker",
+      "actors": [
+        "Worker"
+      ],
+      "explicit": "false",
+      "case_id": "UC-31",
+      "main_flow": [
+        "Worker Dashboard",
+        "Task Detail",
+        "Select a task",
+        "Task completed"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "View Analytics as Admin",
+      "actors": [
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-32",
+      "main_flow": [
+        "Admin Dashboard",
+        "View analytics"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    },
+    {
+      "name": "Use Case Structure",
+      "actors": [],
+      "explicit": "true",
+      "case_id": "UC-33",
+      "main_flow": [
+        "ID: Identificativo univoco del caso d’uso.",
+        "Nome: Titolo descrittivo del caso d’uso.",
+        "Livello: Classificazione del caso d’uso (es. Function Goal",
+        "User Goal).",
+        "Attori: Utenti coinvolti nell’interazione.",
+        "Pre-condizioni: Condizioni che devono essere vere prima dell’avvio del flusso.",
+        "Post-condizioni: Risultato atteso alla fine del flusso.",
+        "Flusso Principale: Sequenza di passi standard che descrivono il comportamento del sistema.",
+        "Flusso Alternativo: Eventuali deviazioni dal flusso principale",
+        "incluse eccezioni o errori gestiti."
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Track Active Connections",
+      "actors": [
+        "User",
+        "Machine"
+      ],
+      "explicit": "true",
+      "case_id": "UC-34",
+      "main_flow": [
+        "Track active connections between users and machines",
+        "Record user_id",
+        "machine_id",
+        "and connection start time"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "true"
+    },
+    {
+      "name": "Remote Maintenance Feature",
+      "actors": [
+        "Technician",
+        "Admin"
+      ],
+      "explicit": "false",
+      "case_id": "UC-35",
+      "main_flow": [
+        "Enable remote management features such as unlocking a stuck product"
+      ],
+      "alternative_flows": [],
+      "is_explicit": "false"
+    }
+  ],
+  "architecture": [
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "JavaBrew Software",
+          "responsibility": "Gestisce una rete di distributori automatici connessi",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": [
+            "Applicazione mobile",
+            "Wallet digitale",
+            "Dashboard"
+          ]
+        },
+        {
+          "name": "Applicazione mobile",
+          "responsibility": "Permette l'acquisto di articoli tramite codice QR",
+          "design_notes": "This component has a clear, single responsibility.",
+          "communicates_with": [
+            "JavaBrew Software"
+          ]
+        },
+        {
+          "name": "Wallet digitale",
+          "responsibility": "Associato all’account personale per le transazioni",
+          "design_notes": "Responsibility is defined but could use more detail on interaction specifics.",
+          "communicates_with": [
+            "JavaBrew Software"
+          ]
+        },
+        {
+          "name": "Dashboard",
+          "responsibility": "Mostra statistiche e consente monitoraggio delle vendite e malfunzionamenti",
+          "design_notes": "This component supports multi-user roles but lacks detail on data relationships with others.",
+          "communicates_with": [
+            "JavaBrew Software"
+          ]
+        }
+      ],
+      "analysis_summary": "The architecture aims to create a modern and user-friendly management system for vending machines. However, the components and their interactions lack clear definition, leading to potential weaknesses in understanding data flow and responsibilities."
+    },
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "PostgreSQL 16",
+          "responsibility": "Database relazionale utilizzato in produzione.",
+          "design_notes": "This component has a clear, single responsibility as a production database.",
+          "communicates_with": []
+        },
+        {
+          "name": "H2 Database",
+          "responsibility": "Utilizzato per i test automatici. Il database è in-memory e consente test rapidi.",
+          "design_notes": "This component has a clear, single responsibility for testing purposes.",
+          "communicates_with": []
+        },
+        {
+          "name": "Jakarta Persistence API (JPA) 3.2.0",
+          "responsibility": "Standard per la gestione della persistenza tramite ORM.",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": [
+            "Hibernate ORM 6.5.2.Final"
+          ]
+        },
+        {
+          "name": "Hibernate ORM 6.5.2.Final",
+          "responsibility": "Implementazione di JPA utilizzata per ORM. Permette la generazione automatica dello schema a partire dal modello a oggetti (hibernate.hbm2ddl.auto).",
+          "design_notes": "This component has a clear, single responsibility concerning ORM implementation.",
+          "communicates_with": [
+            "Jakarta Persistence API (JPA) 3.2.0"
+          ]
+        },
+        {
+          "name": "Jakarta Transaction API 2.0.1",
+          "responsibility": "Utilizzata per la gestione delle transazioni distribuite.",
+          "design_notes": "This component has a clear, single responsibility for transaction management.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architecture utilizes a mix of technologies for database management and ORM, but lacks clear communication or specific architectural pattern indication. Components are defined, but roles might benefit from clearer delineation."
+    },
+    {
+      "pattern": "Layered",
+      "components": [
+        {
+          "name": "User",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": [
+            "Interface"
+          ]
+        },
+        {
+          "name": "Interface",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": [
+            "Controllers"
+          ]
+        },
+        {
+          "name": "Controllers",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": [
+            "Services",
+            "Model",
+            "DAO"
+          ]
+        },
+        {
+          "name": "Services",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": [
+            "Model"
+          ]
+        },
+        {
+          "name": "Model",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": [
+            "DAO",
+            "Services"
+          ]
+        },
+        {
+          "name": "DAO",
+          "responsibility": "Vague: connects to Model and ORM",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": [
+            "Model",
+            "ORM (Hibernate)"
+          ]
+        },
+        {
+          "name": "ORM (Hibernate)",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": [
+            "RDBMS (PostgreSQL)"
+          ]
+        },
+        {
+          "name": "RDBMS (PostgreSQL)",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility for this component lacks clarity on its role in the architecture.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architecture exhibits a layered structure with clear component roles and interactions. However, some responsibilities are vague, indicating potential areas for improvement in clarity. The separation of concerns is generally respected, but the interaction details could be elaborated further for better understanding."
+    },
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "User",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Responsibility is not clearly defined, which may lead to confusion about its role within the system.",
+          "communicates_with": []
+        },
+        {
+          "name": "Admin",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Responsibility is not clearly defined; potential overlaps with other user roles.",
+          "communicates_with": []
+        },
+        {
+          "name": "Worker",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Responsibility is not clearly defined; specific tasks are not specified.",
+          "communicates_with": []
+        },
+        {
+          "name": "Customer",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Responsibility is not clearly defined; lacks specific interactions described.",
+          "communicates_with": []
+        },
+        {
+          "name": "MaintenanceReport",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Responsibility is not specified, may need clearer interactions with other components.",
+          "communicates_with": []
+        },
+        {
+          "name": "Connection",
+          "responsibility": "Vague: Establishes connections to the database or other services.",
+          "design_notes": "Vague responsibility; more detail required to ensure clarity.",
+          "communicates_with": []
+        },
+        {
+          "name": "Transaction",
+          "responsibility": "Vague: Manages transaction details and interactions.",
+          "design_notes": "Vague responsibility; could benefit from further elaboration.",
+          "communicates_with": [
+            "Analytics"
+          ]
+        },
+        {
+          "name": "PurchaseMethodFactory",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined, further detail required regarding its function within the architecture.",
+          "communicates_with": []
+        },
+        {
+          "name": "Analytics",
+          "responsibility": "Vague: Collects and analyzes data related to system usage.",
+          "design_notes": "Responsibility is unclear and needs better specification.",
+          "communicates_with": [
+            "Transaction"
+          ]
+        },
+        {
+          "name": "Machine",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility; potential ambiguities exist in its interactions.",
+          "communicates_with": []
+        },
+        {
+          "name": "WorkingMachine",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined; requires clarification of its specific role.",
+          "communicates_with": []
+        },
+        {
+          "name": "Item",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined; clarity needed on its purpose and interactions.",
+          "communicates_with": []
+        },
+        {
+          "name": "Maintenance",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility; lacks described interactions.",
+          "communicates_with": []
+        },
+        {
+          "name": "TaskDetails",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined; needs further detail regarding its purpose.",
+          "communicates_with": []
+        },
+        {
+          "name": "RequestInit",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined responsibility; further details are required.",
+          "communicates_with": []
+        },
+        {
+          "name": "UserMenu",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined; unclear interactions with other components.",
+          "communicates_with": []
+        },
+        {
+          "name": "VendingMachineController",
+          "responsibility": "Vague: Controls the operations of the vending machine.",
+          "design_notes": "Vague responsibility; better definition is suggested to define its role clearly.",
+          "communicates_with": []
+        },
+        {
+          "name": "TransactionController",
+          "responsibility": "Vague: Manages transaction processes.",
+          "design_notes": "Vague definition; could be improved for better system understanding.",
+          "communicates_with": [
+            "Transaction"
+          ]
+        },
+        {
+          "name": "ConnectionController",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined; more information required to clarify its function.",
+          "communicates_with": []
+        },
+        {
+          "name": "MaintenanceController",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "Undefined; lacks clarity regarding its responsibilities.",
+          "communicates_with": []
+        },
+        {
+          "name": "InventoryController",
+          "responsibility": "Vague: Manages items in the inventory.",
+          "design_notes": "Vague; specific interactions and responsibilities are unclear.",
+          "communicates_with": []
+        },
+        {
+          "name": "ItemController",
+          "responsibility": "Vague: Controls item operations.",
+          "design_notes": "Vague; requires detailed responsibilities.",
+          "communicates_with": []
+        },
+        {
+          "name": "DBManager",
+          "responsibility": "Vague: Handles database interactions through SQL strings.",
+          "design_notes": "Vague responsibilities; detailed SQL interactions could be documented.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The design exhibits a comprehensive architecture with multiple components; however, specific roles and interactions could be better defined to enhance clarity and maintainability. Lack of detailed communication pathways may lead to potential integration issues."
+    },
+    {
+      "pattern": "Layered",
+      "components": [
+        {
+          "name": "main",
+          "responsibility": "Contains the main application logic.",
+          "design_notes": "This component has a clear, single responsibility.",
+          "communicates_with": [
+            "controllers",
+            "dao",
+            "db",
+            "model",
+            "services",
+            "resources"
+          ]
+        },
+        {
+          "name": "controllers",
+          "responsibility": "Vague: handles requests and responses.",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": [
+            "dao",
+            "services"
+          ]
+        },
+        {
+          "name": "dao",
+          "responsibility": "Vague: interacts with the database.",
+          "design_notes": "Undefined Responsibility.",
+          "communicates_with": [
+            "db"
+          ]
+        },
+        {
+          "name": "db",
+          "responsibility": "Vague: manages database interactions.",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": []
+        },
+        {
+          "name": "model",
+          "responsibility": "Vague: represents the data structure.",
+          "design_notes": "Undefined Responsibility.",
+          "communicates_with": []
+        },
+        {
+          "name": "services",
+          "responsibility": "Vague: contains business logic.",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": [
+            "controllers",
+            "dao"
+          ]
+        },
+        {
+          "name": "resources",
+          "responsibility": "Vague: provides static resources.",
+          "design_notes": "Undefined Responsibility.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architecture exhibits a well-defined layered structure, which promotes organization and maintainability. However, some components lack clear responsibilities and communication paths are not explicitly described."
+    },
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "User",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for User component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Admin",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Admin component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Worker",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Worker component.",
+          "communicates_with": [
+            "Task"
+          ]
+        },
+        {
+          "name": "Customer",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Customer component.",
+          "communicates_with": [
+            "Transaction"
+          ]
+        },
+        {
+          "name": "Maintenance",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Maintenance component.",
+          "communicates_with": [
+            "MaintenanceReport"
+          ]
+        },
+        {
+          "name": "MaintenanceStatus",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for MaintenanceStatus component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Task",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Task component.",
+          "communicates_with": [
+            "Worker",
+            "MaintenanceReport"
+          ]
+        },
+        {
+          "name": "MaintenanceReport",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for MaintenanceReport component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Connection",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Connection component.",
+          "communicates_with": [
+            "Transaction"
+          ]
+        },
+        {
+          "name": "VendingMachine",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for VendingMachine component.",
+          "communicates_with": [
+            "ConcreteVendingMachine",
+            "Inventory"
+          ]
+        },
+        {
+          "name": "MachineType",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for MachineType component.",
+          "communicates_with": []
+        },
+        {
+          "name": "MachineStatus",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for MachineStatus component.",
+          "communicates_with": []
+        },
+        {
+          "name": "ConcreteVendingMachine",
+          "responsibility": "Represents a physical vending machine with attributes and a builder pattern implementation.",
+          "design_notes": "This component has a clear, single responsibility.",
+          "communicates_with": [
+            "Inventory"
+          ]
+        },
+        {
+          "name": "Item",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Item component.",
+          "communicates_with": []
+        },
+        {
+          "name": "ItemType",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for ItemType component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Inventory",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Inventory component.",
+          "communicates_with": []
+        },
+        {
+          "name": "PaymentMethod",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for PaymentMethod component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Transaction",
+          "responsibility": "Involves handling interactions between the customer and vending machine.",
+          "design_notes": "This component has a clear context of usage but its broader implications are vague.",
+          "communicates_with": [
+            "Customer",
+            "Connection",
+            "TransactionItem",
+            "Machine"
+          ]
+        },
+        {
+          "name": "TransactionItem",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for TransactionItem component.",
+          "communicates_with": []
+        },
+        {
+          "name": "Analytics",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for Analytics component.",
+          "communicates_with": []
+        },
+        {
+          "name": "TaskMapper",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for TaskMapper component.",
+          "communicates_with": []
+        },
+        {
+          "name": "ConnectionMapper",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for ConnectionMapper component.",
+          "communicates_with": []
+        },
+        {
+          "name": "InventoryMapper",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for InventoryMapper component.",
+          "communicates_with": []
+        },
+        {
+          "name": "TransactionMapper",
+          "responsibility": "Undefined Responsibility",
+          "design_notes": "No clear responsibility described for TransactionMapper component.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architecture appears to follow principles of Domain-Driven Design, emphasizing encapsulation and modularity. However, it lacks clear description of communication paths between some components, which may hinder understanding of system interactions."
+    },
+    {
+      "pattern": "Layered",
+      "components": [
+        {
+          "name": "Data Access Object (DAO) Layer",
+          "responsibility": "Abstracts and manages all data persistence operations of the application.",
+          "design_notes": "This component has a clear, single responsibility to handle data persistence requirements.",
+          "communicates_with": [
+            "DBManager"
+          ]
+        },
+        {
+          "name": "DBManager",
+          "responsibility": "Centralizes database interaction and manages connection details.",
+          "design_notes": "This component effectively follows the Singleton pattern, ensuring a single point of access, which promotes loose coupling.",
+          "communicates_with": [
+            "TaskDao",
+            "UserDao",
+            "VendingMachineDao",
+            "TransactionDao",
+            "MaintenanceDao",
+            "ConnectionDao",
+            "InventoryDao",
+            "ItemDao"
+          ]
+        },
+        {
+          "name": "TaskDao",
+          "responsibility": "Defines contracts for CRUD operations related to Task entities.",
+          "design_notes": "Responsibility is well-defined for task-related operations with specific method signatures.",
+          "communicates_with": []
+        },
+        {
+          "name": "UserDao",
+          "responsibility": "Defines contracts for CRUD operations related to User entities.",
+          "design_notes": "Responsibility is clear, encompassing user management functionality.",
+          "communicates_with": []
+        },
+        {
+          "name": "VendingMachineDao",
+          "responsibility": "Defines contracts for retrieving VendingMachine data.",
+          "design_notes": "Specific responsibility related to vending machine data retrieval is clear.",
+          "communicates_with": []
+        },
+        {
+          "name": "TransactionDao",
+          "responsibility": "Defines contracts for managing transactions.",
+          "design_notes": "Responsibility is explicitly defined but could include more detailed operation descriptions.",
+          "communicates_with": []
+        },
+        {
+          "name": "MaintenanceDao",
+          "responsibility": "Defines contracts for handling maintenance reports.",
+          "design_notes": "Responsibility is appropriate and clearly defined.",
+          "communicates_with": []
+        },
+        {
+          "name": "ConnectionDao",
+          "responsibility": "Defines contracts for connection operations.",
+          "design_notes": "Responsibility is defined but may benefit from more detail on connection management processes.",
+          "communicates_with": []
+        },
+        {
+          "name": "InventoryDao",
+          "responsibility": "Defines contracts for inventory queries.",
+          "design_notes": "Responsibility is well-defined and has clear method functionalities.",
+          "communicates_with": []
+        },
+        {
+          "name": "ItemDao",
+          "responsibility": "Defines contracts for item-related operations.",
+          "design_notes": "Responsibility is clear and explicitly defined for item management.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architecture effectively implements the Data Access Object (DAO) pattern, demonstrating a clear separation of concerns between business logic and data persistence. However, the use of vague terms in some responsibilities could benefit from further clarification. The design is generally well-structured but may lack comprehensive descriptions of certain component interactions."
+    },
+    {
+      "pattern": "Layered (MVC)",
+      "components": [
+        {
+          "name": "UserController",
+          "responsibility": "+login(email: String, password: String): User, +signUp(user: User): User",
+          "design_notes": "This component has a clear, single responsibility related to user actions.",
+          "communicates_with": [
+            "UserService"
+          ]
+        },
+        {
+          "name": "CustomerController",
+          "responsibility": "+connect(machineId: long): connection, +getInventory(machineId: long): List<Item>, +buyItem(connectionId: long, itemId: long): void, +rechargeBalance(double amount): void, +disconnect(connection: Connection): void",
+          "design_notes": "This component has a responsible set of functions that are user-related, although the sheer number of functions may indicate potential broad responsibilities.",
+          "communicates_with": [
+            "CustomerService"
+          ]
+        },
+        {
+          "name": "WorkerController",
+          "responsibility": "+getTasks(workerId: long), +getTaskDetails(taskId: long), +taskCompleted(taskId: long)",
+          "design_notes": "This component serves the worker tasks with a clear purpose.",
+          "communicates_with": [
+            "WorkerService"
+          ]
+        },
+        {
+          "name": "AdminController",
+          "responsibility": "+userCRUD(), +vendingMachineCRUD(), +itemCRUD(), +workerCRUD(), +salesAnalytics(machineId: long)",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns due to multiple CRUD related methods.",
+          "communicates_with": [
+            "AdminService"
+          ]
+        },
+        {
+          "name": "MachineController",
+          "responsibility": "+deployItem(machineId: long, item: Item): void, +getStatus(machineId: long): MachineStatus, +runDiagnostic(machineId: long): maintenanceReport",
+          "design_notes": "This component has distinct responsibilities related to machine operations.",
+          "communicates_with": [
+            "MachineService"
+          ]
+        },
+        {
+          "name": "UserService",
+          "responsibility": "+login(email, password): User, +signUp(email, name, surname, password): User, +logOut(userId: long): void",
+          "design_notes": "This component effectively handles user-related services with clarity in purpose.",
+          "communicates_with": [
+            "UserDao"
+          ]
+        },
+        {
+          "name": "CustomerService",
+          "responsibility": "+connect(customerId: long, machineId: long): Connection, +getInventory(Connection): List<Item>, +checkBalance(customerId: long, amount: double): double, +buyItem(Connection: Connection, itemId: long): void, +updateBalance(customerId: long, amount: double), +getTransactionHistory(customerId: long): List<Transaction>, +disconnect(): void",
+          "design_notes": "This component manages customer service functionalities with clear responsibilities but may exhibit too broad a scope.",
+          "communicates_with": [
+            "UserDao",
+            "ConnectionDao",
+            "InventoryDao",
+            "ItemDao"
+          ]
+        },
+        {
+          "name": "WorkerService",
+          "responsibility": "+getWorkerTasks(workerId: long): List<long>, +changeTaskStatus(taskId: long, status: MaintenanceStatus)",
+          "design_notes": "This is well-defined in scope focusing exclusively on worker tasks.",
+          "communicates_with": [
+            "TaskDao"
+          ]
+        },
+        {
+          "name": "TaskService",
+          "responsibility": "+getTaskDetails(taskId: long): String",
+          "design_notes": "Simple and clear responsibility focused on task details retrieval.",
+          "communicates_with": [
+            "TaskDao"
+          ]
+        },
+        {
+          "name": "InventoryService",
+          "responsibility": "+addItemToInventory(machineId: String): void, +getInventory(long id): Inventory",
+          "design_notes": "Defined responsibilities for inventory operations; well-structured.",
+          "communicates_with": [
+            "InventoryDao",
+            "TaskDao"
+          ]
+        },
+        {
+          "name": "TransactionService",
+          "responsibility": "+createTransaction(transaction: Transaction): Transaction, +getCustomerTransactions(customerId: long): List<Transaction>",
+          "design_notes": "Clear responsibilities around handling transactions, facilitating an essential business process.",
+          "communicates_with": [
+            "TransactionDao"
+          ]
+        },
+        {
+          "name": "MachineService",
+          "responsibility": "+deployItem(machineId: long, itemId: String), +reportIssue(report: MaintenanceReport), +runSelfDiagnostic(machineId: long), +getStatus(machineId: long)",
+          "design_notes": "This component focuses on achieving clear tasks concerning machines and diagnostics.",
+          "communicates_with": [
+            "ItemDao",
+            "MachineDao",
+            "MaintenanceDao"
+          ]
+        },
+        {
+          "name": "AdminService",
+          "responsibility": "+getMachines(), +viewAnalytics(machineId: long): Analytics, +userCRUD(), +machineCRUD(), +workerCRUD(), +itemCRUD()",
+          "design_notes": "Potentially too broad in scope with multiple responsibilities.",
+          "communicates_with": [
+            "MachineDao",
+            "UserDao"
+          ]
+        }
+      ],
+      "analysis_summary": "The architecture displays a clear separation between Controllers and Services, adhering to the principles of modular design. However, there are some components that could benefit from better-defined responsibilities. Additionally, some communication paths are implied but not explicitly detailed, potentially leading to misunderstandings regarding interaction."
+    },
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "PostgreSQL",
+          "responsibility": "Database relazionale utilizzato in produzione.",
+          "design_notes": "This component has a clear responsibility as the primary production database.",
+          "communicates_with": []
+        },
+        {
+          "name": "H2 Database",
+          "responsibility": "Utilizzato per i test automatici. Il database è in-memory e consente test rapidi.",
+          "design_notes": "This component serves a specific purpose for testing, but its integration with other components is not detailed.",
+          "communicates_with": []
+        },
+        {
+          "name": "Jakarta Persistence API (JPA)",
+          "responsibility": "Standard per la gestione della persistenza tramite ORM.",
+          "design_notes": "Defines the standard for persistence management, but lacks detail on actual implementation usage.",
+          "communicates_with": [
+            "Hibernate ORM"
+          ]
+        },
+        {
+          "name": "Hibernate ORM",
+          "responsibility": "Implementazione di JPA utilizzata per ORM. Permette la generazione automatica dello schema a partire dal modello a oggetti.",
+          "design_notes": "Responsible for ORM, but its interaction specifics with other components are not fully explained.",
+          "communicates_with": [
+            "Jakarta Persistence API (JPA)"
+          ]
+        },
+        {
+          "name": "Jakarta Transaction API",
+          "responsibility": "Utilizzata per la gestione delle transazioni distribuite.",
+          "design_notes": "Clear responsibility for managing distributed transactions. However, interaction with other components needs clarification.",
+          "communicates_with": []
+        },
+        {
+          "name": "Docker",
+          "responsibility": "Utilizzato per containerizzare l’applicazione, il database PostgreSQL.",
+          "design_notes": "Supports deployment strategy but lacks details on specific container interactions or configurations.",
+          "communicates_with": []
+        },
+        {
+          "name": "Docker Compose",
+          "responsibility": "Utilizzato per definire e avviare l’intera architettura multi-container.",
+          "design_notes": "Defines multi-container architecture but lacks specifics on individual component interactions.",
+          "communicates_with": [
+            "Docker"
+          ]
+        },
+        {
+          "name": "JUnit",
+          "responsibility": "Framework per l’esecuzione dei test unitari.",
+          "design_notes": "Has a clear function for testing but doesn't specify communication with other components.",
+          "communicates_with": []
+        },
+        {
+          "name": "Mockito",
+          "responsibility": "Utilizzato per la simulazione di dipendenze durante i test (mocking).",
+          "design_notes": "Defines its role in unit testing effectively, but no inter-component communication is described.",
+          "communicates_with": []
+        },
+        {
+          "name": "Jacoco",
+          "responsibility": "Strumento per la generazione dei report di copertura del codice.",
+          "design_notes": "Clear responsibility for code coverage reporting without interactions specified.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architecture uses several well-defined components, including a relational database and a containerization strategy. However, it lacks clarity on specific architectural patterns being employed. Additionally, details on component interactions are minimal, which hinders a complete understanding of the overall architecture."
+    },
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "app_user",
+          "responsibility": "Stores common information for all users (username, password, email, role).",
+          "design_notes": "This component has a clear responsibility of centralizing common user data, promoting separation of concerns.",
+          "communicates_with": []
+        },
+        {
+          "name": "admin",
+          "responsibility": "Extends app_user with specific attributes for admin users.",
+          "design_notes": "This component has a clear, single responsibility focused on admin-specific data.",
+          "communicates_with": [
+            "app_user"
+          ]
+        },
+        {
+          "name": "worker",
+          "responsibility": "Extends app_user with specific attributes for worker users.",
+          "design_notes": "This component is well-defined but vague on the specific attributes it handles.",
+          "communicates_with": [
+            "app_user"
+          ]
+        },
+        {
+          "name": "customer",
+          "responsibility": "Extends app_user with specific attributes for customer users.",
+          "design_notes": "This component is well-defined but vague on the specific attributes it handles.",
+          "communicates_with": [
+            "app_user"
+          ]
+        }
+      ],
+      "analysis_summary": "The architecture seems to follow a role-based access control pattern with distinct user roles, but lacks clarity on overall architectural style. Strengths include separation of common user attributes and responsibility assignment, but there are ambiguities in the interaction between user roles and lack of elaboration on communication paths."
+    },
+    {
+      "pattern": "Unclear Pattern",
+      "components": [
+        {
+          "name": "vendingmachine",
+          "responsibility": "Definisce i modelli generici (es. modelnumber, type)",
+          "design_notes": "This component has a clear, single responsibility.",
+          "communicates_with": []
+        },
+        {
+          "name": "concretevendingmachine",
+          "responsibility": "Rappresenta un’istanza fisica (es. serialnumber, location, status, capacity)",
+          "design_notes": "This component has a clear, single responsibility.",
+          "communicates_with": []
+        },
+        {
+          "name": "inventory",
+          "responsibility": "Traccia lo spazio occupato (occupiedspace) e collega gli articoli",
+          "design_notes": "Responsibility seems too broad, potentially violating separation of concerns.",
+          "communicates_with": [
+            "item"
+          ]
+        },
+        {
+          "name": "item",
+          "responsibility": "Elenca i prodotti disponibili (es. name, price, quantity, position)",
+          "design_notes": "This component has a clear, single responsibility.",
+          "communicates_with": []
+        }
+      ],
+      "analysis_summary": "The architectural description includes key components like vending machines, inventories, and items, but lacks clarity on the overarching architectural pattern. Responsibilities are defined for each component, though some could benefit from further detail. Communication paths between components are not explicitly elaborated, leaving gaps in understanding their interactions."
+    }
+  ]
+}

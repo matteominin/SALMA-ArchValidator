@@ -1,159 +1,118 @@
 [
   {
     "req_id": "REQ-1",
-    "covered_by_use_cases": [
-      "UC-1",
-      "UC-2",
-      "UC-5",
-      "UC-14",
-      "UC-7",
-      "UC-24"
-    ],
-    "status": "Covered",
-    "rationale": "UC-1 and UC-14 describe modernized product delivery via app/machine; UC-2, UC-5 and UC-24 cover updated management features; UC-7 covers maintenance aspects, collectively modernizing management and delivery."
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "No use case directly relates to the goal of modernizing management and delivery."
   },
   {
     "req_id": "REQ-2",
-    "covered_by_use_cases": [
-      "UC-3",
-      "UC-10",
-      "UC-2",
-      "UC-5",
-      "UC-24",
-      "UC-7",
-      "UC-34"
-    ],
-    "status": "Covered",
-    "rationale": "Authentication/registration (UC-3, UC-10), admin dashboards and management (UC-2, UC-5, UC-24), maintenance (UC-7) and client-machine communication tracking (UC-34) provide an integrated platform; security is addressed through login flows."
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "No use case directly describes creating an integrated and secure platform."
   },
   {
     "req_id": "REQ-3",
     "covered_by_use_cases": [
       "UC-1",
-      "UC-13",
       "UC-14"
     ],
     "status": "Covered",
-    "rationale": "UC-1 explicitly describes scanning the QR and completing payment; UC-13 (connect to vending machine) and UC-14 (buy item) cover the connection and purchase steps that implement this requirement."
+    "rationale": "UC-1 and UC-14 detail the purchase flow where users scan a QR code using a mobile application."
   },
   {
     "req_id": "REQ-4",
     "covered_by_use_cases": [
-      "UC-2",
-      "UC-19",
-      "UC-32"
+      "UC-2"
     ],
     "status": "Covered",
-    "rationale": "UC-2 Admin Dashboard Monitoring and analytics use cases (UC-19, UC-32) explicitly show dashboards with sales and malfunction statistics."
+    "rationale": "UC-2 outlines the dashboard that shows statistics on sales and malfunctions."
   },
   {
     "req_id": "REQ-5",
     "covered_by_use_cases": [
       "UC-2",
       "UC-5",
-      "UC-19",
-      "UC-32",
       "UC-7"
     ],
     "status": "Covered",
-    "rationale": "UC-2 and UC-5 provide monitoring of sales and stock and planning features; analytics (UC-19/UC-32) and maintenance tasks (UC-7) support efficient planning and monitoring."
+    "rationale": "UC-2 allows administrators to monitor stats, while UC-5 and UC-7 help in planning maintenance and replenishing."
   },
   {
     "req_id": "REQ-6",
-    "covered_by_use_cases": [
-      "UC-1",
-      "UC-3",
-      "UC-4",
-      "UC-14",
-      "UC-15"
-    ],
-    "status": "Covered",
-    "rationale": "User-focused flows (purchase UC-1/UC-14, registration UC-3, wallet recharge UC-4/UC-15) implement features that improve user experience."
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "The requirement is vague and no use case specifies an improvement in user experience."
   },
   {
     "req_id": "REQ-7",
-    "covered_by_use_cases": [
-      "UC-7",
-      "UC-16",
-      "UC-17",
-      "UC-18",
-      "UC-22",
-      "UC-23"
-    ],
-    "status": "Covered",
-    "rationale": "Maintenance and task management use cases (UC-7, UC-16-18, UC-22, UC-23) enable faster operator response through automated reports and task workflows."
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "No use case is focused on reducing response times for operators."
   },
   {
     "req_id": "REQ-8",
     "covered_by_use_cases": [],
     "status": "UNSUPPORTED",
-    "rationale": "No use case explicitly addresses scalability or alignment with modern technologies (architecture/non-functional aspects) in the provided set."
+    "rationale": "No use case references scalability or alignment with modern technologies."
   },
   {
     "req_id": "REQ-9",
     "covered_by_use_cases": [
       "UC-2",
-      "UC-14",
-      "UC-32",
+      "UC-4",
+      "UC-6",
       "UC-7"
     ],
     "status": "Covered",
-    "rationale": "Admin dashboard and analytics (UC-2, UC-32) show stock monitoring; purchase flow (UC-14) checks availability; maintenance (UC-7) reacts to stock data, together supporting real-time inventory tracking."
+    "rationale": "Inventory tracking is indirectly handled in UC-2 and UC-4 through sales and restocking."
   },
   {
     "req_id": "REQ-10",
     "covered_by_use_cases": [
       "UC-1",
       "UC-4",
-      "UC-15",
-      "UC-30"
+      "UC-14"
     ],
     "status": "Covered",
-    "rationale": "Digital payments are implemented in purchase flows (UC-1, UC-30) and wallet recharge flows including online methods (UC-4, UC-15)."
+    "rationale": "UC-1 and UC-4 mention digital wallet usage during transactions."
   },
   {
     "req_id": "REQ-11",
     "covered_by_use_cases": [
       "UC-5",
-      "UC-2",
-      "UC-6",
-      "UC-20",
-      "UC-21"
+      "UC-24"
     ],
     "status": "Covered",
-    "rationale": "Admin management and CRUD use cases (UC-5, UC-6, UC-20, UC-21) plus dashboard monitoring (UC-2) provide centralized management and maintenance tools."
+    "rationale": "Admin management in UC-5 and UC-24 provides centralization capabilities for operations."
   },
   {
     "req_id": "REQ-12",
     "covered_by_use_cases": [
       "UC-1",
-      "UC-4",
-      "UC-2",
-      "UC-34",
-      "UC-19"
+      "UC-4"
     ],
     "status": "Covered",
-    "rationale": "Digital payments are covered by purchase/recharge UCs (UC-1, UC-4); remote monitoring is covered by dashboard and connection tracking (UC-2, UC-19, UC-34), fulfilling integration of payments and monitoring."
+    "rationale": "UC-1 details digital payment integration which aligns with remote monitoring."
   },
   {
     "req_id": "REQ-13",
     "covered_by_use_cases": [
       "UC-3",
       "UC-28",
-      "UC-29",
-      "UC-10"
+      "UC-29"
     ],
     "status": "Covered",
-    "rationale": "UC-3 and UC-10 cover registration/login; UC-28 and UC-29 cover viewing wallet balance and transaction history after authentication."
+    "rationale": "User registration and login in UC-3 allow viewing wallet balance and transaction history."
   },
   {
     "req_id": "REQ-14",
     "covered_by_use_cases": [
       "UC-4",
-      "UC-15"
+      "UC-12"
     ],
     "status": "Covered",
-    "rationale": "Wallet recharge in cash at machine and online methods are described in UC-4 and UC-15."
+    "rationale": "UC-4 details how users recharge their wallets using cash or online methods."
   },
   {
     "req_id": "REQ-15",
@@ -162,92 +121,81 @@
       "UC-14"
     ],
     "status": "Covered",
-    "rationale": "Purchase flows (UC-1 and UC-14) describe checking balance and automatically deducting the purchase amount from the wallet."
+    "rationale": "UC-1 and UC-14 mention automatic deduction from the user's digital wallet upon purchase."
   },
   {
     "req_id": "REQ-16",
     "covered_by_use_cases": [
       "UC-5",
-      "UC-2",
-      "UC-19",
       "UC-24"
     ],
     "status": "Covered",
-    "rationale": "Admin Management (UC-5), dashboard/analytics (UC-2, UC-19) and vending machine creation (UC-24) provide configuration, price management and reporting capabilities."
+    "rationale": "Admin configuration and management capabilities are covered in these use cases."
   },
   {
     "req_id": "REQ-17",
     "covered_by_use_cases": [
-      "UC-6",
-      "UC-20",
-      "UC-21",
-      "UC-24"
+      "UC-6"
     ],
     "status": "Covered",
-    "rationale": "CRUD operations for users, machines and items are implemented in UC-6 and the specific management use cases (UC-20, UC-21) and creation flow UC-24."
+    "rationale": "UC-6 outlines CRUD functionality for users and distributors, aligning with the requirement."
   },
   {
     "req_id": "REQ-18",
     "covered_by_use_cases": [
-      "UC-7",
-      "UC-16",
-      "UC-17",
-      "UC-18",
-      "UC-22"
+      "UC-7"
     ],
     "status": "Covered",
-    "rationale": "UC-7 describes maintenance driven by automatic reports; worker task views and completion (UC-16-18) and task assignment (UC-22) implement automatic reporting and consequent actions."
+    "rationale": "UC-7 describes automatic reports generated for maintenance based on supply status."
   },
   {
     "req_id": "REQ-19",
-    "covered_by_use_cases": [
-      "UC-34",
-      "UC-2",
-      "UC-19"
-    ],
-    "status": "Covered",
-    "rationale": "UC-34 tracks active connections enabling detection of disconnected machines; monitoring dashboards (UC-2, UC-19) expose connection status for detection."
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "No use case mentions detecting vending machines not connected to the Internet."
   },
   {
     "req_id": "REQ-20",
     "covered_by_use_cases": [],
     "status": "UNSUPPORTED",
-    "rationale": "No use case explicitly describes an offline register for locally tracking transactions during disconnection."
+    "rationale": "There is no use case related to maintaining an offline register for tracking transactions."
   },
   {
     "req_id": "REQ-21",
     "covered_by_use_cases": [],
     "status": "UNSUPPORTED",
-    "rationale": "No use case describes synchronization of locally stored transactions with the central database upon reconnection."
+    "rationale": "No use case discusses the synchronization of local transactions post connectivity restoration."
   },
   {
     "req_id": "REQ-22",
     "covered_by_use_cases": [],
     "status": "UNSUPPORTED",
-    "rationale": "There is no explicit use case for anonymous users completing cash-only transactions without registration."
+    "rationale": "No use case supports transactions for anonymous users using cash only."
   },
   {
     "req_id": "REQ-23",
     "covered_by_use_cases": [],
     "status": "UNSUPPORTED",
-    "rationale": "Provisioning infrastructure (modems, servers) is a deployment/constraint requirement not covered by any use case."
+    "rationale": "There are no specific use cases detailing required infrastructure."
   },
   {
     "req_id": "REQ-24",
     "covered_by_use_cases": [
-      "UC-10",
-      "UC-3"
+      "UC-3",
+      "UC-9",
+      "UC-10"
     ],
     "status": "Covered",
-    "rationale": "User authentication and access to a personalized interface are implemented by the login and registration use cases (UC-10, UC-3)."
+    "rationale": "UC-3, UC-9, and UC-10 manage user authentication for accessing the personalized interface."
   },
   {
     "req_id": "REQ-25",
     "covered_by_use_cases": [
+      "UC-9",
       "UC-10"
     ],
     "status": "Covered",
-    "rationale": "UC-10 explicitly states that the system verifies credentials during login."
+    "rationale": "The verification of user credentials is described in the login use cases."
   },
   {
     "req_id": "REQ-26",
@@ -255,7 +203,7 @@
       "UC-10"
     ],
     "status": "Covered",
-    "rationale": "UC-10 alternative flows include an error message for incorrect credentials, matching this requirement."
+    "rationale": "UC-10 includes handling error messages for incorrect credentials."
   },
   {
     "req_id": "REQ-27",
@@ -263,13 +211,15 @@
       "UC-3"
     ],
     "status": "Covered",
-    "rationale": "UC-3 covers user registration flows; while fields are not enumerated in the use case text, the registration use case implements the account creation requirement."
+    "rationale": "UC-3 outlines the process of user registration which includes required fields."
   },
   {
     "req_id": "REQ-28",
-    "covered_by_use_cases": [],
-    "status": "UNSUPPORTED",
-    "rationale": "No use case explicitly describes validation of registration fields during user sign-up."
+    "covered_by_use_cases": [
+      "UC-3"
+    ],
+    "status": "Covered",
+    "rationale": "Field validation during registration is part of the workflow in UC-3."
   },
   {
     "req_id": "REQ-29",
@@ -277,7 +227,7 @@
       "UC-24"
     ],
     "status": "Covered",
-    "rationale": "UC-24 explicitly describes the admin creating a new vending machine."
+    "rationale": "UC-24 describes the creation of a new vending machine."
   },
   {
     "req_id": "REQ-30",
@@ -285,7 +235,7 @@
       "UC-24"
     ],
     "status": "Covered",
-    "rationale": "UC-24 includes the step where the system saves the new vending machine in the database."
+    "rationale": "Saving new vending machine information in the database is included in UC-24."
   },
   {
     "req_id": "REQ-31",
@@ -293,7 +243,7 @@
       "UC-24"
     ],
     "status": "Covered",
-    "rationale": "UC-24 explicitly includes verification of the data provided when creating a vending machine."
+    "rationale": "UC-24 involves verifying data for creating new vending machines."
   },
   {
     "req_id": "REQ-32",
@@ -301,16 +251,13 @@
       "UC-24"
     ],
     "status": "Covered",
-    "rationale": "UC-24 alternative flows include error messages and retry behavior on save errors."
+    "rationale": "Error messaging during saving is detailed in UC-24."
   },
   {
     "req_id": "REQ-33",
-    "covered_by_use_cases": [
-      "UC-13",
-      "UC-34"
-    ],
-    "status": "Covered",
-    "rationale": "UC-13 (connect to vending machine) and UC-34 (track active connections) implement communication support between clients and machines."
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "No use case supports communication between clients and machines."
   },
   {
     "req_id": "REQ-34",
@@ -318,23 +265,20 @@
       "UC-34"
     ],
     "status": "Covered",
-    "rationale": "UC-34 specifically tracks active connections including user_id, machine_id and start time, directly satisfying the requirement."
+    "rationale": "UC-34 captures the tracking of active connections between users and machines."
   },
   {
     "req_id": "REQ-35",
     "covered_by_use_cases": [
-      "UC-13",
-      "UC-34"
-    ],
-    "status": "Covered",
-    "rationale": "UC-13 connects a user to a specific vending machine and UC-34 tracks those concrete user-machine connections."
-  },
-  {
-    "req_id": "REQ-36",
-    "covered_by_use_cases": [
       "UC-35"
     ],
     "status": "Covered",
-    "rationale": "UC-35 outlines remote maintenance features (e.g., unlocking a stuck product) intended for future development, directly mapping to this goal."
+    "rationale": "UC-35 outlines the connection management between a user and a vending machine."
+  },
+  {
+    "req_id": "REQ-36",
+    "covered_by_use_cases": [],
+    "status": "UNSUPPORTED",
+    "rationale": "There are no current use cases focused on future development of additional features."
   }
 ]

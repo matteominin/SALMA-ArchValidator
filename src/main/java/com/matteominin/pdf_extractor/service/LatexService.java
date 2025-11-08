@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LatexService {
 
-    private static final int MAX_RETRY_ATTEMPTS = 5;
+    private static final int MAX_RETRY_ATTEMPTS = 1;
     private static final String REPORTS_DIR = "/tmp/reports";
 
     private final ChatClient chatClient;
@@ -71,9 +71,12 @@ public class LatexService {
                 Files.writeString(texFilePath, latexContent, StandardCharsets.UTF_8);
 
                 // Try to compile PDF
-                CompilationResult result = compilePdf(texFilePath);
+                CompilationResult result = null;
+                for (int i = 0; i < 3; i++) {
+                    result = compilePdf(texFilePath);
+                }
 
-                if (result.success) {
+                if (result != null && result.success) {
                     // Clean up auxiliary files
                     cleanupAuxiliaryFiles(reportsPath, baseFileName);
 

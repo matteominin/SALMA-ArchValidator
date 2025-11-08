@@ -1,537 +1,137 @@
 {
     "report": {
-        "treaceability_matrix": [
-            {
-                "req_id": "REQ-1",
-                "use_cases": [
-                    "UC-1",
-                    "UC-2",
-                    "UC-5",
-                    "UC-14",
-                    "UC-7",
-                    "UC-24"
-                ],
-                "components": [
-                    "Applicazione mobile",
-                    "JavaBrew Software",
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "VendingMachineController",
-                    "PostgreSQL 16",
-                    "Dashboard",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics",
-                    "VendingMachineDao",
-                    "ItemDao",
-                    "UserDao",
-                    "InventoryDao",
-                    "ConnectionDao",
-                    "WorkerController",
-                    "WorkerService",
-                    "TaskDao",
-                    "MaintenanceDao",
-                    "MachineService",
-                    "MachineService"
-                ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "AdminServiceTest.*",
-                    "ItemServiceTest",
-                    "VendingMachineServiceTest",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "AssignTaskController TEST-1",
-                    "TaskCompletionTest",
-                    "WorkerServiceTest",
-                    "VendingMachineCreationTest.*"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-2",
-                "use_cases": [
-                    "UC-3",
-                    "UC-10",
-                    "UC-2",
-                    "UC-5",
-                    "UC-24",
-                    "UC-7",
-                    "UC-34"
-                ],
-                "components": [
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Applicazione mobile",
-                    "Dashboard",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics",
-                    "JavaBrew Software",
-                    "VendingMachineDao",
-                    "ItemDao",
-                    "VendingMachineDao",
-                    "WorkerController",
-                    "WorkerService",
-                    "TaskDao",
-                    "MaintenanceDao",
-                    "MachineService",
-                    "Connection",
-                    "ConnectionDao",
-                    "ConnectionController",
-                    "CustomerService",
-                    "MachineService",
-                    "DBManager"
-                ],
-                "tests": [
-                    "UserRegistrationFlow TEST-1",
-                    "UserRegistrationFlow TEST-2",
-                    "UserRegistrationFlow TEST-3",
-                    "UserLoginTest",
-                    "UserServiceTest",
-                    "UserLoginTest.success",
-                    "UserLoginTest.incorrectCredentials",
-                    "UserLoginTest.systemError",
-                    "UserServiceTest.loginWithInvalidPassword",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "VendingMachineCreationTest.*",
-                    "AssignTaskController TEST-1",
-                    "TaskCompletionTest",
-                    "WorkerServiceTest",
-                    "ConnectionDaoTest",
-                    "ConnectToVendingMachine TEST-1"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
+        "traceability_matrix": [
             {
                 "req_id": "REQ-3",
                 "use_cases": [
                     "UC-1",
-                    "UC-13",
                     "UC-14"
                 ],
                 "components": [
                     "Applicazione mobile",
                     "JavaBrew Software",
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "VendingMachineController",
-                    "PostgreSQL 16",
-                    "ConnectionDao",
-                    "ConcreteVendingMachine",
-                    "DBManager",
-                    "InventoryDao",
-                    "ItemDao"
+                    "Wallet digitale"
                 ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "ConnectToVendingMachine TEST-1",
-                    "ConnectionDaoTest",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "CustomerServiceTest.testBuyItemInsufficientBalance",
-                    "CustomerServiceTest.testBuyItemOutOfStock"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-4",
                 "use_cases": [
-                    "UC-2",
-                    "UC-19",
-                    "UC-32"
+                    "UC-2"
                 ],
                 "components": [
                     "Dashboard",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics",
-                    "JavaBrew Software",
-                    "PostgreSQL 16"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-5",
                 "use_cases": [
                     "UC-2",
                     "UC-5",
-                    "UC-19",
-                    "UC-32",
                     "UC-7"
                 ],
                 "components": [
                     "Dashboard",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics",
-                    "JavaBrew Software",
-                    "VendingMachineDao",
-                    "ItemDao",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "WorkerController",
-                    "WorkerService",
-                    "TaskDao",
-                    "MaintenanceDao",
-                    "MachineService"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "AdminServiceTest.*",
-                    "ItemServiceTest",
-                    "VendingMachineServiceTest",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "AssignTaskController TEST-1",
-                    "TaskCompletionTest",
-                    "WorkerServiceTest"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-6",
-                "use_cases": [
-                    "UC-1",
-                    "UC-3",
-                    "UC-4",
-                    "UC-14",
-                    "UC-15"
-                ],
-                "components": [
-                    "Applicazione mobile",
-                    "JavaBrew Software",
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "VendingMachineController",
-                    "PostgreSQL 16",
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "TransactionDao",
-                    "InventoryDao",
-                    "ItemDao",
-                    "PaymentMethod"
-                ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "UserRegistrationFlow TEST-1",
-                    "UserRegistrationFlow TEST-2",
-                    "UserRegistrationFlow TEST-3",
-                    "UserLoginTest",
-                    "RechargeBalanceController TEST-1",
-                    "RechargeBalanceController TEST-2",
-                    "CustomerServiceTest.updateBalance",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "RechargeBalanceController TEST-1",
-                    "RechargeBalanceController TEST-2",
-                    "TransactionServiceTest",
-                    "CustomerServiceTest"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-7",
-                "use_cases": [
-                    "UC-7",
-                    "UC-16",
-                    "UC-17",
-                    "UC-18",
-                    "UC-22",
-                    "UC-23"
-                ],
-                "components": [
-                    "WorkerController",
-                    "WorkerService",
-                    "TaskDao",
-                    "MaintenanceDao",
-                    "MachineService",
-                    "Dashboard",
-                    "PostgreSQL 16",
-                    "TaskService",
-                    "DBManager",
-                    "WorkerService",
-                    "AdminController",
-                    "AdminService"
-                ],
-                "tests": [
-                    "AssignTaskController TEST-1",
-                    "TaskCompletionTest",
-                    "WorkerServiceTest",
-                    "AssignTaskController TEST-1",
-                    "TaskDaoTest",
-                    "TaskControllerTest",
-                    "TaskCompletionTest",
-                    "TaskControllerTest error handling",
-                    "TaskDaoImplTest.integration_CRUD_flow UPDATE",
-                    "AssignTaskController TEST-1",
-                    "AssignTaskController TEST-1",
-                    "TaskDaoTest",
-                    "TaskControllerTest"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-8",
-                "use_cases": [],
-                "components": [],
                 "tests": [],
                 "mockups": [],
-                "staus": "Unsupported"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-9",
                 "use_cases": [
                     "UC-2",
-                    "UC-14",
-                    "UC-32",
+                    "UC-4",
+                    "UC-6",
                     "UC-7"
                 ],
                 "components": [
                     "Dashboard",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics",
-                    "JavaBrew Software",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "InventoryDao",
-                    "ItemDao",
-                    "ConnectionDao",
-                    "VendingMachineController",
-                    "Wallet digitale",
-                    "PostgreSQL 16",
-                    "WorkerController",
-                    "WorkerService",
-                    "TaskDao",
-                    "MaintenanceDao",
-                    "MachineService"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "CustomerServiceTest.testBuyItemInsufficientBalance",
-                    "CustomerServiceTest.testBuyItemOutOfStock",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "AssignTaskController TEST-1",
-                    "TaskCompletionTest",
-                    "WorkerServiceTest"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-10",
                 "use_cases": [
                     "UC-1",
                     "UC-4",
-                    "UC-15",
-                    "UC-30"
+                    "UC-14"
                 ],
                 "components": [
                     "Applicazione mobile",
                     "JavaBrew Software",
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "VendingMachineController",
-                    "PostgreSQL 16",
-                    "TransactionDao",
-                    "PaymentMethod"
+                    "Wallet digitale"
                 ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "RechargeBalanceController TEST-1",
-                    "RechargeBalanceController TEST-2",
-                    "CustomerServiceTest.updateBalance",
-                    "RechargeBalanceController TEST-1",
-                    "RechargeBalanceController TEST-2",
-                    "TransactionServiceTest",
-                    "CustomerServiceTest",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.*",
-                    "ConnectToVendingMachine TEST-1"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-11",
                 "use_cases": [
                     "UC-5",
-                    "UC-2",
-                    "UC-6",
-                    "UC-20",
-                    "UC-21"
+                    "UC-24"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
                     "Dashboard",
-                    "VendingMachineDao",
-                    "ItemDao",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "DBManager",
-                    "MachineService"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "AdminServiceTest.*",
-                    "ItemServiceTest",
-                    "VendingMachineServiceTest",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "UserServiceTest.*",
-                    "ItemService tests",
-                    "UserDaoImplTest",
-                    "ItemDaoImplTest",
-                    "WorkerServiceTest.*",
-                    "WorkerControllerTest cases",
-                    "VendingMachineService TEST-6",
-                    "VendingMachineCreationTest cases"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-12",
                 "use_cases": [
                     "UC-1",
-                    "UC-4",
-                    "UC-2",
-                    "UC-34",
-                    "UC-19"
+                    "UC-4"
                 ],
                 "components": [
                     "Applicazione mobile",
-                    "JavaBrew Software",
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "VendingMachineController",
-                    "PostgreSQL 16",
-                    "TransactionDao",
-                    "Connection",
-                    "ConnectionDao",
-                    "ConnectionController",
-                    "CustomerService",
-                    "MachineService",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics",
-                    "Dashboard"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "RechargeBalanceController TEST-1",
-                    "RechargeBalanceController TEST-2",
-                    "CustomerServiceTest.updateBalance",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "ConnectionDaoTest",
-                    "ConnectToVendingMachine TEST-1",
-                    "ConnectionDaoImplTest.unit_createConnection_persistsConnection",
-                    "ConnectionDaoImplTest.integration_CRUD_flow CREATE",
-                    "CustomerServiceTest.testConnectSuccess"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-13",
                 "use_cases": [
                     "UC-3",
                     "UC-28",
-                    "UC-29",
-                    "UC-10"
+                    "UC-29"
                 ],
                 "components": [
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Applicazione mobile"
+                    "Applicazione mobile",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "UserRegistrationFlow TEST-1",
-                    "UserRegistrationFlow TEST-2",
-                    "UserRegistrationFlow TEST-3",
-                    "UserLoginTest",
-                    "UserServiceTest",
-                    "UserLoginTest.success",
-                    "UserLoginTest.incorrectCredentials",
-                    "UserLoginTest.systemError",
-                    "UserServiceTest.loginWithInvalidPassword"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-14",
                 "use_cases": [
                     "UC-4",
-                    "UC-15"
+                    "UC-12"
                 ],
                 "components": [
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "TransactionDao",
-                    "PostgreSQL 16",
-                    "PaymentMethod"
+                    "Applicazione mobile",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "RechargeBalanceController TEST-1",
-                    "RechargeBalanceController TEST-2",
-                    "CustomerServiceTest.updateBalance",
-                    "TransactionServiceTest",
-                    "CustomerServiceTest"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-15",
@@ -542,236 +142,76 @@
                 "components": [
                     "Applicazione mobile",
                     "JavaBrew Software",
-                    "Wallet digitale",
-                    "CustomerController",
-                    "CustomerService",
-                    "TransactionService",
-                    "VendingMachineController",
-                    "PostgreSQL 16",
-                    "InventoryDao",
-                    "ItemDao",
-                    "ConnectionDao"
+                    "Wallet digitale"
                 ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "BuyItemController TEST-1",
-                    "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                    "CustomerServiceTest.testBuyItemInsufficientBalance",
-                    "CustomerServiceTest.testBuyItemOutOfStock"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-16",
                 "use_cases": [
                     "UC-5",
-                    "UC-2",
-                    "UC-19",
                     "UC-24"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
                     "Dashboard",
-                    "VendingMachineDao",
-                    "ItemDao",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Analytics",
-                    "MachineService"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "AdminServiceTest.*",
-                    "ItemServiceTest",
-                    "VendingMachineServiceTest",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "VendingMachineCreationTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-17",
                 "use_cases": [
-                    "UC-6",
-                    "UC-20",
-                    "UC-21",
-                    "UC-24"
+                    "UC-6"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
-                    "UserDao",
-                    "VendingMachineDao",
-                    "ItemDao",
-                    "DBManager",
-                    "PostgreSQL 16",
-                    "MachineService"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "UserServiceTest.*",
-                    "ItemService tests",
-                    "UserDaoImplTest",
-                    "ItemDaoImplTest",
-                    "WorkerServiceTest.*",
-                    "WorkerControllerTest cases",
-                    "VendingMachineService TEST-6",
-                    "VendingMachineCreationTest cases",
-                    "VendingMachineCreationTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-18",
                 "use_cases": [
-                    "UC-7",
-                    "UC-16",
-                    "UC-17",
-                    "UC-18",
-                    "UC-22"
+                    "UC-7"
                 ],
-                "components": [
-                    "WorkerController",
-                    "WorkerService",
-                    "TaskDao",
-                    "MaintenanceDao",
-                    "MachineService",
-                    "Dashboard",
-                    "PostgreSQL 16",
-                    "TaskService",
-                    "DBManager"
-                ],
-                "tests": [
-                    "AssignTaskController TEST-1",
-                    "TaskCompletionTest",
-                    "WorkerServiceTest",
-                    "AssignTaskController TEST-1",
-                    "TaskDaoTest",
-                    "TaskControllerTest",
-                    "TaskCompletionTest",
-                    "TaskControllerTest error handling",
-                    "TaskDaoImplTest.integration_CRUD_flow UPDATE",
-                    "AssignTaskController TEST-1"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-19",
-                "use_cases": [
-                    "UC-34",
-                    "UC-2",
-                    "UC-19"
-                ],
-                "components": [
-                    "Connection",
-                    "ConnectionDao",
-                    "ConnectionController",
-                    "CustomerService",
-                    "MachineService",
-                    "DBManager",
-                    "PostgreSQL 16",
-                    "Dashboard",
-                    "AdminController",
-                    "AdminService",
-                    "Analytics"
-                ],
-                "tests": [
-                    "ConnectionDaoImplTest.unit_createConnection_persistsConnection",
-                    "ConnectionDaoImplTest.integration_CRUD_flow CREATE",
-                    "CustomerServiceTest.testConnectSuccess",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*",
-                    "ViewAnalytics TEST-1",
-                    "AdminServiceTest.*"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-20",
-                "use_cases": [],
                 "components": [],
                 "tests": [],
                 "mockups": [],
-                "staus": "Unsupported"
-            },
-            {
-                "req_id": "REQ-21",
-                "use_cases": [],
-                "components": [],
-                "tests": [],
-                "mockups": [],
-                "staus": "Unsupported"
-            },
-            {
-                "req_id": "REQ-22",
-                "use_cases": [],
-                "components": [],
-                "tests": [],
-                "mockups": [],
-                "staus": "Unsupported"
-            },
-            {
-                "req_id": "REQ-23",
-                "use_cases": [],
-                "components": [],
-                "tests": [],
-                "mockups": [],
-                "staus": "Unsupported"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-24",
                 "use_cases": [
-                    "UC-10",
-                    "UC-3"
+                    "UC-3",
+                    "UC-9",
+                    "UC-10"
                 ],
                 "components": [
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Applicazione mobile"
+                    "Applicazione mobile",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "UserLoginTest.success",
-                    "UserLoginTest.incorrectCredentials",
-                    "UserLoginTest.systemError",
-                    "UserServiceTest.loginWithInvalidPassword",
-                    "UserRegistrationFlow TEST-1",
-                    "UserRegistrationFlow TEST-2",
-                    "UserRegistrationFlow TEST-3",
-                    "UserLoginTest",
-                    "UserServiceTest"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-25",
                 "use_cases": [
+                    "UC-9",
                     "UC-10"
                 ],
                 "components": [
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Applicazione mobile"
+                    "Applicazione mobile",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "UserLoginTest.success",
-                    "UserLoginTest.incorrectCredentials",
-                    "UserLoginTest.systemError",
-                    "UserServiceTest.loginWithInvalidPassword"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-26",
@@ -779,20 +219,12 @@
                     "UC-10"
                 ],
                 "components": [
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Applicazione mobile"
+                    "Applicazione mobile",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "UserLoginTest.success",
-                    "UserLoginTest.incorrectCredentials",
-                    "UserLoginTest.systemError",
-                    "UserServiceTest.loginWithInvalidPassword"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-27",
@@ -800,29 +232,25 @@
                     "UC-3"
                 ],
                 "components": [
-                    "UserController",
-                    "UserService",
-                    "UserDao",
-                    "PostgreSQL 16",
-                    "Applicazione mobile"
+                    "Applicazione mobile",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "UserRegistrationFlow TEST-1",
-                    "UserRegistrationFlow TEST-2",
-                    "UserRegistrationFlow TEST-3",
-                    "UserLoginTest",
-                    "UserServiceTest"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-28",
-                "use_cases": [],
-                "components": [],
+                "use_cases": [
+                    "UC-3"
+                ],
+                "components": [
+                    "Applicazione mobile",
+                    "JavaBrew Software"
+                ],
                 "tests": [],
                 "mockups": [],
-                "staus": "Unsupported"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-29",
@@ -830,17 +258,13 @@
                     "UC-24"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
-                    "MachineService",
-                    "VendingMachineDao",
-                    "PostgreSQL 16"
+                    "Admin",
+                    "Dashboard",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "VendingMachineCreationTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-30",
@@ -848,17 +272,13 @@
                     "UC-24"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
-                    "MachineService",
-                    "VendingMachineDao",
-                    "PostgreSQL 16"
+                    "Admin",
+                    "Dashboard",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "VendingMachineCreationTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-31",
@@ -866,17 +286,13 @@
                     "UC-24"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
-                    "MachineService",
-                    "VendingMachineDao",
-                    "PostgreSQL 16"
+                    "Admin",
+                    "Dashboard",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "VendingMachineCreationTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-32",
@@ -884,45 +300,13 @@
                     "UC-24"
                 ],
                 "components": [
-                    "AdminController",
-                    "AdminService",
-                    "MachineService",
-                    "VendingMachineDao",
-                    "PostgreSQL 16"
+                    "Admin",
+                    "Dashboard",
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "VendingMachineCreationTest.*"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-33",
-                "use_cases": [
-                    "UC-13",
-                    "UC-34"
-                ],
-                "components": [
-                    "CustomerController",
-                    "CustomerService",
-                    "ConnectionDao",
-                    "VendingMachineController",
-                    "ConcreteVendingMachine",
-                    "DBManager",
-                    "PostgreSQL 16",
-                    "Connection",
-                    "ConnectionController",
-                    "MachineService"
-                ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "ConnectionDaoTest",
-                    "ConnectionDaoImplTest.unit_createConnection_persistsConnection",
-                    "ConnectionDaoImplTest.integration_CRUD_flow CREATE",
-                    "CustomerServiceTest.testConnectSuccess"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-34",
@@ -930,109 +314,58 @@
                     "UC-34"
                 ],
                 "components": [
-                    "Connection",
-                    "ConnectionDao",
-                    "ConnectionController",
-                    "CustomerService",
-                    "MachineService",
-                    "DBManager",
-                    "PostgreSQL 16"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "ConnectionDaoImplTest.unit_createConnection_persistsConnection",
-                    "ConnectionDaoImplTest.integration_CRUD_flow CREATE",
-                    "CustomerServiceTest.testConnectSuccess"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             },
             {
                 "req_id": "REQ-35",
                 "use_cases": [
-                    "UC-13",
-                    "UC-34"
-                ],
-                "components": [
-                    "CustomerController",
-                    "CustomerService",
-                    "ConnectionDao",
-                    "VendingMachineController",
-                    "ConcreteVendingMachine",
-                    "DBManager",
-                    "PostgreSQL 16",
-                    "Connection",
-                    "ConnectionController",
-                    "MachineService"
-                ],
-                "tests": [
-                    "ConnectToVendingMachine TEST-1",
-                    "ConnectionDaoTest",
-                    "ConnectionDaoImplTest.unit_createConnection_persistsConnection",
-                    "ConnectionDaoImplTest.integration_CRUD_flow CREATE",
-                    "CustomerServiceTest.testConnectSuccess"
-                ],
-                "mockups": [],
-                "staus": "Fully Covered"
-            },
-            {
-                "req_id": "REQ-36",
-                "use_cases": [
                     "UC-35"
                 ],
                 "components": [
-                    "MachineController",
-                    "MachineService",
-                    "MaintenanceController",
-                    "MaintenanceDao",
-                    "VendingMachineController",
-                    "WorkerController",
-                    "AdminController",
-                    "PostgreSQL 16"
+                    "JavaBrew Software"
                 ],
-                "tests": [
-                    "No explicit tests found"
-                ],
+                "tests": [],
                 "mockups": [],
-                "staus": "Fully Covered"
+                "status": "Covered"
             }
         ],
         "orphans": {
             "requirements": [
+                "REQ-1",
+                "REQ-2",
+                "REQ-6",
+                "REQ-7",
                 "REQ-8",
+                "REQ-19",
                 "REQ-20",
                 "REQ-21",
                 "REQ-22",
                 "REQ-23",
-                "REQ-28"
+                "REQ-33",
+                "REQ-36"
             ],
             "use_cases": [
+                "UC-7",
                 "UC-8",
-                "UC-9",
-                "UC-11",
-                "UC-12",
+                "UC-13",
+                "UC-15",
+                "UC-20",
+                "UC-21",
+                "UC-22",
+                "UC-23",
                 "UC-25",
                 "UC-26",
                 "UC-27",
                 "UC-31",
-                "UC-33"
+                "UC-32",
+                "UC-33",
+                "UC-35"
             ],
-            "tests": [
-                "UserLoginTest",
-                "UserServiceTest.loginWithValidCredentials",
-                "UserControllerTest.login_ValidCredentials",
-                "BuyItemController TEST-1",
-                "CustomerServiceTest.testBuyItemSuccessSingleItem",
-                "RechargeBalanceController TEST-1",
-                "TransactionServiceTest",
-                "CustomerControllerTest.testRechargeBalance",
-                "ViewAnalytics TEST-1",
-                "AdminServiceTest.*",
-                "AssignTaskController TEST-1",
-                "TaskCompletionTest",
-                "WorkerServiceTest",
-                "TaskDaoTest",
-                "TaskControllerTest"
-            ],
+            "tests": [],
             "mockups": []
         }
     }

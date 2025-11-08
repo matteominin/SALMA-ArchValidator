@@ -1,16 +1,20 @@
-- **Diagram Type:** Use Case Diagram
+1. Type of image: Diagram
 
-- **Elements:** 
-  - Use Case: "Login", "Sign up"
-  - Actor: "User"
+2. Based on the image type:
 
-- **Relationships:** 
-  - "User" interacts with "Login"
-  - "User" interacts with "Sign up"
+   Diagram Type: Use Case Diagram
 
-- **Text:**
-  - "1"
-  - "Login"
-  - "2"
-  - "Sign up"
-  - "User"
+   Elements: 
+   - Actor: User
+   - Use Cases: 
+     1. Login
+     2. Sign up
+
+   Relationships: 
+   - User interacts with the Login use case.
+   - User interacts with the Sign up use case.
+
+   Text: 
+   - "1 Login"
+   - "2 Sign up"
+   - "User"

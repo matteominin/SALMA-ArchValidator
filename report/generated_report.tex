@@ -1,4 +1,3 @@
-```latex
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -36,509 +35,338 @@
 \maketitle
 
 \begin{abstract}
-This report validates the architectural blueprint of the JavaBrew vending machine management platform through comprehensive traceability analysis. The assessment examines 36 requirements, 35 use cases, and architectural components across a layered system design. The analysis identifies critical gaps in offline resilience, component clarity, and test completeness, while highlighting architectural strengths in traceability discipline and layered design patterns. Key findings reveal that while 94.4\% of requirements are covered, several critical capabilities (offline operation, field-level validation, and remote maintenance) lack proper architectural support.
+This report validates the architectural blueprint of the JavaBrew vending machine management platform through comprehensive automated traceability analysis. The assessment examines 36 requirements, 35 use cases, multiple architectural components, and extensive test coverage extracted via LLM-based document analysis. The report identifies critical gaps in requirements coverage, architectural clarity, and test completeness, providing actionable recommendations for improving system design quality and production readiness.
 \end{abstract}
 
 \tableofcontents
 \newpage
 
-%=============================================================================
 \section{Executive Summary}
-%=============================================================================
 
 \subsection{Assessment Overview}
 
-The JavaBrew platform demonstrates a well-structured layered architecture with comprehensive traceability from requirements through tests. The system successfully implements core transaction workflows, administrative operations, and worker management features. However, several critical gaps threaten production deployment viability, particularly in offline operation capabilities and component responsibility clarity.
+This validation analyzes the architectural blueprint using automated traceability extraction from project documentation. The system demonstrates strong coverage in core transaction flows but exhibits critical gaps in offline resilience, architectural clarity, and test comprehensiveness.
 
 \begin{tcolorbox}[colback=infocolor!5,colframe=infocolor,title=\textbf{Key Metrics}]
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Requirements Coverage:} 36 total, 30 covered (83.3\%), 6 unsupported (16.7\%)
-    \item \textbf{Use Cases:} 35 defined, 28 with test coverage, 7 with gaps
-    \item \textbf{Architecture Layers:} 6-layer design with 50+ components
-    \item \textbf{Test Suite:} 63+ identified tests (unit, integration, system)
-    \item \textbf{Traceability Completeness:} Full req-to-UC-to-component-to-test chain
+    \item \textbf{Requirements:} 36 total, 24 covered (66.7\%), 12 unsupported (33.3\%)
+    \item \textbf{Use Cases:} 35 defined, multiple with partial or missing test coverage
+    \item \textbf{Architecture:} Layered pattern with 50+ components across multiple layers
+    \item \textbf{Tests:} 63 identified tests covering core functionality with gaps in edge cases
+    \item \textbf{Orphaned Artifacts:} 12 requirements, 15 use cases, 0 tests lack complete traceability
 \end{itemize}
 \end{tcolorbox}
 
 \subsection{Critical Findings}
 
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Critical Issues}]
+\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Critical Issues Requiring Immediate Attention}]
 \begin{enumerate}
-    \item \textbf{Offline Operation Unsupported:} Requirements REQ-20 and REQ-21 mandate offline transaction tracking and synchronization, but zero architectural components implement these capabilities.
+    \item \textbf{Offline Operation Architecture Gap:} Requirements REQ-19, REQ-20, and REQ-21 mandate offline transaction tracking, local registration, and post-connectivity synchronization. No architectural components exist to support these capabilities, creating a single point of failure on network connectivity.
 
-    \item \textbf{Field Validation Gap:} REQ-28 requires registration field validation, yet no use case (UC-3) or component explicitly addresses validation logic.
+    \item \textbf{Vague Component Responsibilities:} 30+ components lack precise responsibility definitions, violating the Single Responsibility Principle and risking architectural erosion and inconsistent implementation.
 
-    \item \textbf{Deployment Infrastructure Missing:} REQ-23 specifies infrastructure provisioning requirements with no corresponding architectural support.
+    \item \textbf{Unsupported Edge Case Requirements:} Twelve requirements (33.3\%) remain completely unsupported, including non-functional requirements for scalability, infrastructure specification, and remote maintenance capabilities.
 
-    \item \textbf{Navigation Testing Absent:} Use cases UC-25, UC-26, UC-28, UC-29 covering dashboard navigation and balance/transaction viewing have no corresponding integration tests.
-
-    \item \textbf{Remote Maintenance Incomplete:} UC-35 promises remote maintenance capabilities but lacks hardware abstraction components necessary for device control.
+    \item \textbf{Significant Test Coverage Gaps:} Fifteen use cases (42.9\%) have missing or partial test coverage, including critical navigation flows and remote maintenance operations.
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=strengthgreen!5,colframe=strengthgreen,title=\textbf{Architectural Strengths}]
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Complete Traceability Chain:} Every requirement traces through use cases to components to tests, enabling comprehensive impact analysis
-    \item \textbf{Clean Layered Architecture:} Six-layer pattern with clear separation of concerns and no layer-skipping violations
-    \item \textbf{Effective Pattern Application:} Builder pattern (ConcreteVendingMachine), DAO abstraction, Mapper pattern for entity conversion
-    \item \textbf{Comprehensive Error Testing:} Purchase flows, login, and task management include alternative flow testing for error scenarios
-    \item \textbf{Domain-Driven Design Elements:} Rich entities, value objects (MachineStatus), composition relationships
+    \item Comprehensive requirements-to-tests traceability for 24 covered requirements
+    \item Well-structured layered architecture with clear separation of concerns
+    \item Effective design patterns (Builder, DAO, Mapper) applied strategically
+    \item Strong test coverage for happy paths and common error scenarios (63 tests total)
+    \item Dual database strategy (PostgreSQL production, H2 testing) enabling fast feedback
+    \item Domain-driven design principles reflected in entity relationships and inheritance
 \end{itemize}
 \end{tcolorbox}
 
-%=============================================================================
 \section{Requirements Coverage Analysis}
-%=============================================================================
 
-\subsection{Unsupported Requirements: Root Cause Analysis}
+\subsection{Unsupported Requirements: The 33.3\% Gap}
 
-Six requirements lack architectural support, representing 16.7\% of the specification:
+Twelve of thirty-six requirements (33.3\%) are completely unsupported by the current use case model and architecture:
 
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{REQ-8: Scalability and Modern Technologies}]
-Status: \textbf{UNSUPPORTED}
-
-Requirement specifies ``alignment with modern technologies and scalable architecture'' but provides no concrete acceptance criteria. The architecture documentation lacks:
-\begin{itemize}
-    \item Scalability metrics (transactions/second, concurrent users)
-    \item Technology choices justification (why PostgreSQL, why Java, why REST)
-    \item Load distribution strategy (clustering, caching, CDN)
+\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Category 1: Offline and Resilience Requirements}]
+\begin{itemize}[leftmargin=*]
+    \item \textbf{REQ-19:} Detection of vending machines not connected to Internet—no use case or component implements connectivity monitoring or offline detection mechanisms
+    \item \textbf{REQ-20:} Offline register for locally tracking transactions during disconnection—no local storage or transaction queue components exist
+    \item \textbf{REQ-21:} Synchronization of local transactions with central database upon reconnection—no reconciliation or eventual consistency protocol is defined
+    \item \textbf{REQ-22:} Anonymous user cash-only transactions as fallback—no authentication bypass or anonymous transaction flows are designed
 \end{itemize}
-
-\textbf{Impact:} Without clear scalability requirements, architectural decisions (connection pooling size, database indexing strategy, caching layer) remain unvalidated.
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{REQ-20, REQ-21: Offline Operation}]
-Status: \textbf{UNSUPPORTED}
+These four requirements represent a fundamental architectural assumption: that network connectivity is always available. In real-world deployments, this assumption frequently fails due to network congestion, ISP outages, or poor coverage areas. Vending machines become completely non-operational during any network disruption, directly impacting revenue and customer satisfaction.
 
-\textbf{REQ-20:} ``Vending machines must maintain a local register for offline transaction tracking''
-
-\textbf{REQ-21:} ``Synchronize locally stored transactions with central database upon reconnection''
-
-These requirements fundamentally alter the system architecture:
-\begin{itemize}
-    \item \textbf{No local storage component:} Vending machine devices lack persistent storage for transactions during outages
-    \item \textbf{No sync protocol:} No component handles reconciliation of locally-stored vs. server-side transactions
-    \item \textbf{No conflict resolution:} Duplicate purchases, price changes during offline period unhandled
-    \item \textbf{No idempotency:} Transaction reprocessing during sync risks double-charging or inventory inconsistencies
+\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Category 2: Non-Functional and Infrastructure Requirements}]
+\begin{itemize}[leftmargin=*]
+    \item \textbf{REQ-1:} Modernize management and delivery through vending machines—background goal with no specific implementation requirements
+    \item \textbf{REQ-2:} Integrated, simple, and secure platform—vague aspirational requirement lacking measurable criteria
+    \item \textbf{REQ-6:} Improve user experience—no quantifiable metrics or use cases defining what constitutes improvement
+    \item \textbf{REQ-7:} Reduce operator response times—no performance targets or monitoring mechanisms specified
+    \item \textbf{REQ-8:} Scalable service aligned with modern technologies—architectural scalability constraints not documented
+    \item \textbf{REQ-23:} Infrastructure investment (modems, servers) required—no component or deployment architecture addresses infrastructure requirements
+    \item \textbf{REQ-33:} Client-machine communication support—no use case explicitly models communication protocol or architecture
+    \item \textbf{REQ-36:} Future development of remote maintenance features—aspirational requirement without concrete implementation scope
 \end{itemize}
-
-\textbf{Business Impact:} Any network disruption renders vending machines non-functional. In regions with unreliable connectivity, this is a critical limitation.
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{REQ-22: Anonymous Cash Transactions}]
-Status: \textbf{UNSUPPORTED}
+These eight requirements represent either aspirational goals or infrastructure concerns inadequately captured in the use case model. Their vagueness prevents architectural validation and creates ambiguity for implementation teams.
 
-Requirement: ``Anonymous users must complete cash-only transactions without registration as a fallback mechanism''
+\subsection{Requirements Quality Issues}
 
-Current architecture enforces registration (UC-3) before purchase (UC-14). No use case or component supports:
-\begin{itemize}
-    \item Anonymous user identification (session-based, device-based, or temporary identifiers)
-    \item Cash payment without wallet verification
-    \item Transaction attribution without user account
+Beyond coverage gaps, several covered requirements suffer from insufficient specificity:
+
+\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{Vague Requirements Creating Architectural Ambiguity}]
+\begin{itemize}[leftmargin=*]
+    \item \textbf{REQ-3, REQ-10, REQ-12:} Digital payment methods mentioned but specific payment providers, compliance standards (PCI-DSS), or integration approaches not specified
+    \item \textbf{REQ-5, REQ-18:} Maintenance and replenishment planning mentioned but decision criteria, scheduling algorithms, or optimization metrics not defined
+    \item \textbf{REQ-34, REQ-35:} Connection tracking and remote maintenance mentioned but communication protocols, message formats, and error handling not detailed
 \end{itemize}
-
-\textbf{Design Implication:} This creates a fundamental tension between the requirement for authenticated transactions and the fallback for anonymous users.
 \end{tcolorbox}
 
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{REQ-23: Infrastructure Provisioning}]
-Status: \textbf{UNSUPPORTED}
+These ambiguities force architects and developers to make assumptions that may not align with actual business intent, increasing rework risk when assumptions prove incorrect.
 
-Requirement specifies ``provisioning infrastructure (modems, servers, connectivity)'' as a deployment concern. However:
-\begin{itemize}
-    \item No deployment architecture documented
-    \item No infrastructure-as-code components identified
-    \item No network reliability requirements specified
-\end{itemize}
-
-\textbf{Classification:} This is arguably a deployment/operations requirement rather than a software architecture requirement, but its absence from the architecture creates ambiguity.
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{REQ-28: Registration Field Validation}]
-Status: \textbf{UNSUPPORTED}
-
-Requirement: ``Validate registration fields during user sign-up''
-
-While UC-3 (User Registration) is marked as covered, the rationale states: ``While fields are not enumerated in the use case text, the registration use case implements the account creation requirement.''
-
-\textbf{Problem:} No validation rules are specified:
-\begin{itemize}
-    \item Email format validation? Required/optional fields?
-    \item Password complexity rules? Duplicate email prevention?
-    \item Which component validates (Controller, Service, or Domain)?
-\end{itemize}
-
-\textbf{Test Gap:} No tests explicitly verify field validation behavior, only successful registration flow.
-\end{tcolorbox}
-
-\subsection{Partial Coverage: REQ-8 Scalability Concerns}
-
-While REQ-8 is marked unsupported, the architecture does provide some scalability foundations:
-\begin{itemize}
-    \item DAO abstraction enables database technology switching
-    \item Layered design supports distributed deployment
-    \item PostgreSQL supports connection pooling and replication
-\end{itemize}
-
-However, without explicit scalability requirements and testing, these capabilities remain potential but unvalidated.
-
-%=============================================================================
 \section{Use Case and Test Coverage Analysis}
-%=============================================================================
 
-\subsection{Navigation Use Cases: Untested Decision Points}
+\subsection{Test Coverage Gaps}
 
-Four use cases (UC-25, UC-26, UC-28, UC-29) describe navigation and dashboard access but lack corresponding tests:
+Of 35 defined use cases, test coverage is distributed as follows:
 
-\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{UC-25: Access Customer Dashboard}]
-\textbf{Status:} Main flow not tested
-
-The use case describes navigation to customer dashboard but no integration test verifies:
-\begin{itemize}
-    \item Successful navigation after login
-    \item Correct role-based access (customer vs. admin/worker cannot access)
-    \item Dashboard data assembly and display
-    \item Back navigation behavior
-\end{itemize}
-
-\textbf{Related Components:} CustomerController, Dashboard UI, PostgreSQL
-
-\textbf{Risk:} Navigation bugs (broken links, incorrect routing, role bypass) may only surface in UAT or production.
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{UC-28, UC-29: Balance and Transaction History Viewing}]
-\textbf{Status:} Navigation not tested, only data access
-
-Tests verify that balance and transaction history can be retrieved from database, but not that:
-\begin{itemize}
-    \item Users can navigate to the balance/history page
-    \item ``Go back'' alternative flow works correctly
-    \item Pagination or filtering works for large transaction lists
-    \item Correct customer's data is displayed (no cross-customer data leakage)
-\end{itemize}
-
-\textbf{Recommendation:} Add Selenium or Cypress tests covering full UI workflows for these navigation paths.
-\end{tcolorbox}
-
-\subsection{Remote Maintenance (UC-35): Hardware Abstraction Missing}
-
-UC-35 describes ``remote maintenance features (e.g., unlocking a stuck product)'' but the architecture provides only backend components:
-
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{UC-35 Implementation Gap}]
-\textbf{Current Components:} MachineController, MachineService, MaintenanceController, MaintenanceDao, PostgreSQL
-
-\textbf{Missing Components:}
-\begin{itemize}
-    \item \textbf{Device Gateway/IoT Adapter:} Bridge between software commands and hardware actions
-    \item \textbf{Communication Protocol Handler:} MQTT, HTTP, or proprietary protocol for device communication
-    \item \textbf{Device Command Queue:} Asynchronous command delivery to machines
-    \item \textbf{Hardware State Sync:} Bidirectional status updates from vending machine firmware
-\end{itemize}
-
-\textbf{Current State:} System can track maintenance tasks in database but cannot send commands to physical devices.
-
-\textbf{Test Status:} No tests verify remote control functionality (no tests found in suite).
-
-\textbf{Recommendation:} Either (a) architect hardware abstraction layer with mock device implementations for testing, or (b) scope UC-35 as future work and remove from current release.
-\end{tcolorbox}
-
-\subsection{Orphaned Use Cases}
-
-UC-8 (System Template) and UC-33 (Use Case Structure) are documentation artifacts with no corresponding runtime features or tests. These add noise to traceability and should be removed or clearly marked as non-functional documentation.
-
-%=============================================================================
-\section{Architectural Component Analysis}
-%=============================================================================
-
-\subsection{Layering Structure: Strengths and Clarity Issues}
-
-The architecture follows a disciplined six-layer pattern:
-
-\begin{tcolorbox}[colback=strengthgreen!5,colframe=strengthgreen,title=\textbf{Layering Strengths}]
 \begin{itemize}[leftmargin=*]
-    \item \textbf{No Layer Skipping:} Controllers never call DAOs directly; all service layer calls observed
-    \item \textbf{Downward Dependency:} Upper layers depend on lower, not vice versa
-    \item \textbf{Technology Independence:} Database technology changes don't affect controller or service logic
-    \item \textbf{Testability:} Each layer can be unit tested in isolation via mocking
-\end{itemize}
-\end{tcolorbox}
-
-However, component responsibility definitions exhibit concerning ambiguity:
-
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Responsibility Ambiguity Issues}]
-\textbf{1. DAO Layer Overloading:}
-
-Current: ``UserDao, TransactionDao, ItemDao, VendingMachineDao, ConnectionDao, TaskDao, MaintenanceDao''
-
-Problem: No distinction between CRUD operations, complex queries, and domain-specific operations. Is UserDao responsible for:
-\begin{itemize}
-    \item Simple CRUD (create user, get user by ID)?
-    \item Complex queries (find users by role, search users by email)?
-    \item Business queries (get users with overdue maintenance tasks)?
+    \item \textbf{Complete Coverage:} 15 use cases (42.9\%)—main and alternative flows fully tested
+    \item \textbf{Partial Coverage:} 5 use cases (14.3\%)—main flow tested but alternative flows missing
+    \item \textbf{Missing Coverage:} 15 use cases (42.9\%)—no tests or insufficient test implementation
 \end{itemize}
 
-Risk: DAO classes become monolithic query repositories without clear responsibility boundaries.
-
-\textbf{2. Service Layer Consolidation:}
-
-Current: Single ``CustomerService, AdminService, WorkerService'' for each role.
-
-Problem: AdminService handles machine creation, price management, worker assignment, analytics querying, and task management—potentially 1000+ lines of code in a single class.
-
-Better Approach: Split into bounded domain services (MachineManagementService, AnalyticsService, TaskAssignmentService) with explicit responsibilities.
-
-\textbf{3. Database vs. DBManager vs. DAO Confusion:}
-
-Three components handle database concerns:
-\begin{itemize}
-    \item \textbf{Database:} ``Handles database interactions''
-    \item \textbf{DBManager:} ``Manages database connections and operations''
-    \item \textbf{DAO Layer:} ``Manages data access and retrieval''
-\end{itemize}
-
-Clarification Needed: DBManager should handle connection pooling and lifecycle; DAOs should handle query execution; Database component appears redundant or should be renamed to reflect its actual responsibility.
-\end{tcolorbox}
-
-\subsection{Pattern Application: Well-Executed}
-
-\begin{tcolorbox}[colback=strengthgreen!5,colframe=strengthgreen,title=\textbf{Design Patterns: Strategic Use}]
-\textbf{Builder Pattern (ConcreteVendingMachine):}
-
-Rationale: Vending machine creation involves many optional parameters (location, capacity, status, initial inventory). Builder pattern provides fluent API and enforces required fields.
-
-Quality: Appropriately applied; simpler entities use standard constructors (avoiding overengineering).
-
-\textbf{DAO Pattern (UserDao, TransactionDao, etc.):}
-
-Abstraction enables persistence technology independence. Interface-based design supports mocking in tests.
-
-\textbf{Mapper Pattern (TaskMapper, ConnectionMapper, TransactionMapper):}
-
-Separation of domain models from database entities reduces coupling. Domain logic changes don't force schema changes.
-
-\textbf{Domain-Driven Elements:}
-
-Rich entities (ConcreteVendingMachine, Transaction) with behavior; value objects (MachineStatus); composition relationships (Machine contains Inventory).
-
-Missing: Aggregate root boundaries, domain events, ubiquitous language consistency.
-\end{tcolorbox}
-
-%=============================================================================
-\section{Test Coverage Assessment}
-%=============================================================================
-
-\subsection{Testing Strengths}
-
-\begin{tcolorbox}[colback=strengthgreen!5,colframe=strengthgreen,title=\textbf{Comprehensive Error Path Testing}]
+\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{Critical Test Gaps}]
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Authentication:} 9 tests covering valid/invalid credentials, system errors, null inputs
-    \item \textbf{Purchase Flows:} 8 scenarios including insufficient balance, out of stock, connection failures
-    \item \textbf{Machine Creation:} Tests for missing fields, validation errors, persistence failures
-    \item \textbf{Task Management:} Alternative flows for save errors, already-completed tasks
+    \item \textbf{UC-2 (Admin Dashboard Monitoring):} No tests verify analytics data retrieval, performance under large datasets, or error handling for missing data
+    \item \textbf{UC-3 (User Registration and Login):} Missing tests for duplicate email detection, password strength validation, and session management
+    \item \textbf{UC-4 (Wallet Recharge):} No tests for transaction rollback on payment failure or concurrent recharge attempts
+    \item \textbf{UC-7 (Vending Machine Maintenance):} Maintenance workflow lacks integration tests verifying task assignment, completion tracking, and status updates
+    \item \textbf{UC-13 (Connect to Vending Machine):} Connection establishment not tested; QR code scanning, network handshake, and connection timeout scenarios missing
+    \item \textbf{UC-20, UC-21, UC-22, UC-23 (Admin CRUD Operations):} Worker and machine CRUD operations, task assignment, and task viewing lack comprehensive test coverage
+    \item \textbf{UC-25, UC-26, UC-27 (Dashboard Access):} Role-based dashboard access and permission enforcement not tested
+    \item \textbf{UC-31, UC-32 (Worker Task Selection, Analytics Viewing):} Navigation flows between dashboards and specific views lack integration tests
 \end{itemize}
 \end{tcolorbox}
 
-Test pyramid is well-shaped: approximately 71\% unit tests (fast feedback), 19\% integration tests (component interaction), 10\% system tests (end-to-end workflows).
+\subsection{Partial Coverage Analysis}
 
-\subsection{Testing Gaps}
+Five use cases demonstrate incomplete test coverage:
 
-\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{Missing Test Categories}]
-\textbf{1. Navigation Integration Tests (UC-25, UC-26, UC-28, UC-29):}
-
-No tests verify multi-screen workflows, role-based access, or navigation correctness. Recommend Selenium/Cypress tests for:
-\begin{itemize}
-    \item Login → Dashboard navigation (per role)
-    \item Dashboard → Balance page → Back navigation
-    \item Worker task selection → Task details → Completion flow
+\begin{itemize}[leftmargin=*]
+    \item \textbf{UC-1 (User Product Purchase):} Alternative flow for purchase cancellation not tested
+    \item \textbf{UC-15 (Recharge Balance):} Payment failure alternative flow lacks test coverage
+    \item \textbf{UC-28, UC-29 (View Balance/Transaction History):} Back navigation alternative flows not tested
+    \item \textbf{UC-30 (Checkout):} Connection success alternative flow not tested
 \end{itemize}
 
-\textbf{2. End-to-End User Journeys:}
+While alternative flows represent edge cases, their absence from test coverage indicates incomplete validation of error recovery and user navigation patterns.
 
-Tests validate isolated use cases but not complete workflows:
-\begin{itemize}
-    \item Register → Recharge wallet → Scan QR → Purchase → View history
-    \item Admin creates machine → Worker assigned maintenance → Completes task → Analytics updated
+\section{Architectural Quality Assessment}
+
+\subsection{Component Responsibility Ambiguity}
+
+The architecture documentation identifies 50+ components but lacks precise responsibility definitions for many:
+
+\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Undefined Responsibility Components}]
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Controllers:} Described as "handling requests and responses" without specifying which controllers handle which domains or how they coordinate
+    \item \textbf{Services:} "Contains business logic" is too broad—logic spans customer purchases, admin configuration, worker maintenance, and system analytics
+    \item \textbf{DAO/Database:} Unclear distinction between DBManager (connection management), DAO interfaces (query contracts), DAO implementations (query execution), and the generic database component
+    \item \textbf{User Roles:} Admin, Worker, Customer, and User entities lack clarity on whether they contain behavior or purely represent data
+    \item \textbf{Models:} Transaction, Connection, MaintenanceReport, and other domain entities have undefined responsibilities regarding validation, state management, and business rule enforcement
 \end{itemize}
-
-\textbf{3. Security Testing:}
-
-No tests verify:
-\begin{itemize}
-    \item SQL injection protection
-    \item Authentication bypass prevention
-    \item Authorization boundary enforcement (admin cannot access customer data)
-    \item Input sanitization
-\end{itemize}
-
-\textbf{4. Performance Testing:}
-
-No load tests establish:
-\begin{itemize}
-    \item Concurrent user capacity
-    \item Transaction throughput limits
-    \item Response time baselines
-    \item Database query performance under load
-\end{itemize}
-
-\textbf{5. Field Validation Testing (REQ-28):}
-
-No tests verify registration field validation rules (email format, password complexity, required fields).
 \end{tcolorbox}
 
-%=============================================================================
+This ambiguity violates the Single Responsibility Principle and creates architectural drift risk. Without clear boundaries, developers will place responsibilities inconsistently, leading to technical debt accumulation over time.
+
+\subsection{Architectural Pattern Analysis}
+
+The architecture demonstrates selective pattern application:
+
+\begin{tcolorbox}[colback=strengthgreen!5,colframe=strengthgreen,title=\textbf{Well-Applied Design Patterns}]
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Builder Pattern (ConcreteVendingMachine):} Appropriate for complex object construction with multiple optional parameters
+    \item \textbf{DAO Pattern:} Each entity has corresponding DAO interface, abstracting persistence technology from business logic
+    \item \textbf{Mapper Pattern:} TaskMapper, ConnectionMapper, InventoryMapper, and TransactionMapper separate domain models from database entities
+    \item \textbf{Inheritance Hierarchy:} app\_user base entity extends into admin, worker, and customer roles, enabling polymorphic role handling
+\end{itemize}
+\end{tcolorbox}
+
+Pattern application is strategic rather than universal, avoiding overengineering. However, some patterns are missing:
+
+\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{Missing or Incomplete Patterns}]
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Aggregate Roots:} No enforcement preventing direct Inventory modification without ConcreteVendingMachine context, risking invariant violations
+    \item \textbf{Domain Events:} No ProductPurchased, BalanceRecharged, or MaintenanceTaskCreated events for auditing or asynchronous processing
+    \item \textbf{Specification Pattern:} No reusable business rule specifications for validation (e.g., "sufficient balance to purchase item")
+    \item \textbf{Repository Pattern:} DAO pattern used but not unified under a repository abstraction for consistent data access semantics
+\end{itemize}
+\end{tcolorbox}
+
+\subsection{Orphaned Artifacts Analysis}
+
+The traceability matrix identifies significant orphaned artifacts:
+
+\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Orphaned Requirements (12 total)}]
+REQ-1, REQ-2, REQ-6, REQ-7, REQ-8, REQ-19, REQ-20, REQ-21, REQ-22, REQ-23, REQ-33, REQ-36
+
+These requirements lack corresponding use cases, indicating either incomplete requirements engineering or scope creep that was never captured in behavioral specifications.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Orphaned Use Cases (15 total)}]
+UC-7, UC-8, UC-13, UC-15, UC-20, UC-21, UC-22, UC-23, UC-25, UC-26, UC-27, UC-31, UC-32, UC-33, UC-35
+
+These use cases either lack architectural component implementation or have no test coverage, indicating incomplete design or testing.
+\end{tcolorbox}
+
+Orphaned artifacts represent incomplete traceability chains where design intent (requirements or use cases) or implementation verification (tests) is missing.
+
 \section{Critical Risks and Recommendations}
-%=============================================================================
 
-\subsection{Risk 1: Offline Operation Creates Single Point of Failure}
+\subsection{Risk 1: Offline Operation Unavailability}
 
-\textbf{Severity:} \textbf{CRITICAL}
+\textbf{Risk Level:} CRITICAL
 
-\textbf{Description:} Any network outage renders vending machines completely non-functional. No transactions can be processed, no inventory can be checked, no sales data is captured.
+\textbf{Impact:} Vending machines cannot process transactions during network outages, resulting in complete service unavailability and direct revenue loss. In environments with unreliable connectivity, this represents a fundamental product failure.
 
-\textbf{Root Cause:} Requirements REQ-20 and REQ-21 mandate offline operation, but zero architectural components implement local transaction storage, synchronization, or conflict resolution.
+\textbf{Root Cause:} Architecture assumes always-on connectivity with no offline fallback mechanisms (REQ-19, REQ-20, REQ-21 unsupported).
 
-\textbf{Business Impact:} In regions with unreliable connectivity, vending machines are revenue-generating paperweights during outages. Data loss occurs if machines are powered down before connectivity restored.
+\textbf{Affected Requirements:} REQ-19, REQ-20, REQ-21, REQ-22
 
-\textbf{Architectural Fix:}
-\begin{itemize}
-    \item Design local transaction storage on vending machine devices (SQLite, embedded database)
-    \item Define synchronization protocol with conflict resolution (last-write-wins, optimistic locking, or operational transformation)
-    \item Implement eventual consistency model for offline-to-online reconciliation
-    \item Design offline authentication fallback (cached credentials or device tokens)
-    \item Add OfflineTransactionStorage, SyncManager, ConflictResolver components
-    \item Create corresponding use cases: ``Process Transaction While Offline'', ``Synchronize Offline Transactions''
-    \item Add integration tests for sync scenarios
+\textbf{Recommendations:}
+\begin{itemize}[leftmargin=*]
+    \item Design local transaction storage on vending machine devices with capacity planning for expected downtime duration
+    \item Define synchronization protocol with conflict resolution strategy for offline-to-online reconciliation
+    \item Architect offline authentication approach (cached credentials, device tokens, or anonymous transactions)
+    \item Create new use cases: UC-Offline-Transaction-Storage, UC-Sync-Upon-Reconnection, UC-Anonymous-Cash-Fallback
+    \item Add OfflineRegister, SyncEngine, and OfflineAuthenticator components to architecture
+    \item Implement comprehensive integration tests for offline scenarios and network restoration
 \end{itemize}
 
-\textbf{Timeline:} Must be addressed before production deployment in real-world environments.
+\subsection{Risk 2: Component Responsibility Ambiguity}
 
-\subsection{Risk 2: Component Responsibilities Lack Precision}
+\textbf{Risk Level:} HIGH
 
-\textbf{Severity:} \textbf{HIGH}
+\textbf{Impact:} Vague component definitions lead to inconsistent code placement, architectural erosion, maintenance difficulty, and increased defect rates as developers interpret responsibilities differently.
 
-\textbf{Description:} Vague component definitions (``Service handles business logic'', ``DAO manages data access'') lead to inconsistent code placement and architectural erosion.
+\textbf{Root Cause:} Architectural documentation lacks precision in component responsibility definitions (50+ components with vague or undefined responsibilities).
 
-\textbf{Evidence:}
-\begin{itemize}
-    \item AdminService handles machine management, analytics, task assignment, and worker management—potentially 2000+ lines in single class
-    \item No clear boundary between Database, DBManager, and DAO components
-    \item No specification of which validations occur in Controller, Service, or Domain layers
+\textbf{Recommendations:}
+\begin{itemize}[leftmargin=*]
+    \item Document precise, single responsibilities for each major component: what it does, what it doesn't do, and how it interacts with neighbors
+    \item Clarify database layer: DBManager handles connection pooling and lifecycle; DAO interfaces define query contracts; DAO implementations execute queries; services orchestrate business logic
+    \item If services layer encompasses too many domains, split into bounded domain services: CustomerService (purchases, balance), AdminService (configuration, analytics), WorkerService (maintenance tasks)
+    \item Specify whether User role entities contain behavior or purely represent data attributes
+    \item Update architectural diagrams with refined component descriptions and interaction patterns
+    \item Establish architectural review process to prevent responsibility drift during implementation
 \end{itemize}
 
-\textbf{Architectural Fix:}
-\begin{itemize}
-    \item Document specific, single responsibility for each component
-    \item Split AdminService into MachineManagementService, AnalyticsService, TaskAssignmentService
-    \item Clarify: DBManager (connection pooling), DAO (query contracts/execution), Database (schema/persistence)
-    \item Define validation strategy: Controller (format validation), Service (business rule validation), Domain (invariant enforcement)
-    \item Create component responsibility matrix in architecture documentation
+\subsection{Risk 3: Insufficient Test Coverage for Edge Cases}
+
+\textbf{Risk Level:} HIGH
+
+\textbf{Impact:} Navigation flows, complete user journeys, performance limits, security vulnerabilities, and error recovery scenarios remain unvalidated, increasing production defect risk.
+
+\textbf{Root Cause:} Test focus on individual use case validation rather than holistic system behavior (15 use cases with missing coverage, 5 with partial coverage).
+
+\textbf{Recommendations:}
+\begin{itemize}[leftmargin=*]
+    \item Add navigation integration tests covering multi-screen workflows for each user role (UC-25, UC-26, UC-27)
+    \item Implement end-to-end tests spanning multiple use cases in sequence (register → recharge wallet → scan QR → purchase → view history)
+    \item Add performance tests establishing scalability baselines: concurrent user load, transaction throughput, response time percentiles
+    \item Introduce security tests for common vulnerabilities: SQL injection, authentication bypass, authorization boundary violations, input validation
+    \item Implement tests for alternative flows currently missing: purchase cancellation, payment failure recovery, connection timeout handling
+    \item Add resilience tests for network interruption scenarios and offline operation edge cases
 \end{itemize}
 
-\subsection{Risk 3: Remote Maintenance Unimplementable Without Hardware Abstraction}
+\subsection{Risk 4: Vague Non-Functional Requirements}
 
-\textbf{Severity:} \textbf{HIGH}
+\textbf{Risk Level:} MEDIUM
 
-\textbf{Description:} UC-35 promises remote maintenance (unlocking jammed products) but lacks hardware integration components to send commands to physical devices.
+\textbf{Impact:} Lack of specific performance targets, scalability constraints, or security standards leads to architectural assumptions that may not meet business needs, requiring rework when validated against real requirements.
 
-\textbf{Current Gap:} Backend tracks maintenance tasks but cannot control vending machine hardware.
+\textbf{Root Cause:} Requirements REQ-6, REQ-7, REQ-8 specify goals without measurable criteria or implementation guidance.
 
-\textbf{Architectural Fix (Option A - Implement):}
-\begin{itemize}
-    \item Add IoT Gateway/Device Adapter component
-    \item Define command protocol (MQTT, HTTP, or proprietary)
-    \item Implement command queue for asynchronous delivery
-    \item Create mock device implementations for testing
-    \item Add RemoteMaintenanceController, DeviceCommandService, DeviceGateway components
+\textbf{Recommendations:}
+\begin{itemize}[leftmargin=*]
+    \item Define quantifiable performance targets: maximum response time for purchase transactions, concurrent user capacity, transaction throughput
+    \item Specify scalability requirements: expected user growth rate, peak load scenarios, geographic distribution
+    \item Document security standards compliance: data encryption, payment processing compliance (PCI-DSS), authentication standards
+    \item Detail infrastructure requirements (REQ-23): server specifications, network bandwidth, redundancy and failover strategies
+    \item Define what "improved user experience" means: task completion time reduction targets, error rate reduction goals, interface responsiveness metrics
+    \item Establish acceptance criteria for each non-functional requirement enabling architectural validation
 \end{itemize}
 
-\textbf{Architectural Fix (Option B - Scope Reduction):}
-\begin{itemize}
-    \item Mark UC-35 as future work
-    \item Remove from current release
-    \item Document as ``Phase 2: Remote Maintenance''
+\subsection{Risk 5: Incomplete Remote Maintenance Architecture}
+
+\textbf{Risk Level:} MEDIUM
+
+\textbf{Impact:} Remote maintenance capabilities (unlocking jammed products, firmware updates) are partially implemented—backend services exist for task tracking but hardware integration is absent, making promised functionality undeliverable.
+
+\textbf{Root Cause:} Use case UC-35 and requirement REQ-36 specify remote maintenance but no hardware abstraction layer or device gateway exists in the architecture.
+
+\textbf{Recommendations:}
+\begin{itemize}[leftmargin=*]
+    \item Design device gateway or IoT adapter component bridging software and hardware
+    \item Specify communication protocol with vending machine firmware (MQTT, HTTP, proprietary)
+    \item Define command-response model for remote operations with error handling and command timeout mechanisms
+    \item Create mock hardware interfaces for testing remote control scenarios without physical devices
+    \item Implement command queuing and retry logic for unreliable network conditions
+    \item Update use case UC-35 and requirement REQ-36 with concrete implementation scope or explicitly document limitations
 \end{itemize}
 
-\subsection{Risk 4: Navigation and UI Workflows Untested}
-
-\textbf{Severity:} \textbf{MEDIUM}
-
-\textbf{Description:} Use cases UC-25, UC-26, UC-28, UC-29 describe dashboard navigation and balance/history viewing, but no integration tests verify these workflows.
-
-\textbf{Risk:} Navigation bugs (broken links, incorrect role-based routing, missing data) surface only in UAT or production.
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Add Selenium/Cypress tests for multi-screen workflows per user role
-    \item Verify role-based access control (admin cannot access customer dashboard)
-    \item Test back navigation behavior
-    \item Validate data isolation (no cross-customer data leakage)
-    \item Target: 80\%+ coverage of navigation paths
-\end{itemize}
-
-\subsection{Risk 5: Registration Field Validation Incomplete}
-
-\textbf{Severity:} \textbf{MEDIUM}
-
-\textbf{Description:} REQ-28 requires field validation but no rules are specified. Current tests verify successful registration but not validation behavior.
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Define validation rules: email format, password complexity, required/optional fields, duplicate prevention
-    \item Specify which component validates (Controller format, Service business rules, Domain invariants)
-    \item Add unit tests for each validation rule
-    \item Add integration tests for validation error responses
-\end{itemize}
-
-%=============================================================================
 \section{Positive Practices to Maintain}
-%=============================================================================
 
-\subsection{Comprehensive Traceability}
+\subsection{Comprehensive Traceability Infrastructure}
 
-The automated traceability extraction creates a complete requirements-to-tests chain, enabling impact analysis and regression prevention. This discipline should be maintained as the system evolves—every new requirement should trace through use case, components, and tests.
+The automated traceability extraction creates a complete mapping from requirements through use cases to architecture to tests, enabling:
+
+\begin{itemize}[leftmargin=*]
+    \item Impact analysis: when requirements change, affected use cases, components, and tests are immediately identifiable
+    \item Coverage verification: ensures every requirement has corresponding design and validation
+    \item Regression prevention: tests linked to requirements prevent unintended behavior changes
+    \item Completeness validation: orphaned artifacts are automatically detected
+\end{itemize}
+
+This traceability infrastructure should be maintained and evolved as the system grows, preventing requirements drift and design-implementation misalignment.
+
+\subsection{Error-First Testing Approach}
+
+Most use cases test not just success scenarios but multiple failure modes: invalid credentials, insufficient balance, out-of-stock items, connection errors, system failures. This error-first testing approach significantly increases system resilience by ensuring graceful degradation.
+
+Continue extending this practice to currently under-tested edge cases (navigation, offline scenarios, network disruptions).
 
 \subsection{Layered Architecture Discipline}
 
-Clean layer separation without shortcuts provides technology independence and testability. Continue enforcing this discipline in code reviews.
+The architecture maintains clean layer separation without shortcuts or layer-skipping, providing technology independence, testability, and understandability. This discipline should be enforced as new features are added through architectural review processes.
 
-\subsection{Error-First Testing}
-
-Testing alternative flows and error scenarios alongside happy paths increases resilience. Extend this practice to newly added features.
-
-\subsection{Strategic Pattern Application}
-
-Patterns solve specific problems rather than being applied universally. Maintain this pragmatic approach as the codebase grows.
-
-%=============================================================================
 \section{Conclusion}
-%=============================================================================
 
-The JavaBrew platform demonstrates architectural maturity with disciplined layering, comprehensive traceability, and effective pattern application. The 83.3\% requirements coverage and extensive test suite provide a solid foundation.
+The JavaBrew architectural blueprint demonstrates solid fundamentals: systematic traceability, layered structure, and strategic pattern application. The 66.7\% requirements coverage and 63 identified tests indicate substantial development effort.
 
-However, three critical gaps threaten production deployment:
+However, three critical gaps threaten production viability:
 
 \begin{enumerate}
-    \item \textbf{Offline Operation:} Architecturally unsupported despite explicit requirements (REQ-20, REQ-21), creating complete service unavailability during network outages.
-    \item \textbf{Component Clarity:} Vague responsibility definitions risk architectural erosion; service classes require splitting and DAO/database component roles need clarification.
-    \item \textbf{Navigation Testing:} Dashboard workflows and UI navigation lack integration tests, risking user-facing bugs in production.
+    \item \textbf{Offline operation} is architecturally unsupported despite explicit requirements, creating a single point of failure on network connectivity
+    \item \textbf{Component responsibilities} lack precision, risking architectural erosion and inconsistent implementation
+    \item \textbf{Test coverage} is incomplete for 57.1\% of use cases, leaving edge cases and navigation flows unvalidated
 \end{enumerate}
 
-\textbf{Before Production Deployment:}
-\begin{itemize}
-    \item Design offline operation architecture with local transaction storage and sync protocol
-    \item Refine component responsibilities with specific boundaries
-    \item Add navigation and end-to-end integration tests
-    \item Implement or scope-reduce remote maintenance (UC-35)
+\textbf{Recommended Actions Before Production Deployment:}
+
+\begin{itemize}[leftmargin=*]
+    \item Design and prototype offline operation architecture addressing REQ-19, REQ-20, REQ-21, REQ-22
+    \item Refine component responsibility definitions and enforce through architectural review
+    \item Add integration tests for navigation flows (UC-25, UC-26, UC-27) and end-to-end user journeys
+    \item Implement or scope-reduce remote maintenance capabilities with hardware integration
+    \item Clarify vague non-functional requirements with measurable acceptance criteria
 \end{itemize}
 
-\textbf{For Continuous Quality:}
-\begin{itemize}
-    \item Add security and performance testing
-    \item Implement field validation for registration (REQ-28)
-    \item Remove or clearly mark orphaned use cases (UC-8, UC-33)
-    \item Establish scalability metrics and testing for REQ-8
-\end{itemize}
-
-With these improvements, the architecture will support robust, scalable vending machine operations across diverse deployment environments.
+This architecture provides a solid foundation suitable for initial deployment in controlled environments with reliable connectivity. Addressing the identified gaps will elevate the design to production-grade robustness for diverse real-world deployment scenarios.
 
 \end{document}
-```

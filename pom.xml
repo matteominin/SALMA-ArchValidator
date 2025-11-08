@@ -102,6 +102,13 @@
         <version>2.10.1</version>
     </dependency>
 
+    <!-- JSON library for parsing -->
+    <dependency>
+        <groupId>org.json</groupId>
+        <artifactId>json</artifactId>
+        <version>20231013</version>
+    </dependency>
+
     <!-- Apache Commons Math for vector operations and clustering -->
     <dependency>
         <groupId>org.apache.commons</groupId>
