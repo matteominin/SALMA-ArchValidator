@@ -2,6 +2,7 @@ package com.matteominin.pdf_extractor.controller;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
@@ -40,8 +41,17 @@ public class PdfReport {
         String uc_to_test = request.get("uc_to_test") != null ? request.get("uc_to_test").toString() : "";
         String treaceabilityMap = request.get("map") != null ? request.get("map").toString() : "";
 
+        // Create report folder
+        Path reportDir = Files.createDirectories(Paths.get("report", String.valueOf(System.currentTimeMillis())));
+        // Save inputs
+        Files.writeString(reportDir.resolve("extracted_data.json"), extractedData);
+        Files.writeString(reportDir.resolve("req_to_uc.json"), req_to_uc);
+        Files.writeString(reportDir.resolve("uc_to_arc.json"), uc_to_arc);
+        Files.writeString(reportDir.resolve("uc_to_test.json"), uc_to_test);
+        Files.writeString(reportDir.resolve("traceability_map.json"), treaceabilityMap);
+
         // Read the sample LaTeX template
-        String sampleReport = Files.readString(Paths.get("report/architectural_validation_report.tex"));
+        String sampleReport = Files.readString(Paths.get("report/architectural_validation_report copy.tex"));
 
         String prompt = String.format("You are an expert software architect generating comprehensive architectural validation reports. You analyze traceability data from software projects and produce professional LaTeX validation reports following a specific template structure.\n" + //
                         "\n" + //
@@ -96,16 +106,67 @@ public class PdfReport {
                         "\n" + //
                         "## REPORT REQUIREMENTS\n" + //
                         "\n" + //
-                        "1. **Structure**: Follow the example LaTeX template structure exactly\n" + //
-                        "2. **Analysis Focus**:\n" + //
-                        "   - Identify and analyze UNSUPPORTED requirements (from req_to_uc)\n" + //
-                        "   - Highlight use cases not covered by architecture (from uc_to_arc)\n" + //
-                        "   - Detail test coverage gaps (Complete/Partial/Missing from uc_to_test)\n" + //
-                        "   - List and analyze orphaned artifacts (from map.orphans)\n" + //
-                        "3. **Strengths**: Mention well-traced requirements and comprehensive coverage areas\n" + //
-                        "4. **Recommendations**: Provide actionable insights to address gaps\n" + //
-                        "5. **Length**: Keep the report compact (7-12 pages)\n" + //
-                        "6. **Format**: Output ONLY valid LaTeX code with NO comments, markdown formatting, or code blocks\n" + //
+                        "### Document Structure (Follow this EXACT order):\n" + //
+                        "1. **Executive Summary** (Section 1)\n" + //
+                        "   - Assessment overview with metrics summary table\n" + //
+                        "   - Visual graphs using pgfplots/tikz: Coverage bar chart, Test distribution chart, Risk distribution chart\n" + //
+                        "   - Critical findings (NO specific REQ/UC/TEST references - describe issues generically)\n" + //
+                        "   - Architectural strengths\n" + //
+                        "\n" + //
+                        "2. **Project Inventory** (Section 2) - MUST COME BEFORE ANY ANALYSIS\n" + //
+                        "   - 2.1 Requirements Inventory: Complete longtable with ALL requirements (REQ-1 to REQ-N)\n" + //
+                        "   - 2.2 Use Cases Inventory: Complete longtable with ALL use cases (UC-1 to UC-N)\n" + //
+                        "   - 2.3 Test Suite Inventory: Complete longtable with ALL tests (T-1 to T-N)\n" + //
+                        "   - ALL tables MUST use alternating row colors: \\rowcolors{2}{white}{tablerowgray}\n" + //
+                        "   - ALL table headers MUST use: \\rowcolor{white}\n" + //
+                        "   - Each row MUST have a \\label{req:N}, \\label{uc:N}, or \\label{test:N}\n" + //
+                        "\n" + //
+                        "3. **Requirements Coverage Analysis** (Section 3)\n" + //
+                        "   - Offline operation gaps, vague requirements, quality issues\n" + //
+                        "   - Reference requirements using \\hyperref[req:N]{REQ-N}\n" + //
+                        "\n" + //
+                        "4. **Use Case Analysis** (Section 4)\n" + //
+                        "   - Test coverage gaps, well-covered use cases\n" + //
+                        "   - Reference use cases using \\hyperref[uc:N]{UC-N}\n" + //
+                        "\n" + //
+                        "5. **Architectural Quality Assessment** (Section 5)\n" + //
+                        "   - Layered architecture, design patterns, domain model\n" + //
+                        "\n" + //
+                        "6. **Test Strategy Assessment** (Section 6)\n" + //
+                        "   - Infrastructure quality, strengths, gaps\n" + //
+                        "   - Reference tests using \\hyperref[test:N]{T-N}\n" + //
+                        "\n" + //
+                        "7. **Critical Risks and Recommendations** (Section 7)\n" + //
+                        "   - Risk summary table with \\hyperref links to requirements/use cases\n" + //
+                        "   - Detailed risk descriptions with recommendations\n" + //
+                        "   - Action items table with priorities and timelines\n" + //
+                        "\n" + //
+                        "8. **Conclusion** (Section 8)\n" + //
+                        "   - Overall assessment, recommended actions, final assessment\n" + //
+                        "\n" + //
+                        "### Critical LaTeX Requirements:\n" + //
+                        "- Use \\usepackage[table]{xcolor} and define \\definecolor{tablerowgray}{RGB}{245,245,245}\n" + //
+                        "- Use \\usepackage{pgfplots} and \\usepackage{tikz} for graphs\n" + //
+                        "- ALL inventory tables MUST use longtable with alternating colors\n" + //
+                        "- ALL items MUST be labeled before being referenced: \\label{req:1}REQ-1, \\label{uc:1}UC-1, \\label{test:1}T-1\n" + //
+                        "- Use \\hyperref[label]{text} for ALL cross-references to requirements, use cases, and tests\n" + //
+                        "- NEVER reference a REQ/UC/TEST ID before its table is defined\n" + //
+                        "- Include graphs in Executive Summary: bar charts for coverage, test distribution\n" + //
+                        "\n" + //
+                        "### Analysis Requirements:\n" + //
+                        "- Identify and analyze UNSUPPORTED requirements (from req_to_uc)\n" + //
+                        "- Highlight use cases not covered by architecture (from uc_to_arc)\n" + //
+                        "- Detail test coverage gaps (Complete/Partial/Missing from uc_to_test)\n" + //
+                        "- List and analyze orphaned artifacts (from map.orphans)\n" + //
+                        "- Identify vague or ambiguous requirements needing clarification\n" + //
+                        "- Highlight architectural strengths and well-covered areas\n" + //
+                        "- Provide actionable, prioritized recommendations\n" + //
+                        "\n" + //
+                        "### Output Format:\n" + //
+                        "- Output ONLY valid LaTeX code\n" + //
+                        "- NO comments, markdown formatting, or code blocks\n" + //
+                        "- Start with \\documentclass and end with \\end{document}\n" + //
+                        "- Keep report length 10-15 pages when compiled\n" + //
                         "\n" + //
                         "Generate the complete LaTeX document now:\n",
                         extractedData, req_to_uc, uc_to_arc, uc_to_test, treaceabilityMap, sampleReport);
@@ -125,11 +186,11 @@ public class PdfReport {
         response = cleanLatexResponse(response);
 
         // save response to a .tex file for debugging
-        Files.writeString(Paths.get("report/generated_report.tex"), response);
+        Path texPath = Files.writeString(reportDir.resolve("report.tex"), response);
 
         String pdfPath;
         try {
-            pdfPath = latexService.compileLatex(response);
+            pdfPath = latexService.compileLatex(texPath);
         } catch (Exception e) {
             throw new RuntimeException("Failed to compile LaTeX report", e);
         }

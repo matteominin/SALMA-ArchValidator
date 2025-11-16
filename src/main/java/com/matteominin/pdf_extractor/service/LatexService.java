@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 public class LatexService {
 
     private static final int MAX_RETRY_ATTEMPTS = 1;
-    private static final String REPORTS_DIR = "/tmp/reports";
 
     private final ChatClient chatClient;
 
@@ -44,36 +40,35 @@ public class LatexService {
     /**
      * Converts a LaTeX report to PDF with automatic error fixing using LLM.
      *
-     * @param latexContent The LaTeX source code
+     * @param texPath The path to the .tex file
      * @return The path to the generated PDF file
      * @throws IOException If file operations fail
      * @throws RuntimeException If PDF compilation fails after all retry attempts
      */
-    public String compileLatex(String latexContent) throws IOException {
-        // Create reports directory if it doesn't exist
-        Path reportsPath = Paths.get(REPORTS_DIR);
+    public String compileLatex(Path texPath) throws IOException {
+        // Use the parent directory of the tex file as output directory
+        Path reportsPath = texPath.getParent();
         if (!Files.exists(reportsPath)) {
             Files.createDirectories(reportsPath);
         }
 
-        // Generate unique filename with timestamp
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-        String baseFileName = "swe_report_" + timestamp;
-        
-        latexContent = cleanLatexOutput(latexContent);
+        // Extract base filename from the tex file (without extension)
+        String texFileName = texPath.getFileName().toString();
+        String baseFileName = texFileName.substring(0, texFileName.lastIndexOf('.'));
+
+        String latexContent = cleanLatexOutput(Files.readString(texPath, StandardCharsets.UTF_8));
 
         for (int attempt = 1; attempt <= MAX_RETRY_ATTEMPTS; attempt++) {
             log.info("PDF compilation attempt {}/{}", attempt, MAX_RETRY_ATTEMPTS);
 
             try {
-                // Save LaTeX content to file
-                Path texFilePath = reportsPath.resolve(baseFileName + ".tex");
-                Files.writeString(texFilePath, latexContent, StandardCharsets.UTF_8);
+                // Save cleaned content back to tex file
+                Files.writeString(texPath, latexContent, StandardCharsets.UTF_8);
 
                 // Try to compile PDF
                 CompilationResult result = null;
                 for (int i = 0; i < 3; i++) {
-                    result = compilePdf(texFilePath);
+                    result = compilePdf(texPath);
                 }
 
                 if (result != null && result.success) {
@@ -82,7 +77,7 @@ public class LatexService {
 
                     Path pdfPath = reportsPath.resolve(baseFileName + ".pdf");
                     File reportFile = pdfPath.toFile();
-                    
+
                     log.info("PDF generated successfully at: {}", pdfPath.toAbsolutePath());
                     return reportFile.getAbsolutePath();
                 } else {

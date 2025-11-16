@@ -23,6 +23,7 @@ public class Feature {
     private double confidence;
     private String source_title;
     private String section_text;
+    private List<String> checklist;
     private String filePath;
     private List<Double> embedding;
     private Date createdAt;
