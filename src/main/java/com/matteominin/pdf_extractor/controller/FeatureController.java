@@ -104,20 +104,122 @@ public class FeatureController {
     }
 
     @PostMapping("/embed-batch")
-    public ResponseEntity<Map<String, Object>> embedBatch(@RequestBody Map<String, List<List<Feature>>> body) {
-        List<List<Feature>> features = body.get("features");
+    public ResponseEntity<Map<String, Object>> embedBatch(@RequestBody Map<String, Object> body) {
         Map<String, Object> response = new HashMap<>();
 
         try {
+            logger.info("Received embed-batch request with body keys: {}", body.keySet());
+
+            // Safely convert the nested features list
+            Object featuresObj = body.get("features");
+            List<List<Feature>> features = new ArrayList<>();
+
+            if (featuresObj == null) {
+                logger.warn("Features object is null in embed-batch request");
+                response.put("error", "Features list cannot be null");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            logger.debug("Features object type: {}", featuresObj.getClass().getName());
+
+            if (featuresObj instanceof List) {
+                @SuppressWarnings("unchecked")
+                List<Object> outerList = (List<Object>) featuresObj;
+                logger.info("Processing features batch with {} groups", outerList.size());
+
+                for (int i = 0; i < outerList.size(); i++) {
+                    Object innerObj = outerList.get(i);
+                    if (innerObj instanceof List) {
+                        @SuppressWarnings("unchecked")
+                        List<Object> innerList = (List<Object>) innerObj;
+                        logger.debug("Group {} contains {} elements", i, innerList.size());
+
+                        // Check if we have triple nesting [[[Feature]]] or double nesting [[Feature]]
+                        if (!innerList.isEmpty() && innerList.get(0) instanceof List) {
+                            // Triple nesting - flatten one level
+                            logger.debug("Detected triple nesting at group {}, flattening...", i);
+                            for (int j = 0; j < innerList.size(); j++) {
+                                Object deepObj = innerList.get(j);
+                                if (deepObj instanceof List) {
+                                    @SuppressWarnings("unchecked")
+                                    List<Object> deepList = (List<Object>) deepObj;
+                                    List<Feature> featureGroup = new ArrayList<>();
+
+                                    for (int k = 0; k < deepList.size(); k++) {
+                                        Object featureObj = deepList.get(k);
+                                        if (featureObj instanceof Map) {
+                                            @SuppressWarnings("unchecked")
+                                            Map<String, Object> featureMap = (Map<String, Object>) featureObj;
+                                            try {
+                                                Feature feature = objectMapper.convertValue(featureMap, Feature.class);
+                                                featureGroup.add(feature);
+                                            } catch (Exception e) {
+                                                logger.error("Failed to convert feature at index [{}][{}][{}]: {}", i, j, k, e.getMessage());
+                                                throw e;
+                                            }
+                                        } else {
+                                            logger.warn("Feature element [{}][{}][{}] is not a Map, it's a {}", i, j, k,
+                                                       featureObj != null ? featureObj.getClass().getName() : "null");
+                                        }
+                                    }
+                                    if (!featureGroup.isEmpty()) {
+                                        features.add(featureGroup);
+                                        logger.debug("Added group from [{}][{}] with {} features", i, j, featureGroup.size());
+                                    }
+                                }
+                            }
+                        } else {
+                            // Double nesting (normal case)
+                            List<Feature> featureGroup = new ArrayList<>();
+                            for (int j = 0; j < innerList.size(); j++) {
+                                Object featureObj = innerList.get(j);
+                                if (featureObj instanceof Map) {
+                                    @SuppressWarnings("unchecked")
+                                    Map<String, Object> featureMap = (Map<String, Object>) featureObj;
+                                    try {
+                                        Feature feature = objectMapper.convertValue(featureMap, Feature.class);
+                                        featureGroup.add(feature);
+                                    } catch (Exception e) {
+                                        logger.error("Failed to convert feature at index [{}][{}]: {}", i, j, e.getMessage());
+                                        throw e;
+                                    }
+                                } else {
+                                    logger.warn("Feature element [{}][{}] is not a Map, it's a {}", i, j,
+                                               featureObj != null ? featureObj.getClass().getName() : "null");
+                                }
+                            }
+                            if (!featureGroup.isEmpty()) {
+                                features.add(featureGroup);
+                                logger.debug("Added group {} with {} features", i, featureGroup.size());
+                            }
+                        }
+                    } else {
+                        logger.warn("Batch element {} is not a List, it's a {}", i,
+                                   innerObj != null ? innerObj.getClass().getName() : "null");
+                    }
+                }
+            } else {
+                logger.error("Features object is not a List, it's a {}", featuresObj.getClass().getName());
+            }
+
+            if (features.isEmpty()) {
+                logger.warn("No feature groups were extracted from the request");
+                response.put("error", "Features list cannot be null or empty");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            logger.info("Successfully parsed {} feature groups with total {} features",
+                       features.size(), features.stream().mapToInt(List::size).sum());
+
             List<Feature> embeddedFeatures = featureService.addBatchFeatures(features);
             response.put("features", embeddedFeatures);
             return ResponseEntity.ok(response);
-            
+
         } catch (IllegalArgumentException e) {
             logger.warn("Invalid batch data: {}", e.getMessage());
             response.put("error", e.getMessage());
             return ResponseEntity.badRequest().body(response);
-            
+
         } catch (Exception e) {
             logger.error("Error in batch embedding: {}", e.getMessage(), e);
             response.put("error", "Batch embedding failed: " + e.getMessage());
@@ -176,32 +278,99 @@ public class FeatureController {
     @PostMapping("/validate-features")
     public ResponseEntity<?> validateFeatures(
             @RequestBody Map<String, Object> body) {
-        
+
         try {
-            Double threshold = body.get("threshold") != null ? 
+            logger.info("Received validate-features request with body keys: {}", body.keySet());
+
+            // Log a sample of the structure for debugging
+            try {
+                String sample = objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(body).substring(0, Math.min(500, objectMapper.writeValueAsString(body).length()));
+                logger.debug("Request body sample (first 500 chars): {}", sample);
+            } catch (Exception e) {
+                logger.debug("Could not serialize body sample: {}", e.getMessage());
+            }
+
+            Double threshold = body.get("threshold") != null ?
                               ((Number) body.get("threshold")).doubleValue() : 0.85;
-            
+
+            logger.debug("Threshold set to: {}", threshold);
+
             // Safely convert the features list
             Object featuresObj = body.get("features");
             List<Feature> providedFeatures = new ArrayList<>();
-            
+
+            if (featuresObj == null) {
+                logger.warn("Features object is null in request body");
+                Map<String, String> error = new HashMap<>();
+                error.put("error", "Features list cannot be null");
+                return ResponseEntity.badRequest().body(error);
+            }
+
+            logger.debug("Features object type: {}", featuresObj.getClass().getName());
+
             if (featuresObj instanceof List) {
                 @SuppressWarnings("unchecked")
                 List<Object> featuresList = (List<Object>) featuresObj;
-                
-                for (Object featureObj : featuresList) {
-                    if (featureObj instanceof Map) {
+                logger.info("Processing features list with {} top-level elements", featuresList.size());
+
+                int flatCount = 0;
+                int nestedCount = 0;
+
+                for (int i = 0; i < featuresList.size(); i++) {
+                    Object featureObj = featuresList.get(i);
+                    // Handle both flat arrays and nested arrays (Feature[][] from workflow)
+                    if (featureObj instanceof List) {
+                        // This is a nested array - flatten it
+                        nestedCount++;
+                        @SuppressWarnings("unchecked")
+                        List<Object> nestedList = (List<Object>) featureObj;
+                        logger.debug("Element {} is a nested list with {} items", i, nestedList.size());
+
+                        for (int j = 0; j < nestedList.size(); j++) {
+                            Object nestedFeatureObj = nestedList.get(j);
+                            if (nestedFeatureObj instanceof Map) {
+                                @SuppressWarnings("unchecked")
+                                Map<String, Object> featureMap = (Map<String, Object>) nestedFeatureObj;
+                                try {
+                                    Feature feature = objectMapper.convertValue(featureMap, Feature.class);
+                                    providedFeatures.add(feature);
+                                } catch (Exception e) {
+                                    logger.error("Failed to convert nested feature at index [{}][{}]: {}", i, j, e.getMessage());
+                                    throw e;
+                                }
+                            } else {
+                                logger.warn("Nested element [{}][{}] is not a Map, it's a {}", i, j,
+                                           nestedFeatureObj != null ? nestedFeatureObj.getClass().getName() : "null");
+                            }
+                        }
+                    } else if (featureObj instanceof Map) {
+                        flatCount++;
                         @SuppressWarnings("unchecked")
                         Map<String, Object> featureMap = (Map<String, Object>) featureObj;
-                        
-                        // Convert the map to a Feature object
-                        Feature feature = objectMapper.convertValue(featureMap, Feature.class);
-                        providedFeatures.add(feature);
+
+                        try {
+                            // Convert the map to a Feature object
+                            Feature feature = objectMapper.convertValue(featureMap, Feature.class);
+                            providedFeatures.add(feature);
+                        } catch (Exception e) {
+                            logger.error("Failed to convert flat feature at index {}: {}", i, e.getMessage());
+                            throw e;
+                        }
+                    } else {
+                        logger.warn("Element {} is neither List nor Map, it's a {}", i,
+                                   featureObj != null ? featureObj.getClass().getName() : "null");
                     }
                 }
+
+                logger.info("Processed {} flat features and {} nested arrays, total features extracted: {}",
+                           flatCount, nestedCount, providedFeatures.size());
+            } else {
+                logger.error("Features object is not a List, it's a {}", featuresObj.getClass().getName());
             }
-            
+
             if (providedFeatures.isEmpty()) {
+                logger.warn("No features were extracted from the request");
                 Map<String, String> error = new HashMap<>();
                 error.put("error", "Features list cannot be null or empty");
                 return ResponseEntity.badRequest().body(error);
@@ -248,8 +417,44 @@ public class FeatureController {
             response.put("providedFeatures", providedFeatures.size());
             response.put("coverage", coverageResult);
             response.put("reportSaved", true);
-            
+
+            // Transform coveredFeatures to workflow-compatible format
+            List<Map<String, Object>> workflowCompatibleFeatures = new ArrayList<>();
+            if (coverageResult.getCoveredFeatures() != null) {
+                for (CoveredFeature coveredFeature : coverageResult.getCoveredFeatures()) {
+                    Map<String, Object> featureMap = new HashMap<>();
+
+                    // Get the matched feature details
+                    if (coveredFeature.getMatchedFeature() != null) {
+                        featureMap.put("feature", coveredFeature.getMatchedFeature().getFeature());
+                        featureMap.put("description", coveredFeature.getMatchedFeature().getDescription());
+                        featureMap.put("section_text", coveredFeature.getMatchedFeature().getSectionText());
+                    }
+
+                    // Get the reference feature (summary feature) for matchedWith
+                    String matchedWith = "";
+                    if (coveredFeature.getReferenceFeatureId() != null) {
+                        // Find the summary feature by ID to get its checklist
+                        var refFeature = summaryFeatures.stream()
+                            .filter(sf -> coveredFeature.getReferenceFeatureId().equals(sf.getId()))
+                            .findFirst();
+
+                        if (refFeature.isPresent() && refFeature.get().getChecklist() != null) {
+                            // Join checklist items with comma
+                            matchedWith = String.join(", ", refFeature.get().getChecklist());
+                        }
+                    }
+                    featureMap.put("matchedWith", matchedWith);
+
+                    workflowCompatibleFeatures.add(featureMap);
+                }
+            }
+
+            // Add coveredFeatures at root level for workflow compatibility
+            response.put("coveredFeatures", workflowCompatibleFeatures);
+
             logger.info("Summary coverage analysis completed and report saved");
+            logger.info("Returning {} covered features for downstream processing", workflowCompatibleFeatures.size());
             return ResponseEntity.ok(response);
             
         } catch (Exception e) {

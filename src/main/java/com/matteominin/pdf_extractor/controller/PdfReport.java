@@ -40,6 +40,7 @@ public class PdfReport {
         String uc_to_arc = request.get("uc_to_arc") != null ? request.get("uc_to_arc").toString() : "";
         String uc_to_test = request.get("uc_to_test") != null ? request.get("uc_to_test").toString() : "";
         String treaceabilityMap = request.get("map") != null ? request.get("map").toString() : "";
+        String validationReport = request.get("validation_report") != null ? request.get("validation_report").toString() : "";
 
         // Create report folder
         Path reportDir = Files.createDirectories(Paths.get("report", String.valueOf(System.currentTimeMillis())));
@@ -49,6 +50,7 @@ public class PdfReport {
         Files.writeString(reportDir.resolve("uc_to_arc.json"), uc_to_arc);
         Files.writeString(reportDir.resolve("uc_to_test.json"), uc_to_test);
         Files.writeString(reportDir.resolve("traceability_map.json"), treaceabilityMap);
+        Files.writeString(reportDir.resolve("validation_report.json"), validationReport);
 
         // Read the sample LaTeX template
         String sampleReport = Files.readString(Paths.get("report/architectural_validation_report copy.tex"));
@@ -97,6 +99,19 @@ public class PdfReport {
                         "TRACEABILITY MAP:\n" + //
                         "%s\n" + //
                         "\n" + //
+                        "### 3. PDF FEATURE VALIDATION REPORT\n" + //
+                        "This contains the validation results from analyzing the PDF documentation against expected features:\n" + //
+                        "- success: whether validation passed the threshold\n" + //
+                        "- threshold: minimum coverage percentage required\n" + //
+                        "- totalSummaryFeatures: total expected features\n" + //
+                        "- providedFeatures: features found in the PDF\n" + //
+                        "- coverage.coveragePercentage: percentage of features covered\n" + //
+                        "- coverage.coveredFeatures[]: features found with similarity scores and evidence\n" + //
+                        "- coverage.uncoveredFeatures[]: features not found in the PDF\n" + //
+                        "\n" + //
+                        "VALIDATION REPORT:\n" + //
+                        "%s\n" + //
+                        "\n" + //
                         "## YOUR TASK\n" + //
                         "\n" + //
                         "Generate a complete, production-ready LaTeX architectural validation report following the structure and style of this example:\n" + //
@@ -136,13 +151,21 @@ public class PdfReport {
                         "   - Infrastructure quality, strengths, gaps\n" + //
                         "   - Reference tests using \\hyperref[test:N]{T-N}\n" + //
                         "\n" + //
-                        "7. **Critical Risks and Recommendations** (Section 7)\n" + //
+                        "7. **PDF Documentation Validation** (Section 7)\n" + //
+                        "   - Documentation completeness metrics (coverage percentage, features found vs expected)\n" + //
+                        "   - Covered features table with evidence and similarity scores\n" + //
+                        "   - Uncovered/missing features table\n" + //
+                        "   - Documentation quality assessment and gaps\n" + //
+                        "   - Use longtable with alternating colors for feature tables\n" + //
+                        "\n" + //
+                        "8. **Critical Risks and Recommendations** (Section 8)\n" + //
                         "   - Risk summary table with \\hyperref links to requirements/use cases\n" + //
                         "   - Detailed risk descriptions with recommendations\n" + //
                         "   - Action items table with priorities and timelines\n" + //
                         "\n" + //
-                        "8. **Conclusion** (Section 8)\n" + //
+                        "9. **Conclusion** (Section 9)\n" + //
                         "   - Overall assessment, recommended actions, final assessment\n" + //
+                        "   - Include assessment of documentation completeness from validation report\n" + //
                         "\n" + //
                         "### Critical LaTeX Requirements:\n" + //
                         "- Use \\usepackage[table]{xcolor} and define \\definecolor{tablerowgray}{RGB}{245,245,245}\n" + //
@@ -158,9 +181,14 @@ public class PdfReport {
                         "- Highlight use cases not covered by architecture (from uc_to_arc)\n" + //
                         "- Detail test coverage gaps (Complete/Partial/Missing from uc_to_test)\n" + //
                         "- List and analyze orphaned artifacts (from map.orphans)\n" + //
+                        "- Analyze PDF documentation validation results:\n" + //
+                        "  * Coverage percentage and threshold compliance\n" + //
+                        "  * Features properly documented with high similarity scores\n" + //
+                        "  * Missing or poorly documented features from uncoveredFeatures\n" + //
+                        "  * Documentation quality based on evidence and section text\n" + //
                         "- Identify vague or ambiguous requirements needing clarification\n" + //
                         "- Highlight architectural strengths and well-covered areas\n" + //
-                        "- Provide actionable, prioritized recommendations\n" + //
+                        "- Provide actionable, prioritized recommendations including documentation improvements\n" + //
                         "\n" + //
                         "### Output Format:\n" + //
                         "- Output ONLY valid LaTeX code\n" + //
@@ -169,7 +197,7 @@ public class PdfReport {
                         "- Keep report length 10-15 pages when compiled\n" + //
                         "\n" + //
                         "Generate the complete LaTeX document now:\n",
-                        extractedData, req_to_uc, uc_to_arc, uc_to_test, treaceabilityMap, sampleReport);
+                        extractedData, req_to_uc, uc_to_arc, uc_to_test, treaceabilityMap, validationReport, sampleReport);
 
         ChatResponse chatResponse = chatClient.prompt()
                 .system("You are an expert LaTeX document generator. Generate ONLY valid LaTeX code with NO markdown formatting or code blocks. Start directly with \\documentclass and end with \\end{document}.")
