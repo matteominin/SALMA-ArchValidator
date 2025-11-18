@@ -53,7 +53,7 @@ public class PdfReport {
         Files.writeString(reportDir.resolve("validation_report.json"), validationReport);
 
         // Read the sample LaTeX template
-        String sampleReport = Files.readString(Paths.get("report/architectural_validation_report copy.tex"));
+        String sampleReport = Files.readString(Paths.get("report/sample.tex"));
 
         String prompt = String.format("You are an expert software architect generating comprehensive architectural validation reports. You analyze traceability data from software projects and produce professional LaTeX validation reports following a specific template structure.\n" + //
                         "\n" + //
