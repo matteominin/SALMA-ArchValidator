@@ -8,41 +8,99 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{pgfplots}
 \usepackage{tikz}
 \usepackage[table]{xcolor}
+\usepackage{titlesec}
 \pgfplotsset{compat=1.18}
 
-% Define row colors for tables
-\definecolor{tablerowgray}{RGB}{245,245,245}
+% Make subsection titles larger
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries}{\thesubsection}{1em}{}
 
-\geometry{margin=1in}
+% Unifi official colors (based on brand identity)
+\definecolor{unifiblue}{RGB}{0,82,147}      % Blu Unifi - colore istituzionale
+\definecolor{unifigray}{RGB}{100,100,100}   % Grigio Unifi
+
+% Supporting colors
+\definecolor{primaryblue}{RGB}{41,128,185}
+\definecolor{successgreen}{RGB}{39,174,96}
+\definecolor{dangerred}{RGB}{192,57,43}
+\definecolor{warningyellow}{RGB}{243,156,18}
+\definecolor{infogray}{RGB}{127,140,141}
+\definecolor{lightgray}{RGB}{245,245,245}
+\definecolor{darkgray}{RGB}{52,73,94}
+
+% Table colors - Unifi blue style
+\definecolor{tableheader}{RGB}{0,82,147}    % Blu Unifi per header
+\definecolor{tablerow1}{RGB}{240,245,250}   % Blu chiarissimo
+\definecolor{tablerow2}{RGB}{255,255,255}   % Bianco
+
+% Increase vertical spacing in table rows
+\renewcommand{\arraystretch}{1.5}
+
+\geometry{margin=1in, top=1in, bottom=1in}
 \setlength{\headheight}{14pt}
 
-\definecolor{strengthgreen}{RGB}{46,125,50}
-\definecolor{warningorange}{RGB}{245,124,0}
-\definecolor{criticalred}{RGB}{198,40,40}
-\definecolor{infocolor}{RGB}{33, 33, 33}
+% Minimal tcolorbox styles - use sparingly
+\tcbset{
+    criticalbox/.style={
+        colback=dangerred!8,
+        colframe=dangerred,
+        fonttitle=\bfseries,
+        left=10pt,
+        right=10pt,
+        top=8pt,
+        bottom=8pt,
+        arc=0pt,
+        boxrule=2pt
+    },
+    infobox/.style={
+        colback=lightgray,
+        colframe=darkgray,
+        fonttitle=\bfseries,
+        left=10pt,
+        right=10pt,
+        top=8pt,
+        bottom=8pt,
+        arc=0pt,
+        boxrule=1pt
+    }
+}
 
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Architectural Validation Report}
-\lhead{JavaBrew Platform}
-\rfoot{Page \thepage}
+\rhead{\small\textcolor{darkgray}{Architectural Validation Report}}
+\lhead{\small\textcolor{darkgray}{JavaBrew Platform}}
+\rfoot{\small\textcolor{darkgray}{Page \thepage}}
 
-\title{\textbf{Architectural Blueprint Validation Report}\\
-\large JavaBrew Vending Machine Management Platform}
-\author{Automated Traceability Analysis}
-\date{\today}
+\title{
+\vspace{-2cm}
+\includegraphics[width=0.20\textwidth]{LOGO.pdf}\\[1.5cm]
+\textbf{\LARGE Architectural Blueprint Validation Report}\\[10pt]
+\large JavaBrew Vending Machine Management Platform\\[5pt]
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=primaryblue,
+    citecolor=primaryblue
+}
 
 \begin{document}
 
 \maketitle
 
 \begin{abstract}
-This report validates the architectural blueprint of the JavaBrew vending machine platform through automated traceability analysis. The assessment examines 62 requirements, 18 use cases, architectural components, and test coverage extracted via LLM-based document analysis. The report identifies critical gaps in requirement coverage, architectural clarity, and test completeness, providing actionable recommendations for improving system design quality.
+\noindent
+This report provides a comprehensive validation of the JavaBrew vending machine platform architecture through automated traceability analysis. The assessment examines \textbf{62 requirements}, \textbf{18 use cases}, architectural components, and \textbf{63 tests} extracted via LLM-based document analysis. The analysis identifies critical gaps in requirement coverage, architectural clarity, and test completeness, providing actionable recommendations for improving system design quality.
+
+\vspace{8pt}
+\noindent\textbf{Key Findings:} 95.2\% requirements coverage, 83.3\% use case coverage, 3 critical risks, 68.8\% alignment with best practices.
 \end{abstract}
 
 \tableofcontents
@@ -54,1128 +112,1297 @@ This report validates the architectural blueprint of the JavaBrew vending machin
 
 \subsection{Assessment Overview}
 
-This validation analyzes the architectural blueprint using automated traceability extraction from project documentation. The system demonstrates strong coverage in core transaction flows but exhibits critical gaps in resilience and operational edge cases.
+This validation analyzes the architectural blueprint through automated traceability extraction from project documentation. The system demonstrates \textbf{strong coverage in core transaction flows} but exhibits \textbf{critical gaps in resilience and operational edge cases}.
 
-\subsubsection{Coverage Metrics}
-
-Table~\ref{tab:metrics-summary} provides a high-level summary of key project metrics, while Figures~\ref{fig:coverage-metrics} and~\ref{fig:test-distribution} visualize the coverage distribution and test pyramid.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-\textbf{Metric Category} & \textbf{Total} & \textbf{Covered} & \textbf{Coverage} \\
-\midrule
-Requirements & 62 & 59 & 95.2\% \\
-Use Cases & 18 & 15 & 83.3\% \\
-Tests & 63 & 63 & 100\% \\
-Architecture Layers & 6 & 6 & 100\% \\
-Critical Risks & 5 & --- & 3 Critical, 2 High \\
-\bottomrule
-\end{tabular}
-\caption{Project Metrics Summary}
-\label{tab:metrics-summary}
-\end{table}
-
-Figure~\ref{fig:coverage-metrics} visualizes the overall coverage across requirements and use cases, while Figure~\ref{fig:test-distribution} shows the test pyramid distribution.
+\vspace{1cm}
 
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}
-\begin{axis}[
-    ybar,
-    width=0.9\textwidth,
-    height=6cm,
-    ylabel={Percentage (\%)},
-    symbolic x coords={Requirements, Use Cases},
-    xtick=data,
-    ymin=0, ymax=100,
-    bar width=60pt,
-    enlarge x limits=0.3,
-    legend style={at={(0.5,-0.15)}, anchor=north, legend columns=-1},
-    nodes near coords,
-    nodes near coords style={font=\small},
-    grid=major,
-    grid style={dashed,gray!30}
-]
-\addplot[fill=strengthgreen!70] coordinates {(Requirements,95.2) (Use Cases,83.3)};
-\addplot[fill=criticalred!70] coordinates {(Requirements,4.8) (Use Cases,16.7)};
-\legend{Covered, Gaps}
-\end{axis}
+
+% Requirements donut - 95%
+\begin{scope}[shift={(0,0)}]
+\fill[lightgray!50] (0,0) -- (90:1.5) arc (90:-270:1.5) -- cycle;
+\fill[successgreen!70] (0,0) -- (90:1.5) arc (90:90-342:1.5) -- cycle;
+\fill[white] (0,0) circle (1cm);
+\node at (0,0) {\Large\textbf{95\%}};
+\node at (0,-2.2) {\textbf{Requirements}};
+\node at (0,-2.7) {\small 59/62};
+\end{scope}
+
+% Use Cases donut - 83%
+\begin{scope}[shift={(4,0)}]
+\fill[lightgray!50] (0,0) -- (90:1.5) arc (90:-270:1.5) -- cycle;
+\fill[successgreen!70] (0,0) -- (90:1.5) arc (90:90-299:1.5) -- cycle;
+\fill[white] (0,0) circle (1cm);
+\node at (0,0) {\Large\textbf{83\%}};
+\node at (0,-2.2) {\textbf{Use Cases}};
+\node at (0,-2.7) {\small 15/18};
+\end{scope}
+
+% Tests donut - 100%
+\begin{scope}[shift={(8,0)}]
+\fill[successgreen!70] (0,0) -- (90:1.5) arc (90:-270:1.5) -- cycle;
+\fill[white] (0,0) circle (1cm);
+\node at (0,0) {\Large\textbf{100\%}};
+\node at (0,-2.2) {\textbf{Tests}};
+\node at (0,-2.7) {\small 63/63};
+\end{scope}
+
+% Architecture donut - 100%
+\begin{scope}[shift={(12,0)}]
+\fill[successgreen!70] (0,0) -- (90:1.5) arc (90:-270:1.5) -- cycle;
+\fill[white] (0,0) circle (1cm);
+\node at (0,0) {\Large\textbf{100\%}};
+\node at (0,-2.2) {\textbf{Architecture}};
+\node at (0,-2.7) {\small 6/6};
+\end{scope}
+
 \end{tikzpicture}
-\caption{Requirements and Use Case Coverage}
-\label{fig:coverage-metrics}
+\caption{Coverage Metrics}
 \end{figure}
 
+\vspace{1cm}
+
+% Critical Risks - Option C: Badge style
+\noindent\textbf{Critical Risks:}
+\tikz[baseline=(char.base)]{
+    \node[shape=rectangle, rounded corners=3pt, draw=dangerred, fill=dangerred!20,
+          inner sep=4pt, minimum height=18pt] (char) {\textbf{\textcolor{dangerred}{3 Critical}}};
+}
+\tikz[baseline=(char.base)]{
+    \node[shape=rectangle, rounded corners=3pt, draw=warningyellow, fill=warningyellow!20,
+          inner sep=4pt, minimum height=18pt] (char) {\textbf{\textcolor{warningyellow!80!black}{2 High Priority}}};
+}
+
+\vspace{0.5cm}
+
+\subsection{Critical Findings}
+
+\noindent\textbf{Critical Issues Requiring Immediate Attention:}
+
+\vspace{6pt}
+\begin{center}
+\begin{tabular}{@{}cp{0.85\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{4ex}\textbf{\#}} & \textcolor{white}{\textbf{Critical Issue}} \\[1ex]
+\rowcolor{tablerow1}
+1 & \textbf{Offline Operation Gap:} Three requirements for disconnected operation (local transaction tracking, offline-online synchronization, anonymous cash transactions) are completely unsupported by the architecture, creating a single point of failure on network connectivity. \\
+\rowcolor{tablerow2}
+2 & \textbf{Component Responsibility Ambiguity:} Multiple core components lack precise responsibility definitions, violating the Single Responsibility Principle and risking architectural erosion. \\
+\rowcolor{tablerow1}
+3 & \textbf{Remote Maintenance Unimplementable:} The remote maintenance use case lacks hardware abstraction components, making the promised remote control functionality unimplementable. \\
+\end{tabular}
+\end{center}
+
+\vspace{12pt}
+\noindent\textbf{Architectural Strengths:}
+
+\vspace{6pt}
+\begin{center}
+\begin{tabular}{@{}cp{0.85\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{4ex}\textbf{\#}} & \textcolor{white}{\textbf{Strength}} \\[1ex]
+\rowcolor{tablerow1}
+1 & \textbf{Automated Traceability:} Complete automated traceability from requirements through tests \\
+\rowcolor{tablerow2}
+2 & \textbf{Layered Architecture:} Well-defined layered architecture with proper separation of concerns \\
+\rowcolor{tablerow1}
+3 & \textbf{Design Patterns:} Effective design patterns (Builder, DAO, Mapper) applied consistently \\
+\rowcolor{tablerow2}
+4 & \textbf{Test Coverage:} Comprehensive test coverage for happy paths and common error scenarios \\
+\rowcolor{tablerow1}
+5 & \textbf{Dual Database Strategy:} Fast test feedback loops enabled by H2/PostgreSQL configuration \\
+\end{tabular}
+\end{center}
+
+\subsection{Report Quality Validation}
+
+This report was validated against 16 established software engineering documentation standards, achieving \textbf{68.8\% coherence} (11/16 criteria satisfied). The validation confirms the report provides reliable architectural assessment based on industry-standard analysis methods, increasing confidence in the identified gaps and recommendations.
+
+\newpage
+
+%=============================================================================
+\section{Functional Domain Analysis}
+%=============================================================================
+
+This section analyzes the architecture by functional domain, examining requirements, use cases, architecture, tests, and identifying criticalities for each area.
+
+%-----------------------------------------------------------------------------
+\subsection{Authentication \& Authorization}
+%-----------------------------------------------------------------------------
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Section Information}} & \textcolor{white}{\textbf{Coverage Status}} \\
+\rowcolor{unifiblue!5}
+\begin{minipage}[t]{0.75\textwidth}
+\vspace{0.2cm}
+\textbf{Scope:} User authentication, registration, role management, and access control
+
+\vspace{0.1cm}
+\textbf{Use Cases:} UC-1 (User Login), UC-2 (User Registration)
+
+\vspace{0.1cm}
+\textbf{Requirements:} REQ-1, REQ-2, REQ-30, REQ-31, REQ-62
+\vspace{0.2cm}
+\end{minipage}
+&
+\begin{minipage}[t]{0.20\textwidth}
+\centering
+\vspace{0.1cm}
+\begin{tikzpicture}[scale=0.6]
+\fill[successgreen!70] (0,0) -- (90:1.2) arc (90:-270:1.2) -- cycle;
+\fill[white] (0,0) circle (0.85cm);
+\node at (0,0) {\small\textbf{100\%}};
+\end{tikzpicture}
+
+\vspace{0.1cm}
+{\small\textcolor{successgreen}{\textbf{5/5}} Req}
+
+{\small\textcolor{successgreen}{\textbf{16}} Tests}
+\vspace{0.1cm}
+\end{minipage}
+\\
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\subsubsection*{Requirements Detail (5/5 Covered)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXc@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Status}} \\
+\rowcolor{tablerow1}
+REQ-1 & User authentication with email and password & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-2 & User registration with role assignment & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-30 & User role management (admin, worker, customer) & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-31 & Permission-based access control & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-62 & Multi-user role support & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Architecture Components}
+
+\noindent
+The authentication and authorization functionality is implemented following a layered architecture pattern, separating concerns across presentation, business logic, data access, and domain model layers. This design ensures maintainability, testability, and adherence to SOLID principles.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Component}} & \textcolor{white}{\textbf{Responsibility}} \\
+\rowcolor{tablerow1}
+\textbf{UserController} & HTTP routing for authentication endpoints (login, registration) \\
+\rowcolor{tablerow2}
+\textbf{Services Layer} & CustomerService, AdminService, WorkerService providing role-specific business logic \\
+\rowcolor{tablerow1}
+\textbf{UserDao} & User data persistence abstraction and database operations \\
+\rowcolor{tablerow2}
+\textbf{Domain Model} & app\_user (base entity), admin, worker, customer (role-specific entities) \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Test Coverage}
+
+\noindent
+The authentication and authorization module is validated through a comprehensive test suite of 16 test cases, ensuring robust coverage across all critical authentication flows and edge cases. The test suite is organized into six key categories covering functional requirements, security constraints, and error handling scenarios.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Category}} & \textcolor{white}{\textbf{Test Scenarios}} \\
+\rowcolor{tablerow1}
+\textbf{Credentials} & Valid and invalid credentials verification \\
+\rowcolor{tablerow2}
+\textbf{Input Validation} & Missing fields and null input handling \\
+\rowcolor{tablerow1}
+\textbf{Error Handling} & System errors and database connection failures \\
+\rowcolor{tablerow2}
+\textbf{Business Rules} & Duplicate email registration prevention \\
+\rowcolor{tablerow1}
+\textbf{Security} & Password validation enforcement \\
+\rowcolor{tablerow2}
+\textbf{Authorization} & Role assignment verification \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Issues \& Recommendations}
+
+\begin{tcolorbox}[colback=warningyellow!10, colframe=warningyellow!70, boxrule=2pt, arc=3pt, left=10pt, right=10pt, top=8pt, bottom=8pt]
+\textbf{Issue REQ-34: Authentication Error Responses}
+
+\vspace{0.2cm}
+Authentication error responses lack standardized structure, potentially leading to inconsistent error handling across the API.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Recommended Actions:}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}cX@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{\#}} & \textcolor{white}{\textbf{Action}} \\
+\rowcolor{tablerow1}
+1 & Define standardized error response format (JSON schema with error codes, messages, field validation details) \\
+\rowcolor{tablerow2}
+2 & Add security-focused integration tests for OWASP Top 10 authentication vulnerabilities \\
+\rowcolor{tablerow1}
+3 & Document password strength requirements explicitly in REQ-2 \\
+\end{tabularx}
+\end{center}
+
+\vspace{1.5cm}
+
+%-----------------------------------------------------------------------------
+\subsection{Transaction \& Payment Management}
+%-----------------------------------------------------------------------------
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Section Information}} & \textcolor{white}{\textbf{Coverage Status}} \\
+\rowcolor{unifiblue!5}
+\begin{minipage}[t]{0.75\textwidth}
+\vspace{0.2cm}
+\textbf{Scope:} Purchase workflows, wallet management, payment processing, transaction history
+
+\vspace{0.1cm}
+\textbf{Use Cases:} UC-3 (Purchase Item), UC-4 (Recharge Wallet), UC-6 (View Transaction History)
+
+\vspace{0.1cm}
+\textbf{Requirements:} REQ-6, REQ-7, REQ-8, REQ-9, REQ-11--REQ-16
+\vspace{0.2cm}
+\end{minipage}
+&
+\begin{minipage}[t]{0.20\textwidth}
+\centering
+\vspace{0.1cm}
+\begin{tikzpicture}[scale=0.6]
+\fill[lightgray!50] (0,0) -- (90:1.2) arc (90:-270:1.2) -- cycle;
+\fill[successgreen!70] (0,0) -- (90:1.2) arc (90:90-324:1.2) -- cycle;
+\fill[white] (0,0) circle (0.85cm);
+\node at (0,0) {\small\textbf{90\%}};
+\end{tikzpicture}
+
+\vspace{0.1cm}
+{\small\textcolor{successgreen}{\textbf{9/10}} Req}
+
+{\small\textcolor{successgreen}{\textbf{18}} Tests}
+\vspace{0.1cm}
+\end{minipage}
+\\
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\subsubsection*{Requirements Detail (9/10 Covered)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXc@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Status}} \\
+\rowcolor{tablerow1}
+REQ-6 & Wallet balance management & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-7 & Balance recharge functionality & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-8 & Digital payment methods support & \textcolor{warningyellow}{\Large\textbf{$\bullet$}} Partial \\
+\rowcolor{tablerow2}
+REQ-9 & Transaction history tracking & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-11 & Customer purchase workflow & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-12 & Product selection interface & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-13 & Purchase confirmation mechanism & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-14 & Insufficient balance handling & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-15 & Out-of-stock item handling & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-16 & Transaction completion notification & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Architecture Components}
+
+\noindent
+The transaction and payment management system orchestrates purchase workflows through a layered architecture integrating wallet operations, payment processing, and transaction history tracking with strong separation of concerns.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Component}} & \textcolor{white}{\textbf{Responsibility}} \\
+\rowcolor{tablerow1}
+\textbf{TransactionController} & Purchase and transaction management endpoints \\
+\rowcolor{tablerow2}
+\textbf{CustomerService} & Purchase orchestration and wallet operations \\
+\rowcolor{tablerow1}
+\textbf{DAO Layer} & TransactionDao, TransactionItemDao (transaction persistence) \\
+\rowcolor{tablerow2}
+\textbf{Domain Model} & Transaction, TransactionItem, Wallet (digital balance) \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Test Coverage}
+
+\noindent
+The transaction module is validated through 18 test cases covering the complete purchase lifecycle, wallet operations, and error scenarios including rollback mechanisms and inventory synchronization.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Category}} & \textcolor{white}{\textbf{Test Scenarios}} \\
+\rowcolor{tablerow1}
+\textbf{Purchase Flow} & Successful purchases, wallet recharges, transaction completion \\
+\rowcolor{tablerow2}
+\textbf{Error Handling} & Insufficient balance, out of stock, item not found \\
+\rowcolor{tablerow1}
+\textbf{Data Integrity} & Transaction rollback on error, inventory updates \\
+\rowcolor{tablerow2}
+\textbf{Integration} & Payment gateway integration testing \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Issues \& Recommendations}
+
+\begin{tcolorbox}[colback=warningyellow!10, colframe=warningyellow!70, boxrule=2pt, arc=3pt, left=10pt, right=10pt, top=8pt, bottom=8pt]
+\textbf{Issue REQ-8: Digital Payment Methods}
+
+\vspace{0.2cm}
+Requirement states "support digital payment methods" but lacks specification of payment providers, compliance standards (PCI-DSS Level 1/2), and payment flow (direct integration, payment gateway, tokenization). \textbf{Architectural Impact:} Cannot design payment gateway architecture without knowing provider integration requirements and security standards.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Recommended Actions:}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}cX@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{\#}} & \textcolor{white}{\textbf{Action}} \\
+\rowcolor{tablerow1}
+1 & Clarify REQ-8 with specific payment provider requirements \\
+\rowcolor{tablerow2}
+2 & Standardize transaction error response format \\
+\rowcolor{tablerow1}
+3 & Add payment security tests (tokenization, secure credential handling) \\
+\rowcolor{tablerow2}
+4 & Document transaction state machine (pending → processing → completed/failed/rolled\_back) \\
+\end{tabularx}
+\end{center}
+
+\vspace{1.5cm}
+
+%-----------------------------------------------------------------------------
+\subsection{Offline Operation \& Resilience}
+%-----------------------------------------------------------------------------
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Section Information}} & \textcolor{white}{\textbf{Coverage Status}} \\
+\rowcolor{unifiblue!5}
+\begin{minipage}[t]{0.75\textwidth}
+\vspace{0.2cm}
+\textbf{Scope:} Offline transaction tracking, synchronization, network resilience
+
+\vspace{0.1cm}
+\textbf{Use Cases:} None identified
+
+\vspace{0.1cm}
+\textbf{Requirements:} REQ-18, REQ-19, REQ-20
+\vspace{0.2cm}
+\end{minipage}
+&
+\begin{minipage}[t]{0.20\textwidth}
+\centering
+\vspace{0.1cm}
+\begin{tikzpicture}[scale=0.6]
+\fill[dangerred!70] (0,0) -- (90:1.2) arc (90:-270:1.2) -- cycle;
+\fill[white] (0,0) circle (0.85cm);
+\node at (0,0) {\small\textbf{0\%}};
+\end{tikzpicture}
+
+\vspace{0.1cm}
+{\small\textcolor{dangerred}{\textbf{0/3}} Req}
+
+{\small\textcolor{dangerred}{\textbf{0}} Tests}
+\vspace{0.1cm}
+\end{minipage}
+\\
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\subsubsection*{Requirements Detail (0/3 Covered)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXc@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Status}} \\
+\rowcolor{tablerow1}
+REQ-18 & Local transaction tracking during offline & \textcolor{dangerred}{\Large\textbf{$\bullet$}} Unsupported \\
+\rowcolor{tablerow2}
+REQ-19 & Offline-online synchronization & \textcolor{dangerred}{\Large\textbf{$\bullet$}} Unsupported \\
+\rowcolor{tablerow1}
+REQ-20 & Anonymous cash transactions fallback & \textcolor{dangerred}{\Large\textbf{$\bullet$}} Unsupported \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Architecture Components}
+
+\noindent
+\textbf{None.} The architecture assumes persistent network connectivity with no provisions for offline operation or resilience.
+
+\vspace{0.8cm}
+
+\subsubsection*{Test Coverage}
+
+\noindent
+No tests exist for offline scenarios, reflecting the complete absence of offline capability in the architectural design.
+
+\vspace{0.8cm}
+
+\subsubsection*{Critical Gap Analysis}
+
+\begin{tcolorbox}[criticalbox, title={\Large CRITICAL: Complete Offline Capability Missing}]
+\noindent
+Three requirements specify behavior when vending machines lose Internet connectivity, but the architecture provides \textbf{zero support} for offline operations.
+
+\vspace{0.5cm}
+
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Business Impact:}
+
+\vspace{0.3cm}
+
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}X@{}}
+\rowcolor{darkgray}
+\textcolor{white}{\textbf{Severity}} & \textcolor{white}{\textbf{Impact}} \\
+\rowcolor{tablerow1}
+Critical & Machine downtime during outages \\
+\rowcolor{white}
+Critical & Complete revenue loss \\
+\rowcolor{tablerow1}
+High & Poor user experience \\
+\rowcolor{white}
+Critical & Single point of failure \\
+\end{tabularx}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\textbf{Missing Components:}
+
+\vspace{0.3cm}
+
+\begin{tabularx}{\textwidth}{@{}p{0.1\textwidth}X@{}}
+\rowcolor{darkgray}
+\textcolor{white}{\textbf{\#}} & \textcolor{white}{\textbf{Component}} \\
+\rowcolor{tablerow1}
+1 & Local transaction storage \\
+\rowcolor{white}
+2 & Sync protocol + conflict resolution \\
+\rowcolor{tablerow1}
+3 & Eventual consistency \\
+\rowcolor{white}
+4 & Offline auth fallbacks \\
+\end{tabularx}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\noindent\textbf{Root Cause:} Architecture assumes always-on connectivity—a fundamentally flawed assumption for distributed IoT devices.
+\end{tcolorbox}
+
+\noindent\textbf{Recommended Actions (High Priority):}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}cX@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{\#}} & \textcolor{white}{\textbf{Action}} \\
+\rowcolor{tablerow1}
+1 & Design local storage layer (SQLite/embedded DB on vending machine firmware) \\
+\rowcolor{tablerow2}
+2 & Define synchronization protocol with conflict resolution strategy \\
+\rowcolor{tablerow1}
+3 & Architect offline authentication approach (cached credentials, device tokens, or anonymous mode) \\
+\rowcolor{tablerow2}
+4 & Add corresponding use cases and tests \\
+\end{tabularx}
+\end{center}
+
+\vspace{1.5cm}
+
+%-----------------------------------------------------------------------------
+\subsection{Inventory \& Product Management}
+%-----------------------------------------------------------------------------
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Section Information}} & \textcolor{white}{\textbf{Coverage Status}} \\
+\rowcolor{unifiblue!5}
+\begin{minipage}[t]{0.75\textwidth}
+\vspace{0.2cm}
+\textbf{Scope:} Product inventory, real-time tracking, CRUD operations
+
+\vspace{0.1cm}
+\textbf{Use Cases:} UC-12 (Update Item), UC-13 (Delete Item), UC-14 (Add Item), UC-15 (View Items)
+
+\vspace{0.1cm}
+\textbf{Requirements:} REQ-4, REQ-5, REQ-17
+\vspace{0.2cm}
+\end{minipage}
+&
+\begin{minipage}[t]{0.20\textwidth}
+\centering
+\vspace{0.1cm}
+\begin{tikzpicture}[scale=0.6]
+\fill[successgreen!70] (0,0) -- (90:1.2) arc (90:-270:1.2) -- cycle;
+\fill[white] (0,0) circle (0.85cm);
+\node at (0,0) {\small\textbf{100\%}};
+\end{tikzpicture}
+
+\vspace{0.1cm}
+{\small\textcolor{successgreen}{\textbf{3/3}} Req}
+
+{\small\textcolor{successgreen}{\textbf{13}} Tests}
+\vspace{0.1cm}
+\end{minipage}
+\\
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\subsubsection*{Requirements Detail (3/3 Covered)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXc@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Status}} \\
+\rowcolor{tablerow1}
+REQ-4 & Product inventory management & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-5 & Real-time inventory tracking & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-17 & Item dispensing mechanism & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Architecture Components}
+
+\noindent
+Inventory management demonstrates strong coverage with all CRUD operations comprehensively tested. The DAO pattern is properly applied for persistence abstraction, and inventory is updated atomically with transaction processing.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Component}} & \textcolor{white}{\textbf{Responsibility}} \\
+\rowcolor{tablerow1}
+\textbf{DAO Layer} & ItemDao, MachineDao (inventory data access) \\
+\rowcolor{tablerow2}
+\textbf{AdminService} & Inventory management operations \\
+\rowcolor{tablerow1}
+\textbf{InventoryMapper} & Domain-to-database mapping \\
+\rowcolor{tablerow2}
+\textbf{Domain Model} & Inventory (rich entity), TransactionItem \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Test Coverage}
+
+\noindent
+The inventory module is validated through 13 test cases covering all CRUD operations with comprehensive error scenarios and edge cases.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Category}} & \textcolor{white}{\textbf{Test Scenarios}} \\
+\rowcolor{tablerow1}
+\textbf{CRUD Operations} & Add, update, delete, view items with valid data \\
+\rowcolor{tablerow2}
+\textbf{Validation} & Missing fields, invalid prices, duplicate SKUs \\
+\rowcolor{tablerow1}
+\textbf{Error Handling} & Save failures, DAO errors, empty inventory scenarios \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Recommendations (Low Priority)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}cX@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{\#}} & \textcolor{white}{\textbf{Action}} \\
+\rowcolor{tablerow1}
+1 & Document maximum inventory capacity per machine and minimum stock levels \\
+\rowcolor{tablerow2}
+2 & Consider aggregate root pattern to enforce invariants \\
+\rowcolor{tablerow1}
+3 & Add domain events (InventoryDepleted, InventoryRestocked) for async notifications \\
+\end{tabularx}
+\end{center}
+
+\vspace{1.5cm}
+
+%-----------------------------------------------------------------------------
+\subsection{Maintenance \& Worker Operations}
+%-----------------------------------------------------------------------------
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Section Information}} & \textcolor{white}{\textbf{Coverage Status}} \\
+\rowcolor{unifiblue!5}
+\begin{minipage}[t]{0.75\textwidth}
+\vspace{0.2cm}
+\textbf{Scope:} Maintenance task management, worker assignments, remote capabilities
+
+\vspace{0.1cm}
+\textbf{Use Cases:} UC-8 (Complete Maintenance Task), UC-18 (Remote Maintenance)
+
+\vspace{0.1cm}
+\textbf{Requirements:} REQ-22, REQ-23, REQ-24, REQ-59, REQ-60
+\vspace{0.2cm}
+\end{minipage}
+&
+\begin{minipage}[t]{0.20\textwidth}
+\centering
+\vspace{0.1cm}
+\begin{tikzpicture}[scale=0.6]
+\fill[lightgray!50] (0,0) -- (90:1.2) arc (90:-270:1.2) -- cycle;
+\fill[successgreen!70] (0,0) -- (90:1.2) arc (90:90-288:1.2) -- cycle;
+\fill[white] (0,0) circle (0.85cm);
+\node at (0,0) {\small\textbf{80\%}};
+\end{tikzpicture}
+
+\vspace{0.1cm}
+{\small\textcolor{successgreen}{\textbf{4/5}} Req}
+
+{\small\textcolor{successgreen}{\textbf{5}} Tests}
+\vspace{0.1cm}
+\end{minipage}
+\\
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\subsubsection*{Requirements Detail (4/5 Covered)}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lXc@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Status}} \\
+\rowcolor{tablerow1}
+REQ-22 & Worker task assignment & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-23 & Task status tracking & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-24 & Maintenance notification system & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow2}
+REQ-59 & Task completion tracking & \textcolor{successgreen}{\Large\textbf{$\bullet$}} Covered \\
+\rowcolor{tablerow1}
+REQ-60 & Remote maintenance capabilities & \textcolor{warningyellow}{\Large\textbf{$\bullet$}} Partial \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Architecture Components}
+
+\noindent
+Task assignment and tracking are fully implemented, but remote hardware control capabilities are missing from the architecture despite being promised in UC-18.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Component}} & \textcolor{white}{\textbf{Responsibility}} \\
+\rowcolor{tablerow1}
+\textbf{WorkerService} & Task management business logic \\
+\rowcolor{tablerow2}
+\textbf{TaskMapper} & Task domain-database mapping \\
+\rowcolor{tablerow1}
+\textbf{Domain Model} & Worker entity, maintenance task tracking \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Test Coverage}
+
+\noindent
+The maintenance module has 5 tests for UC-8 (Complete Maintenance Task) but lacks any tests for UC-18 (Remote Maintenance), reflecting the architectural gap.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Category}} & \textcolor{white}{\textbf{Test Scenarios}} \\
+\rowcolor{tablerow1}
+\textbf{Task Completion} & Complete pending task, task already completed, task not found \\
+\rowcolor{tablerow2}
+\textbf{Error Handling} & Null task status, task save errors \\
+\rowcolor{tablerow1}
+\textbf{Remote Maintenance} & 0 tests (architectural gap) \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{Issues \& Recommendations}
+
+\begin{tcolorbox}[colback=warningyellow!10, colframe=warningyellow!70, boxrule=2pt, arc=3pt, left=10pt, right=10pt, top=8pt, bottom=8pt]
+\textbf{Issue REQ-60: Remote Maintenance}
+
+\vspace{0.2cm}
+Use case UC-18 promises remote maintenance capabilities but architecture lacks hardware abstraction layer, IoT communication protocol, and device gateway components. \textbf{Gap:} Task assignment and tracking are implemented, but remote hardware control is not—a disconnect between promised capability and architectural reality.
+\end{tcolorbox}
+
+\vspace{0.4cm}
+
+\noindent\textbf{Recommended Actions:}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}cX@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{\#}} & \textcolor{white}{\textbf{Action}} \\
+\rowcolor{tablerow1}
+1 & Clarify REQ-60 scope (diagnostics only vs. full remote control) \\
+\rowcolor{tablerow2}
+2 & If full control required: design IoT gateway, specify protocol (MQTT), define command-response model \\
+\rowcolor{tablerow1}
+3 & If diagnostics only: update UC-18 to reflect read-only access and add telemetry collection \\
+\end{tabularx}
+\end{center}
+
+\vspace{1.5cm}
+
+%-----------------------------------------------------------------------------
+\subsection{Architectural Overview}
+
+The system implements a \textbf{six-layer architecture} following classic separation of concerns principles:
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tabular}{@{}p{0.20\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Layer}} & \textcolor{white}{\textbf{Responsibility}} & \textcolor{white}{\textbf{Key Components}} \\
+\rowcolor{tablerow1}
+Presentation & UI components and user interaction & Web UI, Mobile mockups, User interfaces \\
+\rowcolor{white}
+Controller & HTTP routing and input validation & UserController, MachineController, TransactionController \\
+\rowcolor{tablerow1}
+Service & Business logic orchestration & CustomerService, AdminService, WorkerService \\
+\rowcolor{white}
+DAO & Data access abstraction & UserDao, TransactionDao, ItemDao, MachineDao \\
+\rowcolor{tablerow1}
+Persistence & ORM and database connections & JPA/Hibernate, DBManager, Connection pools \\
+\rowcolor{white}
+Domain Model & Business entities and value objects & ConcreteVendingMachine, Transaction, Inventory \\
+\end{tabular}
+\end{center}
+
+\noindent
+\textbf{Layering Benefits:} Controllers delegate to services, services call DAOs—no layer skipping observed. Dependencies flow downward, enabling technology substitution and independent layer testing.
+
+\vspace{0.3cm}
+
+\noindent
+The architecture employs three key \textbf{design patterns}:
+
+\vspace{0.2cm}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+    \item \textbf{Builder Pattern} for complex object construction (ConcreteVendingMachine)
+    \item \textbf{DAO Pattern} for persistence abstraction (all data access objects)
+    \item \textbf{Mapper Pattern} for separating domain models from database entities
+\end{itemize}
+
+\vspace{0.5cm}
+
+\noindent
+The domain model follows \textbf{Domain-Driven Design} principles with rich entities (ConcreteVendingMachine, Transaction, Inventory), value objects (MachineStatus), and clear compositional relationships.
+
+\vspace{0.8cm}
+
+\subsection{Architectural Strengths}
+
+The architecture demonstrates several key strengths:
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{1. Clean Layer Separation} — No layer-skipping violations detected. Controllers delegate to services, services call DAOs, maintaining strict architectural boundaries. This enables independent testing and technology substitution.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{2. Strategic Pattern Application} — Patterns are applied where they solve specific problems, not universally. Builder pattern only for complex objects, avoiding overengineering in simpler entities.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{3. Technology Independence} — The architecture allows swapping PostgreSQL for another database or replacing REST with GraphQL without affecting business logic—only persistence and controller layers would change.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{4. Rich Domain Model} — Entities contain both state and behavior rather than being anemic data containers. Transaction encapsulates transaction logic, ConcreteVendingMachine handles vending operations.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{5. Testability} — Services can be tested with mock DAOs, DAOs can be tested against in-memory H2 databases, enabling fast feedback loops.
+
+\vspace{0.8cm}
+
+\subsection{Critical Weaknesses \& How to Improve}
+
+\subsubsection*{1. Vague Component Responsibilities}
+
+Component descriptions are too generic. DAO Layer is described as "manages data access"—but what exactly does each DAO handle? Services Layer "contains business logic"—but which logic belongs where? Without clear boundaries, developers will place responsibilities inconsistently, leading to monolithic classes and architectural erosion over time.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Recommended Actions:}
+
+\begin{center}
+\begin{tabular}{@{}p{0.24\textwidth}p{0.68\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Action}} & \textcolor{white}{\textbf{Implementation}} \\
+\rowcolor{tablerow1}
+Document DAO Responsibilities & Define exact scope for each DAO: \texttt{UserDao} handles only user CRUD operations (create, read, update, delete, findByEmail). \texttt{TransactionDao} manages financial records only—no analytics queries. \texttt{ItemDao} contains product data only—inventory counts belong elsewhere. \\
+\rowcolor{white}
+Split Services by Context & Instead of generic "business logic," define explicit bounded contexts: \texttt{PurchaseOrchestrationService} for transaction workflows, \texttt{InventoryManagementService} for stock operations, \texttt{PricingService} for pricing rules. \\
+\rowcolor{tablerow1}
+Clarify Component Roles & Document the distinction between \texttt{DBManager} (connection pooling, transaction management), DAO interfaces (query contracts), and DAO implementations (query execution). \\
+\end{tabular}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{2. Missing Aggregate Root Enforcement}
+
+Code can directly modify Inventory without going through ConcreteVendingMachine, potentially violating business rules like "inventory cannot exceed machine capacity." Data consistency violations may occur when inventory updates bypass machine-level constraints.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Recommended Actions:}
+
+\begin{center}
+\begin{tabular}{@{}p{0.32\textwidth}p{0.60\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Approach}} & \textcolor{white}{\textbf{Implementation}} \\
+\rowcolor{tablerow1}
+Package-Private Enforcement (Recommended) & Make Inventory modifications package-private. In \texttt{Inventory.java}, use \texttt{void updateStock(int quantity)} without public modifier. In \texttt{ConcreteVendingMachine.java}, validate capacity constraints before calling \texttt{inventory.updateStock()}, ensuring all inventory changes respect business rules. \\
+\rowcolor{white}
+Immutable Inventory (Alternative) & Make Inventory immutable with methods like \texttt{withUpdatedStock(int newQuantity)} that return new instances. This forces all updates through the machine aggregate root, preventing direct modifications. \\
+\end{tabular}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsubsection*{3. No Domain Events Infrastructure}
+
+The system lacks domain events (ProductPurchased, BalanceRecharged, MaintenanceTaskCreated), limiting extensibility for features like asynchronous email notifications, audit logging for compliance, analytics event streaming, and cross-aggregate coordination. These features will require tight coupling or workarounds if implemented later.
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Recommended Actions:}
+
+\begin{center}
+\begin{tabular}{@{}p{0.27\textwidth}p{0.65\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Step}} & \textcolor{white}{\textbf{Implementation}} \\
+\rowcolor{tablerow1}
+Define Event Interface & Create a base \texttt{DomainEvent} interface with \texttt{eventId()}, \texttt{occurredAt()}, and \texttt{aggregateId()} methods. Implement concrete events as records (e.g., \texttt{ProductPurchased} with transactionId, customerId, itemIds, totalAmount). \\
+\rowcolor{white}
+Implement Event Publisher & Add event collection to domain entities. Each aggregate maintains a list of domain events, adding events when state changes occur (e.g., \texttt{events.add(new ProductPurchased(...))} when transaction completes). Provide \texttt{collectEvents()} method to retrieve accumulated events. \\
+\rowcolor{tablerow1}
+Add Service Layer Publishing & In service layer after persisting aggregates, collect and publish events: \texttt{tx.collectEvents().forEach(eventPublisher::publish)}. This decouples event handling from business logic. \\
+\end{tabular}
+\end{center}
+
+\vspace{0.8cm}
+
+\noindent
+\textbf{Overall Assessment:} The architecture is fundamentally sound with excellent layering and pattern usage. The weaknesses are \emph{documentation and enforcement} issues rather than structural problems. Addressing vague component responsibilities will have the highest impact on long-term maintainability.
+
+\vspace{1.5cm}
+
+\subsection{Testing Quality}
+
+The test suite contains 63 tests distributed across three categories following the test pyramid pattern. Figure~\ref{fig:test-distribution} shows the test distribution.
+
 \begin{figure}[h]
 \centering
 \begin{tikzpicture}
-% Bar chart showing test pyramid
-\begin{axis}[
-    xbar,
-    width=0.9\textwidth,
-    height=6cm,
-    xlabel={Number of Tests},
-    symbolic y coords={System Tests, Integration Tests, Unit Tests},
-    ytick=data,
-    xmin=0, xmax=50,
-    bar width=20pt,
-    nodes near coords,
-    nodes near coords align={horizontal},
-    grid=major,
-    grid style={dashed,gray!30},
-    legend style={at={(0.5,-0.15)}, anchor=north, legend columns=-1}
-]
-\addplot[fill=strengthgreen!70] coordinates {(45,{Unit Tests}) (12,{Integration Tests}) (6,{System Tests})};
-\legend{Test Count (Pyramid: 71\% Unit, 19\% Integration, 10\% System)}
-\end{axis}
+    % Define colors
+    \definecolor{unittestblue}{RGB}{52,152,219}
+    \definecolor{integrationgreen}{RGB}{46,204,113}
+    \definecolor{systemyellow}{RGB}{241,196,15}
+
+    \def\radius{2.2cm}
+
+    % Draw slices
+    \fill[unittestblue] (0,0) -- (90:\radius) arc (90:-165.6:\radius) -- cycle;
+    \fill[integrationgreen] (0,0) -- (-165.6:\radius) arc (-165.6:-234:\radius) -- cycle;
+    \fill[systemyellow] (0,0) -- (-234:\radius) arc (-234:-270:\radius) -- cycle;
+
+    % Unit Tests - label on the right
+    \draw[thick] (30:\radius) -- (30:3.2cm);
+    \node[right, align=left] at (30:3.2cm) {\textbf{Unit Tests (71\%)}\\45 tests};
+
+    % Integration Tests - label on the left
+    \draw[thick] (-200:\radius) -- (-200:3.5cm);
+    \node[left, align=right] at (-200:3.5cm) {\textbf{Integration (19\%)}\\12 tests};
+
+    % System Tests - label below
+    \draw[thick] (-252:\radius) -- (-252:3.2cm);
+    \node[below left, align=right] at (-252:3.2cm) {\textbf{System (10\%)}\\6 tests};
 \end{tikzpicture}
 \caption{Test Distribution Following Test Pyramid (Total: 63 tests)}
 \label{fig:test-distribution}
 \end{figure}
 
-\subsubsection{Risk Distribution}
-
-Figure~\ref{fig:risk-distribution} presents the distribution of identified risks by severity level, highlighting the three critical issues requiring immediate attention.
-
-\begin{figure}[h]
-\centering
-\begin{tikzpicture}
-\begin{axis}[
-    ybar,
-    width=0.7\textwidth,
-    height=6cm,
-    ylabel={Number of Risks},
-    symbolic x coords={Critical, High, Medium, Low},
-    xtick=data,
-    ymin=0, ymax=4,
-    bar width=50pt,
-    enlarge x limits=0.2,
-    nodes near coords,
-    nodes near coords style={font=\normalsize},
-    grid=major,
-    grid style={dashed,gray!30}
-]
-\addplot[fill=criticalred!70] coordinates {(Critical,3) (High,2) (Medium,0) (Low,0)};
-\end{axis}
-\end{tikzpicture}
-\caption{Risk Distribution by Severity (Total: 5 risks)}
-\label{fig:risk-distribution}
-\end{figure}
-
-\subsection{Critical Findings}
-
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Critical Issues Requiring Immediate Attention}]
-\begin{enumerate}
-    \item \textbf{Offline Operation Gap:} Three requirements for disconnected operation (local transaction tracking, offline-online synchronization, anonymous cash transactions) are completely unsupported by the architecture, creating a single point of failure on network connectivity.
-
-    \item \textbf{Vague Component Responsibilities:} Multiple core components lack precise responsibility definitions, violating the Single Responsibility Principle and risking architectural erosion.
-
-    \item \textbf{Partial Remote Maintenance:} The remote maintenance use case lacks hardware abstraction components, making the promised remote control functionality unimplementable.
-\end{enumerate}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=strengthgreen!5,colframe=strengthgreen,title=\textbf{Architectural Strengths}]
-\begin{itemize}[leftmargin=*]
-    \item Complete automated traceability from requirements through tests
-    \item Well-defined layered architecture with proper separation of concerns
-    \item Effective design patterns (Builder, DAO, Mapper) applied consistently
-    \item Comprehensive test coverage for happy paths and common error scenarios
-    \item Dual database strategy enabling fast test feedback loops
-\end{itemize}
-\end{tcolorbox}
-
-\subsection{Report Quality Validation}
-
-To ensure this validation report adheres to industry best practices, the analysis methodology and findings were evaluated against a vetted checklist of software engineering documentation standards. This meta-validation assesses whether the report itself demonstrates the quality characteristics expected of professional architectural assessments.
-
-\subsubsection{Validation Methodology}
-
-The report was analyzed using an automated feature validation framework that compares the document structure, analysis depth, and coverage against 16 established best practice criteria spanning:
-
-\begin{itemize}
-    \item \textbf{Documentation Quality:} User-centric design, standardized templates, clear pre/post-conditions
-    \item \textbf{Architectural Analysis:} Layered architecture coverage, design pattern identification, component responsibility clarity
-    \item \textbf{Technical Rigor:} Database design evaluation, testing strategy assessment, error handling analysis
-    \item \textbf{Development Practices:} Tool utilization, comprehensive test coverage documentation
-\end{itemize}
-
-\subsubsection{Coherence Assessment Results}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-\textbf{Validation Category} & \textbf{Total Criteria} & \textbf{Satisfied} & \textbf{Coherence} \\
-\midrule
-Best Practice Features & 16 & 11 & 68.8\% \\
-Documentation Standards & 7 & 7 & 100\% \\
-Technical Analysis Depth & 5 & 4 & 80.0\% \\
-Process Coverage & 4 & 3 & 75.0\% \\
-\bottomrule
-\end{tabular}
-\caption{Report Quality Validation Metrics}
-\label{tab:report-validation}
-\end{table}
-
-The report achieves \textbf{68.8\% coherence} with established best practices, indicating a solid foundation with room for enhancement in specific areas. This validation confirms the report provides reliable architectural assessment while identifying opportunities for methodological improvement.
-
-\subsubsection{Validated Strengths}
-
-The following best practice features are comprehensively addressed in this report:
-
-\begin{enumerate}
-    \item \textbf{User-Centric Design Analysis} (Validated): The report identifies and evaluates UI mockups, demonstrating analysis of user experience considerations through product selection screens and interface design patterns.
-
-    \item \textbf{Effective Tool Utilization} (Validated): Documentation acknowledges the use of AI-assisted development tools, reflecting modern development practices and toolchain transparency.
-
-    \item \textbf{Database Design Coverage} (Validated): PostgreSQL relational database architecture is documented, though deeper analysis of scalability patterns and ORM mapping strategies could enhance coverage.
-
-    \item \textbf{Testing Strategy Documentation} (Validated): The report thoroughly documents unit and integration testing approaches, test pyramid distribution (71\% unit, 19\% integration, 10\% system), and provides complete test inventories.
-
-    \item \textbf{Standardized Use Case Structure} (Validated): Consistent use case templates are identified and analyzed, including pre-conditions, post-conditions, main flows, alternative flows, and test mappings—demonstrating systematic requirements engineering.
-
-    \item \textbf{Pre/Post-Condition Clarity} (Validated): Use cases define clear system state boundaries, enabling precise validation of expected behaviors and outcomes.
-
-    \item \textbf{Role-Based Access Control Analysis} (Validated): The three-tier user model (admin, worker, customer) is documented with role-specific permissions and access patterns clearly identified.
-
-    \item \textbf{Layered Architecture Assessment} (Validated): The six-layer architecture (Presentation, Controller, Service, DAO, Persistence, Domain Model) is comprehensively analyzed with component diagrams, responsibility definitions, and dependency flow validation.
-
-    \item \textbf{Design Pattern Recognition} (Validated): Builder, DAO, and Mapper patterns are identified with specific application contexts and architectural benefits explained.
-
-    \item \textbf{Comprehensive Test Inventory} (Validated): All 69 tests are catalogued by type, use case association, and coverage status, enabling full traceability.
-
-    \item \textbf{Error Handling Process Analysis} (Validated): Error flows, exception handling, and failure scenarios are documented across use cases and test specifications.
-\end{enumerate}
-
-\subsubsection{Areas for Enhancement}
-
-Five best practice criteria received partial validation, indicating opportunities to strengthen future reports:
-
-\begin{itemize}
-    \item \textbf{Scalability Analysis:} While database technology is identified, the report could expand discussion of sharding strategies, indexing approaches, and horizontal scaling patterns.
-
-    \item \textbf{Tool Integration Details:} Development tools are mentioned but lack specifics on IDE configurations, build pipelines, or CI/CD integration—details that improve reproducibility.
-
-    \item \textbf{Test Organization Taxonomy:} Tests are listed comprehensively but could benefit from explicit organization by functional domain or architectural layer beyond use case association.
-
-    \item \textbf{Exception Handling Depth:} Error scenarios are documented, but detailed analysis of try-catch block usage, exception propagation strategies, and recovery mechanisms is limited.
-
-    \item \textbf{Assertion and State Validation:} Test descriptions identify scenarios but don't always specify assertion strategies or state change validation techniques.
-\end{itemize}
-
-\subsubsection{Validation Conclusions}
-
-This report demonstrates strong alignment with software engineering documentation best practices, particularly excelling in traceability analysis, architectural coverage, and systematic use case evaluation. The 68.8\% coherence score reflects a methodologically sound assessment suitable for stakeholder decision-making.
-
-The validation framework confirms the report's findings are \textbf{trustworthy and actionable}, though future iterations could enhance value by incorporating deeper scalability analysis, more granular test organization taxonomies, and expanded exception handling evaluation.
-
-\textbf{Key Takeaway:} The architectural gaps identified in this report (offline operation, component responsibility ambiguity, remote maintenance unimplementability) are based on analysis methods validated against industry standards, increasing confidence in the recommendations provided.
-
-%=============================================================================
-\section{Project Inventory}
-%=============================================================================
-
-This section provides a complete inventory of all requirements, use cases, and tests identified in the system. All subsequent sections reference these items by their IDs.
-
-\subsection{Requirements Inventory}
-
-Table~\ref{tab:all-requirements} provides a comprehensive list of all 62 requirements identified in the system, categorized by functional area. The coverage status indicates whether each requirement is supported by the current architecture.
-
-\rowcolors{2}{white}{tablerowgray}
-\begin{longtable}{@{}p{0.12\textwidth}p{0.52\textwidth}p{0.15\textwidth}p{0.12\textwidth}@{}}
-\caption{Complete Requirements List} \label{tab:all-requirements} \\
-\toprule
-\rowcolor{white}\textbf{ID} & \textbf{Requirement Description} & \textbf{Category} & \textbf{Status} \\
-\midrule
-\endfirsthead
-
-\multicolumn{4}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\rowcolor{white}\textbf{ID} & \textbf{Requirement Description} & \textbf{Category} & \textbf{Status} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{4}{r}{{Continued on next page}} \\
-\endfoot
-
-\bottomrule
-\endlastfoot
-
-\label{req:1}REQ-1 & User authentication with email and password & Authentication & Covered \\
-\label{req:2}REQ-2 & User registration with role assignment & Authentication & Covered \\
-\label{req:3}REQ-3 & QR code generation for machine access & Access Control & Covered \\
-\label{req:4}REQ-4 & Product inventory management & Inventory & Covered \\
-\label{req:5}REQ-5 & Real-time inventory tracking & Inventory & Covered \\
-\label{req:6}REQ-6 & Wallet balance management & Payment & Covered \\
-\label{req:7}REQ-7 & Balance recharge functionality & Payment & Covered \\
-\label{req:8}\label{req:payment-methods}REQ-8 & Digital payment methods support & Payment & Partially \\
-\label{req:9}REQ-9 & Transaction history tracking & Transaction & Covered \\
-\label{req:10}\label{req:performance-metrics}REQ-10 & Improved user experience & Usability & Vague \\
-\label{req:11}REQ-11 & Customer purchase workflow & Transaction & Covered \\
-\label{req:12}REQ-12 & Product selection interface & UI & Covered \\
-\label{req:13}REQ-13 & Purchase confirmation mechanism & Transaction & Covered \\
-\label{req:14}REQ-14 & Insufficient balance handling & Error Handling & Covered \\
-\label{req:15}REQ-15 & Out-of-stock item handling & Error Handling & Covered \\
-\label{req:16}REQ-16 & Transaction completion notification & Notification & Covered \\
-\label{req:17}REQ-17 & Item dispensing mechanism & Hardware & Covered \\
-\label{req:18}\label{req:offline-tracking}REQ-18 & Local transaction tracking during offline & Offline & \textcolor{criticalred}{Unsupported} \\
-\label{req:19}\label{req:offline-sync}REQ-19 & Offline-online synchronization & Offline & \textcolor{criticalred}{Unsupported} \\
-\label{req:20}\label{req:offline-cash}REQ-20 & Anonymous cash transactions fallback & Offline & \textcolor{criticalred}{Unsupported} \\
-\label{req:21}REQ-21 & Operational efficiency improvements & Performance & Vague \\
-\label{req:22}REQ-22 & Worker task assignment & Maintenance & Covered \\
-\label{req:23}REQ-23 & Task status tracking & Maintenance & Covered \\
-\label{req:24}REQ-24 & Maintenance notification system & Notification & Covered \\
-\label{req:25}REQ-25 & Machine status monitoring & Monitoring & Covered \\
-\label{req:26}REQ-26 & Admin dashboard analytics & Analytics & Covered \\
-\label{req:27}REQ-27 & Sales report generation & Analytics & Covered \\
-\label{req:28}REQ-28 & Revenue tracking & Analytics & Covered \\
-\label{req:29}REQ-29 & Machine performance metrics & Analytics & Covered \\
-\label{req:30}REQ-30 & User role management & Authorization & Covered \\
-\label{req:31}REQ-31 & Permission-based access control & Authorization & Covered \\
-\label{req:32}REQ-32 & Machine registration & Configuration & Covered \\
-\label{req:33}REQ-33 & Machine location management & Configuration & Covered \\
-\label{req:34}\label{req:error-formats}REQ-34 & Authentication error responses & Error Handling & Partially \\
-\label{req:35}REQ-35 & Transaction error responses & Error Handling & Partially \\
-\label{req:36}REQ-36 & Connection failure handling & Error Handling & Covered \\
-\label{req:37}REQ-37 & System error logging & Logging & Covered \\
-\label{req:38}REQ-38 & Database error handling & Error Handling & Covered \\
-\label{req:39}REQ-39 & Customer data persistence & Data & Covered \\
-\label{req:40}REQ-40 & Transaction data persistence & Data & Covered \\
-\label{req:41}REQ-41 & Inventory data persistence & Data & Covered \\
-\label{req:42}REQ-42 & Machine data persistence & Data & Covered \\
-\label{req:43}REQ-43 & User data persistence & Data & Covered \\
-\label{req:44}REQ-44 & Data consistency maintenance & Data & Covered \\
-\label{req:45}REQ-45 & Validation error responses & Error Handling & Partially \\
-\label{req:46}REQ-46 & Input validation & Security & Covered \\
-\label{req:47}REQ-47 & Field completeness validation & Validation & Covered \\
-\label{req:48}REQ-48 & Data type validation & Validation & Covered \\
-\label{req:49}REQ-49 & Business rule validation & Validation & Covered \\
-\label{req:50}REQ-50 & Service layer orchestration & Architecture & Covered \\
-\label{req:51}REQ-51 & DAO pattern implementation & Architecture & Covered \\
-\label{req:52}REQ-52 & Controller request routing & Architecture & Covered \\
-\label{req:53}REQ-53 & Layered architecture separation & Architecture & Covered \\
-\label{req:54}REQ-54 & JPA/Hibernate ORM usage & Technology & Covered \\
-\label{req:55}REQ-55 & PostgreSQL production database & Technology & Covered \\
-\label{req:56}REQ-56 & H2 test database & Technology & Covered \\
-\label{req:57}REQ-57 & Builder pattern for complex objects & Design & Covered \\
-\label{req:58}REQ-58 & Usability metrics & Usability & Vague \\
-\label{req:59}REQ-59 & Task completion tracking & Maintenance & Covered \\
-\label{req:60}REQ-60 & Remote maintenance capabilities & Maintenance & Partial \\
-\label{req:61}REQ-61 & Machine connection management & Connection & Covered \\
-\label{req:62}REQ-62 & Multi-user role support & Authorization & Covered \\
-\end{longtable}
-
-\subsection{Use Cases Inventory}
-
-Table~\ref{tab:all-usecases} provides a complete list of all 18 use cases defined in the system, along with their primary actor, description, and test coverage status.
-
-\rowcolors{2}{white}{tablerowgray}
-\begin{longtable}{@{}p{0.10\textwidth}p{0.30\textwidth}p{0.13\textwidth}p{0.10\textwidth}p{0.22\textwidth}@{}}
-\caption{Complete Use Cases List} \label{tab:all-usecases} \\
-\toprule
-\rowcolor{white}\textbf{ID} & \textbf{Use Case Name} & \textbf{Actor} & \textbf{Tests} & \textbf{Coverage Status} \\
-\midrule
-\endfirsthead
-
-\multicolumn{5}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\rowcolor{white}\textbf{ID} & \textbf{Use Case Name} & \textbf{Actor} & \textbf{Tests} & \textbf{Coverage Status} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{5}{r}{{Continued on next page}} \\
-\endfoot
-
-\bottomrule
-\endlastfoot
-
-\label{uc:1}UC-1 & User Login & Customer, Worker, Admin & 9 & Full Coverage \\
-\label{uc:2}UC-2 & User Registration & Customer, Worker, Admin & 7 & Full Coverage \\
-\label{uc:3}UC-3 & Purchase Item & Customer & 8 & Full Coverage \\
-\label{uc:4}UC-4 & Recharge Wallet & Customer & 6 & Full Coverage \\
-\label{uc:5}UC-5 & Connect to Machine & Customer & 5 & Full Coverage \\
-\label{uc:6}UC-6 & View Transaction History & Customer & 4 & Full Coverage \\
-\label{uc:7}\label{uc:containers}UC-7 & Customer Container & Customer & 0 & Container (No Tests) \\
-\label{uc:8}UC-8 & Complete Maintenance Task & Worker & 5 & Full Coverage \\
-\label{uc:9}UC-9 & Worker Container & Worker & 0 & Container (No Tests) \\
-\label{uc:10}UC-10 & View Analytics & Admin & 4 & Full Coverage \\
-\label{uc:11}UC-11 & Create Machine & Admin & 5 & Full Coverage \\
-\label{uc:12}UC-12 & Update Item & Admin & 4 & Full Coverage \\
-\label{uc:13}UC-13 & Delete Item & Admin & 3 & Full Coverage \\
-\label{uc:14}UC-14 & Add Item & Admin & 4 & Full Coverage \\
-\label{uc:15}UC-15 & View Items & Admin & 2 & Full Coverage \\
-\label{uc:16}\label{uc:navigation}UC-16 & User Navigation Flow & All Users & 0 & \textcolor{warningorange}{Missing Tests} \\
-\label{uc:17}UC-17 & Disconnect from Machine & Customer & 3 & Full Coverage \\
-\label{uc:18}\label{uc:remote-maintenance}UC-18 & Remote Maintenance & Worker & 0 & \textcolor{warningorange}{Partial Architecture} \\
-\end{longtable}
-
-\subsection{Test Suite Inventory}
-
-Table~\ref{tab:all-tests} provides a complete inventory of all 69 tests in the system, organized by test type and associated use case.
-
-\rowcolors{2}{white}{tablerowgray}
-\begin{longtable}{@{}p{0.08\textwidth}p{0.45\textwidth}p{0.12\textwidth}p{0.20\textwidth}@{}}
-\caption{Complete Test Suite Inventory} \label{tab:all-tests} \\
-\toprule
-\rowcolor{white}\textbf{ID} & \textbf{Test Name} & \textbf{Type} & \textbf{Use Case} \\
-\midrule
-\endfirsthead
-
-\multicolumn{4}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\rowcolor{white}\textbf{ID} & \textbf{Test Name} & \textbf{Type} & \textbf{Use Case} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{4}{r}{{Continued on next page}} \\
-\endfoot
-
-\bottomrule
-\endlastfoot
-
-\label{test:1}T-1 & Valid Login Credentials & Unit & UC-1 \\
-\label{test:2}T-2 & Invalid Password & Unit & UC-1 \\
-\label{test:3}T-3 & Non-existent Email & Unit & UC-1 \\
-\label{test:4}T-4 & Null Email Input & Unit & UC-1 \\
-\label{test:5}T-5 & Empty Password & Unit & UC-1 \\
-\label{test:6}T-6 & System Error During Login & Unit & UC-1 \\
-\label{test:7}T-7 & Database Connection Failure & Integration & UC-1 \\
-\label{test:8}T-8 & Missing Credentials Fields & Unit & UC-1 \\
-\label{test:9}T-9 & Session Creation After Login & Integration & UC-1 \\
-\label{test:10}T-10 & Valid Registration Data & Unit & UC-2 \\
-\label{test:11}T-11 & Duplicate Email Registration & Unit & UC-2 \\
-\label{test:12}T-12 & Missing Required Fields & Unit & UC-2 \\
-\label{test:13}T-13 & Invalid Email Format & Unit & UC-2 \\
-\label{test:14}T-14 & Password Strength Validation & Unit & UC-2 \\
-\label{test:15}T-15 & Role Assignment During Registration & Unit & UC-2 \\
-\label{test:16}T-16 & Registration Save Failure & Integration & UC-2 \\
-\label{test:17}T-17 & Successful Purchase Transaction & Integration & UC-3 \\
-\label{test:18}T-18 & Insufficient Wallet Balance & Unit & UC-3 \\
-\label{test:19}T-19 & Out of Stock Item & Unit & UC-3 \\
-\label{test:20}T-20 & Item Not Found & Unit & UC-3 \\
-\label{test:21}T-21 & Connection Failure During Purchase & Unit & UC-3 \\
-\label{test:22}T-22 & Customer Not Found & Unit & UC-3 \\
-\label{test:23}T-23 & Transaction Rollback on Error & Integration & UC-3 \\
-\label{test:24}T-24 & Inventory Update After Purchase & Integration & UC-3 \\
-\label{test:25}T-25 & Valid Balance Recharge & Unit & UC-4 \\
-\label{test:26}T-26 & Negative Recharge Amount & Unit & UC-4 \\
-\label{test:27}T-27 & Zero Amount Recharge & Unit & UC-4 \\
-\label{test:28}T-28 & Exceeding Maximum Balance & Unit & UC-4 \\
-\label{test:29}T-29 & Recharge Save Failure & Integration & UC-4 \\
-\label{test:30}T-30 & Payment Gateway Integration & System & UC-4 \\
-\label{test:31}T-31 & Connect to Available Machine & Unit & UC-5 \\
-\label{test:32}T-32 & Machine Already Connected & Unit & UC-5 \\
-\label{test:33}T-33 & Out of Service Machine & Unit & UC-5 \\
-\label{test:34}T-34 & Machine Not Found & Unit & UC-5 \\
-\label{test:35}T-35 & Connection State Update & Integration & UC-5 \\
-\label{test:36}T-36 & View Customer Transaction History & Unit & UC-6 \\
-\label{test:37}T-37 & Empty Transaction History & Unit & UC-6 \\
-\label{test:38}T-38 & Transaction History Pagination & Unit & UC-6 \\
-\label{test:39}T-39 & Transaction History Filter by Date & Integration & UC-6 \\
-\label{test:40}T-40 & Complete Pending Task & Unit & UC-8 \\
-\label{test:41}T-41 & Task Already Completed & Unit & UC-8 \\
-\label{test:42}T-42 & Task Not Found & Unit & UC-8 \\
-\label{test:43}T-43 & Null Task Status & Unit & UC-8 \\
-\label{test:44}T-44 & Task Save Error & Integration & UC-8 \\
-\label{test:45}T-45 & View Sales Analytics & Unit & UC-10 \\
-\label{test:46}T-46 & View Revenue Metrics & Unit & UC-10 \\
-\label{test:47}T-47 & Analytics Date Range Filter & Unit & UC-10 \\
-\label{test:48}T-48 & Empty Analytics Data & Integration & UC-10 \\
-\label{test:49}T-49 & Create New Machine Valid Data & Unit & UC-11 \\
-\label{test:50}T-50 & Create Machine Missing Fields & Unit & UC-11 \\
-\label{test:51}T-51 & Create Machine Duplicate Location & Unit & UC-11 \\
-\label{test:52}T-52 & Machine Save Failure & Integration & UC-11 \\
-\label{test:53}T-53 & Builder Pattern Machine Creation & Unit & UC-11 \\
-\label{test:54}T-54 & Update Item Valid Data & Unit & UC-12 \\
-\label{test:55}T-55 & Update Item Not Found & Unit & UC-12 \\
-\label{test:56}T-56 & Update Item Invalid Price & Unit & UC-12 \\
-\label{test:57}T-57 & Update Item Save Failure & Integration & UC-12 \\
-\label{test:58}T-58 & Delete Existing Item & Unit & UC-13 \\
-\label{test:59}T-59 & Delete Non-existent Item & Unit & UC-13 \\
-\label{test:60}T-60 & Delete Item DAO Error & Integration & UC-13 \\
-\label{test:61}T-61 & Add New Item Valid Data & Unit & UC-14 \\
-\label{test:62}T-62 & Add Item Missing Fields & Unit & UC-14 \\
-\label{test:63}T-63 & Add Item Duplicate SKU & Unit & UC-14 \\
-\label{test:64}T-64 & Add Item Save Failure & Integration & UC-14 \\
-\label{test:65}T-65 & List All Items & Unit & UC-15 \\
-\label{test:66}T-66 & View Items Empty Inventory & Integration & UC-15 \\
-\label{test:67}T-67 & Disconnect Active Connection & Unit & UC-17 \\
-\label{test:68}T-68 & Disconnect Already Disconnected & Unit & UC-17 \\
-\label{test:69}T-69 & Disconnect Connection Update & Integration & UC-17 \\
-\end{longtable}
-
-%=============================================================================
-\section{Requirements Coverage Analysis}
-%=============================================================================
-
-\subsection{Offline Operation: A Critical Gap}
-\label{sec:offline-gap}
-
-The most significant coverage gap involves offline operation capabilities. Three requirements specify behavior when vending machines lose Internet connectivity:
-
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Unsupported Offline Requirements}]
-\textbf{REQ-18 - Local Transaction Tracking:} The system must maintain a local register to track transactions during network outages, ensuring no sales data is lost.
-
-\textbf{REQ-19 - Offline-Online Synchronization:} Once connectivity is restored, locally stored transactions must synchronize with the central database, maintaining data consistency.
-
-\textbf{REQ-20 - Anonymous Cash Transactions:} When QR code scanning fails, anonymous users must be able to perform cash-only transactions as a fallback mechanism.
-\end{tcolorbox}
-
-\textbf{Architectural Impact:}
-
-The current architecture assumes persistent connectivity throughout all transaction flows. No components exist for:
-\begin{itemize}
-    \item Local transaction storage on vending machine devices
-    \item Conflict resolution or eventual consistency protocols
-    \item Synchronization state management
-    \item Offline authentication or authorization fallbacks
-\end{itemize}
-
-This represents a fundamental architectural assumption that may not hold in real-world deployments, where network reliability varies by location. Without offline capabilities, vending machines become non-operational during any network disruption, directly impacting revenue and user experience.
-
-\subsection{Requirements Quality Issues}
-\label{sec:req-quality}
-
-Beyond coverage gaps, several requirements suffer from insufficient specificity. Table~\ref{tab:vague-requirements} identifies requirements with ambiguous definitions and their architectural impact.
-
-\begin{longtable}{@{}p{0.12\textwidth}p{0.30\textwidth}p{0.45\textwidth}@{}}
-\caption{Vague Requirements Impacting Design} \label{tab:vague-requirements} \\
-\toprule
-\textbf{Req ID} & \textbf{Issue} & \textbf{Architectural Impact} \\
-\midrule
-\endfirsthead
-
-\multicolumn{3}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\textbf{Req ID} & \textbf{Issue} & \textbf{Architectural Impact} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{3}{r}{{Continued on next page}} \\
-\endfoot
-
-\bottomrule
-\endlastfoot
-
-\hyperref[req:8]{REQ-8} & "Support digital payment methods" lacks provider specification & Cannot design payment gateway architecture without knowing which providers (credit cards, mobile wallets) or compliance standards (PCI-DSS) are required \\
-\midrule
-\hyperref[req:10]{REQ-10}, \hyperref[req:21]{REQ-21}, \hyperref[req:58]{REQ-58} & "Improved user experience" and "operational efficiency" lack quantifiable targets & Impossible to validate if architecture achieves goals or design appropriate performance optimizations without metrics \\
-\midrule
-\hyperref[req:34]{REQ-34}, \hyperref[req:35]{REQ-35}, \hyperref[req:45]{REQ-45} & Error response requirements lack structure definition & May lead to inconsistent error handling across the system without standardized error response format \\
-\midrule
-\hyperref[req:60]{REQ-60} & "Remote maintenance capabilities" undefined scope & Unclear what hardware control functions are required (diagnostics only vs. full device control) \\
-\end{longtable}
-
-These vague requirements create architectural ambiguity—designers must make assumptions that may not align with actual business needs, increasing the risk of costly rework.
-
-%=============================================================================
-\section{Use Case Analysis}
-%=============================================================================
-
-\subsection{Use Cases Overview}
-
-Table~\ref{tab:all-usecases} provides a complete list of all 18 use cases defined in the system, along with their primary actor, description, and test coverage status.
-
-\begin{longtable}{@{}p{0.10\textwidth}p{0.30\textwidth}p{0.13\textwidth}p{0.10\textwidth}p{0.22\textwidth}@{}}
-\caption{Complete Use Cases List} \label{tab:all-usecases} \\
-\toprule
-\textbf{ID} & \textbf{Use Case Name} & \textbf{Actor} & \textbf{Tests} & \textbf{Coverage Status} \\
-\midrule
-\endfirsthead
-
-\multicolumn{5}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\textbf{ID} & \textbf{Use Case Name} & \textbf{Actor} & \textbf{Tests} & \textbf{Coverage Status} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{5}{r}{{Continued on next page}} \\
-\endfoot
-
-\bottomrule
-\endlastfoot
-
-\label{uc:1}UC-1 & User Login & Customer, Worker, Admin & 9 & Full Coverage \\
-\label{uc:2}UC-2 & User Registration & Customer, Worker, Admin & 7 & Full Coverage \\
-\label{uc:3}UC-3 & Purchase Item & Customer & 8 & Full Coverage \\
-\label{uc:4}UC-4 & Recharge Wallet & Customer & 6 & Full Coverage \\
-\label{uc:5}UC-5 & Connect to Machine & Customer & 5 & Full Coverage \\
-\label{uc:6}UC-6 & View Transaction History & Customer & 4 & Full Coverage \\
-\label{uc:7}\label{uc:containers}UC-7 & Customer Container & Customer & 0 & Container (No Tests) \\
-\label{uc:8}UC-8 & Complete Maintenance Task & Worker & 5 & Full Coverage \\
-\label{uc:9}UC-9 & Worker Container & Worker & 0 & Container (No Tests) \\
-\label{uc:10}UC-10 & View Analytics & Admin & 4 & Full Coverage \\
-\label{uc:11}UC-11 & Create Machine & Admin & 5 & Full Coverage \\
-\label{uc:12}UC-12 & Update Item & Admin & 4 & Full Coverage \\
-\label{uc:13}UC-13 & Delete Item & Admin & 3 & Full Coverage \\
-\label{uc:14}UC-14 & Add Item & Admin & 4 & Full Coverage \\
-\label{uc:15}UC-15 & View Items & Admin & 2 & Full Coverage \\
-\label{uc:16}\label{uc:navigation}UC-16 & User Navigation Flow & All Users & 0 & \textcolor{warningorange}{Missing Tests} \\
-\label{uc:17}UC-17 & Disconnect from Machine & Customer & 3 & Full Coverage \\
-\label{uc:18}\label{uc:remote-maintenance}UC-18 & Remote Maintenance & Worker & 0 & \textcolor{warningorange}{Partial Architecture} \\
-\end{longtable}
-
-\subsection{Test Coverage Gaps}
-\label{sec:uc-gaps}
-
-Three use cases exhibit incomplete or missing test coverage:
-
-\begin{tcolorbox}[colback=warningorange!5,colframe=warningorange,title=\textbf{Untested Use Cases}]
-\textbf{UC-16 - User Navigation Flow:} This use case describes multi-screen navigation for customers, workers, and admins but has no corresponding integration tests. Without navigation tests, UI flow bugs—such as broken transitions, incorrect role-based routing, or missing back navigation—may only be discovered in production.
-
-\textbf{UC-18 - Remote Maintenance:} While backend services and database components exist to track maintenance tasks, no tests verify the actual remote control capabilities (e.g., unlocking jammed products). This gap reflects the deeper architectural issue: the hardware abstraction layer needed to bridge software and physical device control is absent from the architecture entirely.
-
-\textbf{UC-7, UC-9 - Container Use Cases:} Two use cases serve as organizational containers with no defined flows or tests. These add no traceability value and create confusion in the use case model.
-\end{tcolorbox}
-
-\subsection{Well-Covered Use Cases}
-
-The majority of use cases demonstrate comprehensive test coverage:
-
-\textbf{Authentication and Authorization:} Login and registration flows include nine tests covering valid credentials, invalid passwords, missing fields, null inputs, and system errors—ensuring robust error handling.
-
-\textbf{Purchase Workflows:} The item purchase flow tests eight scenarios including successful purchases, insufficient balance, out-of-stock items, connection failures, and customer not found errors.
-
-\textbf{Administrative Operations:} Analytics viewing, machine creation, and CRUD operations have dedicated tests for both success paths and error conditions (missing fields, save failures, DAO errors).
-
-This coverage pattern reveals a focus on core transactional flows while edge cases (navigation, offline scenarios, hardware integration) remain under-tested.
-
-%=============================================================================
-\section{Architectural Quality Assessment}
-%=============================================================================
-
-\subsection{Layered Architecture: Strength with Clarity Issues}
-
-The architecture follows a classic six-layer pattern. Table~\ref{tab:architecture-layers} details each layer's responsibilities and key components.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}p{0.20\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
-\toprule
-\textbf{Layer} & \textbf{Responsibility} & \textbf{Key Components} \\
-\midrule
-Presentation & UI components and user interaction & Web UI, Mobile mockups, User interfaces \\
-\midrule
-Controller & HTTP routing and input validation & UserController, MachineController, TransactionController \\
-\midrule
-Service & Business logic orchestration & CustomerService, AdminService, WorkerService \\
-\midrule
-DAO & Data access abstraction & UserDao, TransactionDao, ItemDao, MachineDao \\
-\midrule
-Persistence & ORM and database connections & JPA/Hibernate, DBManager, Connection pools \\
-\midrule
-Domain Model & Business entities and value objects & ConcreteVendingMachine, Transaction, Inventory \\
-\bottomrule
-\end{tabular}
-\caption{Six-Layer Architecture Structure}
-\label{tab:architecture-layers}
-\end{table}
-
-\textbf{Layering Benefits Achieved:}
-\begin{itemize}
-    \item Controllers delegate to services; services call DAOs—no layer skipping observed
-    \item Dependencies flow downward (upper layers depend on lower, not vice versa)
-    \item Technology substitution is feasible (e.g., database swap from PostgreSQL to another RDBMS)
-    \item Independent layer testing enabled through interface-based design
-\end{itemize}
-
-\subsection{Component Responsibility Problems}
-
-Despite good layering structure, multiple components exhibit vague or overly broad responsibilities:
-
-\begin{tcolorbox}[colback=criticalred!5,colframe=criticalred,title=\textbf{Single Responsibility Principle Violations}]
-\textbf{DAO Layer:} Described as "manages data access and retrieval"—too generic to guide implementation. Without specific responsibilities per DAO (e.g., UserDao handles user CRUD only, TransactionDao handles financial records only), the risk of monolithic DAO classes increases.
-
-\textbf{Services Layer:} "Contains business logic and processes data" is insufficiently specific. Business logic spans many domains (customer purchases, admin configuration, worker maintenance). Without clear bounded contexts or domain-specific service definitions, this layer risks becoming a "God Object" that centralizes too much logic.
-
-\textbf{Database Component:} "Handles database interactions" overlaps with DAO responsibilities. The distinction between this component, DBManager (connection management), and DAO classes (query execution) is unclear, potentially causing confusion about where database-related code belongs.
-
-\textbf{User Role Entities:} Admin, worker, and customer entities are flagged as potentially encompassing "various functions beyond just user attributes." If these entities contain behavior (methods) rather than just data (attributes), they may violate separation of concerns by mixing domain logic with user roles.
-\end{tcolorbox}
-
-These ambiguities don't indicate implementation problems necessarily exist, but rather that the architectural documentation lacks precision. Without clear boundaries, developers may place responsibilities inconsistently, leading to technical debt accumulation.
-
-\subsection{Design Patterns: Effective Application}
-
-The architecture demonstrates judicious pattern usage. Table~\ref{tab:design-patterns} summarizes the patterns applied and their benefits.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}p{0.18\textwidth}p{0.32\textwidth}p{0.40\textwidth}@{}}
-\toprule
-\textbf{Pattern} & \textbf{Application} & \textbf{Benefit} \\
-\midrule
-Builder & ConcreteVendingMachine construction & Handles many optional parameters with fluent API, enforces required fields \\
-\midrule
-DAO & UserDao, TransactionDao, ItemDao, MachineDao & Abstracts persistence technology from business logic, enables ORM swapping \\
-\midrule
-Mapper & TaskMapper, ConnectionMapper, InventoryMapper, TransactionMapper & Separates domain models from database entities, reduces coupling \\
-\bottomrule
-\end{tabular}
-\caption{Design Patterns Applied in Architecture}
-\label{tab:design-patterns}
-\end{table}
-
-\textbf{Strategic Pattern Choice:} The Builder pattern appears only for ConcreteVendingMachine, suggesting deliberate pattern application rather than overengineering. Simpler entities use standard constructors, avoiding unnecessary complexity.
-
-\subsection{Domain Model Analysis}
-
-The domain model exhibits characteristics of Domain-Driven Design. Table~\ref{tab:domain-model} summarizes the key domain elements and their DDD classifications.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}p{0.25\textwidth}p{0.18\textwidth}p{0.45\textwidth}@{}}
-\toprule
-\textbf{Domain Element} & \textbf{DDD Type} & \textbf{Description} \\
-\midrule
-ConcreteVendingMachine & Rich Entity & Business concept with behavior, not just data \\
-Inventory & Rich Entity & Contains product tracking logic \\
-Transaction & Rich Entity & Encapsulates transaction processing \\
-TransactionItem & Rich Entity & Represents individual items in transaction \\
-\midrule
-MachineStatus & Value Object & Immutable enumeration preventing invalid states \\
-\midrule
-app\_user & Base Entity & Root of inheritance hierarchy \\
-admin, worker, customer & Role Entities & Extended from app\_user for polymorphism \\
-\midrule
-Vending $\leftrightarrow$ Inventory & Composition & One-to-one relationship \\
-Transaction $\leftrightarrow$ Items & Composition & One-to-many relationship \\
-\bottomrule
-\end{tabular}
-\caption{Domain Model DDD Elements}
-\label{tab:domain-model}
-\end{table}
-
-\textbf{Missing DDD Elements:}
-\begin{itemize}
-    \item \textbf{Aggregate Roots:} No enforcement preventing direct Inventory modification without going through ConcreteVendingMachine. Without aggregate boundaries, invariants (e.g., "inventory cannot exceed machine capacity") may be violated.
-
-    \item \textbf{Domain Events:} No events like ProductPurchased, BalanceRecharged, or MaintenanceTaskCreated for auditing or asynchronous processing, limiting extensibility.
-\end{itemize}
-
-%=============================================================================
-\section{Test Strategy Assessment}
-%=============================================================================
-
-\subsection{Test Suite Overview}
-
-Table~\ref{tab:all-tests} provides a complete inventory of all 63 tests in the system, organized by test type and associated use case.
-
-\begin{longtable}{@{}p{0.08\textwidth}p{0.45\textwidth}p{0.12\textwidth}p{0.20\textwidth}@{}}
-\caption{Complete Test Suite Inventory} \label{tab:all-tests} \\
-\toprule
-\textbf{ID} & \textbf{Test Name} & \textbf{Type} & \textbf{Use Case} \\
-\midrule
-\endfirsthead
-
-\multicolumn{4}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\textbf{ID} & \textbf{Test Name} & \textbf{Type} & \textbf{Use Case} \\
-\midrule
-\endhead
-
-\midrule
-\multicolumn{4}{r}{{Continued on next page}} \\
-\endfoot
-
-\bottomrule
-\endlastfoot
-
-\label{test:1}T-1 & Valid Login Credentials & Unit & UC-1 \\
-\label{test:2}T-2 & Invalid Password & Unit & UC-1 \\
-\label{test:3}T-3 & Non-existent Email & Unit & UC-1 \\
-\label{test:4}T-4 & Null Email Input & Unit & UC-1 \\
-\label{test:5}T-5 & Empty Password & Unit & UC-1 \\
-\label{test:6}T-6 & System Error During Login & Unit & UC-1 \\
-\label{test:7}T-7 & Database Connection Failure & Integration & UC-1 \\
-\label{test:8}T-8 & Missing Credentials Fields & Unit & UC-1 \\
-\label{test:9}T-9 & Session Creation After Login & Integration & UC-1 \\
-\label{test:10}T-10 & Valid Registration Data & Unit & UC-2 \\
-\label{test:11}T-11 & Duplicate Email Registration & Unit & UC-2 \\
-\label{test:12}T-12 & Missing Required Fields & Unit & UC-2 \\
-\label{test:13}T-13 & Invalid Email Format & Unit & UC-2 \\
-\label{test:14}T-14 & Password Strength Validation & Unit & UC-2 \\
-\label{test:15}T-15 & Role Assignment During Registration & Unit & UC-2 \\
-\label{test:16}T-16 & Registration Save Failure & Integration & UC-2 \\
-\label{test:17}T-17 & Successful Purchase Transaction & Integration & UC-3 \\
-\label{test:18}T-18 & Insufficient Wallet Balance & Unit & UC-3 \\
-\label{test:19}T-19 & Out of Stock Item & Unit & UC-3 \\
-\label{test:20}T-20 & Item Not Found & Unit & UC-3 \\
-\label{test:21}T-21 & Connection Failure During Purchase & Unit & UC-3 \\
-\label{test:22}T-22 & Customer Not Found & Unit & UC-3 \\
-\label{test:23}T-23 & Transaction Rollback on Error & Integration & UC-3 \\
-\label{test:24}T-24 & Inventory Update After Purchase & Integration & UC-3 \\
-\label{test:25}T-25 & Valid Balance Recharge & Unit & UC-4 \\
-\label{test:26}T-26 & Negative Recharge Amount & Unit & UC-4 \\
-\label{test:27}T-27 & Zero Amount Recharge & Unit & UC-4 \\
-\label{test:28}T-28 & Exceeding Maximum Balance & Unit & UC-4 \\
-\label{test:29}T-29 & Recharge Save Failure & Integration & UC-4 \\
-\label{test:30}T-30 & Payment Gateway Integration & System & UC-4 \\
-\label{test:31}T-31 & Connect to Available Machine & Unit & UC-5 \\
-\label{test:32}T-32 & Machine Already Connected & Unit & UC-5 \\
-\label{test:33}T-33 & Out of Service Machine & Unit & UC-5 \\
-\label{test:34}T-34 & Machine Not Found & Unit & UC-5 \\
-\label{test:35}T-35 & Connection State Update & Integration & UC-5 \\
-\label{test:36}T-36 & View Customer Transaction History & Unit & UC-6 \\
-\label{test:37}T-37 & Empty Transaction History & Unit & UC-6 \\
-\label{test:38}T-38 & Transaction History Pagination & Unit & UC-6 \\
-\label{test:39}T-39 & Transaction History Filter by Date & Integration & UC-6 \\
-\label{test:40}T-40 & Complete Pending Task & Unit & UC-8 \\
-\label{test:41}T-41 & Task Already Completed & Unit & UC-8 \\
-\label{test:42}T-42 & Task Not Found & Unit & UC-8 \\
-\label{test:43}T-43 & Null Task Status & Unit & UC-8 \\
-\label{test:44}T-44 & Task Save Error & Integration & UC-8 \\
-\label{test:45}T-45 & View Sales Analytics & Unit & UC-10 \\
-\label{test:46}T-46 & View Revenue Metrics & Unit & UC-10 \\
-\label{test:47}T-47 & Analytics Date Range Filter & Unit & UC-10 \\
-\label{test:48}T-48 & Empty Analytics Data & Integration & UC-10 \\
-\label{test:49}T-49 & Create New Machine Valid Data & Unit & UC-11 \\
-\label{test:50}T-50 & Create Machine Missing Fields & Unit & UC-11 \\
-\label{test:51}T-51 & Create Machine Duplicate Location & Unit & UC-11 \\
-\label{test:52}T-52 & Machine Save Failure & Integration & UC-11 \\
-\label{test:53}T-53 & Builder Pattern Machine Creation & Unit & UC-11 \\
-\label{test:54}T-54 & Update Item Valid Data & Unit & UC-12 \\
-\label{test:55}T-55 & Update Item Not Found & Unit & UC-12 \\
-\label{test:56}T-56 & Update Item Invalid Price & Unit & UC-12 \\
-\label{test:57}T-57 & Update Item Save Failure & Integration & UC-12 \\
-\label{test:58}T-58 & Delete Existing Item & Unit & UC-13 \\
-\label{test:59}T-59 & Delete Non-existent Item & Unit & UC-13 \\
-\label{test:60}T-60 & Delete Item DAO Error & Integration & UC-13 \\
-\label{test:61}T-61 & Add New Item Valid Data & Unit & UC-14 \\
-\label{test:62}T-62 & Add Item Missing Fields & Unit & UC-14 \\
-\label{test:63}T-63 & Add Item Duplicate SKU & Unit & UC-14 \\
-\label{test:64}T-64 & Add Item Save Failure & Integration & UC-14 \\
-\label{test:65}T-65 & List All Items & Unit & UC-15 \\
-\label{test:66}T-66 & View Items Empty Inventory & Integration & UC-15 \\
-\label{test:67}T-67 & Disconnect Active Connection & Unit & UC-17 \\
-\label{test:68}T-68 & Disconnect Already Disconnected & Unit & UC-17 \\
-\label{test:69}T-69 & Disconnect Connection Update & Integration & UC-17 \\
-\end{longtable}
-
-\subsection{Test Infrastructure Quality}
-
-The test infrastructure demonstrates maturity. Table~\ref{tab:test-infrastructure} details the testing stack components.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}p{0.25\textwidth}p{0.20\textwidth}p{0.42\textwidth}@{}}
-\toprule
-\textbf{Component} & \textbf{Version} & \textbf{Purpose} \\
-\midrule
-JUnit & 5.11.0 & Unit test execution framework \\
-Mockito & 5.18.0 & Dependency isolation and mocking \\
-JaCoCo & Latest & Code coverage measurement \\
-H2 Database & In-memory & Fast integration tests \\
-PostgreSQL & Production & Production database, ensures test-prod parity \\
-\bottomrule
-\end{tabular}
-\caption{Test Infrastructure Stack}
-\label{tab:test-infrastructure}
-\end{table}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-\textbf{Test Type} & \textbf{Count} & \textbf{Percentage} & \textbf{Pyramid Position} \\
-\midrule
-Unit Tests & 45 & 71\% & Base (Fast feedback) \\
-Integration Tests & 12 & 19\% & Middle (Integration validation) \\
-System Tests & 6 & 10\% & Top (End-to-end flows) \\
-\midrule
-\textbf{Total} & \textbf{63} & \textbf{100\%} & Pyramid-shaped \\
-\bottomrule
-\end{tabular}
-\caption{Test Distribution Following Test Pyramid}
-\label{tab:test-distribution}
-\end{table}
-
-\textbf{Test Distribution Analysis:} The distribution roughly follows the ideal test pyramid shape, supporting fast feedback (unit tests) while validating integration points and end-to-end flows.
-
-\subsection{Testing Strengths}
-
-\textbf{Comprehensive Error Path Coverage:} Most use cases test not just success scenarios but multiple failure modes. Table~\ref{tab:error-coverage} demonstrates the error-first testing approach.
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}p{0.22\textwidth}p{0.65\textwidth}@{}}
-\toprule
-\textbf{Use Case} & \textbf{Error Scenarios Tested} \\
-\midrule
-Login (\hyperref[uc:1]{UC-1}) & Invalid password, nonexistent email, null/empty inputs, system errors, database connection failure \\
-\midrule
-Purchase (\hyperref[uc:3]{UC-3}) & Insufficient balance, out of stock, item not found, connection errors, customer not found, transaction rollback \\
-\midrule
-Machine Connection (\hyperref[uc:5]{UC-5}) & Already connected, out of service, machine not found \\
-\midrule
-Task Completion (\hyperref[uc:8]{UC-8}) & Save errors, null status, already completed, task not found \\
-\midrule
-Item Operations (\hyperref[uc:12]{UC-12}-\hyperref[uc:14]{14}) & Not found, invalid data, missing fields, save failures, DAO errors \\
-\bottomrule
-\end{tabular}
-\caption{Error Path Test Coverage}
-\label{tab:error-coverage}
-\end{table}
-
-This error-first testing approach increases system resilience by ensuring graceful degradation.
-
-\textbf{DAO-Level Testing:} Each DAO implementation has dedicated CRUD tests verifying persistence operations work correctly. Integration tests validate that service-DAO-database interactions function end-to-end.
-
-\textbf{Service Isolation:} Service layer tests use Mockito to simulate DAO responses, enabling fast, deterministic unit tests that don't depend on database state.
+\noindent
+The distribution follows the test pyramid pattern, prioritizing fast unit tests (71\%) while maintaining adequate integration (19\%) and system-level (10\%) test coverage. This error-first testing approach increases system resilience by ensuring graceful degradation.
 
 \subsection{Testing Gaps}
 
-Beyond the use case coverage gaps (navigation, remote maintenance), the test suite lacks several critical test categories. Table~\ref{tab:testing-gaps} summarizes the missing test types and their impact.
+Beyond the use case coverage gaps (navigation, remote maintenance), the test suite lacks several critical test categories:
 
-\begin{table}[h]
-\centering
+\begin{center}
 \begin{tabular}{@{}p{0.22\textwidth}p{0.38\textwidth}p{0.30\textwidth}@{}}
-\toprule
-\textbf{Gap Type} & \textbf{Missing Coverage} & \textbf{Risk/Impact} \\
-\midrule
-Performance Tests & No load/stress tests, no concurrent user scenarios & Scalability limits unknown \\
-\midrule
-Security Tests & No SQL injection tests, no authentication bypass tests, no authorization boundary tests & Security vulnerabilities undetected \\
-\midrule
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Gap Type}} & \textcolor{white}{\textbf{Missing Coverage}} & \textcolor{white}{\textbf{Risk/Impact}} \\
+\rowcolor{tablerow1}
 End-to-End Workflows & No multi-use-case journeys (register → recharge → purchase → history) & User journey validation incomplete \\
-\midrule
+\rowcolor{white}
 Navigation Tests & No UI flow validation for role-based routing & Navigation bugs may reach production \\
-\midrule
+\rowcolor{tablerow1}
 Hardware Integration & No remote control validation, no device communication tests & Remote maintenance unverifiable \\
-\bottomrule
 \end{tabular}
-\caption{Critical Testing Gaps}
-\label{tab:testing-gaps}
-\end{table}
+\end{center}
+
+\newpage
 
 %=============================================================================
-\section{Critical Risks and Recommendations}
+\section{Cross-Cutting Concerns}
 %=============================================================================
 
-This section identifies the five critical risks that could impact production viability. Table~\ref{tab:risk-summary} provides an overview of all identified risks with their severity and priority.
+\subsection{Error Handling \& Validation}
 
-\begin{longtable}{@{}p{0.10\textwidth}p{0.35\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.20\textwidth}@{}}
-\caption{Critical Risks Summary} \label{tab:risk-summary} \\
-\toprule
-\textbf{Risk ID} & \textbf{Risk Name} & \textbf{Severity} & \textbf{Impact} & \textbf{Affected Items} \\
-\midrule
-\endfirsthead
+\textbf{Issue - Inconsistent Error Response Formats:}
 
-\multicolumn{5}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\textbf{Risk ID} & \textbf{Risk Name} & \textbf{Severity} & \textbf{Impact} & \textbf{Affected Items} \\
-\midrule
-\endhead
+Requirements REQ-34 (Authentication errors), REQ-35 (Transaction errors), and REQ-45 (Validation errors) lack structure definition. Tests verify errors occur but don't specify response format standards.
 
-\midrule
-\multicolumn{5}{r}{{Continued on next page}} \\
-\endfoot
+\noindent\textbf{Recommendation:} Define standardized JSON error response schema with error code, message, details object, timestamp, and request ID.
 
-\bottomrule
-\endlastfoot
+\subsection{Requirements Quality Issues}
 
-\label{risk:1}RISK-1 & Offline Operation Unavailability & \textcolor{criticalred}{Critical} & High & \hyperref[req:18]{REQ-18}, \hyperref[req:19]{REQ-19}, \hyperref[req:20]{REQ-20} \\
-\label{risk:2}RISK-2 & Component Responsibility Ambiguity & \textcolor{criticalred}{Critical} & Medium & DAO Layer, Services, Database \\
-\label{risk:3}RISK-3 & Remote Maintenance Unimplementable & \textcolor{criticalred}{Critical} & High & \hyperref[uc:18]{UC-18}, \hyperref[req:60]{REQ-60} \\
-\label{risk:4}RISK-4 & Untested Edge Cases & \textcolor{warningorange}{High} & Medium & \hyperref[uc:16]{UC-16}, \hyperref[uc:18]{UC-18} \\
-\label{risk:5}RISK-5 & Requirements Ambiguity & \textcolor{warningorange}{High} & Medium & \hyperref[req:8]{REQ-8}, \hyperref[req:10]{REQ-10}, \hyperref[req:21]{REQ-21}, \hyperref[req:34]{REQ-34}, \hyperref[req:35]{REQ-35}, \hyperref[req:45]{REQ-45}, \hyperref[req:58]{REQ-58} \\
-\end{longtable}
+\textbf{Vague Requirements:}
 
-\subsection{Risk 1: Offline Operation Unavailability}
-\label{risk:offline}
+\begin{center}
+\begin{tabular}{@{}p{0.20\textwidth}p{0.72\textwidth}@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Requirement}} & \textcolor{white}{\textbf{Issue}} \\
+\rowcolor{tablerow1}
+REQ-10, 21, 58 & "Improved user experience," "operational efficiency"—lack quantifiable targets \\
+\rowcolor{tablerow2}
+REQ-8 & "Digital payment methods" without provider/compliance specification \\
+\rowcolor{tablerow1}
+REQ-60 & "Remote maintenance" with undefined scope \\
+\end{tabular}
+\end{center}
 
-\textbf{Risk:} Vending machines cannot process any transactions during network outages, resulting in complete service unavailability and revenue loss.
+\vspace{8pt}
+\textbf{Impact:} Impossible to validate if architecture achieves goals without measurable criteria.
 
-\textbf{Root Cause:} Architecture assumes always-on connectivity with no offline fallback design (see \hyperref[sec:offline-gap]{Section 2.1}).
+\vspace{8pt}
+\noindent\textbf{Recommendation:} Add specific, measurable acceptance criteria to all performance/quality requirements.
 
-\textbf{Related Requirements:} \hyperref[req:18]{REQ-18}, \hyperref[req:19]{REQ-19}, \hyperref[req:20]{REQ-20}
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Design a local transaction storage mechanism on vending machine devices
-    \item Define synchronization protocol with conflict resolution for offline-to-online reconciliation
-    \item Architect offline authentication approach (cached credentials, device tokens, or anonymous transactions)
-    \item Add corresponding components, use cases, and tests to traceability matrix
-\end{itemize}
-
-\subsection{Risk 2: Component Responsibility Ambiguity}
-
-\textbf{Risk:} Vague component definitions lead to inconsistent code placement, eventual architecture degradation, and maintenance difficulty.
-
-\textbf{Root Cause:} Architectural documentation describes components at too high a level without specific responsibility boundaries.
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Document precise, single responsibilities for DAO, services, and database components
-    \item Clarify which component handles what: DBManager (connection pooling), DAO interfaces (query contracts), DAO implementations (query execution), services (business rules)
-    \item If services layer is too broad, split into bounded domain services (CustomerService, AdminService, WorkerService) with explicit contexts
-    \item Update architectural diagrams with refined component descriptions
-\end{itemize}
-
-\subsection{Risk 3: Remote Maintenance Unimplementable}
-\label{risk:remote-maintenance}
-
-\textbf{Risk:} Remote maintenance use case promises capabilities (unlocking jammed products) that cannot be implemented without hardware integration components.
-
-\textbf{Root Cause:} Architecture defines backend services for task tracking but lacks the hardware abstraction layer needed to send commands to physical vending machine devices.
-
-\textbf{Related Use Case:} \hyperref[uc:18]{UC-18}
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Define a device gateway or IoT adapter component that bridges software and hardware
-    \item Specify communication protocol with vending machine firmware (MQTT, HTTP, proprietary)
-    \item Design command-response model for remote operations
-    \item Create mock hardware interfaces for testing remote control scenarios
-    \item Update use case to reflect implementation limitations or extend architecture to support full remote control
-\end{itemize}
-
-\subsection{Risk 4: Untested Edge Cases}
-\label{risk:untested}
-
-\textbf{Risk:} Navigation flows, complete user journeys, performance limits, and security vulnerabilities remain unvalidated.
-
-\textbf{Root Cause:} Test focus on individual use case validation rather than holistic system behavior (see \hyperref[sec:uc-gaps]{Section 3.1}).
-
-\textbf{Related Use Cases:} \hyperref[uc:16]{UC-16}, \hyperref[uc:18]{UC-18}
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Add navigation integration tests covering multi-screen workflows for each user role
-    \item Implement end-to-end tests that span multiple use cases in sequence
-    \item Introduce performance testing to establish scalability baselines
-    \item Add security tests for common vulnerabilities (injection attacks, authentication bypass, authorization boundary violations)
-\end{itemize}
-
-\subsection{Risk 5: Requirements Ambiguity}
-\label{risk:requirements}
-
-\textbf{Risk:} Vague requirements lead to architectural assumptions that may not match business intent, requiring costly rework when assumptions prove incorrect.
-
-\textbf{Root Cause:} Requirements lack specific, measurable acceptance criteria (see \hyperref[sec:req-quality]{Section 2.2}).
-
-\textbf{Related Requirements:} \hyperref[req:8]{REQ-8}, \hyperref[req:10]{REQ-10}/\hyperref[req:21]{REQ-21}/\hyperref[req:58]{REQ-58}, \hyperref[req:34]{REQ-34}/\hyperref[req:35]{REQ-35}/\hyperref[req:45]{REQ-45}
-
-\textbf{Recommendation:}
-\begin{itemize}
-    \item Specify which payment providers and compliance standards are required
-    \item Define quantifiable performance and usability targets (response times, task completion times, error rates)
-    \item Standardize error response formats across the API
-    \item Detail what "remote maintenance capabilities" concretely entails
-\end{itemize}
+\newpage
 
 %=============================================================================
-\section{Positive Practices to Maintain}
-%=============================================================================
-
-\subsection{Comprehensive Traceability}
-
-The automated traceability extraction creates a complete requirements-to-tests mapping, enabling:
-\begin{itemize}
-    \item Impact analysis: when requirements change, affected use cases, components, and tests are immediately identifiable
-    \item Coverage verification: ensures every requirement has corresponding design and validation
-    \item Regression prevention: tests linked to requirements prevent unintended behavior changes
-\end{itemize}
-
-This traceability infrastructure should be maintained and evolved as the system grows.
-
-\subsection{Layered Architecture Discipline}
-
-The architecture maintains clean layer separation without shortcuts or layer-skipping, providing:
-\begin{itemize}
-    \item Technology independence: persistence technology can change without affecting business logic
-    \item Testability: each layer can be tested in isolation
-    \item Understandability: clear responsibility distribution across layers
-\end{itemize}
-
-Continue enforcing layering principles as new features are added.
-
-\subsection{Pattern-Driven Design}
-
-Strategic pattern application (Builder, DAO, Mapper) where appropriate—without overengineering—demonstrates architectural maturity. Patterns solve specific problems rather than being applied universally, keeping the codebase maintainable.
-
-\subsection{Error-First Testing}
-
-Testing alternative flows and error scenarios alongside happy paths increases system resilience. This practice should extend to edge cases currently under-tested (navigation, hardware integration, offline scenarios).
-
-%=============================================================================
-\section{Conclusion}
+\section{Conclusions}
 %=============================================================================
 
 \subsection{Overall Assessment}
 
-The JavaBrew architectural blueprint demonstrates strong fundamentals: comprehensive traceability, disciplined layering, and effective pattern application. The 95.2\% requirements coverage and extensive test suite indicate a mature development process.
+\noindent
+The JavaBrew architectural blueprint demonstrates strong fundamentals with several areas of excellence.
 
-However, three critical gaps threaten production viability:
+\vspace{0.4cm}
 
-\begin{enumerate}
-    \item \textbf{Offline operation} is architecturally unsupported despite explicit requirements (\hyperref[req:18]{REQ-18}, \hyperref[req:19]{REQ-19}, \hyperref[req:20]{REQ-20}), creating a single point of failure on network connectivity (see \hyperref[risk:1]{Risk 1})
-    \item \textbf{Component responsibilities} lack precision, risking architectural erosion as the codebase evolves (see \hyperref[risk:2]{Risk 2})
-    \item \textbf{Remote maintenance} (\hyperref[uc:18]{UC-18}) is partially implemented—promised but undeliverable without hardware abstraction (see \hyperref[risk:3]{Risk 3})
-\end{enumerate}
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{Strength}} & \textcolor{white}{\textbf{Evidence}} \\
+\rowcolor{tablerow1}
+\textbf{Requirements Coverage} & 95.2\% coverage indicates comprehensive functional design \\
+\rowcolor{tablerow2}
+\textbf{Architecture Quality} & Dxisciplined layered architecture with proper separation of concerns \\
+\rowcolor{tablerow1}
+\textbf{Design Patterns} & Strategic pattern application without over-engineering \\
+\rowcolor{tablerow2}
+\textbf{Traceability} & Comprehensive traceability enabling impact analysis \\
+\rowcolor{tablerow1}
+\textbf{Testing Approach} & Error-first testing with extensive failure scenario coverage \\
+\rowcolor{tablerow2}
+\textbf{Methodology} & 68.8\% best practice alignment validates methodology quality \\
+\end{tabularx}
+\end{center}
 
-\subsection{Recommended Actions}
+\vspace{0.8cm}
 
-Table~\ref{tab:action-items} provides a prioritized list of recommended actions organized by urgency and implementation timeline.
+\subsection{Critical Gaps}
 
-\begin{longtable}{@{}p{0.12\textwidth}p{0.45\textwidth}p{0.12\textwidth}p{0.20\textwidth}@{}}
-\caption{Prioritized Action Items} \label{tab:action-items} \\
-\toprule
-\textbf{Priority} & \textbf{Action Item} & \textbf{Timeline} & \textbf{Related Risk/Item} \\
-\midrule
+\noindent
+Three critical gaps threaten production viability and must be addressed before deployment.
+
+\vspace{0.4cm}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}cX@{}}
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{\#}} & \textcolor{white}{\textbf{Critical Gap}} \\
+\rowcolor{tablerow1}
+1 & \textbf{Offline Operation:} Zero architectural support despite explicit requirements—creates single point of failure \\
+\rowcolor{tablerow2}
+2 & \textbf{Component Ambiguity:} Vague descriptions risk architectural erosion \\
+\rowcolor{tablerow1}
+3 & \textbf{Remote Maintenance:} Promised but undeliverable without hardware abstraction \\
+\end{tabularx}
+\end{center}
+
+\vspace{0.8cm}
+
+\subsection{Final Verdict}
+
+The architecture provides a solid foundation suitable for initial deployment in controlled environments. Addressing the offline operation gap, clarifying component boundaries, and resolving remote maintenance will elevate the design to production-grade robustness for diverse deployment scenarios.
+
+\vspace{12pt}
+\begin{center}
+\fbox{\parbox{0.85\textwidth}{\centering\large
+\textbf{Overall Grade: 22/30}\\[4pt]
+\normalsize Strong fundamentals with critical gaps requiring resolution before broad deployment
+}}
+\end{center}
+
+\vspace{12pt}
+\noindent\textbf{Grading Rationale:} The score reflects solid architectural foundations (95.2\% requirement coverage, proper layering, comprehensive testing) offset by three critical gaps (offline operation, component ambiguity, remote maintenance). The grade of 22/30 indicates above-sufficient quality but below medium due to production-blocking issues that must be resolved.
+
+\vspace{12pt}
+\noindent\textbf{Key Insight:} The automated traceability analysis proved valuable for identifying gaps early, before implementation costs make corrections expensive. The 68.8\% best practice alignment validates that findings are based on industry-standard methods, increasing confidence in recommendations.
+
+\newpage
+
+%=============================================================================
+\section*{Appendix: Complete Requirements Inventory}
+\addcontentsline{toc}{section}{Appendix: Complete Requirements Inventory}
+%=============================================================================
+
+\begin{longtable}{@{}p{0.10\textwidth}p{0.48\textwidth}p{0.15\textwidth}p{0.12\textwidth}@{}}
+\caption{All 62 Requirements with Coverage Status} \\
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Status}} \\
 \endfirsthead
 
-\multicolumn{4}{c}%
-{{\tablename\ \thetable{} -- continued from previous page}} \\
-\toprule
-\textbf{Priority} & \textbf{Action Item} & \textbf{Timeline} & \textbf{Related Risk/Item} \\
-\midrule
+\multicolumn{4}{c}{\tablename\ \thetable{} -- continued from previous page} \\
+\rowcolor{tableheader}
+\textcolor{white}{\rule{0pt}{3ex}\textbf{ID}} & \textcolor{white}{\textbf{Requirement}} & \textcolor{white}{\textbf{Category}} & \textcolor{white}{\textbf{Status}} \\
 \endhead
 
-\midrule
 \multicolumn{4}{r}{{Continued on next page}} \\
 \endfoot
 
-\bottomrule
 \endlastfoot
 
-\multicolumn{4}{l}{\textbf{Before Production Deployment (Critical)}} \\
-\midrule
-P0 & Design and prototype offline operation architecture & 2-3 weeks & \hyperref[risk:1]{RISK-1}, \hyperref[req:18]{REQ-18}/\hyperref[req:19]{19}/\hyperref[req:20]{20} \\
-P0 & Refine component responsibility definitions & 1 week & \hyperref[risk:2]{RISK-2} \\
-P0 & Complete or scope-reduce remote maintenance capabilities & 2 weeks & \hyperref[risk:3]{RISK-3}, \hyperref[uc:18]{UC-18} \\
-P1 & Add navigation integration tests & 1 week & \hyperref[risk:4]{RISK-4}, \hyperref[uc:16]{UC-16} \\
-P1 & Implement end-to-end user journey tests & 1-2 weeks & \hyperref[risk:4]{RISK-4} \\
-\midrule
-\multicolumn{4}{l}{\textbf{For Continuous Improvement (High Priority)}} \\
-\midrule
-P2 & Clarify vague requirements with measurable criteria & 1 week & \hyperref[risk:5]{RISK-5}, \hyperref[req:8]{REQ-8}/\hyperref[req:10]{10}/\hyperref[req:21]{21} \\
-P2 & Define error response format standards & 3-5 days & \hyperref[req:34]{REQ-34}/\hyperref[req:35]{35}/\hyperref[req:45]{45} \\
-P2 & Add performance and load testing & 2 weeks & Testing Gaps \\
-P2 & Add security vulnerability tests & 1 week & Testing Gaps \\
-P3 & Resolve or remove orphaned use cases & 2-3 days & \hyperref[uc:7]{UC-7}, \hyperref[uc:9]{UC-9} \\
-P3 & Consider aggregate root enforcement & 1-2 weeks & Domain Model \\
-P3 & Design domain events infrastructure & 1-2 weeks & Domain Model \\
-P3 & Document hardware abstraction layer requirements & 1 week & \hyperref[uc:18]{UC-18} \\
+\rowcolor{tablerow1}
+REQ-1 & User authentication with email and password & Authentication & Covered \\
+\rowcolor{white}
+REQ-2 & User registration with role assignment & Authentication & Covered \\
+\rowcolor{tablerow1}
+REQ-3 & QR code generation for machine access & Access Control & Covered \\
+\rowcolor{white}
+REQ-4 & Product inventory management & Inventory & Covered \\
+\rowcolor{tablerow1}
+REQ-5 & Real-time inventory tracking & Inventory & Covered \\
+\rowcolor{white}
+REQ-6 & Wallet balance management & Payment & Covered \\
+\rowcolor{tablerow1}
+REQ-7 & Balance recharge functionality & Payment & Covered \\
+\rowcolor{white}
+REQ-8 & Digital payment methods support & Payment & Partial \\
+\rowcolor{tablerow1}
+REQ-9 & Transaction history tracking & Transaction & Covered \\
+\rowcolor{white}
+REQ-10 & Improved user experience & Usability & Vague \\
+\rowcolor{tablerow1}
+REQ-11 & Customer purchase workflow & Transaction & Covered \\
+\rowcolor{white}
+REQ-12 & Product selection interface & UI & Covered \\
+\rowcolor{tablerow1}
+REQ-13 & Purchase confirmation mechanism & Transaction & Covered \\
+\rowcolor{white}
+REQ-14 & Insufficient balance handling & Error Handling & Covered \\
+\rowcolor{tablerow1}
+REQ-15 & Out-of-stock item handling & Error Handling & Covered \\
+\rowcolor{white}
+REQ-16 & Transaction completion notification & Notification & Covered \\
+\rowcolor{tablerow1}
+REQ-17 & Item dispensing mechanism & Hardware & Covered \\
+\rowcolor{white}
+REQ-18 & Local transaction tracking during offline & Offline & Unsupported \\
+\rowcolor{tablerow1}
+REQ-19 & Offline-online synchronization & Offline & Unsupported \\
+\rowcolor{white}
+REQ-20 & Anonymous cash transactions fallback & Offline & Unsupported \\
+\rowcolor{tablerow1}
+REQ-21 & Operational efficiency improvements & Performance & Vague \\
+\rowcolor{white}
+REQ-22 & Worker task assignment & Maintenance & Covered \\
+\rowcolor{tablerow1}
+REQ-23 & Task status tracking & Maintenance & Covered \\
+\rowcolor{white}
+REQ-24 & Maintenance notification system & Notification & Covered \\
+\rowcolor{tablerow1}
+REQ-25 & Machine status monitoring & Monitoring & Covered \\
+\rowcolor{white}
+REQ-26 & Admin dashboard analytics & Analytics & Covered \\
+\rowcolor{tablerow1}
+REQ-27 & Sales report generation & Analytics & Covered \\
+\rowcolor{white}
+REQ-28 & Revenue tracking & Analytics & Covered \\
+\rowcolor{tablerow1}
+REQ-29 & Machine performance metrics & Analytics & Covered \\
+\rowcolor{white}
+REQ-30 & User role management & Authorization & Covered \\
+\rowcolor{tablerow1}
+REQ-31 & Permission-based access control & Authorization & Covered \\
+\rowcolor{white}
+REQ-32 & Machine registration & Configuration & Covered \\
+\rowcolor{tablerow1}
+REQ-33 & Machine location management & Configuration & Covered \\
+\rowcolor{white}
+REQ-34 & Authentication error responses & Error Handling & Partial \\
+\rowcolor{tablerow1}
+REQ-35 & Transaction error responses & Error Handling & Partial \\
+\rowcolor{white}
+REQ-36 & Connection failure handling & Error Handling & Covered \\
+\rowcolor{tablerow1}
+REQ-37 & System error logging & Logging & Covered \\
+\rowcolor{white}
+REQ-38 & Database error handling & Error Handling & Covered \\
+\rowcolor{tablerow1}
+REQ-39 & Customer data persistence & Data & Covered \\
+\rowcolor{white}
+REQ-40 & Transaction data persistence & Data & Covered \\
+\rowcolor{tablerow1}
+REQ-41 & Inventory data persistence & Data & Covered \\
+\rowcolor{white}
+REQ-42 & Machine data persistence & Data & Covered \\
+\rowcolor{tablerow1}
+REQ-43 & User data persistence & Data & Covered \\
+\rowcolor{white}
+REQ-44 & Data consistency maintenance & Data & Covered \\
+\rowcolor{tablerow1}
+REQ-45 & Validation error responses & Error Handling & Partial \\
+\rowcolor{white}
+REQ-46 & Input validation & Security & Covered \\
+\rowcolor{tablerow1}
+REQ-47 & Field completeness validation & Validation & Covered \\
+\rowcolor{white}
+REQ-48 & Data type validation & Validation & Covered \\
+\rowcolor{tablerow1}
+REQ-49 & Business rule validation & Validation & Covered \\
+\rowcolor{white}
+REQ-50 & Service layer orchestration & Architecture & Covered \\
+\rowcolor{tablerow1}
+REQ-51 & DAO pattern implementation & Architecture & Covered \\
+\rowcolor{white}
+REQ-52 & Controller request routing & Architecture & Covered \\
+\rowcolor{tablerow1}
+REQ-53 & Layered architecture separation & Architecture & Covered \\
+\rowcolor{white}
+REQ-54 & JPA/Hibernate ORM usage & Technology & Covered \\
+\rowcolor{tablerow1}
+REQ-55 & PostgreSQL production database & Technology & Covered \\
+\rowcolor{white}
+REQ-56 & H2 test database & Technology & Covered \\
+\rowcolor{tablerow1}
+REQ-57 & Builder pattern for complex objects & Design & Covered \\
+\rowcolor{white}
+REQ-58 & Usability metrics & Usability & Vague \\
+\rowcolor{tablerow1}
+REQ-59 & Task completion tracking & Maintenance & Covered \\
+\rowcolor{white}
+REQ-60 & Remote maintenance capabilities & Maintenance & Partial \\
+\rowcolor{tablerow1}
+REQ-61 & Machine connection management & Connection & Covered \\
+\rowcolor{white}
+REQ-62 & Multi-user role support & Authorization & Covered \\
+
 \end{longtable}
-
-\subsection{Final Assessment}
-
-This architecture provides a solid foundation suitable for initial deployment in controlled environments with reliable connectivity. Addressing the offline operation gap and clarifying component boundaries will elevate the design to production-grade robustness for diverse deployment scenarios.
-
-The automated traceability analysis proves valuable for identifying these gaps early, before implementation costs make corrections expensive. Maintaining this traceability discipline as the system evolves will continue to provide quality assurance benefits.
 
 \end{document}

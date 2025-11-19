@@ -21,7 +21,7 @@ spring:
       chat:
         options:
           model: claude-haiku-4-5-20251001
-          max-tokens: 20000
+          max-tokens: 50000
       
       
   data:
