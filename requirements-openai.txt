@@ -1,0 +1,10 @@
+# Requirements for Single-Agent PDF Validator (OpenAI Version)
+
+# OpenAI API
+openai>=1.54.0
+
+# PDF text extraction
+PyMuPDF>=1.24.0  # fitz module for PDF parsing
+
+# Optional but recommended
+python-dotenv>=1.0.0  # For loading API keys from .env file

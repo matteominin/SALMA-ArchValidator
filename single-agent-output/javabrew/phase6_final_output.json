@@ -1,0 +1,58 @@
+{
+  "pdfPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/validation_report_2025-11-19.pdf",
+  "texPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/validation_report_2025-11-19.tex",
+  "summary": {
+    "requirements_extracted": 62,
+    "requirements_by_type": {
+      "functional": 42,
+      "non_functional": 9,
+      "constraint": 5,
+      "goal": 6
+    },
+    "requirements_quality": {
+      "well_defined": 49,
+      "needs_detail": 6,
+      "vague": 7
+    },
+    "use_cases_extracted": 18,
+    "use_cases_explicit": 15,
+    "use_cases_implicit": 3,
+    "architecture_components": 18,
+    "architecture_pattern": "Six-layer Layered Architecture",
+    "tests_extracted": 63,
+    "tests_by_type": {
+      "unit": 45,
+      "integration": 12,
+      "system": 6
+    },
+    "traceability_coverage_percentage": 95.2,
+    "traceability_details": {
+      "requirements_covered_or_partial": 59,
+      "requirements_uncovered": [
+        "REQ-18",
+        "REQ-19",
+        "REQ-20"
+      ],
+      "use_cases_fully_tested": 12,
+      "use_cases_partially_tested": 3,
+      "use_cases_untested_or_unimplementable": [
+        "UC-18"
+      ],
+      "orphan_requirements": [
+        "REQ-18",
+        "REQ-19",
+        "REQ-20"
+      ],
+      "orphan_tests_note": "Some infrastructure tests not mapped to specific use cases; no offline or hardware tests."
+    },
+    "feature_coverage_percentage": 68.8,
+    "feature_details": {
+      "total_kb_features": 16,
+      "covered_features": 11,
+      "uncovered_features": 5
+    },
+    "validation_status": "CONDITIONALLY_PASSED",
+    "critical_issues": 3,
+    "warnings": 6
+  }
+}

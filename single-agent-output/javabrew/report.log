@@ -1,0 +1,3150 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.5.25)  2 DEC 2025 19:56
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**report.tex
+(./report.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count196
+\c@section=\count197
+\c@subsection=\count198
+\c@subsubsection=\count199
+\c@paragraph=\count266
+\c@subparagraph=\count267
+\c@figure=\count268
+\c@table=\count269
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen141
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count270
+\Gm@cntv=\count271
+\c@Gm@tempcnt=\count272
+\Gm@bindingoffset=\dimen142
+\Gm@wd@mp=\dimen143
+\Gm@odd@mp=\dimen144
+\Gm@even@mp=\dimen145
+\Gm@layoutwidth=\dimen146
+\Gm@layoutheight=\dimen147
+\Gm@layouthoffset=\dimen148
+\Gm@layoutvoffset=\dimen149
+\Gm@dimlist=\toks20
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen152
+\lightrulewidth=\dimen153
+\cmidrulewidth=\dimen154
+\belowrulesep=\dimen155
+\belowbottomsep=\dimen156
+\aboverulesep=\dimen157
+\abovetopsep=\dimen158
+\cmidrulesep=\dimen159
+\cmidrulekern=\dimen160
+\defaultaddspace=\dimen161
+\@cmidla=\count273
+\@cmidlb=\count274
+\@aboverulesep=\dimen162
+\@belowrulesep=\dimen163
+\@thisruleclass=\count275
+\@lastruleclass=\count276
+\@thisrulewidth=\dimen164
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen165
+\ar@mcellbox=\box52
+\extrarowheight=\dimen166
+\NC@list=\toks21
+\extratabsurround=\skip51
+\backup@length=\skip52
+\ar@cellbox=\box53
+)
+\TX@col@width=\dimen167
+\TX@old@table=\dimen168
+\TX@old@col=\dimen169
+\TX@target=\dimen170
+\TX@delta=\dimen171
+\TX@cols=\count277
+\TX@ftn=\toks22
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip53
+\LTright=\skip54
+\LTpre=\skip55
+\LTpost=\skip56
+\LTchunksize=\count278
+\LTcapwidth=\dimen172
+\LT@head=\box54
+\LT@firsthead=\box55
+\LT@foot=\box56
+\LT@lastfoot=\box57
+\LT@gbox=\box58
+\LT@cols=\count279
+\LT@rows=\count280
+\c@LT@tables=\count281
+\c@LT@chunks=\count282
+\LT@p@ftn=\toks23
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count283
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count284
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen173
+\Hy@linkcounter=\count285
+\Hy@pagecounter=\count286
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count287
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4424.
+\c@Hy@tempcnt=\count288
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4763.
+\XeTeXLinkMargin=\dimen174
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count289
+\Field@Width=\dimen175
+\Fld@charsize=\dimen176
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count290
+\c@Item=\count291
+\c@Hfootnote=\count292
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip57
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip58
+\f@nch@offset@elh=\skip59
+\f@nch@offset@erh=\skip60
+\f@nch@offset@olh=\skip61
+\f@nch@offset@orh=\skip62
+\f@nch@offset@elf=\skip63
+\f@nch@offset@erf=\skip64
+\f@nch@offset@olf=\skip65
+\f@nch@offset@orf=\skip66
+\f@nch@height=\skip67
+\f@nch@footalignment=\skip68
+\f@nch@widthL=\skip69
+\f@nch@widthC=\skip70
+\f@nch@widthR=\skip71
+\@temptokenb=\toks24
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip72
+\enit@outerparindent=\dimen177
+\enit@toks=\toks25
+\enit@inbox=\box59
+\enit@count@id=\count295
+\enitdp@description=\count296
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2024/11/05 v2.17t AMS math features
+\@mathmargin=\skip73
+
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks26
+\ex@=\dimen178
+))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen179
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count297
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count298
+\leftroot@=\count299
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count300
+\DOTSCASE@=\count301
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box60
+\strutbox@=\box61
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen180
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count302
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count303
+\dotsspace@=\muskip18
+\c@parentequation=\count304
+\dspbrk@lvl=\count305
+\tag@help=\toks27
+\row@=\count306
+\column@=\count307
+\maxfields@=\count308
+\andhelp@=\toks28
+\eqnshift@=\dimen181
+\alignsep@=\dimen182
+\tagshift@=\dimen183
+\tagwidth@=\dimen184
+\totwidth@=\dimen185
+\lineht@=\dimen186
+\@envbody=\toks29
+\multlinegap=\skip74
+\multlinetaggap=\skip75
+\mathdisplay@stack=\toks30
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count309
+\float@exts=\toks31
+\float@box=\box62
+\@float@everytoks=\toks32
+\@floatcapt=\box63
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 36.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count310
+\l__pdf_internal_box=\box64
+)
+(./report.aux)
+\openout1 = `report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 42.
+LaTeX Font Info:    ... okay on input line 42.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 700.50687pt, 72.26999pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.9679pt
+* \textheight=700.50687pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=11.0pt
+* \footskip=30.0pt
+* \marginparwidth=50.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count311
+\scratchdimen=\dimen187
+\scratchbox=\box65
+\nofMPsegments=\count312
+\nofMParguments=\count313
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count314
+\MPscratchDim=\dimen188
+\MPnumerator=\count315
+\makeMPintoPDFobject=\count316
+\everyMPtoPDFconversion=\toks34
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/local/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+Package hyperref Info: Link coloring ON on input line 42.
+
+(./report.out) (./report.out)
+\@outlinefile=\write3
+\openout3 = `report.out'.
+
+ (./report.toc
+
+[1
+
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
+al/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}])
+\tf@toc=\write4
+\openout4 = `report.toc'.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+[]|\T1/cmr/bx/n/10.95 Start
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\T1/cmr/bx/n/10.95 Start
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[3
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.150 \end{longtable}
+                     {/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-sup
+er/cm-super-ts1.enc}]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[4]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 
+      ]
+Underfull \hbox (badness 1783) in paragraph at lines 260--261
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+\T1/cmr/m/n/10.95 (role model
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+\T1/cmr/m/n/10.95 not fully
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 264--265
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\T1/cmr/m/n/10.95 (op-er-a-tions
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\T1/cmr/m/n/10.95 and con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\T1/cmr/m/n/10.95 straints not
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[]|\T1/cmr/m/n/10.95 Needs De-
+ []
+
+
+Underfull \hbox (badness 7540) in paragraph at lines 266--267
+\T1/cmr/m/n/10.95 tail (la-tency
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\T1/cmr/m/n/10.95 and con-sis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\T1/cmr/m/n/10.95 tency not
+ []
+
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 272--273
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified
+ []
+
+
+Underfull \hbox (badness 3679) in paragraph at lines 272--273
+\T1/cmr/m/n/10.95 or stan-dards
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Overfull \hbox (20.34674pt too wide) in paragraph at lines 276--276
+[]|\T1/cmr/m/n/10.95 Goal/background| 
+ []
+
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 276--277
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified
+ []
+
+
+Underfull \hbox (badness 2772) in paragraph at lines 276--277
+\T1/cmr/m/n/10.95 (no us-abil-ity
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--278
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 278--279
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+ []
+
+
+Underfull \hbox (badness 3792) in paragraph at lines 278--279
+\T1/cmr/m/n/10.95 (stor-age and
+ []
+
+
+Underfull \hbox (badness 1946) in paragraph at lines 278--279
+\T1/cmr/m/n/10.95 con-flict rules
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--280
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+[]|\T1/cmr/m/n/10.95 Needs De-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 tail (sync
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 strat-egy
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 and con-flict
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 res-o-lu-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--282
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 282--283
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+\T1/cmr/m/n/10.95 (lim-its and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+\T1/cmr/m/n/10.95 rec-on-cil-i-a-tion
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--284
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Overfull \hbox (20.34674pt too wide) in paragraph at lines 284--284
+[]|\T1/cmr/m/n/10.95 Goal/background| 
+ []
+
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 284--285
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--286
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 1783) in paragraph at lines 286--287
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+ []
+
+
+Underfull \hbox (badness 7379) in paragraph at lines 286--287
+\T1/cmr/m/n/10.95 (schema not
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--290
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+[]|\T1/cmr/m/n/10.95 Non-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--294
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--296
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+[]|\T1/cmr/m/n/10.95 Non-
+ []
+
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 298--299
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--300
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 300--301
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+\T1/cmr/m/n/10.95 (scope un-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--302
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 304--304
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[6
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.305 \end{longtable}
+                     ]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+[]|\T1/cmr/m/n/10.95 Customer, Sys-tem, Pay-ment
+ []
+
+
+Underfull \hbox (badness 1360) in paragraph at lines 340--340
+[]|\T1/cmr/m/n/10.95 Complete Main-te-nance
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 354--354
+[]|\T1/cmr/m/n/10.95 View An-a-lyt-ics Dash-
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[8]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[9]
+Underfull \hbox (badness 7168) in paragraph at lines 451--452
+[]|\T1/cmr/m/n/10.95 Clear UI fo-cus; technology-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+[]|\T1/cmr/m/n/10.95 Controller Layer
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+\T1/cmr/m/n/10.95 (User-Con-troller,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+\T1/cmr/m/n/10.95 Ma-chineCon-troller,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+\T1/cmr/m/n/10.95 Trans-ac-tion-Con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--455
+\T1/cmr/m/n/10.95 tom-erSer-vice, Ad-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--455
+\T1/cmr/m/n/10.95 min-Ser-vice, Work-
+ []
+
+
+Underfull \hbox (badness 2486) in paragraph at lines 455--455
+[]|\T1/cmr/m/n/10.95 Business logic or-ches-tra-tion
+ []
+
+
+Underfull \hbox (badness 4229) in paragraph at lines 455--455
+\T1/cmr/m/n/10.95 for cus-tomer, ad-min, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+[]|\T1/cmr/m/n/10.95 Responsibilities some-what
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+\T1/cmr/m/n/10.95 broad; rec-om-men-da-tion to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+\T1/cmr/m/n/10.95 chase-Orches-tra-tionSer-vice,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+\T1/cmr/m/n/10.95 In-ven-to-ry-Man-age-mentSer-vice,
+ []
+
+
+Underfull \hbox (badness 3735) in paragraph at lines 457--457
+[]|\T1/cmr/m/n/10.95 DAO Layer (User-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--457
+\T1/cmr/m/n/10.95 Dao, Trans-ac-tion-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--457
+\T1/cmr/m/n/10.95 Dao, Item-Dao,
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 457--457
+[]|\T1/cmr/m/n/10.95 Data ac-cess ab-strac-tion for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--459
+[]|\T1/cmr/m/n/10.95 Persistence Layer
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--459
+\T1/cmr/m/n/10.95 (JPA/Hibernate,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--460
+[]|\T1/cmr/m/n/10.95 Clear in-fras-truc-ture con-cern;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+[]|\T1/cmr/m/n/10.95 Domain Model
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+\T1/cmr/m/n/10.95 (Con-creteVend-ing-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+\T1/cmr/m/n/10.95 Ma-chine, Trans-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+\T1/cmr/m/n/10.95 ac-tion, In-ven-tory,
+ []
+
+
+Underfull \hbox (badness 1902) in paragraph at lines 461--461
+[]|\T1/cmr/m/n/10.95 Business en-ti-ties and value
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 463--463
+[]|\T1/cmr/m/n/10.95 Payment Gate-way
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.465 (Planned)
+                Domain Events Infrastructure & Publish domain events such as...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing number, treated as zero.
+<to be read again> 
+                   d
+l.465 (Planned)
+                Domain Events Infrastructure & Publish domain events such as...
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   d
+l.465 (Planned)
+                Domain Events Infrastructure & Publish domain events such as...
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+
+Underfull \hbox (badness 1735) in paragraph at lines 465--465
+[]|\T1/cmr/m/n/10.95 Domain Events In-
+ []
+
+
+Underfull \hbox (badness 4927) in paragraph at lines 465--465
+\T1/cmr/m/n/10.95 as Pro-duct-Pur-chased, Bal-
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 465--465
+\T1/cmr/m/n/10.95 anceRecharged, Main-te-nanc-
+ []
+
+
+Underfull \hbox (badness 2042) in paragraph at lines 465--466
+[]|\T1/cmr/m/n/10.95 Not yet im-ple-mented; rec-om-
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[10]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[11]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.513 \textbf
+             {Domain} & \textbf{Tests} & \textbf{Coverage} & \textbf{Notes} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.515 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.518 \textbf
+             {Domain} & \textbf{Tests} & \textbf{Coverage} & \textbf{Notes} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.520 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.522 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.525 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 527--528
+\T1/cmr/m/n/10.95 den-tials, in-put val-i-da-
+ []
+
+
+Underfull \hbox (badness 8038) in paragraph at lines 527--528
+\T1/cmr/m/n/10.95 tion, er-ror han-dling,
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.529 T
+       ransaction \& Payment & 18 & High & Covers purchase flow, wallet oper...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+[]|\T1/cmr/m/n/10.95 Transaction &
+ []
+
+
+Underfull \hbox (badness 2903) in paragraph at lines 529--530
+[]|\T1/cmr/m/n/10.95 Covers pur-chase flow,
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.531 O
+       ffline Operation & 0 & None & No tests for offline scenarios. \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.533 I
+       nventory \& Product Management & 13 & High & Covers CRUD, validation,...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--533
+[]|\T1/cmr/m/n/10.95 Inventory &
+ []
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 533--534
+[]|\T1/cmr/m/n/10.95 Covers CRUD, val-i-da-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.535 M
+       aintenance \& Worker Operations & 5 & Partial & Tests for UC-8 only; ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--535
+[]|\T1/cmr/m/n/10.95 Maintenance &
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--535
+\T1/cmr/m/n/10.95 Worker Op-er-a-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.537 C
+       ross-Cutting Error Handling & Several & Partial & Tests verify errors...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.545 \textbf
+             {ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hin...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.547 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.550 \textbf
+             {ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hin...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.552 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.554 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.557 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
+[]|\T1/cmr/m/n/10.95 Authentication tests
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.561 T
+       EST-2 & Unit & Registration tests (duplicate email) & User Registrati...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
+[]|\T1/cmr/m/n/10.95 User Reg-is-tra-tion busi-ness
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.563 T
+       EST-10 & Integration & Transaction rollback tests & Purchase Item err...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+[]|\T1/cmr/m/n/10.95 TEST-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.565 T
+       EST-20 & Unit & Inventory CRUD tests & Add/Update/Delete/View Items (...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--565
+[]|\T1/cmr/m/n/10.95 TEST-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--566
+[]|\T1/cmr/m/n/10.95 Add/Update/Delete/View
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.567 T
+       EST-30 & Unit & Maintenance task completion tests & Complete Maintena...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 567--567
+[]|\T1/cmr/m/n/10.95 TEST-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.569 T
+       EST-40 & System & End-to-end purchase flow & Purchase Item main flow ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 569--569
+[]|\T1/cmr/m/n/10.95 TEST-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.571 T
+       EST-50 & System & Navigation tests & \textit{Missing} according to Se...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 571--571
+[]|\T1/cmr/m/n/10.95 TEST-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.573 T
+       EST-60 & System & Hardware integration tests & \textit{Missing}; no r...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 573--573
+[]|\T1/cmr/m/n/10.95 TEST-
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[12
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.574 \end{longtable}
+                     ]
+Overfull \hbox (6.01488pt too wide) in paragraph at lines 583--593
+ [][] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.600 \textbf
+             {Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Ratio...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.602 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.605 \textbf
+             {Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Ratio...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.607 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.609 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.612 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.616 R
+       EQ-2 & UC-2 & \textcolor{coveredcolor}{Covered} & UC-2 (User Registra...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.618 R
+       EQ-3 & UC-3 & \textcolor{coveredcolor}{Covered} & QR code generation ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.620 R
+       EQ-4 & UC-12, UC-13, UC-14, UC-15 & \textcolor{coveredcolor}{Covered}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 620--620
+[]|\T1/cmr/m/n/10.95 UC-12, UC-13,
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.622 R
+       EQ-5 & UC-3, UC-12--UC-15 & \textcolor{partialcolor}{Partial} & Real-...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 622--622
+[]|\T1/cmr/m/n/10.95 UC-3, UC-12--
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.624 R
+       EQ-6 & UC-3, UC-4 & \textcolor{coveredcolor}{Covered} & Wallet balanc...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.626 R
+       EQ-8 & UC-3, UC-4 & \textcolor{partialcolor}{Partial} & Digital payme...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--627
+[]|\T1/cmr/m/n/10.95 Digital pay-ments used, but
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.628 R
+       EQ-9 & UC-3, UC-6 & \textcolor{coveredcolor}{Covered} & Transaction h...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
+[]|\T1/cmr/m/n/10.95 Transaction his-tory recorded and
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.630 R
+       EQ-10 & UC-1--UC-4, UC-6 & \textcolor{partialcolor}{Partial} & ``Impr...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.632 R
+       EQ-18 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No offline use...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (13.36685pt too wide) in paragraph at lines 632--632
+[]|[]\T1/cmr/m/n/10.95 UNSUPPORTED[]| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.634 R
+       EQ-19 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No sync use ca...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (13.36685pt too wide) in paragraph at lines 634--634
+[]|[]\T1/cmr/m/n/10.95 UNSUPPORTED[]| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.636 R
+       EQ-20 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No anonymous c...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (13.36685pt too wide) in paragraph at lines 636--636
+[]|[]\T1/cmr/m/n/10.95 UNSUPPORTED[]| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.638 R
+       EQ-22 & UC-8 & \textcolor{coveredcolor}{Covered} & Worker task assign...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1629) in paragraph at lines 638--639
+[]|\T1/cmr/m/n/10.95 Worker task as-sign-ment re-al-ized in
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.640 R
+       EQ-24 & UC-8 & \textcolor{coveredcolor}{Covered} & Maintenance notifi...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.642 R
+       EQ-34 & UC-1 & \textcolor{partialcolor}{Partial} & Authentication err...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.644 R
+       EQ-35 & UC-3 & \textcolor{partialcolor}{Partial} & Transaction errors...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.646 R
+       EQ-45 & UC-1--UC-4 & \textcolor{partialcolor}{Partial} & Validation e...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.648 R
+       EQ-46--REQ-49 & Multiple & \textcolor{coveredcolor}{Covered} & Valida...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--648
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--648
+\T1/cmr/m/n/10.95 46--
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.650 R
+       EQ-50--REQ-53 & All & \textcolor{coveredcolor}{Covered} & Architectur...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
+[]|\T1/cmr/m/n/10.95 REQ-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
+\T1/cmr/m/n/10.95 50--
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.652 R
+       EQ-60 & UC-18 & \textcolor{partialcolor}{Partial} & Remote maintenanc...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[13
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.653 \end{longtable}
+                     ]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.660 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Stat...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.662 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 657--662
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.665 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Stat...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.667 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 662--667
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.669 \multicolumn
+                  {5}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 667--670
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.672 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 670--672
+ [] [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--674
+[]|\T1/cmr/m/n/10.95 Presentation, User-Con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--674
+\T1/cmr/m/n/10.95 troller, Cus-tom-erSer-
+ []
+
+
+Overfull \hbox (38.00237pt too wide) in paragraph at lines 674--674
+\T1/cmr/m/n/10.95 vice/AdminService/WorkerService,
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 674--674
+\T1/cmr/m/n/10.95 User-Dao, Do-main Model
+ []
+
+
+Underfull \hbox (badness 1629) in paragraph at lines 674--675
+[]|\T1/cmr/m/n/10.95 Standard lay-ered
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.676 U
+       C-2 & User Registration & Presentation, UserController, Services, Use...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--676
+[]|\T1/cmr/m/n/10.95 Presentation, User-Con-
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 676--677
+[]|\T1/cmr/m/n/10.95 Similar to UC-1
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\T1/cmr/m/n/10.95 with ad-di-tional
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\T1/cmr/m/n/10.95 role as-sign-ment
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.678 U
+       C-3 & Purchase Item & Presentation, TransactionController, CustomerSe...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--678
+[]|\T1/cmr/m/n/10.95 Presentation, Trans-ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--678
+\T1/cmr/m/n/10.95 tion-Con-troller, Cus-tom-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--678
+\T1/cmr/m/n/10.95 Trans-ac-tion-Item-Dao,
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 678--678
+\T1/cmr/m/n/10.95 Wal-let, In-ven-tory, Con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+[]|\T1/cmr/m/n/10.95 Purchase or-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+\T1/cmr/m/n/10.95 ches-tra-tion,
+ []
+
+
+Underfull \hbox (badness 6927) in paragraph at lines 678--679
+\T1/cmr/m/n/10.95 per-sis-tence, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+\T1/cmr/m/n/10.95 vend-ing op-er-a-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.680 U
+       C-4 & Recharge Wallet & Presentation, TransactionController, Customer...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--680
+[]|\T1/cmr/m/n/10.95 Presentation, Trans-ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--680
+\T1/cmr/m/n/10.95 tion-Con-troller, Cus-tom-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.682 U
+       C-6 & View Transaction History & Presentation, TransactionController,...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--682
+\T1/cmr/m/n/10.95 Con-troller, Trans-ac-tion-
+ []
+
+
+Underfull \hbox (badness 2012) in paragraph at lines 682--683
+[]|\T1/cmr/m/n/10.95 Read-only ac-cess
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.684 U
+       C-8 & Complete Maintenance Task & Presentation, WorkerService, TaskMa...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 684--684
+[]|\T1/cmr/m/n/10.95 Presentation, Work-erSer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--685
+[]|\T1/cmr/m/n/10.95 Task life-cy-cle
+ []
+
+
+Underfull \hbox (badness 1895) in paragraph at lines 684--685
+\T1/cmr/m/n/10.95 man-aged in ser-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.686 U
+       C-12--UC-15 & Inventory CRUD & Presentation, AdminService, ItemDao, M...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--686
+[]|\T1/cmr/m/n/10.95 UC-12--
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--686
+[]|\T1/cmr/m/n/10.95 Presentation, Ad-min-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--686
+\T1/cmr/m/n/10.95 Ser-vice, Item-Dao, Ma-
+ []
+
+
+Underfull \hbox (badness 3219) in paragraph at lines 686--686
+\T1/cmr/m/n/10.95 chineDao, In-ven-to-ryMap-
+ []
+
+
+Underfull \hbox (badness 7777) in paragraph at lines 686--687
+\T1/cmr/m/n/10.95 mapped to ad-
+ []
+
+
+Underfull \hbox (badness 2486) in paragraph at lines 686--687
+\T1/cmr/m/n/10.95 min ser-vice and
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.688 U
+       C-18 & Remote Maintenance & Presentation, WorkerService & \textcolor{...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--688
+[]|\T1/cmr/m/n/10.95 Remote Main-te-
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 688--688
+[]|\T1/cmr/m/n/10.95 Presentation, Work-erSer-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--688
+[]|[]\T1/cmr/m/n/10.95 Not Im-ple-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+[]|\T1/cmr/m/n/10.95 No hard-ware
+ []
+
+
+Underfull \hbox (badness 4673) in paragraph at lines 688--689
+\T1/cmr/m/n/10.95 ab-strac-tion, IoT
+ []
+
+
+Underfull \hbox (badness 3514) in paragraph at lines 688--689
+\T1/cmr/m/n/10.95 gate-way, or de-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+\T1/cmr/m/n/10.95 vice pro-to-col
+ []
+
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 672--689
+ [] [] [] [] [] 
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[14]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.696 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt F...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 696--696
+[]|\T1/cmr/bx/n/10.95 Main
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.698 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 693--698
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.701 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt F...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 701--701
+[]|\T1/cmr/bx/n/10.95 Main
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.703 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 698--703
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.705 \multicolumn
+                  {5}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 703--706
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.708 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 706--708
+ [] [] [] [] [] 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.713 U
+       C-2 & User Registration & \textcolor{coveredcolor}{Tested} & \textcol...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1910) in paragraph at lines 714--715
+[]|\T1/cmr/m/n/10.95 Registration suc-cess, du-pli-cate
+ []
+
+
+Underfull \hbox (badness 8038) in paragraph at lines 714--715
+\T1/cmr/m/n/10.95 email, and val-i-da-tion er-rors
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.716 U
+       C-3 & Purchase Item & \textcolor{coveredcolor}{Tested} & \textcolor{c...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.719 U
+       C-4 & Recharge Wallet & \textcolor{coveredcolor}{Tested} & \textcolor...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.722 U
+       C-6 & View Transaction History & \textcolor{coveredcolor}{Tested} & \...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.725 U
+       C-8 & Complete Maintenance Task & \textcolor{coveredcolor}{Tested} & ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.728 U
+       C-12--UC-15 & Inventory CRUD & \textcolor{coveredcolor}{Tested} & \te...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 728--728
+[]|\T1/cmr/m/n/10.95 UC-12--
+ []
+
+
+Underfull \hbox (badness 2050) in paragraph at lines 729--730
+[]|\T1/cmr/m/n/10.95 CRUD op-er-a-tions and val-i-da-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.731 U
+       C-18 & Remote Maintenance & \textcolor{uncoveredcolor}{Not Tested} & ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
+[]|\T1/cmr/m/n/10.95 Remote Main-te-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.734 M
+       ulti-UC Journeys & Register \textrightarrow{} Recharge \textrightarro...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+[]|\T1/cmr/m/n/10.95 Multi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+\T1/cmr/m/n/10.95 UC
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+[]|\T1/cmr/m/n/10.95 Register \TS1/cmr/m/n/10.95 ^^Y
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+\T1/cmr/m/n/10.95 Recharge \TS1/cmr/m/n/10.95 ^^Y
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+\T1/cmr/m/n/10.95 Pur-chase \TS1/cmr/m/n/10.95 ^^Y
+ []
+
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 708--736
+ [] [] [] [] [] 
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[15]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[16]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.789 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.791 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.794 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.796 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.798 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.801 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 803--803
+[]|\T1/cmr/m/n/10.95 Clear ar-chi-tec-tural
+ []
+
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 803--803
+[]|\T1/cmr/m/n/10.95 Architecture| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.805 F
+       -2 & Layer responsibilities defined & Architecture & Table in Section...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 805--805
+[]|\T1/cmr/m/n/10.95 Architecture| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.807 F
+       -3 & Traceability from requirements to tests & Documentation & ``Auto...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (16.13089pt too wide) in paragraph at lines 807--807
+[]|\T1/cmr/m/n/10.95 Documentation| 
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 807--808
+\T1/cmr/m/n/10.95 to-mated trace-abil-ity from re-quire-ments
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.809 F
+       -4 & Test pyramid adherence & Testing & ``Unit Tests (71\%), Integrat...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.811 F
+       -5 & Error handling strategy identified & Cross-Cutting & Section 3.1...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 811--811
+[]|\T1/cmr/m/n/10.95 Cross-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.813 F
+       -6 & Requirements inventory & Documentation & Appendix lists all 62 r...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (16.13089pt too wide) in paragraph at lines 813--813
+[]|\T1/cmr/m/n/10.95 Documentation| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.815 F
+       -7 & Identification of vague requirements & Requirements & Section 3....
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 815--815
+[]|\T1/cmr/m/n/10.95 Identification of
+ []
+
+
+Overfull \hbox (8.02734pt too wide) in paragraph at lines 815--815
+[]|\T1/cmr/m/n/10.95 Requirements| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.817 F
+       -8 & Use of design patterns & Architecture & Section 2.6 and 2.7 desc...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 817--817
+[]|\T1/cmr/m/n/10.95 Use of de-sign pat-
+ []
+
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 817--817
+[]|\T1/cmr/m/n/10.95 Architecture| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.819 F
+       -9 & Domain-driven design elements & Architecture & ``The domain mode...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 819--819
+[]|\T1/cmr/m/n/10.95 Domain-driven
+ []
+
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 819--819
+[]|\T1/cmr/m/n/10.95 Architecture| 
+ []
+
+
+Underfull \hbox (badness 4266) in paragraph at lines 819--820
+[]|\T1/cmr/m/n/10.95 ``The do-main model fol-lows Domain-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.821 F
+       -10 & Risk identification & Project Management & Executive summary an...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--821
+[]|\T1/cmr/m/n/10.95 Project
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--821
+\T1/cmr/m/n/10.95 Man-age-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.823 F
+       -11 & Methodology validation & Documentation & ``This report was vali...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (16.13089pt too wide) in paragraph at lines 823--823
+[]|\T1/cmr/m/n/10.95 Documentation| 
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[17
+pdfTeX warning (ext4): destination with the same identifier (name{table.16}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.824 \end{longtable}
+                     ]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.831 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Descripti...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.833 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.836 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Descripti...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.838 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.840 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.843 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 845--845
+[]|\T1/cmr/m/n/10.95 Performance re-quire-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.847 U
+       F-2 & Security threat analysis & Security & No systematic threat mode...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.849 U
+       F-3 & Deployment architecture & Architecture & No deployment topology...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 849--849
+[]|\T1/cmr/m/n/10.95 Deployment ar-chi-tec-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.851 U
+       F-4 & Monitoring and observability & Maintainability & No logging/mon...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (2.06168pt too wide) in paragraph at lines 851--851
+[]|\T1/cmr/m/n/10.95 Maintainability| 
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.853 U
+       F-5 & Formal non-functional requirements & Requirements & Usability a...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 853--853
+[]|\T1/cmr/m/n/10.95 Formal non-functional
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.867 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.869 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.872 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.874 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.876 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.879 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1092) in paragraph at lines 881--882
+[]|\T1/cmr/m/n/10.95 Section 2.6 ex-plic-itly states
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.883 1
+       .2 & Pattern is justified & \textcolor{coveredcolor}{True} & Benefits...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 883--884
+[]|\T1/cmr/m/n/10.95 Benefits such as testa-bil-ity,
+ []
+
+
+Underfull \hbox (badness 4013) in paragraph at lines 883--884
+\T1/cmr/m/n/10.95 no layer skip-ping are de-
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.885 1
+       .3 & Layer responsibilities are clear & \textcolor{partialcolor}{Part...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.887 1
+       .4 & Pattern is consistently applied & \textcolor{coveredcolor}{True}...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1888) in paragraph at lines 887--888
+[]|\T1/cmr/m/n/10.95 No layer-skipping vi-o-la-tions
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[18]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.899 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.901 \endfirsthead
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.904 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.906 \endhead
+              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.908 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.911 \endlastfoot
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 8132) in paragraph at lines 913--914
+[]|\T1/cmr/m/n/10.95 Appendix lists REQ-1 to
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.915 2
+       .2 & Requirements are categorized & \textcolor{coveredcolor}{True} & ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.917 2
+       .3 & Vague requirements are flagged & \textcolor{coveredcolor}{True} ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 5374) in paragraph at lines 917--918
+[]|\T1/cmr/m/n/10.95 Section 3.2 ex-plic-itly lists
+ []
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.919 2
+       .4 & All requirements are testable & \textcolor{uncoveredcolor}{False...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 919--920
+[]|\T1/cmr/m/n/10.95 Several re-quire-ments (REQ-
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[19]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[20
+pdfTeX warning (ext4): destination with the same identifier (name{table.21}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.977 \end{itemize}
+                   ]
+Overfull \hbox (37.17882pt too wide) in paragraph at lines 994--1006
+ [][] 
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[21
+pdfTeX warning (ext4): destination with the same identifier (name{table.22}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1034 \end{itemize}
+                    ]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[22]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[23
+pdfTeX warning (ext4): destination with the same identifier (name{table.23}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1108 \end{document}
+                     ] (./report.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: B6F8F718DC683EFEA5CB65202BD8ACCB;10325.
+ )
+(\end occurred when \ifx on line 465 was incomplete) 
+Here is how much of TeX's memory you used:
+ 11589 strings out of 473190
+ 177645 string characters out of 5715800
+ 624599 words of memory out of 5000000
+ 34574 multiletter control sequences out of 15000+600000
+ 569820 words of font info for 61 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 75i,11n,79p,350b,684s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2025/texm
+f-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-
+dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-di
+st/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist
+/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/f
+onts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2025/texmf-dist/fon
+ts/type1/public/cm-super/sfti1095.pfb>
+Output written on report.pdf (23 pages, 203202 bytes).
+PDF statistics:
+ 501 PDF objects out of 1000 (max. 8388607)
+ 456 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 449 words of extra memory for PDF output out of 10000 (max. 10000000)
+

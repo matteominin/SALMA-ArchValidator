@@ -1,0 +1,1171 @@
+```latex
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+
+% Colors
+\definecolor{coveredcolor}{RGB}{34,139,34}
+\definecolor{partialcolor}{RGB}{255,165,0}
+\definecolor{uncoveredcolor}{RGB}{220,20,60}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{PDF Validation Report}
+\rhead{\today}
+\cfoot{\thepage}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\title{Software Engineering Report\\Validation Analysis\\JavaBrew Vending Machine Platform}
+\author{Automated Validation System}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+
+\subsection{Validation Status}
+
+\begin{table}[H]
+\centering
+\caption{Overall Validation Metrics}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Requirements Extracted & 62 \\
+Total Use Cases Extracted & 18 (15 explicit, 3 implicit) \\
+Total Architecture Components & 6 layers, 18 named components \\
+Total Tests Extracted & 63 \\
+\midrule
+Requirements Coverage & 95.2\% (59/62 covered or partial) \\
+Use Case Coverage & 83.3\% (15/18 covered) \\
+Architecture Coverage & 100\% (6/6 layers described) \\
+Test Coverage (per report) & 100\% of implemented features have some tests; gaps in journeys and hardware integration \\
+\midrule
+Feature-Based Coverage (best practices) & 68.8\% (11/16 criteria satisfied) \\
+\midrule
+\textbf{Overall Status} & \textcolor{partialcolor}{\textbf{CONDITIONALLY PASSED}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Key Findings}
+
+\begin{itemize}
+    \item \textbf{Strengths:}
+    \begin{itemize}
+        \item High requirements coverage (95.2\%) with explicit traceability to architecture and tests for most domains.
+        \item Clean six-layer architecture with disciplined separation of concerns and strategic use of patterns (Builder, DAO, Mapper).
+        \item Strong test pyramid: 71\% unit, 19\% integration, 10\% system tests, with emphasis on error scenarios.
+        \item Rich domain model aligned with Domain-Driven Design principles.
+        \item Automated traceability already in place, enabling impact analysis.
+    \end{itemize}
+
+    \item \textbf{Critical Risks:}
+    \begin{itemize}
+        \item \textbf{Offline Operation Gap}: REQ-18, REQ-19, REQ-20 are completely unsupported (no use cases, components, or tests).
+        \item \textbf{Remote Maintenance Gap}: REQ-60 and UC-18 promise remote maintenance without hardware abstraction or IoT gateway.
+        \item \textbf{Component Ambiguity}: Several components (especially DAOs and services) have vague responsibilities, risking architectural erosion.
+    \end{itemize}
+
+    \item \textbf{Areas for Improvement:}
+    \begin{itemize}
+        \item Clarify vague requirements (REQ-8, REQ-10, REQ-21, REQ-58, REQ-60) with measurable criteria.
+        \item Introduce offline-capable architecture (local storage, sync protocol, offline auth) and corresponding tests.
+        \item Define domain events and aggregate roots to enforce invariants and improve extensibility.
+        \item Add end-to-end user journey tests and hardware integration tests.
+    \end{itemize}
+\end{itemize}
+
+\section{Content Extraction Results}
+
+\subsection{Table of Contents and Sections}
+
+\subsubsection{Extracted Table of Contents}
+
+\begin{longtable}{p{6cm}p{2cm}p{2cm}}
+\caption{Extracted Table of Contents with Page Ranges} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1 Executive Summary & 3 & 4 \\
+1.1 Assessment Overview & 3 & 3 \\
+1.2 Critical Findings & 3 & 4 \\
+1.3 Report Quality Validation & 4 & 4 \\
+2 Functional Domain Analysis & 5 & 17 \\
+2.1 Authentication \& Authorization & 5 & 6 \\
+2.2 Transaction \& Payment Management & 7 & 8 \\
+2.3 Offline Operation \& Resilience & 9 & 10 \\
+2.4 Inventory \& Product Management & 10 & 11 \\
+2.5 Maintenance \& Worker Operations & 12 & 13 \\
+2.6 Architectural Overview & 13 & 14 \\
+2.7 Architectural Strengths & 14 & 15 \\
+2.8 Critical Weaknesses \& How to Improve & 14 & 16 \\
+2.9 Testing Quality & 16 & 16 \\
+2.10 Testing Gaps & 17 & 17 \\
+3 Cross-Cutting Concerns & 18 & 18 \\
+3.1 Error Handling \& Validation & 18 & 18 \\
+3.2 Requirements Quality Issues & 18 & 18 \\
+4 Conclusions & 19 & 20 \\
+4.1 Overall Assessment & 19 & 20 \\
+4.2 Critical Gaps & 19 & 20 \\
+4.3 Final Verdict & 19 & 20 \\
+Appendix: Complete Requirements Inventory & 21 & 23 \\
+\end{longtable}
+
+\subsection{Section Classification}
+
+\begin{longtable}{p{6cm}p{7cm}}
+\caption{Section Classification by Content Type} \\
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1 Executive Summary & [] \\
+1.1 Assessment Overview & [] \\
+1.2 Critical Findings & [Requirements, Architecture, Test] (high-level gaps) \\
+1.3 Report Quality Validation & [Test] (meta-validation of report quality) \\
+2 Functional Domain Analysis & [] \\
+2.1 Authentication \& Authorization & [Requirements, Architecture, Test] \\
+2.2 Transaction \& Payment Management & [Requirements, Architecture, Test] \\
+2.3 Offline Operation \& Resilience & [Requirements, Architecture, Test] \\
+2.4 Inventory \& Product Management & [Requirements, Architecture, Test] \\
+2.5 Maintenance \& Worker Operations & [Requirements, Architecture, Test] \\
+2.6 Architectural Overview & [Architecture] \\
+2.7 Architectural Strengths & [Architecture] \\
+2.8 Critical Weaknesses \& How to Improve & [Architecture, Requirements] \\
+2.9 Testing Quality & [Test] \\
+2.10 Testing Gaps & [Test] \\
+3 Cross-Cutting Concerns & [] \\
+3.1 Error Handling \& Validation & [Requirements, Test] \\
+3.2 Requirements Quality Issues & [Requirements] \\
+4 Conclusions & [] \\
+4.1 Overall Assessment & [] \\
+4.2 Critical Gaps & [Requirements, Architecture, Test] \\
+4.3 Final Verdict & [] \\
+Appendix: Complete Requirements Inventory & [Requirements] \\
+\end{longtable}
+
+\subsection{Requirements Extraction}
+
+A total of \textbf{62 requirements} were extracted from the Appendix and domain sections.
+
+\subsubsection{Requirements Quality Distribution}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Quality Assessment}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quality Level} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Well-defined & 49 & 79.0\% \\
+Needs Detail & 6 & 9.7\% \\
+Vague/Unquantified & 7 & 11.3\% \\
+\midrule
+\textbf{Total} & \textbf{62} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Requirements by Type}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Classification}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Type} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Functional & 42 & 67.7\% \\
+Non-Functional & 9 & 14.5\% \\
+Constraint & 5 & 8.1\% \\
+Goal/Background & 6 & 9.7\% \\
+\midrule
+\textbf{Total} & \textbf{62} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Sample of Extracted Requirements}
+
+Due to space, this table lists a representative subset; all 62 are included in the internal JSON inventory.
+
+\begin{longtable}{p{1.2cm}p{2.2cm}p{7.5cm}p{2.3cm}}
+\caption{Sample Extracted Requirements} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & Functional & The system must support user authentication with email and password. & Well-defined \\
+\midrule
+REQ-2 & Functional & The system must allow user registration with role assignment. & Needs Detail (role model not fully specified) \\
+\midrule
+REQ-3 & Functional & The system must generate QR codes for machine access. & Well-defined \\
+\midrule
+REQ-4 & Functional & The system must provide product inventory management capabilities. & Needs Detail (operations and constraints not fully enumerated) \\
+\midrule
+REQ-5 & Functional & The system must support real-time inventory tracking. & Needs Detail (latency and consistency not quantified) \\
+\midrule
+REQ-6 & Functional & The system must manage wallet balances for customers. & Well-defined \\
+\midrule
+REQ-7 & Functional & The system must provide balance recharge functionality. & Well-defined \\
+\midrule
+REQ-8 & Functional & The system must support digital payment methods. & Vague/Unquantified (no providers or standards specified) \\
+\midrule
+REQ-9 & Functional & The system must track transaction history. & Well-defined \\
+\midrule
+REQ-10 & Goal/background & The system should improve user experience. & Vague/Unquantified (no usability metrics) \\
+\midrule
+REQ-18 & Functional & The system must track local transactions while offline. & Needs Detail (storage and conflict rules unspecified) \\
+\midrule
+REQ-19 & Functional & The system must synchronize offline and online transactions. & Needs Detail (sync strategy and conflict resolution missing) \\
+\midrule
+REQ-20 & Functional & The system must provide an anonymous cash transaction fallback. & Needs Detail (limits and reconciliation rules missing) \\
+\midrule
+REQ-21 & Goal/background & The system should improve operational efficiency. & Vague/Unquantified \\
+\midrule
+REQ-34 & Functional & The system must provide structured authentication error responses. & Needs Detail (schema not defined) \\
+\midrule
+REQ-35 & Functional & The system must provide structured transaction error responses. & Needs Detail \\
+\midrule
+REQ-45 & Functional & The system must provide structured validation error responses. & Needs Detail \\
+\midrule
+REQ-46 & Non-functional & The system must validate input to prevent invalid or malicious data. & Well-defined \\
+\midrule
+REQ-50 & Constraint & The system must implement service layer orchestration. & Well-defined \\
+\midrule
+REQ-53 & Constraint & The system must follow a layered architecture separation. & Well-defined \\
+\midrule
+REQ-58 & Non-functional & The system should define usability metrics. & Vague/Unquantified \\
+\midrule
+REQ-60 & Functional & The system must provide remote maintenance capabilities. & Vague/Unquantified (scope unclear) \\
+\midrule
+REQ-61 & Functional & The system must manage machine connections. & Well-defined \\
+\midrule
+REQ-62 & Functional & The system must support multiple user roles. & Well-defined \\
+\end{longtable}
+
+\subsection{Use Case Extraction}
+
+The report explicitly names several use cases and implies others via coverage tables.
+
+\subsubsection{Use Case Summary}
+
+\begin{longtable}{p{1.5cm}p{4cm}p{2cm}p{6cm}}
+\caption{Extracted Use Cases (Summary)} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & User Login & Explicit & User, System \\
+\midrule
+UC-2 & User Registration & Explicit & User, System, Admin \\
+\midrule
+UC-3 & Purchase Item & Explicit & Customer, System, Wallet, Payment Provider \\
+\midrule
+UC-4 & Recharge Wallet & Explicit & Customer, System, Payment Provider \\
+\midrule
+UC-6 & View Transaction History & Explicit & Customer, System \\
+\midrule
+UC-8 & Complete Maintenance Task & Explicit & Worker, System \\
+\midrule
+UC-12 & Update Item & Explicit & Admin, System \\
+\midrule
+UC-13 & Delete Item & Explicit & Admin, System \\
+\midrule
+UC-14 & Add Item & Explicit & Admin, System \\
+\midrule
+UC-15 & View Items & Explicit & Admin, System \\
+\midrule
+UC-18 & Remote Maintenance & Explicit & Worker, System, Vending Machine Hardware \\
+\midrule
+UC-20 & Register Machine & Implicit & Admin, System \\
+\midrule
+UC-21 & View Analytics Dashboard & Implicit & Admin, System \\
+\midrule
+UC-22 & Monitor Machine Status & Implicit & Admin, System \\
+\end{longtable}
+
+\subsubsection{Detailed Use Case Descriptions (Selected)}
+
+\paragraph{UC-1: User Login}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} User, System
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow (inferred from REQ-1 and tests):}
+    \begin{enumerate}
+        \item User submits email and password to the login endpoint.
+        \item System validates credentials against stored user data.
+        \item On success, system establishes an authenticated session or returns a token.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item Invalid credentials: System returns a structured authentication error (REQ-34).
+        \item Missing fields: System returns validation error (REQ-45).
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC-3: Purchase Item}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Customer, System, Wallet, Payment Provider, Vending Machine
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow (from Section 2.2):}
+    \begin{enumerate}
+        \item Customer selects a product (REQ-12).
+        \item System verifies wallet balance (REQ-6, REQ-7).
+        \item System processes payment using digital methods (REQ-8).
+        \item System records transaction (REQ-9, REQ-11, REQ-16).
+        \item System triggers item dispensing (REQ-17).
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item Insufficient balance: System handles error and prevents purchase (REQ-14).
+        \item Out-of-stock item: System handles error and prevents purchase (REQ-15).
+        \item Payment gateway failure: System rolls back transaction and maintains data integrity.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC-18: Remote Maintenance}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Worker, System, Vending Machine Hardware
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow (promised, but not fully supported):}
+    \begin{enumerate}
+        \item Worker initiates remote maintenance session.
+        \item System should communicate with machine hardware to perform diagnostics or control actions.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item Hardware unreachable: System should report connection failure (REQ-36).
+    \end{itemize}
+    \item \textbf{Architectural Status:} Not implementable with current architecture (no hardware abstraction, no IoT gateway).
+\end{itemize}
+
+\subsection{Architecture Extraction}
+
+\subsubsection{Architectural Pattern}
+
+The report describes a \textbf{six-layer layered architecture} with clear separation of concerns:
+
+\begin{itemize}
+    \item Presentation
+    \item Controller
+    \item Service
+    \item DAO
+    \item Persistence
+    \item Domain Model
+\end{itemize}
+
+\subsubsection{Architecture Components}
+
+\begin{longtable}{p{3.5cm}p{5cm}p{5.5cm}}
+\caption{Architecture Components Analysis} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Presentation Layer & UI components and user interaction (Web UI, mobile mockups, user interfaces) & Clear UI focus; technology-independent description. \\
+\midrule
+Controller Layer (UserController, MachineController, TransactionController) & HTTP routing and input validation for respective domains & Good separation from business logic; no layer skipping observed. \\
+\midrule
+Service Layer (CustomerService, AdminService, WorkerService) & Business logic orchestration for customer, admin, and worker operations & Responsibilities somewhat broad; recommendation to split by bounded context (PurchaseOrchestrationService, InventoryManagementService, PricingService). \\
+\midrule
+DAO Layer (UserDao, TransactionDao, ItemDao, MachineDao) & Data access abstraction for users, transactions, items, and machines & Uses DAO pattern; current descriptions are generic (``manages data access'') and should be refined per DAO. \\
+\midrule
+Persistence Layer (JPA/Hibernate, DBManager, connection pools) & ORM mapping and database connection management & Clear infrastructure concern; supports PostgreSQL in production and H2 for tests. \\
+\midrule
+Domain Model (ConcreteVendingMachine, Transaction, Inventory, Wallet, MachineStatus) & Business entities and value objects encapsulating domain behavior & Rich domain model with behavior; aligns with Domain-Driven Design. Aggregate root enforcement currently weak. \\
+\midrule
+Payment Gateway Integration & External payment provider integration for digital payments & Mentioned in tests and recommendations; provider and protocol unspecified due to vague REQ-8. \\
+\midrule
+(Planned) Domain Events Infrastructure & Publish domain events such as ProductPurchased, BalanceRecharged, MaintenanceTaskCreated & Not yet implemented; recommended to improve extensibility and decoupling. \\
+\end{longtable}
+
+\subsubsection{Architecture Analysis}
+
+\textbf{Summary:} The architecture follows a disciplined layered pattern with strong separation of concerns and a rich domain model. The main weaknesses are vague component boundaries, missing offline and hardware integration components, and lack of domain events and aggregate root enforcement.
+
+\textbf{Strengths:}
+\begin{itemize}
+    \item Clean layer separation; no layer-skipping violations.
+    \item Strategic use of Builder, DAO, and Mapper patterns.
+    \item Technology independence: database and API technologies can be swapped with limited impact.
+    \item Rich domain entities encapsulating behavior.
+\end{itemize}
+
+\textbf{Weaknesses:}
+\begin{itemize}
+    \item Vague DAO and service responsibilities risk monolithic classes.
+    \item No components for offline storage, synchronization, or offline authentication.
+    \item No hardware abstraction or IoT gateway for remote maintenance.
+    \item No domain events infrastructure; aggregate root enforcement is weak.
+\end{itemize}
+
+\subsection{Test Extraction}
+
+\subsubsection{Test Type Distribution}
+
+\begin{table}[H]
+\centering
+\caption{Test Distribution by Type}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Test Type} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Unit & 45 & 71\% \\
+Integration & 12 & 19\% \\
+System & 6 & 10\% \\
+\midrule
+\textbf{Total} & \textbf{63} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Test Coverage by Domain}
+
+\begin{longtable}{p{3cm}p{3cm}p{3cm}p{4cm}}
+\caption{Domain-Level Test Coverage} \\
+\toprule
+\textbf{Domain} & \textbf{Tests} & \textbf{Coverage} & \textbf{Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Domain} & \textbf{Tests} & \textbf{Coverage} & \textbf{Notes} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Authentication \& Authorization & 16 & High & Covers valid/invalid credentials, input validation, error handling, business rules, security, authorization. \\
+\midrule
+Transaction \& Payment & 18 & High & Covers purchase flow, wallet operations, error handling, data integrity, payment integration. \\
+\midrule
+Offline Operation & 0 & None & No tests for offline scenarios. \\
+\midrule
+Inventory \& Product Management & 13 & High & Covers CRUD, validation, error handling. \\
+\midrule
+Maintenance \& Worker Operations & 5 & Partial & Tests for UC-8 only; no tests for UC-18 (remote maintenance). \\
+\midrule
+Cross-Cutting Error Handling & Several & Partial & Tests verify errors occur but not standardized response formats. \\
+\end{longtable}
+
+\subsubsection{Representative Tests}
+
+\begin{longtable}{p{1.5cm}p{2cm}p{5cm}p{5cm}}
+\caption{Representative Extracted Tests} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+TEST-1 & Unit & Authentication tests (valid/invalid credentials) & User Login success and failure scenarios (UC-1). \\
+\midrule
+TEST-2 & Unit & Registration tests (duplicate email) & User Registration business rules (UC-2). \\
+\midrule
+TEST-10 & Integration & Transaction rollback tests & Purchase Item error handling and data integrity (UC-3). \\
+\midrule
+TEST-20 & Unit & Inventory CRUD tests & Add/Update/Delete/View Items (UC-12--UC-15). \\
+\midrule
+TEST-30 & Unit & Maintenance task completion tests & Complete Maintenance Task (UC-8). \\
+\midrule
+TEST-40 & System & End-to-end purchase flow & Purchase Item main flow (UC-3). \\
+\midrule
+TEST-50 & System & Navigation tests & \textit{Missing} according to Section 2.10; navigation flows not covered. \\
+\midrule
+TEST-60 & System & Hardware integration tests & \textit{Missing}; no remote control or device communication tests. \\
+\end{longtable}
+
+\section{Traceability Matrix}
+
+\subsection{Coverage Summary}
+
+\begin{table}[H]
+\centering
+\caption{Traceability Coverage Summary}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Artifact Type} & \textbf{Total} & \textbf{Covered} & \textbf{Uncovered} & \textbf{Coverage \%} \\
+\midrule
+Requirements & 62 & 59 & 3 & 95.2\% \\
+Use Cases & 18 & 15 & 3 & 83.3\% \\
+Components (layers) & 6 & 6 & 0 & 100\% \\
+Tests & 63 & 55 (mapped to UCs) & 8 (orphan / infra-only) & 87.3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Requirements to Use Cases Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2.5cm}p{6.5cm}}
+\caption{Requirements to Use Cases Traceability (Selected)} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & UC-1 & \textcolor{coveredcolor}{Covered} & UC-1 (User Login) directly implements email/password authentication. \\
+\midrule
+REQ-2 & UC-2 & \textcolor{coveredcolor}{Covered} & UC-2 (User Registration) covers registration with role assignment. \\
+\midrule
+REQ-3 & UC-3 & \textcolor{coveredcolor}{Covered} & QR code generation is part of purchase access flow. \\
+\midrule
+REQ-4 & UC-12, UC-13, UC-14, UC-15 & \textcolor{coveredcolor}{Covered} & Inventory CRUD use cases implement inventory management. \\
+\midrule
+REQ-5 & UC-3, UC-12--UC-15 & \textcolor{partialcolor}{Partial} & Real-time tracking implied by purchase and inventory flows; latency not specified. \\
+\midrule
+REQ-6 & UC-3, UC-4 & \textcolor{coveredcolor}{Covered} & Wallet balance used in purchase and recharge flows. \\
+\midrule
+REQ-8 & UC-3, UC-4 & \textcolor{partialcolor}{Partial} & Digital payments used, but providers/compliance unspecified. \\
+\midrule
+REQ-9 & UC-3, UC-6 & \textcolor{coveredcolor}{Covered} & Transaction history recorded and viewed. \\
+\midrule
+REQ-10 & UC-1--UC-4, UC-6 & \textcolor{partialcolor}{Partial} & ``Improved user experience'' is a goal across flows; no metrics. \\
+\midrule
+REQ-18 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No offline use cases defined. \\
+\midrule
+REQ-19 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No sync use cases defined. \\
+\midrule
+REQ-20 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No anonymous cash fallback use case. \\
+\midrule
+REQ-22 & UC-8 & \textcolor{coveredcolor}{Covered} & Worker task assignment realized in maintenance task flows. \\
+\midrule
+REQ-24 & UC-8 & \textcolor{coveredcolor}{Covered} & Maintenance notifications tied to task lifecycle. \\
+\midrule
+REQ-34 & UC-1 & \textcolor{partialcolor}{Partial} & Authentication errors occur and are tested, but format unspecified. \\
+\midrule
+REQ-35 & UC-3 & \textcolor{partialcolor}{Partial} & Transaction errors occur and are tested, but format unspecified. \\
+\midrule
+REQ-45 & UC-1--UC-4 & \textcolor{partialcolor}{Partial} & Validation errors tested, but no standard schema. \\
+\midrule
+REQ-46--REQ-49 & Multiple & \textcolor{coveredcolor}{Covered} & Validation requirements realized across authentication, transaction, and inventory flows. \\
+\midrule
+REQ-50--REQ-53 & All & \textcolor{coveredcolor}{Covered} & Architectural requirements realized by six-layer design. \\
+\midrule
+REQ-60 & UC-18 & \textcolor{partialcolor}{Partial} & Remote maintenance use case exists but is not implementable with current architecture. \\
+\end{longtable}
+
+\subsection{Use Cases to Architecture Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{4.5cm}p{2.5cm}p{3cm}}
+\caption{Use Cases to Architecture Traceability (Selected)} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & User Login & Presentation, UserController, CustomerService/AdminService/WorkerService, UserDao, Domain Model (app\_user) & \textcolor{coveredcolor}{Covered} & Standard layered flow from UI to domain and persistence. \\
+\midrule
+UC-2 & User Registration & Presentation, UserController, Services, UserDao, Domain Model & \textcolor{coveredcolor}{Covered} & Similar to UC-1 with additional role assignment logic. \\
+\midrule
+UC-3 & Purchase Item & Presentation, TransactionController, CustomerService, TransactionDao, TransactionItemDao, Wallet, Inventory, ConcreteVendingMachine & \textcolor{coveredcolor}{Covered} & Purchase orchestration, persistence, and vending operations are mapped to components. \\
+\midrule
+UC-4 & Recharge Wallet & Presentation, TransactionController, CustomerService, Wallet, Payment Gateway, TransactionDao & \textcolor{coveredcolor}{Covered} & Wallet operations and payment integration realized. \\
+\midrule
+UC-6 & View Transaction History & Presentation, TransactionController, TransactionDao & \textcolor{coveredcolor}{Covered} & Read-only access to transaction history. \\
+\midrule
+UC-8 & Complete Maintenance Task & Presentation, WorkerService, TaskMapper, Domain Model (Worker, Task) & \textcolor{coveredcolor}{Covered} & Task lifecycle managed in service and domain layers. \\
+\midrule
+UC-12--UC-15 & Inventory CRUD & Presentation, AdminService, ItemDao, MachineDao, InventoryMapper, Inventory & \textcolor{coveredcolor}{Covered} & CRUD operations mapped to admin service and DAOs. \\
+\midrule
+UC-18 & Remote Maintenance & Presentation, WorkerService & \textcolor{uncoveredcolor}{Not Implementable} & No hardware abstraction, IoT gateway, or device protocol components. \\
+\end{longtable}
+
+\subsection{Use Cases to Tests Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2cm}p{2cm}p{5.5cm}}
+\caption{Use Cases to Tests Traceability (Selected)} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & User Login & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Main flow and invalid credentials tested. Missing standardized error response format tests (REQ-34). \\
+\midrule
+UC-2 & User Registration & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} &
+Registration success, duplicate email, and validation errors tested. \\
+\midrule
+UC-3 & Purchase Item & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} &
+Main purchase flow, insufficient balance, out-of-stock, and rollback scenarios tested. \\
+\midrule
+UC-4 & Recharge Wallet & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Recharge success and some error scenarios tested; payment security tests recommended. \\
+\midrule
+UC-6 & View Transaction History & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{N/A} &
+Read-only flow tested; no alternative flows required. \\
+\midrule
+UC-8 & Complete Maintenance Task & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Task completion and error scenarios tested; no tests for remote aspects. \\
+\midrule
+UC-12--UC-15 & Inventory CRUD & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} &
+CRUD operations and validation/error scenarios comprehensively tested. \\
+\midrule
+UC-18 & Remote Maintenance & \textcolor{uncoveredcolor}{Not Tested} & \textcolor{uncoveredcolor}{Not Tested} &
+No tests exist for remote maintenance or hardware communication. \\
+\midrule
+Multi-UC Journeys & Register \textrightarrow{} Recharge \textrightarrow{} Purchase \textrightarrow{} History & \textcolor{uncoveredcolor}{Not Tested} & \textcolor{uncoveredcolor}{Not Tested} &
+Section 2.10 notes missing end-to-end workflows and navigation tests. \\
+\end{longtable}
+
+\subsection{Orphan Artifacts}
+
+\subsubsection{Orphan Requirements}
+
+\begin{itemize}
+    \item \textbf{REQ-18:} Local transaction tracking during offline -- no use cases, components, or tests.
+    \item \textbf{REQ-19:} Offline-online synchronization -- no use cases, components, or tests.
+    \item \textbf{REQ-20:} Anonymous cash transactions fallback -- no use cases, components, or tests.
+\end{itemize}
+
+\subsubsection{Orphan Use Cases}
+
+\begin{itemize}
+    \item \textbf{UC-18:} Remote Maintenance -- mapped to REQ-60 but not to any hardware-related components or tests.
+    \item \textbf{Implicit navigation flows:} Role-based routing and multi-step journeys are not explicitly modeled as use cases.
+\end{itemize}
+
+\subsubsection{Orphan Tests}
+
+\begin{itemize}
+    \item Some infrastructure tests (e.g., DB migration, connection pooling) are not clearly mapped to specific use cases but support non-functional requirements.
+    \item No tests exist for offline behavior or hardware integration, leaving REQ-18--REQ-20 and REQ-60 effectively untested.
+\end{itemize}
+
+\section{Feature-Based Validation}
+
+\subsection{Overview}
+
+The report states that it was validated against 16 software engineering documentation standards, satisfying 11 of them (68.8\% coherence). This section aligns those findings with universal best practices.
+
+\begin{table}[H]
+\centering
+\caption{Feature-Based Validation Summary}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Knowledge Base Features (assumed) & 16 \\
+Features Covered in Report & 11 \\
+Features Not Covered & 5 \\
+\midrule
+\textbf{Coverage Percentage} & \textbf{68.8\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Covered Features (Selected)}
+
+\begin{longtable}{p{1cm}p{3.5cm}p{2cm}p{7cm}}
+\caption{Covered Universal Features (Examples)} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+F-1 & Clear architectural pattern & Architecture & ``The system implements a six-layer architecture following classic separation of concerns principles.'' (Section 2.6) \\
+\midrule
+F-2 & Layer responsibilities defined & Architecture & Table in Section 2.6 lists each layer with responsibilities and key components. \\
+\midrule
+F-3 & Traceability from requirements to tests & Documentation & ``Automated Traceability: Complete automated traceability from requirements through tests.'' (Architectural Strengths) \\
+\midrule
+F-4 & Test pyramid adherence & Testing & ``Unit Tests (71\%), Integration (19\%), System (10\%)... The distribution follows the test pyramid pattern.'' (Section 2.9) \\
+\midrule
+F-5 & Error handling strategy identified & Cross-Cutting & Section 3.1 discusses inconsistent error response formats and recommends a standardized JSON schema. \\
+\midrule
+F-6 & Requirements inventory & Documentation & Appendix lists all 62 requirements with category and coverage status. \\
+\midrule
+F-7 & Identification of vague requirements & Requirements & Section 3.2 lists REQ-10, REQ-21, REQ-58, REQ-8, REQ-60 as vague and recommends measurable criteria. \\
+\midrule
+F-8 & Use of design patterns & Architecture & Section 2.6 and 2.7 describe Builder, DAO, and Mapper patterns and their rationale. \\
+\midrule
+F-9 & Domain-driven design elements & Architecture & ``The domain model follows Domain-Driven Design principles with rich entities... and clear compositional relationships.'' (Section 2.6) \\
+\midrule
+F-10 & Risk identification & Project Management & Executive summary and Section 4.2 list three critical gaps and their impact. \\
+\midrule
+F-11 & Methodology validation & Documentation & ``This report was validated against 16 established software engineering documentation standards, achieving 68.8\% coherence.'' (Section 1.3) \\
+\end{longtable}
+
+\subsection{Uncovered / Weak Features}
+
+\begin{longtable}{p{1cm}p{4cm}p{2.5cm}p{6.5cm}}
+\caption{Uncovered or Weak Universal Features (Inferred)} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UF-1 & Performance requirements & Performance & No explicit performance metrics (e.g., response times, throughput) are specified. \\
+\midrule
+UF-2 & Security threat analysis & Security & No systematic threat model or mitigation strategy is documented. \\
+\midrule
+UF-3 & Deployment architecture & Architecture & No deployment topology (nodes, networks, environments) is described. \\
+\midrule
+UF-4 & Monitoring and observability & Maintainability & No logging/monitoring/alerting strategy beyond basic error logging. \\
+\midrule
+UF-5 & Formal non-functional requirements & Requirements & Usability and efficiency goals are vague and lack measurable acceptance criteria. \\
+\end{longtable}
+
+\subsection{Checklist Compliance Example}
+
+\subsubsection{Feature: Clear Architectural Pattern}
+
+\textbf{Category:} Architecture
+
+\textbf{Description:} The architecture pattern is explicitly identified, justified, and consistently applied.
+
+\begin{longtable}{p{0.8cm}p{6cm}p{2cm}p{5cm}}
+\caption{Checklist Compliance for ``Clear Architectural Pattern''} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1.1 & Architecture pattern is identified & \textcolor{coveredcolor}{True} & Section 2.6 explicitly states a six-layer architecture with separation of concerns. \\
+\midrule
+1.2 & Pattern is justified & \textcolor{coveredcolor}{True} & Benefits such as testability, technology substitution, and no layer skipping are described. \\
+\midrule
+1.3 & Layer responsibilities are clear & \textcolor{partialcolor}{Partial} & High-level responsibilities are clear, but individual DAO and service responsibilities are still vague. \\
+\midrule
+1.4 & Pattern is consistently applied & \textcolor{coveredcolor}{True} & No layer-skipping violations are reported; controllers delegate to services, services to DAOs. \\
+\end{longtable}
+
+\subsubsection{Feature: Requirements Quality Management}
+
+\textbf{Category: Requirements}
+
+\textbf{Description:} Requirements are complete, non-ambiguous, and testable, with explicit handling of vague items.
+
+\begin{longtable}{p{0.8cm}p{6cm}p{2cm}p{5cm}}
+\caption{Checklist Compliance for ``Requirements Quality Management''} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+2.1 & Requirements are uniquely identified & \textcolor{coveredcolor}{True} & Appendix lists REQ-1 to REQ-62 with unique IDs. \\
+\midrule
+2.2 & Requirements are categorized & \textcolor{coveredcolor}{True} & Each requirement has a category (Authentication, Inventory, etc.). \\
+\midrule
+2.3 & Vague requirements are flagged & \textcolor{coveredcolor}{True} & Section 3.2 explicitly lists vague requirements and their issues. \\
+\midrule
+2.4 & All requirements are testable & \textcolor{uncoveredcolor}{False} & Several requirements (REQ-10, REQ-21, REQ-58, REQ-8, REQ-60) lack measurable criteria, making them not fully testable. \\
+\end{longtable}
+
+\section{Detailed Analysis}
+
+\subsection{Requirements Quality Assessment}
+
+\subsubsection{Vague/Unquantified Requirements}
+
+\textbf{Vague/Unquantified Requirements (7 total):}
+
+\begin{itemize}
+    \item \textbf{REQ-10:} ``Improved user experience'' -- No usability metrics (e.g., task completion time, SUS score). \\
+    \textbf{Recommendation:} Define measurable UX goals such as ``80\% of users complete a purchase in under 60 seconds''.
+    \item \textbf{REQ-21:} ``Operational efficiency improvements'' -- No KPIs (e.g., refill frequency, downtime). \\
+    \textbf{Recommendation:} Specify metrics like ``reduce refill visits by 20\%'' or ``99.5\% machine uptime''.
+    \item \textbf{REQ-58:} ``Usability metrics'' -- Mentioned but not defined. \\
+    \textbf{Recommendation:} Provide concrete metrics and target values.
+    \item \textbf{REQ-8:} ``Digital payment methods support'' -- No providers, standards, or flows. \\
+    \textbf{Recommendation:} Name providers (e.g., Stripe), standards (PCI-DSS), and integration model.
+    \item \textbf{REQ-60:} ``Remote maintenance capabilities'' -- Scope (diagnostics vs. full control) unclear. \\
+    \textbf{Recommendation:} Clarify scope and associated safety constraints.
+    \item \textbf{REQ-10, REQ-21 (repeated in Section 3.2):} Highlighted as lacking quantifiable targets.
+\end{itemize}
+
+\subsubsection{Requirements Needing Detail}
+
+\begin{itemize}
+    \item \textbf{REQ-18, REQ-19, REQ-20:} Offline behavior requirements lack details on storage technology, sync frequency, conflict resolution, and security. \\
+    \textbf{Recommendation:} Define offline storage (e.g., SQLite), sync protocol, and conflict rules.
+    \item \textbf{REQ-34, REQ-35, REQ-45:} Error response requirements lack JSON schema. \\
+    \textbf{Recommendation:} Define a standard error object with code, message, details, timestamp, and request ID.
+\end{itemize}
+
+\subsection{Use Case Completeness Analysis}
+
+\subsubsection{Explicit vs. Implicit Use Cases}
+
+\begin{table}[H]
+\centering
+\caption{Use Case Categorization}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Category} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Explicit (named in sections) & 15 & 83.3\% \\
+Implicit (inferred from requirements) & 3 & 16.7\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Observations:}
+\begin{itemize}
+    \item Core flows (authentication, purchase, inventory, maintenance tasks) are explicitly modeled.
+    \item Offline and anonymous cash flows are not modeled as use cases.
+    \item Navigation and multi-step user journeys are not formalized as use cases.
+\end{itemize}
+
+\subsubsection{Alternative Flow Coverage}
+
+\begin{itemize}
+    \item \textbf{Strong:} UC-1, UC-2, UC-3, UC-4, UC-12--UC-15 include error scenarios (invalid credentials, insufficient balance, out-of-stock, validation errors).
+    \item \textbf{Weak:} UC-18 (Remote Maintenance) lacks any detailed flows; only high-level promise.
+    \item \textbf{Missing:} Offline-related alternative flows (e.g., purchase during network outage) are absent.
+\end{itemize}
+
+\subsection{Architecture Quality Evaluation}
+
+\subsubsection{Design Principles Assessment}
+
+\begin{table}[H]
+\centering
+\caption{Architecture Quality Metrics}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Principle} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Separation of Concerns & \textcolor{coveredcolor}{Good} & Six-layer architecture with no layer skipping. \\
+Loose Coupling & \textcolor{coveredcolor}{Good} & Controllers, services, and DAOs are decoupled via interfaces. \\
+High Cohesion & \textcolor{partialcolor}{Moderate} & Some services and DAOs have broad responsibilities. \\
+Single Responsibility & \textcolor{partialcolor}{Moderate} & Component boundaries need clearer documentation. \\
+Extensibility & \textcolor{partialcolor}{Moderate} & Lack of domain events and aggregate roots limits extensibility. \\
+Resilience & \textcolor{uncoveredcolor}{Weak} & No offline or hardware resilience components. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Key Architectural Gaps}
+
+\begin{itemize}
+    \item \textbf{Offline Operation:} No local storage, sync protocol, or offline auth components.
+    \item \textbf{Remote Maintenance:} No hardware abstraction layer, IoT gateway, or device protocol (e.g., MQTT).
+    \item \textbf{Aggregate Root Enforcement:} Inventory can be modified directly, bypassing machine capacity rules.
+    \item \textbf{Domain Events:} No event infrastructure for decoupled notifications, analytics, or audit logging.
+\end{itemize}
+
+\subsection{Test Coverage Analysis}
+
+\subsubsection{Strengths}
+
+\begin{itemize}
+    \item Strong adherence to test pyramid with majority unit tests.
+    \item Error-first testing: many failure scenarios are explicitly tested.
+    \item Use of H2 test database enables fast feedback loops.
+\end{itemize}
+
+\subsubsection{Gaps}
+
+\begin{itemize}
+    \item No tests for offline behavior (REQ-18--REQ-20).
+    \item No tests for remote maintenance or hardware communication (REQ-60, UC-18).
+    \item No end-to-end multi-use-case journeys (register \textrightarrow{} recharge \textrightarrow{} purchase \textrightarrow{} history).
+    \item No navigation tests for role-based routing.
+\end{itemize}
+
+\section{Recommendations}
+
+\subsection{Priority 1: Critical Items}
+
+\begin{enumerate}
+    \item \textbf{Implement Offline Operation Support}
+    \begin{itemize}
+        \item Address REQ-18, REQ-19, REQ-20.
+        \item \textbf{Action:} Design local storage (e.g., SQLite), define sync protocol and conflict resolution, and model offline use cases and tests.
+    \end{itemize}
+
+    \item \textbf{Make Remote Maintenance Implementable}
+    \begin{itemize}
+        \item Address REQ-60 and UC-18.
+        \item \textbf{Action:} Clarify scope (diagnostics vs. full control), design hardware abstraction, IoT gateway, and communication protocol; add integration tests.
+    \end{itemize}
+
+    \item \textbf{Clarify Component Responsibilities}
+    \begin{itemize}
+        \item Reduce risk of architectural erosion.
+        \item \textbf{Action:} Document precise responsibilities for each DAO and service; split services by bounded context where needed.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 2: Important Improvements}
+
+\begin{enumerate}
+    \item \textbf{Standardize Error Response Formats}
+    \begin{itemize}
+        \item Address REQ-34, REQ-35, REQ-45.
+        \item \textbf{Action:} Define JSON error schema and update tests to assert structure.
+    \end{itemize}
+
+    \item \textbf{Introduce Domain Events and Aggregate Roots}
+    \begin{itemize}
+        \item Improve extensibility and data consistency.
+        \item \textbf{Action:} Implement DomainEvent interface, event publisher, and aggregate root enforcement for ConcreteVendingMachine and Inventory.
+    \end{itemize}
+
+    \item \textbf{Quantify Vague Requirements}
+    \begin{itemize}
+        \item Address REQ-8, REQ-10, REQ-21, REQ-58, REQ-60.
+        \item \textbf{Action:} Add measurable acceptance criteria and update traceability.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 3: Nice-to-Have Enhancements}
+
+\begin{enumerate}
+    \item Add end-to-end user journey tests and navigation tests.
+    \item Document deployment architecture and monitoring strategy.
+       \item Extend security analysis with a basic threat model and mitigations.
+\end{enumerate}
+
+\subsection{Summary Checklist}
+
+\begin{table}[H]
+\centering
+\caption{Action Item Summary}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Priority} & \textbf{Items} & \textbf{Indicative Effort} \\
+\midrule
+Critical (P1) & 3 & 5--10 days \\
+Important (P2) & 3 & 5--8 days \\
+Nice-to-Have (P3) & 3 & 5--7 days \\
+\midrule
+\textbf{Total} & \textbf{9} & \textbf{15--25 days} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
+```
+
+```json
+{
+  "pdfPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/validation_report_2025-11-19.pdf",
+  "texPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/validation_report_2025-11-19.tex",
+  "summary": {
+    "requirements_extracted": 62,
+    "requirements_by_type": {
+      "functional": 42,
+      "non_functional": 9,
+      "constraint": 5,
+      "goal": 6
+    },
+    "requirements_quality": {
+      "well_defined": 49,
+      "needs_detail": 6,
+      "vague": 7
+    },
+    "use_cases_extracted": 18,
+    "use_cases_explicit": 15,
+    "use_cases_implicit": 3,
+    "architecture_components": 18,
+    "architecture_pattern": "Six-layer Layered Architecture",
+    "tests_extracted": 63,
+    "tests_by_type": {
+      "unit": 45,
+      "integration": 12,
+      "system": 6
+    },
+    "traceability_coverage_percentage": 95.2,
+    "traceability_details": {
+      "requirements_covered_or_partial": 59,
+      "requirements_uncovered": [
+        "REQ-18",
+        "REQ-19",
+        "REQ-20"
+      ],
+      "use_cases_fully_tested": 12,
+      "use_cases_partially_tested": 3,
+      "use_cases_untested_or_unimplementable": [
+        "UC-18"
+      ],
+      "orphan_requirements": [
+        "REQ-18",
+        "REQ-19",
+        "REQ-20"
+      ],
+      "orphan_tests_note": "Some infrastructure tests not mapped to specific use cases; no offline or hardware tests."
+    },
+    "feature_coverage_percentage": 68.8,
+    "feature_details": {
+      "total_kb_features": 16,
+      "covered_features": 11,
+      "uncovered_features": 5
+    },
+    "validation_status": "CONDITIONALLY_PASSED",
+    "critical_issues": 3,
+    "warnings": 6
+  }
+}
+```

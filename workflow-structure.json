@@ -1,0 +1,280 @@
+{
+  "id": "9c904b9d-62ae-4d92-b7d0-e9733815f62d",
+  "name": "2 PDF Complete Validation Report",
+  "description": "Combines content validity checking and feature/section compliance validation to generate a comprehensive PDF report",
+  "depth": 0,
+  "nodes": [
+    {
+      "node_id": "1",
+      "metamodel_id": "1044cf0f-227c-4900-ad41-e67615f25c35",
+      "type": "SUB_WORKFLOW",
+      "name": "Section extractor",
+      "sub_workflow": {
+        "id": "1044cf0f-227c-4900-ad41-e67615f25c35",
+        "name": "Section extractor",
+        "description": "Extracts every single section from a pdf file",
+        "depth": 1,
+        "nodes": [
+          {
+            "node_id": "1",
+            "metamodel_id": "666df592-77ca-401c-94a9-407dfeb12891",
+            "type": "NODE",
+            "name": "gateway",
+            "description": "Gateway node for reusing the initial input"
+          },
+          {
+            "node_id": "2",
+            "metamodel_id": "9ebed6da-fc37-4cd5-9764-76cb11f882e6",
+            "type": "NODE",
+            "name": "Raw index extractor",
+            "description": "Extracts raw index from a pdf file"
+          },
+          {
+            "node_id": "3",
+            "metamodel_id": "db395f3d-d8d2-4ee7-b01f-fae4f3f4022f",
+            "type": "NODE",
+            "name": "Index Extractor",
+            "description": "Extract index from pdf text",
+            "prompt": "You are a PDF index parsing assistant.\n\nYou will be given the text of a table of contents from a PDF document.  \nYour task is to identify each section or subsection listed and its corresponding starting and ending page number.\n\nRules:\n1. Ignore dots used for alignment (e.g., \".....\").\n2. Keep the section title exactly as it appears, without changing its wording.\n3. The starting page is always the number at the end of the line.\n4. The ending page is always the starting page of the next section or -1 if the section is the last of the index.\n\nExtract from the following chunk: {raw_text}"
+          },
+          {
+            "node_id": "4",
+            "metamodel_id": "e4dea87a-8742-486c-91c4-44200b020fde",
+            "type": "NODE",
+            "name": "Section extractor",
+            "description": "Extract every single section from a pdf file given the index"
+          }
+        ],
+        "sub_workflows": []
+      }
+    },
+    {
+      "node_id": "2",
+      "metamodel_id": "2d17ee26-b350-4811-9415-12efb0e4cef4",
+      "type": "SUB_WORKFLOW",
+      "name": "Content extractor",
+      "sub_workflow": {
+        "id": "2d17ee26-b350-4811-9415-12efb0e4cef4",
+        "name": "Content extractor",
+        "description": "Extracts content of a single section",
+        "depth": 1,
+        "nodes": [
+          {
+            "node_id": "1",
+            "metamodel_id": "2a7a3656-9000-4152-a7ac-0276cfde4a51",
+            "type": "NODE",
+            "name": "Orchestrator",
+            "description": "Labels every section in order to assign it to a specialized agent",
+            "prompt": "Role: You are a specialized Orchestration Agent for software engineering reports. Your task is to analyze a given section of a report and assign it one or more category labels.\n\nInput (A single section of a software engineering report):\n{sectionText}\n\nTask:\n\nAnalyze the content of the provided section.\n\nDetermine if the content fits into one or more of the following categories: Requirements, Use Cases, Architecture, Test, Mockups.\n\nAssign a list of labels ([]) to the section based on its content. A section can have multiple labels if the content is hybrid (e.g., if it discusses both requirements and use cases).\n\nIf the section's content does not match any of the categories, assign an empty list []. Do not invent labels or infer information; stick strictly to the text provided.\n\nGenerate a JSON output where the object contains the text (the section's text) and labels (the list of assigned labels)."
+          },
+          {
+            "node_id": "2",
+            "metamodel_id": "6cb1a935-82d5-45af-a918-e07f607a48c2",
+            "type": "NODE",
+            "name": "Use Case Agent",
+            "description": "Extracts use cases from text",
+            "prompt": "Role: You are a specialized Agent for analyzing software engineering reports. Your task is to rigorously extract all detailed use cases from a section of text, along with their key elements.\n\nInput (A single section of a report, provided as a string of text. The text has already been classified as relevant to use cases):\n\ntitle: {title}\n\ntext: {sectionText}\n\nTask:\nAnalyze the text to identify every single use case described, whether it is explicitly listed, implicitly mentioned, or inferred from functional descriptions within the text.\n\nFor each use case, extract the following information:\n\ncase_id: The unique identifier for the use case (e.g., UC-1). If the identifier is not present in the text, generate a new, unique ID in the format UC-X (e.g., UC-3, UC-4).\n\nname: The descriptive name of the use case (e.g., User Login). For implicit use cases, infer a clear and concise name based on the action described.\n\nactors: The actors involved (e.g., [\"User\", \"Admin\"]).\n\nmain_flow: The sequence of standard steps described. For implicit use cases, this can be a single, concise phrase summarizing the functionality.\n\nalternative_flows: Any deviations or exceptions from the main flow. If not mentioned, leave the array empty [].\n\nis_explicit: A boolean value that indicates if the use case is explicitly declared (true) or if it is inferred from the context (false). A use case is explicit if it has a clear name and identifier in the text (e.g., a title, a list item).\n\nIf the section describes the structure or template of a use case, extract the meta-information but do not generate an incomplete use case."
+          },
+          {
+            "node_id": "3",
+            "metamodel_id": "4669cae6-4d6f-421b-aeae-685e0004ff64",
+            "type": "NODE",
+            "name": "Requirements Agent",
+            "description": "Extracts requirements from text",
+            "prompt": "Role: You are a highly specialized Requirements Extractor Agent for software engineering analysis. Your goal is to extract application-level system requirements from a given section of text, focusing on what the system must do or provide rather than on detailed user actions. Your objective is to ensure completeness, precision, and full traceability to the original text.\nInput:\ntitle: {title}\ntext: {sectionText}\nTask Instructions:\nExtraction Rules\nExtract every statement that describes a system requirement, behavior, functionality, quality, constraint, or explicit goal.\nPrefer application-level or capability-level requirements over low-level user-interface steps.\nExample: if the text says \u201cThe user clicks Login\u201d, extract \u201cThe system must provide a login mechanism for user authentication.\u201d\nEach requirement must express a single, atomic idea and be written as a complete, testable sentence in English.\nTranslate Italian input faithfully into English while preserving the technical meaning.\nPreserve traceability: keep the original sentence or clause in source_text exactly as it appears in the input.\nAvoid including purely descriptive or narrative text (e.g., \u201cThis section describes...\u201d), unless it contains a system-related goal or constraint.\nRequirement Classification\nFor each extracted statement, classify it as one of the following:\nfunctional: Describes a specific feature or system behavior.\nnon-functional: Describes a quality, constraint, or measurable characteristic (e.g., security, scalability, usability).\nconstraint: Describes an imposed technical or operational restriction (e.g., must use HTTPS, must store data for 5 years).\ngoal/background: Describes a high-level objective, motivation, or design principle that is not directly testable.\nWriting the Description\nUse concise, neutral language beginning with \u201cThe system must\u2026\u201d or \u201cUsers must be able to\u2026\u201d depending on context.\nAvoid duplicating UI steps unless they imply a system function.\nKeep sentences atomic; if a statement expresses multiple obligations, split it into multiple requirements.\nNever add new information; only reformulate what is implied or explicitly stated.\nIf a requirement is inferred from a flow of user actions, still express it at system-level (\u201cThe system must\u2026\u201d), but ensure that the description remains faithful to the text.\nDeduplication and Normalization\nDo not merge or delete duplicates; keep all potential duplicates in the output.\nIf multiple sentences express the same idea, you may rephrase each description consistently, but retain their separate entries.\nThe goal of this step is completeness, not minimality.\nQuality Notes Guidelines\nEach requirement must include a short evaluation of its clarity:\nWell-defined: Clear, specific, and testable.\nNeeds Detail: Lacks metrics or measurable conditions.\nVague/Unquantified: Contains subjective or ambiguous terms (e.g., \u201ceasy\u201d, \u201csecure\u201d, \u201cmodern\u201d).\nAdd a short note explaining what detail or metric would make it testable, if applicable.\nOutput Format\nList all extracted requirements in sequence, starting from REQ-1, using the following structure exactly:\nreq_id: REQ-1\ndescription: [Atomic, clear, testable requirement in English]\ntype: functional | non-functional | constraint | goal/background\nsource_text: [Exact sentence or clause from input text]\nquality_notes: [Well-defined / Needs Detail / Vague/Unquantified]\nValidation Checklist\nBefore finalizing:\nEvery requirement expresses a verifiable behavior, quality, or constraint.\nEach description is atomic, specific, and written in correct English.\nThe meaning of each item matches the intent of its source_text.\nNo relevant requirement has been omitted.\nDuplicates are retained, not removed.\nAll requirements maintain clear traceability to the original input.\nExample Output\nreq_id: REQ-1\ndescription: The system must allow users to log in using their email and password.\ntype: functional\nsource_text: \u201cLo user apre la pagina di login e inserisce la propria email e password.\u201d\nquality_notes: Well-defined\nreq_id: REQ-2\ndescription: The system must provide a secure authentication mechanism to protect user credentials.\ntype: non-functional\nsource_text: \u201cIl sistema deve garantire un accesso sicuro per gli utenti.\u201d\nquality_notes: Needs Detail \u2013 specify encryption or protocol type.\nreq_id: REQ-3\ndescription: The system must provide a dashboard to display sales statistics and malfunction reports.\ntype: functional\nsource_text: \u201cIl gestionale della piattaforma offre una dashboard che mostra statistiche sulle vendite e sui malfunzionamenti.\u201d\nquality_notes: Well-defined"
+          },
+          {
+            "node_id": "4",
+            "metamodel_id": "a85f5539-a593-4589-bc95-86cc332530f3",
+            "type": "NODE",
+            "name": "Architectural Agent",
+            "description": "Extracts architectural details from text",
+            "prompt": "You are a highly specialized and rigorous LLM agent designed for validating software architecture descriptions from project reports. Your core mission is to not only extract architectural details but also to perform a preliminary qualitative analysis and identify any gaps or ambiguities.\n\nInput:\nA single section of a project report provided as a string of text. This text has already been classified as a description of the project's architecture: {sectionText}.\n\nTask:\n\n1. **Identify the Architectural Pattern:** Determine the primary architectural pattern (e.g., Layered, Microservices, Event-Driven). If not explicitly named, infer it. If a pattern cannot be identified, explicitly state \"Unclear Pattern\".\n\n2. **Extract Components and Responsibilities:**\n   * List all key components or layers mentioned.\n   * For each component, extract its main responsibility. If the responsibility is described vaguely (e.g., using terms like \"handles,\" \"manages,\" or \"processes\" without further detail), note it as \"Vague: [Vague description]\". If a responsibility is missing, note it as \"Undefined Responsibility\".\n\n3. **Analyze Data Flow and Communication:**  Identify the main components that communicate with each other. For each component, list the names of the other components it interacts with. Do not infer communication paths that are not explicitly mentioned in the text. If communication is not described, the communicates_with field should be an empty array [].\n\n4. **Perform Qualitative Analysis:**\n   * Assess the design for adherence to key principles like separation of concerns and loose coupling. Use the design_notes field to comment on component design quality (e.g., \"This component has a clear, single responsibility.\" or \"Responsibility seems too broad, potentially violating separation of concerns.\").\n\n5. **Summarize Findings:** Provide a brief, high-level summary of the architectural health in the analysis_summary field. This should highlight strengths, weaknesses, and any missing details found during the analysis."
+          },
+          {
+            "node_id": "5",
+            "metamodel_id": "e629c7d4-bef8-4716-9594-029bd1acf09f",
+            "type": "NODE",
+            "name": "Test Agent",
+            "description": "Extract tests from section",
+            "prompt": "Role: You are a specialized Agent for analyzing software testing and quality assurance reports. Your primary task is to rigorously extract all tests, test types, and the **functional clues** they offer, to facilitate a later verification of coverage against the system's Use Cases (UCs).\n\nInput (A single section of a report, provided as a string of text. The text has already been classified as relevant to testing/quality assurance, and may contain lists of test methods):\ntitle: {title}\ntext: {sectionText}\n\nTask:\n\nAnalyze the text to identify every distinct test or test suite described. Tests are often listed by method name (e.g., `UserServiceTest.testUserLoginSuccess()`) or described in detail.\n\nFor each identified test or set of tests, extract the following information:\n\ntest_id: A unique identifier you can generate (e.g., TEST-A-1, TEST-B-2).\ntest_type: Classify the test. Common categories: Unit (single class/method), Integration (component interaction), System (end-to-end), Performance.\ntested_artifact_name: The name of the class, controller, service, or DAO containing the test, or the specific method name (e.g., `WorkerServiceTest`, `BuyItemController`).\ncoverage_hint: **Based ONLY on the test name, class name, or surrounding text**, provide a brief phrase indicating the likely Use Case or functional area being covered. **Do NOT generate a formal Use Case ID (e.g., UC-X.Y.Z)**. Instead, provide descriptive keywords.\n    Examples of a good hint: \"User Login success scenario,\" \"Task status change error handling,\" \"Vending Machine creation persistence.\"\ndescription_summary: A concise, clear summary of what the test is verifying, focusing on the specific outcome (success, failure, error code).\n\nYour output must be a list of objects, where each object represents a complete test entry with the fields described above.\n\nExample of Desired Output:\n\ntest_id: TEST-1\ntest_type: Unit\ntested_artifact_name: WorkerServiceTest.testChangeTaskStatus\ncoverage_hint: \"Change task status logic\"\ndescription_summary: \"Verifies the successful transition of a task status from IN_PROGRESS to COMPLETED.\"\n---\ntest_id: TEST-2\ntest_type: Integration\ntested_artifact_name: WorkerControllerTest\ncoverage_hint: \"Task completion control flow\"\ndescription_summary: \"Tests that the Controller returns an error when task ID is invalid.\""
+          }
+        ],
+        "sub_workflows": []
+      }
+    },
+    {
+      "node_id": "3",
+      "metamodel_id": "3bfe9ac9-e8d6-4cd5-8db4-35dbf709545e",
+      "type": "NODE",
+      "name": "Data Transformer",
+      "description": "Reorganizes data into more readable format"
+    },
+    {
+      "node_id": "4",
+      "metamodel_id": "99b9565c-657e-4f73-86ae-8a26f79574ed",
+      "type": "NODE",
+      "name": "ReqToUc",
+      "description": "Verifies which use cases satisfy a requirement",
+      "prompt": "You are a requirements engineer.\nYou are given a list of software requirements and use cases.\nYour task is to map which use cases satisfy or implement each requirement.\nFor each requirement:\nIdentify all relevant use cases that directly or indirectly fulfill it. \nDo not skip any requirement.\nProvide short reasoning for each mapping.\nIf no match exists, mark status: UNSUPPORTED.\nOutput valid JSON:\n\nreq_id: REQ-3,\ncovered_by_use_cases: [UC-2],\nstatus: Covered,\nrationale: UC-2 describes the purchase flow via QR code, matching REQ-3.\n\nInputs:\nrequirements: {requirements}\nuse_cases: {use_cases}"
+    },
+    {
+      "node_id": "5",
+      "metamodel_id": "ce1d2fcc-de6c-4262-a6e3-4c830574e18a",
+      "type": "NODE",
+      "name": "Architecture consolidation",
+      "description": "Reorders and aranges architecture in order to have a correct visualizazion",
+      "prompt": "You are an expert software architect.\nYour task is to take unstructured or semi-structured extracted architecture data \u2014 such as lists of components, patterns, responsibilities, and communication relationships \u2014 and transform it into a clean, consistent JSON representation of the complete system architecture.\nFollow these detailed rules:\nIdentify and merge all fragments into a coherent architecture model, combining related pieces of information.\nDetect the overall architecture pattern (for example: Layered, MVC, DAO, Domain-Driven Design) and include it in the \"pattern\" field.\nGroup components by layer, such as:\nPresentation Layer (UI, controllers, dashboards)\nService Layer (business logic)\nPersistence or DAO Layer (data access)\nDomain Layer (core entities and models)\nInfrastructure Layer (frameworks, databases, ORM)\nTesting and Monitoring Layer (unit testing, analytics, CI/CD)\nNormalize naming across all fragments.\nExample: \u201ccontrollers\u201d \u2192 \u201cController Layer\u201d, \u201cdb\u201d \u2192 \u201cDatabase Layer\u201d.\nMerge duplicates \u2014 if the same component appears multiple times, unify it into one entry with combined responsibilities.\nEach component should contain the following fields:\n\"name\": the component\u2019s identifier\n\"responsibility\": a concise summary of its purpose\n\"design_notes\": any additional relevant information (optional)\n\"communicates_with\": an array of related components (optional)\nAdd a short \"description\" for each architectural layer.\nInclude an \"analysis_summary\" summarizing key design features, trade-offs, and limitations.\n\nINPUT: {architecture}"
+    },
+    {
+      "node_id": "6",
+      "metamodel_id": "e0dc9b9b-c16a-497f-b519-887f6d3aa6ae",
+      "type": "NODE",
+      "name": "UcToArc",
+      "description": "Verifies which architecture satisfy a use cases",
+      "prompt": "You are a software architect.\nYou are given a list of use cases and architecture components.\nDetermine which components implement each use case, based on their responsibilities.\nFor each use case:\nList all components that participate in or enable that use case.\nExplain briefly why each component is relevant.\nOutput:\n[\n    uc_id: UC-2,\n    implemented_by_components: [Mobile App, Backend API, Vending Controller],\n    status: Covered,\n    rationale: The mobile app initiates purchase, backend processes payment, controller dispenses product.\n]\nInputs:\nuse_cases: {use_cases}\narchitecture: {architecture}"
+    },
+    {
+      "node_id": "7",
+      "metamodel_id": "18dc26e2-5ad1-45e6-a374-cb0366d84a04",
+      "type": "NODE",
+      "name": "UcToTest",
+      "description": "Verifies which tests satisfies an use case",
+      "prompt": "You are a software QA engineer.\nYou are given use cases (with main and alternative flows) and test cases.\nYour task is to verify coverage for every single use case, ensuring that none are missed.\nFor each use case:\nCheck if at least one test covers the main flow.\nCheck if each alternative flow is covered by one or more tests.\nFlag missing coverage.\nOutput:\n[\nuc_id: UC-1,\nmain_flow_tested: true,\nalt_flows_tested: [ on error the use gets redirected to error page: true, the use can cancel the purchase: false ],\nstatus: Partial,\nmissing_flows: [Alt-2],\nrationale: Main flow tested by TEST-1; Alt-2 lacks coverage.\n]\nInputs:\nuse_cases: {use_cases}\ntests: {tests}"
+    },
+    {
+      "node_id": "8",
+      "metamodel_id": "d15f47eb-3278-431b-aafc-e38511441ed7",
+      "type": "NODE",
+      "name": "Treaceability report",
+      "description": "Creates a treaceability report",
+      "prompt": "You are a software validation auditor.\nYou are given the outputs of four sub-agents:\nA: requirements \u2194 use cases\nB: use cases \u2194 architecture\nC: use cases \u2194 tests\nD: use cases \u2194 mockups\nMerge them to produce a complete traceability matrix.\nFor each requirement, summarize all linked use cases, architecture components, tests, and mockups.\nIdentify any uncovered or orphan artifacts.\nOutput JSON:\n  traceability_matrix: [\n    <\n      req_id: REQ-3,\n      use_cases: [UC-2],\n      components: [Mobile App, Backend API],\n      tests: [TEST-3, TEST-4],\n      mockups: [MOCK-2],\n      status: Fully Covered\n    >\n  ],\n  orphans: <\n    requirements: [REQ-20],\n    use_cases: [UC-7],\n    tests: [TEST-10],\n    mockups: []\n  >\nInputs:\nA: {req_to_uc}, B: {uc_to_arc}, C: {uc_to_test}, D: "
+    },
+    {
+      "node_id": "9",
+      "metamodel_id": "4c60bcca-1a3c-4ced-9475-31c5a2a0d48e",
+      "type": "NODE",
+      "name": "Feature Extractor",
+      "description": "Extract abstract feature from text of a single section",
+      "prompt": "You are reviewing a section of a software engineering project report.  \nYour task: **extract only high-level, universal good practices that any well-written software engineering report should demonstrate.**\n\n## Rules for Analysis\n- **Technical sections** (architecture, database, APIs, algorithms): identify universal engineering qualities.  \n- **Non-technical sections** (introduction, requirements, conclusion, project management): identify universal reporting qualities.  \n- Always generalize to universal practices, avoiding domain-specific references.  \n- If a domain-specific example implies a universal principle, rewrite it in a domain-neutral way.  \n- Prefer **fewer but stronger features**.  \n- Do not invent features not supported by the text.  \n\n## Output\nReturn a JSON array of extracted features.  \nEach feature object must contain:\n\n  \"feature\": \"general universal feature\",\n  \"description\": \"short description of the feature, will be used at inference time\",\n  \"category\": \"Problem Definition | Architecture | Security | Performance | Maintainability | Testing | Project Management | Documentation\",\n  \"explicit\": true/false,\n  \"evidence\": \"short exact quote from text\",\n  \"confidence\": 0.0-1.0,\n  \"source_title\": \"section title\",\n  \"section_text\": \"long excerpt that includes the essential part plus additional surrounding details, kept in natural multi-line form, to provide enough context for thorough validation of the feature.\",\n  \"checklist\": [\n    \"list of universal validation checks directly supported by the section and related to this feature\"\n  ]\n  \"file\": \"filepath\"\n\n## Input\nSection to analyze: {section}\nfilePath: {filePath}"
+    },
+    {
+      "node_id": "10",
+      "metamodel_id": "7118ce54-a96f-45fd-9a86-65267d528ba8",
+      "type": "NODE",
+      "name": "Embed batch features",
+      "description": "Embed a batch of feature for validation"
+    },
+    {
+      "node_id": "11",
+      "metamodel_id": "00afd4f0-7dc7-4d31-8a94-b145742744af",
+      "type": "NODE",
+      "name": "Feature validator",
+      "description": "Compare features against the summarized features in mongodb"
+    },
+    {
+      "node_id": "12",
+      "metamodel_id": "3fc267a5-8007-4d8f-8812-18250e3061b4",
+      "type": "NODE",
+      "name": "Checklist verifier",
+      "description": "Verifies if every item of the checklist is satisfied",
+      "prompt": "You are an assistant that validates whether a section of a software engineering report satisfies a set of checklist items.\n\n## Input\n\n- **Section Text**: An excerpt from a software engineering report, provided as:\n\u00a0 `{sectionText}`\n\n- **Checklist**: A list of requirements derived from a universal feature, provided as:\n\u00a0 `{checklist}`\n\n## Task\n\nYour task is to go through the checklist items one by one. For each item, you must determine if the provided section text satisfies it.\n\n1. \u00a0**Evaluate**: For each item in the `{checklist}`, assess whether `{sectionText}` meets the requirement.\n2. \u00a0**Assign Status**: Mark the `satisfied` field as \"true\" if the item is fully met, \"false\" if it is not, or \"partial\" if it is only partially met.\n3. \u00a0**Provide Explanation**: Write a brief justification (1-2 sentences) in the `explaination` field. This explanation must be based **solely** on the content of the `{sectionText}`. If satisfied is partial or false, please add explain here the reason. Do not invent or infer any details.\n\n## Output\n\nThe content must be as follows:\n\"feature\": {feature},\n\"description\": {description},\n\"check\": \"The text of the original checklist item.\",\n\"satisfied\": \"true | false | partial\",\n\"explaination\": \"A short justification based only on the section text. And an explaination explaining how to fix the issue if needed (make examples if required)\""
+    },
+    {
+      "node_id": "13",
+      "metamodel_id": "cb3895fc-9f6d-435c-b781-cdec4cab2ad9",
+      "type": "NODE",
+      "name": "Report generator",
+      "description": "Generate and compile latex report"
+    }
+  ],
+  "sub_workflows": [
+    {
+      "id": "1044cf0f-227c-4900-ad41-e67615f25c35",
+      "name": "Section extractor",
+      "description": "Extracts every single section from a pdf file",
+      "depth": 1,
+      "nodes": [
+        {
+          "node_id": "1",
+          "metamodel_id": "666df592-77ca-401c-94a9-407dfeb12891",
+          "type": "NODE",
+          "name": "gateway",
+          "description": "Gateway node for reusing the initial input"
+        },
+        {
+          "node_id": "2",
+          "metamodel_id": "9ebed6da-fc37-4cd5-9764-76cb11f882e6",
+          "type": "NODE",
+          "name": "Raw index extractor",
+          "description": "Extracts raw index from a pdf file"
+        },
+        {
+          "node_id": "3",
+          "metamodel_id": "db395f3d-d8d2-4ee7-b01f-fae4f3f4022f",
+          "type": "NODE",
+          "name": "Index Extractor",
+          "description": "Extract index from pdf text",
+          "prompt": "You are a PDF index parsing assistant.\n\nYou will be given the text of a table of contents from a PDF document.  \nYour task is to identify each section or subsection listed and its corresponding starting and ending page number.\n\nRules:\n1. Ignore dots used for alignment (e.g., \".....\").\n2. Keep the section title exactly as it appears, without changing its wording.\n3. The starting page is always the number at the end of the line.\n4. The ending page is always the starting page of the next section or -1 if the section is the last of the index.\n\nExtract from the following chunk: {raw_text}"
+        },
+        {
+          "node_id": "4",
+          "metamodel_id": "e4dea87a-8742-486c-91c4-44200b020fde",
+          "type": "NODE",
+          "name": "Section extractor",
+          "description": "Extract every single section from a pdf file given the index"
+        }
+      ],
+      "sub_workflows": []
+    },
+    {
+      "id": "2d17ee26-b350-4811-9415-12efb0e4cef4",
+      "name": "Content extractor",
+      "description": "Extracts content of a single section",
+      "depth": 1,
+      "nodes": [
+        {
+          "node_id": "1",
+          "metamodel_id": "2a7a3656-9000-4152-a7ac-0276cfde4a51",
+          "type": "NODE",
+          "name": "Orchestrator",
+          "description": "Labels every section in order to assign it to a specialized agent",
+          "prompt": "Role: You are a specialized Orchestration Agent for software engineering reports. Your task is to analyze a given section of a report and assign it one or more category labels.\n\nInput (A single section of a software engineering report):\n{sectionText}\n\nTask:\n\nAnalyze the content of the provided section.\n\nDetermine if the content fits into one or more of the following categories: Requirements, Use Cases, Architecture, Test, Mockups.\n\nAssign a list of labels ([]) to the section based on its content. A section can have multiple labels if the content is hybrid (e.g., if it discusses both requirements and use cases).\n\nIf the section's content does not match any of the categories, assign an empty list []. Do not invent labels or infer information; stick strictly to the text provided.\n\nGenerate a JSON output where the object contains the text (the section's text) and labels (the list of assigned labels)."
+        },
+        {
+          "node_id": "2",
+          "metamodel_id": "6cb1a935-82d5-45af-a918-e07f607a48c2",
+          "type": "NODE",
+          "name": "Use Case Agent",
+          "description": "Extracts use cases from text",
+          "prompt": "Role: You are a specialized Agent for analyzing software engineering reports. Your task is to rigorously extract all detailed use cases from a section of text, along with their key elements.\n\nInput (A single section of a report, provided as a string of text. The text has already been classified as relevant to use cases):\n\ntitle: {title}\n\ntext: {sectionText}\n\nTask:\nAnalyze the text to identify every single use case described, whether it is explicitly listed, implicitly mentioned, or inferred from functional descriptions within the text.\n\nFor each use case, extract the following information:\n\ncase_id: The unique identifier for the use case (e.g., UC-1). If the identifier is not present in the text, generate a new, unique ID in the format UC-X (e.g., UC-3, UC-4).\n\nname: The descriptive name of the use case (e.g., User Login). For implicit use cases, infer a clear and concise name based on the action described.\n\nactors: The actors involved (e.g., [\"User\", \"Admin\"]).\n\nmain_flow: The sequence of standard steps described. For implicit use cases, this can be a single, concise phrase summarizing the functionality.\n\nalternative_flows: Any deviations or exceptions from the main flow. If not mentioned, leave the array empty [].\n\nis_explicit: A boolean value that indicates if the use case is explicitly declared (true) or if it is inferred from the context (false). A use case is explicit if it has a clear name and identifier in the text (e.g., a title, a list item).\n\nIf the section describes the structure or template of a use case, extract the meta-information but do not generate an incomplete use case."
+        },
+        {
+          "node_id": "3",
+          "metamodel_id": "4669cae6-4d6f-421b-aeae-685e0004ff64",
+          "type": "NODE",
+          "name": "Requirements Agent",
+          "description": "Extracts requirements from text",
+          "prompt": "Role: You are a highly specialized Requirements Extractor Agent for software engineering analysis. Your goal is to extract application-level system requirements from a given section of text, focusing on what the system must do or provide rather than on detailed user actions. Your objective is to ensure completeness, precision, and full traceability to the original text.\nInput:\ntitle: {title}\ntext: {sectionText}\nTask Instructions:\nExtraction Rules\nExtract every statement that describes a system requirement, behavior, functionality, quality, constraint, or explicit goal.\nPrefer application-level or capability-level requirements over low-level user-interface steps.\nExample: if the text says \u201cThe user clicks Login\u201d, extract \u201cThe system must provide a login mechanism for user authentication.\u201d\nEach requirement must express a single, atomic idea and be written as a complete, testable sentence in English.\nTranslate Italian input faithfully into English while preserving the technical meaning.\nPreserve traceability: keep the original sentence or clause in source_text exactly as it appears in the input.\nAvoid including purely descriptive or narrative text (e.g., \u201cThis section describes...\u201d), unless it contains a system-related goal or constraint.\nRequirement Classification\nFor each extracted statement, classify it as one of the following:\nfunctional: Describes a specific feature or system behavior.\nnon-functional: Describes a quality, constraint, or measurable characteristic (e.g., security, scalability, usability).\nconstraint: Describes an imposed technical or operational restriction (e.g., must use HTTPS, must store data for 5 years).\ngoal/background: Describes a high-level objective, motivation, or design principle that is not directly testable.\nWriting the Description\nUse concise, neutral language beginning with \u201cThe system must\u2026\u201d or \u201cUsers must be able to\u2026\u201d depending on context.\nAvoid duplicating UI steps unless they imply a system function.\nKeep sentences atomic; if a statement expresses multiple obligations, split it into multiple requirements.\nNever add new information; only reformulate what is implied or explicitly stated.\nIf a requirement is inferred from a flow of user actions, still express it at system-level (\u201cThe system must\u2026\u201d), but ensure that the description remains faithful to the text.\nDeduplication and Normalization\nDo not merge or delete duplicates; keep all potential duplicates in the output.\nIf multiple sentences express the same idea, you may rephrase each description consistently, but retain their separate entries.\nThe goal of this step is completeness, not minimality.\nQuality Notes Guidelines\nEach requirement must include a short evaluation of its clarity:\nWell-defined: Clear, specific, and testable.\nNeeds Detail: Lacks metrics or measurable conditions.\nVague/Unquantified: Contains subjective or ambiguous terms (e.g., \u201ceasy\u201d, \u201csecure\u201d, \u201cmodern\u201d).\nAdd a short note explaining what detail or metric would make it testable, if applicable.\nOutput Format\nList all extracted requirements in sequence, starting from REQ-1, using the following structure exactly:\nreq_id: REQ-1\ndescription: [Atomic, clear, testable requirement in English]\ntype: functional | non-functional | constraint | goal/background\nsource_text: [Exact sentence or clause from input text]\nquality_notes: [Well-defined / Needs Detail / Vague/Unquantified]\nValidation Checklist\nBefore finalizing:\nEvery requirement expresses a verifiable behavior, quality, or constraint.\nEach description is atomic, specific, and written in correct English.\nThe meaning of each item matches the intent of its source_text.\nNo relevant requirement has been omitted.\nDuplicates are retained, not removed.\nAll requirements maintain clear traceability to the original input.\nExample Output\nreq_id: REQ-1\ndescription: The system must allow users to log in using their email and password.\ntype: functional\nsource_text: \u201cLo user apre la pagina di login e inserisce la propria email e password.\u201d\nquality_notes: Well-defined\nreq_id: REQ-2\ndescription: The system must provide a secure authentication mechanism to protect user credentials.\ntype: non-functional\nsource_text: \u201cIl sistema deve garantire un accesso sicuro per gli utenti.\u201d\nquality_notes: Needs Detail \u2013 specify encryption or protocol type.\nreq_id: REQ-3\ndescription: The system must provide a dashboard to display sales statistics and malfunction reports.\ntype: functional\nsource_text: \u201cIl gestionale della piattaforma offre una dashboard che mostra statistiche sulle vendite e sui malfunzionamenti.\u201d\nquality_notes: Well-defined"
+        },
+        {
+          "node_id": "4",
+          "metamodel_id": "a85f5539-a593-4589-bc95-86cc332530f3",
+          "type": "NODE",
+          "name": "Architectural Agent",
+          "description": "Extracts architectural details from text",
+          "prompt": "You are a highly specialized and rigorous LLM agent designed for validating software architecture descriptions from project reports. Your core mission is to not only extract architectural details but also to perform a preliminary qualitative analysis and identify any gaps or ambiguities.\n\nInput:\nA single section of a project report provided as a string of text. This text has already been classified as a description of the project's architecture: {sectionText}.\n\nTask:\n\n1. **Identify the Architectural Pattern:** Determine the primary architectural pattern (e.g., Layered, Microservices, Event-Driven). If not explicitly named, infer it. If a pattern cannot be identified, explicitly state \"Unclear Pattern\".\n\n2. **Extract Components and Responsibilities:**\n   * List all key components or layers mentioned.\n   * For each component, extract its main responsibility. If the responsibility is described vaguely (e.g., using terms like \"handles,\" \"manages,\" or \"processes\" without further detail), note it as \"Vague: [Vague description]\". If a responsibility is missing, note it as \"Undefined Responsibility\".\n\n3. **Analyze Data Flow and Communication:**  Identify the main components that communicate with each other. For each component, list the names of the other components it interacts with. Do not infer communication paths that are not explicitly mentioned in the text. If communication is not described, the communicates_with field should be an empty array [].\n\n4. **Perform Qualitative Analysis:**\n   * Assess the design for adherence to key principles like separation of concerns and loose coupling. Use the design_notes field to comment on component design quality (e.g., \"This component has a clear, single responsibility.\" or \"Responsibility seems too broad, potentially violating separation of concerns.\").\n\n5. **Summarize Findings:** Provide a brief, high-level summary of the architectural health in the analysis_summary field. This should highlight strengths, weaknesses, and any missing details found during the analysis."
+        },
+        {
+          "node_id": "5",
+          "metamodel_id": "e629c7d4-bef8-4716-9594-029bd1acf09f",
+          "type": "NODE",
+          "name": "Test Agent",
+          "description": "Extract tests from section",
+          "prompt": "Role: You are a specialized Agent for analyzing software testing and quality assurance reports. Your primary task is to rigorously extract all tests, test types, and the **functional clues** they offer, to facilitate a later verification of coverage against the system's Use Cases (UCs).\n\nInput (A single section of a report, provided as a string of text. The text has already been classified as relevant to testing/quality assurance, and may contain lists of test methods):\ntitle: {title}\ntext: {sectionText}\n\nTask:\n\nAnalyze the text to identify every distinct test or test suite described. Tests are often listed by method name (e.g., `UserServiceTest.testUserLoginSuccess()`) or described in detail.\n\nFor each identified test or set of tests, extract the following information:\n\ntest_id: A unique identifier you can generate (e.g., TEST-A-1, TEST-B-2).\ntest_type: Classify the test. Common categories: Unit (single class/method), Integration (component interaction), System (end-to-end), Performance.\ntested_artifact_name: The name of the class, controller, service, or DAO containing the test, or the specific method name (e.g., `WorkerServiceTest`, `BuyItemController`).\ncoverage_hint: **Based ONLY on the test name, class name, or surrounding text**, provide a brief phrase indicating the likely Use Case or functional area being covered. **Do NOT generate a formal Use Case ID (e.g., UC-X.Y.Z)**. Instead, provide descriptive keywords.\n    Examples of a good hint: \"User Login success scenario,\" \"Task status change error handling,\" \"Vending Machine creation persistence.\"\ndescription_summary: A concise, clear summary of what the test is verifying, focusing on the specific outcome (success, failure, error code).\n\nYour output must be a list of objects, where each object represents a complete test entry with the fields described above.\n\nExample of Desired Output:\n\ntest_id: TEST-1\ntest_type: Unit\ntested_artifact_name: WorkerServiceTest.testChangeTaskStatus\ncoverage_hint: \"Change task status logic\"\ndescription_summary: \"Verifies the successful transition of a task status from IN_PROGRESS to COMPLETED.\"\n---\ntest_id: TEST-2\ntest_type: Integration\ntested_artifact_name: WorkerControllerTest\ncoverage_hint: \"Task completion control flow\"\ndescription_summary: \"Tests that the Controller returns an error when task ID is invalid.\""
+        }
+      ],
+      "sub_workflows": []
+    }
+  ]
+}

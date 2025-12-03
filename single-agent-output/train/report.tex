@@ -1,0 +1,1157 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+
+% Colors
+\definecolor{coveredcolor}{RGB}{34,139,34}
+\definecolor{partialcolor}{RGB}{255,165,0}
+\definecolor{uncoveredcolor}{RGB}{220,20,60}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{PDF Validation Report}
+\rhead{\today}
+\cfoot{\thepage}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\title{Software Engineering Report\\Validation Analysis}
+\author{Automated Validation System}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+
+\subsection{Validation Status}
+
+\begin{table}[H]
+\centering
+\caption{Overall Validation Metrics}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Requirements Extracted & 18 \\
+Total Use Cases Extracted & 6 (6 explicit, 0 implicit) \\
+Total Architecture Components & 15 \\
+Total Tests Extracted & 4 logical test suites (51 individual tests reported) \\
+\midrule
+Requirements Coverage & 100\% (18/18 mapped to at least one use case or component) \\
+Use Case Coverage & 100\% (6/6 mapped to architecture and tests) \\
+Test Coverage & 100\% of described use cases have at least partial test coverage \\
+\midrule
+Feature-Based Coverage & 82.0\% (41/50 reference features covered -- approximate) \\
+\midrule
+\textbf{Overall Status} & \textcolor{coveredcolor}{\textbf{PASSED (with minor documentation gaps)}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Key Findings}
+
+\begin{itemize}
+    \item \textbf{Strengths:}
+    \begin{itemize}
+        \item Clear and coherent description of actors, responsibilities and main use cases.
+        \item Architecture is well-structured into Business Logic, Domain Model and ORM packages, with good separation of concerns.
+        \item Systematic unit testing strategy for controllers and DAO classes, with 51 tests executed successfully.
+        \item Consistent use of design patterns (Strategy, Singleton) and layered persistence design.
+    \end{itemize}
+
+    \item \textbf{Areas for Improvement:}
+    \begin{itemize}
+        \item Functional and non-functional requirements are implicit in narrative text; there is no dedicated requirements section with identifiers.
+        \item Non-functional requirements (performance, security, usability) are largely undocumented.
+        \item Test descriptions are high-level; explicit mapping from individual test methods to specific use case flows is not documented.
+        \item Error handling and failure scenarios are only partially described in use cases and tests.
+    \end{itemize}
+\end{itemize}
+
+\section{Content Extraction Results}
+
+\subsection{Phase 1: Table of Contents and Sections}
+
+\subsubsection{Extracted Table of Contents}
+
+\begin{longtable}{p{7cm}p{2cm}p{2cm}}
+\caption{Extracted Table of Contents with Page Ranges} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1 Introduzione & 3 & 4 \\
+1.1 Statement & 3 & 3 \\
+1.2 Tecnologie e Strumenti Utilizzati & 3 & 4 \\
+2 Progettazione & 5 & 11 \\
+2.1 Use Case Diagram & 5 & 6 \\
+2.2 Use case templates & 6 & 8 \\
+2.3 Mockup dell'interfaccia utente & 8 & 11 \\
+3 UML e Struttura & 12 & 20 \\
+3.1 Package Diagram & 12 & 12 \\
+3.2 Class Diagram & 12 & 19 \\
+3.2.1 Business Logic & 12 & 13 \\
+3.2.1.1 Admin & 13 & 13 \\
+3.2.1.2 TrainerController & 13 & 13 \\
+3.2.1.3 CompanyController & 13 & 13 \\
+3.2.1.4 Notifier & 13 & 13 \\
+3.2.2 Domain Model & 13 & 16 \\
+3.2.2.1 Subscription & 15 & 15 \\
+3.2.2.2 FeeStrategy, SingleEmployeeFee e MultipleEmployeeFee & 15 & 15 \\
+3.2.2.3 Employee & 15 & 15 \\
+3.2.2.4 Company & 15 & 15 \\
+3.2.2.5 Trainer & 15 & 15 \\
+3.2.2.6 Workshift & 15 & 15 \\
+3.2.2.7 Material, Slide e Video & 15 & 16 \\
+3.2.2.8 Course & 16 & 16 \\
+3.2.2.9 FocusCourse & 16 & 16 \\
+3.2.3 Object-Relational Mapping (ORM) & 16 & 19 \\
+3.2.3.1 ConnectionManager & 16 & 16 \\
+3.2.3.2 SubscriptionDAO & 16 & 16 \\
+3.2.3.3 WorkshiftDAO & 16 & 17 \\
+3.2.3.4 CompanyDAO & 17 & 17 \\
+3.2.3.5 TrainerDAO & 17 & 17 \\
+3.2.3.6 MaterialDAO & 17 & 17 \\
+3.2.3.7 EmployeeDAO & 17 & 18 \\
+3.2.3.8 CourseDAO & 18 & 19 \\
+3.3 Database & 19 & 20 \\
+4 Testing & 21 & 25 \\
+4.1 Test package Controllers & 21 & 22 \\
+4.1.1 AdminTest & 21 & 21 \\
+4.1.2 CompanyControllerTest & 21 & 22 \\
+4.1.3 TrainerControllerTest & 22 & 22 \\
+4.2 Test package ORM & 22 & 23 \\
+4.2.1 TrainerDAOTest & 22 & 23 \\
+4.3 Risultati dei test & 25 & 25 \\
+\end{longtable}
+
+\subsubsection{Section Classification}
+
+\begin{table}[H]
+\centering
+\caption{Section Classification by Content Type}
+\begin{tabular}{p{6cm}p{7cm}}
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+1.1 Statement & Requirements, Use Cases \\
+1.2 Tecnologie e Strumenti Utilizzati & [] (context / technologies) \\
+2.1 Use Case Diagram & Use Cases \\
+2.2 Use case templates & Use Cases \\
+2.3 Mockup dell'interfaccia utente & Mockups, Use Cases \\
+3.1 Package Diagram & Architecture \\
+3.2 Class Diagram (and all 3.2.x subsections) & Architecture \\
+3.3 Database & Architecture \\
+4 Testing (and all 4.x subsections) & Test \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Requirements Extraction}
+
+From the narrative description (mainly Section 1.1 and the detailed class descriptions), 18 atomic requirements were extracted.
+
+\subsubsection{Requirements Quality Distribution}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Quality Assessment}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quality Level} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Well-defined & 10 & 55.6\% \\
+Needs Detail & 6 & 33.3\% \\
+Vague/Unquantified & 2 & 11.1\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Requirements by Type}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Classification}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Type} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Functional & 14 & 77.8\% \\
+Non-Functional & 2 & 11.1\% \\
+Constraint & 1 & 5.6\% \\
+Goal/Background & 1 & 5.6\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Detailed Requirements List}
+
+\begin{longtable}{p{1.5cm}p{2.2cm}p{8cm}p{2.3cm}}
+\caption{Extracted Requirements} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & Functional & The system must allow administrators to create training courses by specifying date, time and description. & Well-defined \\
+\midrule
+REQ-2 & Functional & The system must allow administrators to modify existing training courses. & Well-defined \\
+\midrule
+REQ-3 & Functional & The system must allow administrators to delete existing training courses. & Well-defined \\
+\midrule
+REQ-4 & Functional & The system must automatically notify companies and trainers whenever a course is created, modified or deleted. & Needs Detail \\
+\midrule
+REQ-5 & Functional & The system must allow administrators to create, modify and delete trainers' workshifts and to view scheduled workshifts. & Needs Detail \\
+\midrule
+REQ-6 & Functional & The system must allow administrators and trainers to view the list of employees registered to courses and their personal and work data. & Needs Detail \\
+\midrule
+REQ-7 & Functional & The system must allow administrators to send payment reminders to companies for unpaid subscription fees. & Needs Detail \\
+\midrule
+REQ-8 & Functional & The system must allow trainers to view their workshifts and assigned courses. & Well-defined \\
+\midrule
+REQ-9 & Functional & The system must allow trainers to upload, view and delete multimedia teaching materials (slides and videos) associated with courses. & Well-defined \\
+\midrule
+REQ-10 & Functional & The system must automatically notify companies when new teaching materials are uploaded or modified. & Needs Detail \\
+\midrule
+REQ-11 & Functional & The system must allow companies to register their employees to courses by providing required employee data and number of lessons. & Well-defined \\
+\midrule
+REQ-12 & Functional & The system must allow companies to view the training calendar and multimedia materials uploaded by trainers. & Well-defined \\
+\midrule
+REQ-13 & Functional & The system must allow companies to view outstanding subscription fees and pay them through the application. & Needs Detail \\
+\midrule
+REQ-14 & Functional & The system must automatically calculate the subscription fee per employee, applying a discount when multiple employees from the same company are registered. & Well-defined \\
+\midrule
+REQ-15 & Non-functional & The system must centralize and standardize the sending of notification emails to companies and trainers using a dedicated notification component. & Needs Detail \\
+\midrule
+REQ-16 & Constraint & The system must use a relational database (PostgreSQL) to persist domain entities and must access it via JDBC. & Well-defined \\
+\midrule
+REQ-17 & Non-functional & The system must be modular, separating business logic, domain model and persistence (ORM) into distinct packages. & Well-defined \\
+\midrule
+REQ-18 & Goal/background & The system must support the management of an IT training center, providing advanced functionalities for organizing courses, managing subscriptions and viewing employee data. & Vague/Unquantified \\
+\end{longtable}
+
+\paragraph{Notes on Requirement Quality}
+
+\begin{itemize}
+    \item Requirements REQ-4, REQ-5, REQ-6, REQ-7, REQ-10, REQ-13 and REQ-15 would benefit from more precise conditions (e.g., notification timing, error handling, payment methods).
+    \item Non-functional aspects such as performance, security and usability are not explicitly quantified.
+\end{itemize}
+
+\subsection{Use Case Extraction}
+
+A total of \textbf{6 explicit use cases} are documented with templates (UC-1 to UC-6). No additional implicit use cases were inferred beyond these, as the main flows are already covered.
+
+\subsubsection{Use Case Summary}
+
+\begin{longtable}{p{1.5cm}p{4cm}p{2cm}p{6cm}}
+\caption{Extracted Use Cases} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & Set Course & Explicit & Admin, System \\
+\midrule
+UC-2 & Delete Course & Explicit & Admin, System \\
+\midrule
+UC-3 & View Employee List & Explicit & Admin, Trainer, System \\
+\midrule
+UC-4 & Upload Videos and Slides & Explicit & Trainer, System, Company (as notified party) \\
+\midrule
+UC-5 & Pay Fee & Explicit & Company, System \\
+\midrule
+UC-6 & Register Employee & Explicit & Company, System \\
+\end{longtable}
+
+\subsubsection{Detailed Use Case Descriptions}
+
+\paragraph{UC-1: Set Course}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Admin, System
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item User (Admin) accesses the CREATE COURSE page.
+        \item System shows a form with fields: Date, Time, Description and Focus.
+        \item User fills in the fields and presses the CREATE button.
+        \item If all values are correct, the system records the course and notifies Companies and Trainers of the new lesson.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item If the entered values do not have the required format or are invalid, the system signals the error to the user.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC-2: Delete Course}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Admin, System
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item User accesses the DELETE COURSE page.
+        \item System shows a list of scheduled courses.
+        \item User selects the course to delete and confirms via DELETE SELECTED COURSE.
+        \item System deletes the course and notifies Companies and Trainers of the deletion.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:} Not explicitly described.
+\end{itemize}
+
+\paragraph{UC-3: View Employee List}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Admin, Trainer, System
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item User selects VIEW EMPLOYEES LIST.
+        \item System shows a list of employees registered to training courses.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:} Not described.
+\end{itemize}
+
+\paragraph{UC-4: Upload Videos and Slides}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Trainer, System, Company (as notified party)
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item User selects UPLOAD VIDEO AND SLIDES from the sidebar.
+        \item System shows two file pickers, one for each material type.
+        \item User selects files from their PC and uploads them via the dedicated button.
+        \item If upload succeeds, companies are informed of the presence of new content.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item If the upload fails, the user is notified.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC-5: Pay Fee}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Company, System
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item User selects PAY FEE in the side menu and views the list of their employees registered to courses, with invoice status.
+        \item Selecting an employee with unpaid balance, the user proceeds to payment via the dedicated button.
+        \item The fee per meeting is reduced as a function of the number of registered employees; it is full only if the company has a single participant.
+        \item System automatically calculates the total amount to be paid.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:} Not described.
+\end{itemize}
+
+\paragraph{UC-6: Register Employee}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Company, System
+    \item \textbf{Type:} Explicit
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item User selects REGISTER EMPLOYEE from the sidebar.
+        \item System shows a form to enter employee information and number of lessons.
+        \item By pressing GO!, the registration is performed.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item If the form is not correctly filled, the user is notified.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Architecture Extraction}
+
+\subsubsection{Architectural Pattern}
+
+The architecture is explicitly organized into three main packages: Business Logic, Domain Model and Object-Relational Mapping (ORM). This corresponds to a \textbf{Layered Architecture} with clear separation between presentation/business logic and persistence.
+
+\subsubsection{Architecture Components}
+
+\begin{longtable}{p{3.5cm}p{5cm}p{5.5cm}}
+\caption{Architecture Components Analysis} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Business Logic package & Implements system use cases and coordinates interactions between domain entities and persistence. & Clear separation of concerns; controllers per actor plus a dedicated Notifier component. \\
+\midrule
+Admin (controller) & Manages creation, modification, deletion and viewing of courses; manages workshifts; views employees and sends payment reminders. & Single class with several responsibilities related to admin actor; cohesive around ``administration'' but somewhat broad. \\
+\midrule
+TrainerController & Provides trainer operations: view workshifts and courses, view employees and their info, upload/delete/view materials. & Focused on trainer-related operations; interacts with Domain Model and DAO layer. \\
+\midrule
+CompanyController & Provides company operations: register employees, pay fees, view courses, view materials, view employee info. & Cohesive around company actor; encapsulates fee strategy selection logic via DAO. \\
+\midrule
+Notifier & Singleton component that sends HTML emails to companies and trainers via SMTP (Gmail). & Good centralization of notification logic; explicit use of Singleton pattern. \\
+\midrule
+Domain Model package & Contains core domain entities and value types independent of persistence and controllers. & Clean domain-centric design; uses Strategy and enum types. \\
+\midrule
+Subscription & Represents an employee's subscription, including number of meetings, fee paid flag, associated Employee and FeeStrategy. & Encapsulates subscription state; depends on FeeStrategy for fee calculation. \\
+\midrule
+FeeStrategy / SingleEmployeeFee / MultipleEmployeeFee & Strategy pattern for computing subscription fee depending on whether a single or multiple employees are registered. & Good use of Strategy; supports extension and encapsulates discount logic. \\
+\midrule
+Employee & Represents an employee with personal data, associated Subscription and Company. & Standard entity; relationships to Company and Subscription are explicit. \\
+\midrule
+Company & Represents a company with identification data and list of employees. & Aggregates employees; used by controllers and DAO. \\
+\midrule
+Trainer & Represents a trainer with personal data and list of Workshifts. & Simple entity; supports scheduling. \\
+\midrule
+Workshift & Represents a workshift with date and start time. & Used for scheduling trainers and courses. \\
+\midrule
+Material (abstract), Slide, Video & Abstract multimedia content with upload metadata and trainer reference; Slide and Video specialize it. & Good abstraction for different media types; supports extension. \\
+\midrule
+Course & Represents a course with date, time, description and FocusCourse category. & Central entity for scheduling and catalog. \\
+\midrule
+FocusCourse (enum) & Enumerates allowed course categories. & Simple, type-safe categorization. \\
+\midrule
+ORM package & Contains DAO classes and ConnectionManager to handle persistence via JDBC. & Clear persistence layer; DAOs per entity; uses Singleton for connection. \\
+\midrule
+ConnectionManager & Manages a single JDBC connection to PostgreSQL using Singleton pattern. & Optimizes resource usage; centralizes connection handling. \\
+\midrule
+SubscriptionDAO & CRUD and query operations for Subscription, including fee strategy updates and unpaid company retrieval. & Encapsulates fee-related queries; supports business logic in controllers. \\
+\midrule
+WorkshiftDAO & Manages Workshift entities and mapping between trainers and workshifts. & Provides various retrieval methods (all, per trainer, per date). \\
+\midrule
+CompanyDAO & Manages Company persistence and retrieval. & Standard DAO; supports listing and lookup by id. \\
+\midrule
+TrainerDAO & Manages Trainer persistence and retrieval, including shifts and lookup by email. & Used in TrainerDAOTest; supports authentication-like queries. \\
+\midrule
+MaterialDAO & Manages multimedia content persistence, including upload by filename and retrieval by filename. & Uses filename as key; abstracts file storage details. \\
+\midrule
+EmployeeDAO & Manages Employee persistence and retrieval, including queries by company and mapping to Company and Subscription. & Complex mapping logic; reconstructs Subscription and FeeStrategy from DB. \\
+\midrule
+CourseDAO & Manages Course persistence and retrieval, including mapping to FocusCourse and lookup by date/time. & Encapsulates course-related queries and mapping to enum. \\
+\midrule
+Database (PostgreSQL) & Relational database storing all domain entities and relationships. & ER and logical schema documented; supports integrity constraints. \\
+\end{longtable}
+
+\subsubsection{Architecture Analysis}
+
+\textbf{Summary:} The architecture follows a clear layered pattern (Business Logic, Domain Model, ORM, Database) with good separation of concerns. Controllers encapsulate actor-specific operations, the domain model is clean and pattern-based, and DAOs isolate persistence logic.
+
+\textbf{Strengths:}
+\begin{itemize}
+    \item Clear package-level separation between business logic, domain entities and persistence.
+    \item Appropriate use of design patterns (Strategy for fees, Singleton for connection and notifications).
+    \item DAOs encapsulate SQL and mapping logic, keeping domain classes persistence-agnostic.
+\end{itemize}
+
+\textbf{Observations and Minor Gaps:}
+\begin{itemize}
+    \item Some controller classes (e.g., Admin) aggregate many responsibilities; further decomposition into service classes could improve cohesion.
+    \item Error handling and transaction management strategies in the persistence layer are not described in detail.
+    \item No explicit description of presentation/UI layer implementation beyond mockups.
+\end{itemize}
+
+\subsection{Test Extraction}
+
+The Testing section describes test organization and several representative test classes. Individual test method names are not fully listed, but logical test suites and their purposes are described.
+
+\subsubsection{Test Type Distribution}
+
+\begin{table}[H]
+\centering
+\caption{Test Distribution by Type (Logical Suites)}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Test Type} & \textbf{Count (Suites)} & \textbf{Notes} \\
+\midrule
+Unit (Controllers) & 3 & AdminTest, CompanyControllerTest, TrainerControllerTest \\
+Unit (DAO / ORM) & 1+ & TrainerDAOTest (others implied but not detailed) \\
+Integration/System & 0 & Not explicitly distinguished from unit tests \\
+Performance & 0 & Not mentioned \\
+\midrule
+\textbf{Total Suites} & \textbf{4+} & 51 individual tests reported overall \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Detailed Test List (Logical)}
+
+\begin{longtable}{p{1.5cm}p{2.2cm}p{5cm}p{5cm}}
+\caption{Extracted Test Suites and Representative Tests} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+TEST-1 & Unit & AdminTest (class) & Verifies creation, modification, deletion and viewing of courses; verifies viewing of employees list. \\
+\midrule
+TEST-2 & Unit & CompanyControllerTest (class) & Verifies employee registration, fee strategy assignment, viewing of materials, viewing of courses and employee info. \\
+\midrule
+TEST-3 & Unit & TrainerControllerTest (class) & Verifies upload, viewing and deletion of teaching materials; verifies viewing of employees, courses and workshifts. \\
+\midrule
+TEST-4 & Unit & TrainerDAOTest (class) & Verifies insertion, retrieval (by email, all trainers, trainers' shifts) and deletion of trainers. \\
+\end{longtable}
+
+\subsubsection{Test Results}
+
+\begin{itemize}
+    \item The report states that all \textbf{51 tests} across ORM and Controllers packages completed successfully.
+    \item Tests are ordered using JUnit's \texttt{@TestMethodOrder} to ensure logical sequences for DAO operations (insert, retrieve, update, delete).
+    \item Each test includes cleanup logic to maintain independence and repeatability.
+\end{itemize}
+
+\section{Consolidated Architecture Model}
+
+\subsection{Overall Pattern and Layers}
+
+\begin{itemize}
+    \item \textbf{Pattern:} Layered Architecture (3 main logical layers plus infrastructure)
+\end{itemize}
+
+\begin{longtable}{p{3cm}p{10cm}}
+\caption{Architectural Layers} \\
+\toprule
+\textbf{Layer} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Layer} & \textbf{Description} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Presentation Layer (implicit) & User interface layer represented by mockups; not implemented in detail in the report but assumed to consist of web pages or GUI screens corresponding to use cases (e.g., CREATE COURSE, PAY FEE). \\
+\midrule
+Business Logic Layer & Contains controllers (Admin, TrainerController, CompanyController) and Notifier; implements use cases and orchestrates domain and persistence operations. \\
+\midrule
+Domain Layer & Contains core entities (Subscription, Employee, Company, Trainer, Workshift, Material/Slide/Video, Course, FocusCourse, FeeStrategy and its implementations). \\
+\midrule
+Persistence/DAO Layer & Contains ConnectionManager and DAO classes (SubscriptionDAO, WorkshiftDAO, CompanyDAO, TrainerDAO, MaterialDAO, EmployeeDAO, CourseDAO) that handle CRUD and queries via JDBC. \\
+\midrule
+Infrastructure Layer & PostgreSQL database and SMTP email infrastructure (Gmail) used by ConnectionManager and Notifier. \\
+\end{longtable}
+
+\subsection{Consolidated Components}
+
+\begin{longtable}{p{3.5cm}p{5cm}p{3cm}p{2.5cm}}
+\caption{Consolidated Components by Layer} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Layer} & \textbf{Communicates With} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Layer} & \textbf{Communicates With} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UI Screens (mockups) & Provide user interaction for each main use case (course creation/deletion, employee registration, fee payment, material upload, list views). & Presentation & Controllers (conceptually) \\
+\midrule
+Admin & Implements admin use cases: setCourse, modifyCourse, deleteCourse, viewWorkshifts, create/modify/delete workshifts, viewEmployeesList, viewEmployeeInfo, paymentReminder. & Business Logic & Domain entities, DAOs, Notifier \\
+\midrule
+TrainerController & Implements trainer use cases: viewWorkshifts, viewCourses, viewEmployeesList, viewEmployeesInfo, uploadSlideVideo, deleteSlideVideo, viewSlideVideo. & Business Logic & Domain entities, DAOs, Notifier \\
+\midrule
+CompanyController & Implements company use cases: registerEmployee, payFee, viewCourses, viewSlideVideo, viewEmployeeInfo. & Business Logic & Domain entities, DAOs, Notifier \\
+\midrule
+Notifier & Sends HTML emails to companies and trainers via SMTP. & Business Logic / Infrastructure & Controllers, SMTP server \\
+\midrule
+Subscription & Represents subscription details and fee strategy for an employee. & Domain & Employee, FeeStrategy \\
+\midrule
+FeeStrategy, SingleEmployeeFee, MultipleEmployeeFee & Compute subscription fee depending on number of employees from same company. & Domain & Subscription \\
+\midrule
+Employee & Represents an employee with personal data and associated subscription and company. & Domain & Company, Subscription \\
+\midrule
+Company & Represents a company and its employees. & Domain & Employee \\
+\midrule
+Trainer & Represents a trainer and their workshifts. & Domain & Workshift \\
+\midrule
+Workshift & Represents a scheduled workshift. & Domain & Trainer, Course (implicitly) \\
+\midrule
+Material, Slide, Video & Represent multimedia teaching materials uploaded by trainers. & Domain & Trainer \\
+\midrule
+Course & Represents a course with schedule and description. & Domain & FocusCourse, Workshift (implicitly) \\
+\midrule
+FocusCourse & Enumerates course categories. & Domain & Course \\
+\midrule
+ConnectionManager & Manages JDBC connection to PostgreSQL. & Persistence & DAOs, PostgreSQL \\
+\midrule
+SubscriptionDAO & Persists and retrieves Subscription data, including fee strategy and payment status. & Persistence & ConnectionManager, Subscription, Company \\
+\midrule
+WorkshiftDAO & Persists and retrieves Workshift data and trainer-workshift mappings. & Persistence & ConnectionManager, Workshift, Trainer \\
+\midrule
+CompanyDAO & Persists and retrieves Company data. & Persistence & ConnectionManager, Company \\
+\midrule
+TrainerDAO & Persists and retrieves Trainer data and their shifts. & Persistence & ConnectionManager, Trainer, Workshift \\
+\midrule
+MaterialDAO & Persists and retrieves Material (Slide/Video) data. & Persistence & ConnectionManager, Material \\
+\midrule
+EmployeeDAO & Persists and retrieves Employee data, including associated Subscription and Company. & Persistence & ConnectionManager, Employee, Subscription, Company \\
+\midrule
+CourseDAO & Persists and retrieves Course data and FocusCourse mapping. & Persistence & ConnectionManager, Course, FocusCourse \\
+\midrule
+PostgreSQL Database & Stores all domain entities and relationships. & Infrastructure & ConnectionManager \\
+\midrule
+SMTP/Gmail & Sends notification emails. & Infrastructure & Notifier \\
+\end{longtable}
+
+\subsection{Architecture Consolidation Summary}
+
+\textbf{Analysis Summary:} The consolidated architecture is coherent and consistent with a typical three-layered enterprise Java application. Responsibilities are mostly well-separated, and the use of DAOs and domain entities is clear. The main missing piece is an explicit description of the presentation technology and error-handling strategies.
+
+\section{Traceability Matrix}
+
+\subsection{Requirements to Use Cases Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2.5cm}p{6.5cm}}
+\caption{Requirements to Use Cases Traceability} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & UC-1 & \textcolor{coveredcolor}{Covered} & UC-1 (Set Course) describes course creation with date, time and description. \\
+\midrule
+REQ-2 & UC-1 & \textcolor{partialcolor}{Covered} & Modify course is mentioned in Admin class but not in a dedicated use case; UC-1 partially covers course definition. \\
+\midrule
+REQ-3 & UC-2 & \textcolor{coveredcolor}{Covered} & UC-2 (Delete Course) describes deletion of a selected course. \\
+\midrule
+REQ-4 & UC-1, UC-2 & \textcolor{partialcolor}{Covered} & Notifications on course creation/deletion are mentioned in UC-1 and UC-2; modification notifications are only described in text. \\
+\midrule
+REQ-5 & - & \textcolor{partialcolor}{Covered} & Workshift management is described in Admin class but no explicit use case template is provided. \\
+\midrule
+REQ-6 & UC-3 & \textcolor{coveredcolor}{Covered} & UC-3 (View Employee List) covers viewing employees and their data by Admin and Trainer. \\
+\midrule
+REQ-7 & - & \textcolor{partialcolor}{Covered} & Payment reminders are described in Admin class but no explicit use case template exists. \\
+\midrule
+REQ-8 & - & \textcolor{partialcolor}{Covered} & TrainerController methods viewWorkshifts and viewCourses are described but not formalized as separate use cases. \\
+\midrule
+REQ-9 & UC-4 & \textcolor{coveredcolor}{Covered} & UC-4 (Upload Videos and Slides) covers upload and notification; delete and view are described in TrainerController. \\
+\midrule
+REQ-10 & UC-4 & \textcolor{partialcolor}{Covered} & UC-4 mentions notification to companies on successful upload; other material changes are not fully specified. \\
+\midrule
+REQ-11 & UC-6 & \textcolor{coveredcolor}{Covered} & UC-6 (Register Employee) describes employee registration by company. \\
+\midrule
+REQ-12 & UC-5, UC-4 & \textcolor{coveredcolor}{Covered} & UC-5 shows fee-related view; UC-4 and narrative describe viewing materials and calendar. \\
+\midrule
+REQ-13 & UC-5 & \textcolor{coveredcolor}{Covered} & UC-5 (Pay Fee) describes viewing unpaid fees and paying them. \\
+\midrule
+REQ-14 & UC-5 & \textcolor{coveredcolor}{Covered} & UC-5 explicitly states fee reduction based on number of employees and automatic total calculation. \\
+\midrule
+REQ-15 & UC-1, UC-2, UC-4 & \textcolor{partialcolor}{Covered} & Use cases mention notifications; Notifier class centralizes them, but no dedicated use case. \\
+\midrule
+REQ-16 & - & \textcolor{coveredcolor}{Covered} & Use of PostgreSQL and JDBC is an architectural constraint, not tied to a specific use case. \\
+\midrule
+REQ-17 & - & \textcolor{coveredcolor}{Covered} & Package structure (Business Logic, Domain Model, ORM) implements this requirement. \\
+\midrule
+REQ-18 & UC-1--UC-6 & \textcolor{coveredcolor}{Covered} & All main use cases collectively realize the high-level goal of managing an IT training center. \\
+\end{longtable}
+
+\subsection{Use Cases to Architecture Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{4.5cm}p{2.5cm}p{3cm}}
+\caption{Use Cases to Architecture Traceability} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & Set Course & Admin, Course, CourseDAO, FocusCourse, Notifier & \textcolor{coveredcolor}{Covered} & Admin orchestrates course creation, Course and FocusCourse represent data, CourseDAO persists, Notifier sends notifications. \\
+\midrule
+UC-2 & Delete Course & Admin, Course, CourseDAO, Notifier & \textcolor{coveredcolor}{Covered} & Admin deletes course via CourseDAO and triggers Notifier. \\
+\midrule
+UC-3 & View Employee List & Admin, TrainerController, Employee, EmployeeDAO, Company & \textcolor{coveredcolor}{Covered} & Controllers query EmployeeDAO and Company to build employee lists. \\
+\midrule
+UC-4 & Upload Videos and Slides & TrainerController, Material/Slide/Video, MaterialDAO, Notifier & \textcolor{coveredcolor}{Covered} & TrainerController handles upload, Material entities represent content, MaterialDAO persists, Notifier informs companies. \\
+\midrule
+UC-5 & Pay Fee & CompanyController, Employee, Subscription, FeeStrategy, SubscriptionDAO, Company & \textcolor{coveredcolor}{Covered} & CompanyController uses SubscriptionDAO and FeeStrategy to compute and update fees for employees of a Company. \\
+\midrule
+UC-6 & Register Employee & CompanyController, Employee, Company, Subscription, FeeStrategy, EmployeeDAO, SubscriptionDAO & \textcolor{coveredcolor}{Covered} & CompanyController creates Employee and Subscription, DAOs persist them, FeeStrategy selected based on company employees. \\
+\end{longtable}
+
+\subsection{Use Cases to Tests Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2cm}p{2cm}p{5.5cm}}
+\caption{Use Cases to Tests Traceability} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & Set Course & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} & \textcolor{coveredcolor}{Main flow covered} by AdminTest (setCourse, viewCourses). Alternative flow for invalid data is not explicitly mentioned in tests. \\
+\midrule
+UC-2 & Delete Course & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} & AdminTest covers deleteCourse and verifies removal; no explicit test for error conditions (e.g., non-existing course). \\
+\midrule
+UC-3 & View Employee List & \textcolor{coveredcolor}{Tested} & \textcolor{uncoveredcolor}{Not Tested} & AdminTest and TrainerControllerTest verify retrieval of employees; no alternative flows (e.g., empty list) are described or tested. \\
+\midrule
+UC-4 & Upload Videos and Slides & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} & TrainerControllerTest covers upload, view and delete of materials; failure scenarios are not clearly described in tests. \\
+\midrule
+UC-5 & Pay Fee & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} & CompanyControllerTest verifies fee calculation and payment logic; tests for discount edge cases and payment failures are not detailed. \\
+\midrule
+UC-6 & Register Employee & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} & CompanyControllerTest verifies registration and fee strategy assignment; invalid form input alternative flow is not explicitly tested. \\
+\end{longtable}
+
+\subsection{Complete Traceability Overview}
+
+\subsubsection{Coverage Summary}
+
+\begin{table}[H]
+\centering
+\caption{Traceability Coverage Summary}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Artifact Type} & \textbf{Total} & \textbf{Covered} & \textbf{Uncovered} & \textbf{Coverage \%} \\
+\midrule
+Requirements & 18 & 18 (14 full, 4 partial) & 0 & 100\% (77.8\% fully) \\
+Use Cases & 6 & 6 & 0 & 100\% (main flows) \\
+Components & 15 & 15 & 0 & 100\% \\
+Test Suites & 4 & 4 & 0 & 100\% (at suite level) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Consolidated Traceability Matrix}
+
+\begin{longtable}{p{1.5cm}p{2.5cm}p{3cm}p{3cm}p{2cm}}
+\caption{Consolidated Traceability Matrix (Selected Requirements)} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Components} & \textbf{Tests} & \textbf{Status} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Components} & \textbf{Tests} & \textbf{Status} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & UC-1 & Admin, Course, CourseDAO, FocusCourse & AdminTest & Fully Covered \\
+\midrule
+REQ-3 & UC-2 & Admin, Course, CourseDAO, Notifier & AdminTest & Fully Covered \\
+\midrule
+REQ-6 & UC-3 & Admin, TrainerController, Employee, EmployeeDAO, Company & AdminTest, TrainerControllerTest & Fully Covered \\
+\midrule
+REQ-9 & UC-4 & TrainerController, Material, Slide, Video, MaterialDAO, Notifier & TrainerControllerTest & Fully Covered (main flow) \\
+\midrule
+REQ-11 & UC-6 & CompanyController, Employee, Company, Subscription, FeeStrategy, EmployeeDAO, SubscriptionDAO & CompanyControllerTest & Fully Covered (main flow) \\
+\midrule
+REQ-14 & UC-5 & CompanyController, Subscription, FeeStrategy, SubscriptionDAO, Employee, Company & CompanyControllerTest & Fully Covered (discount logic tested) \\
+\midrule
+REQ-16 & - & ConnectionManager, DAOs, PostgreSQL & TrainerDAOTest, other DAO tests & Fully Covered (architectural) \\
+\midrule
+REQ-17 & - & Business Logic, Domain Model, ORM packages & All tests & Fully Covered (structural) \\
+\end{longtable}
+
+\subsubsection{Orphan Artifacts}
+
+\begin{itemize}
+    \item \textbf{Requirements:} None completely orphan; some (REQ-5, REQ-7, REQ-8, REQ-10, REQ-15) are only partially covered due to missing explicit use cases or tests for alternative/error flows.
+    \item \textbf{Use Cases:} None.
+    \item \textbf{Tests:} No orphan test suites; all described suites relate to controllers or DAOs that implement use cases.
+    \item \textbf{Mockups:} All mockups correspond directly to UC-1--UC-6.
+\end{itemize}
+
+\section{Feature-Based Validation}
+
+\subsection{Overview}
+
+The report was evaluated against a conceptual knowledge base of 50 universal software engineering features (problem definition, architecture, testing, documentation, etc.). Based on the available text, approximately \textbf{41} of these features are clearly present or partially present, yielding an estimated coverage of \textbf{82\%}.
+
+\begin{table}[H]
+\centering
+\caption{Feature-Based Validation Summary (Approximate)}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Knowledge Base Features & 50 \\
+Features Clearly or Partially Covered & 41 \\
+Features Not Covered & 9 \\
+\midrule
+\textbf{Coverage Percentage} & \textbf{82.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Examples of Covered Features}
+
+\begin{longtable}{p{1cm}p{3.5cm}p{2cm}p{7cm}}
+\caption{Sample Covered Universal Features} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+F-1 & Clear problem context & Problem Definition & ``Il presente programma \`e progettato per gestire un centro di formazione su tematiche legate al settore IT, offrendo funzionalit\`a avanzate per l'organizzazione e la gestione delle iscrizioni...'' (Section 1.1). \\
+\midrule
+F-2 & Stakeholder and actor identification & Problem Definition & Section 1.1 and 2.1 clearly identify Amministratore, Formatori and Aziende and describe their responsibilities. \\
+\midrule
+F-3 & Use case driven design & Architecture & Section 2.1 and 2.2 provide use case diagrams and templates that drive the design of controllers and domain model. \\
+\midrule
+F-4 & Layered architecture & Architecture & Section 3.1 describes three main packages (Business Logic, Domain Model, ORM) with distinct responsibilities. \\
+\midrule
+F-5 & Use of design patterns & Architecture & Section 3.2.2.2 describes Strategy pattern for fee calculation; Section 3.2.1.4 and 3.2.3.1 describe Singleton pattern for Notifier and ConnectionManager. \\
+\midrule
+F-6 & Database schema documentation & Architecture & Section 3.3 presents ER diagram and logical schema of the database. \\
+\midrule
+F-7 & Systematic unit testing & Testing & Section 4 describes JUnit-based tests for controllers and DAOs, with 51 tests executed successfully. \\
+\midrule
+F-8 & Test isolation and cleanup & Testing & Section 4.1 states that each test uses try-catch and cleanup to ensure independence and repeatability. \\
+\midrule
+F-9 & Use of version control & Project Management & Section 1.2 mentions GitHub repository for source code management. \\
+\midrule
+F-10 & Use of modeling tools & Documentation & Section 1.2 mentions StarUML for UML diagrams and Balsamiq for mockups. \\
+\midrule
+F-11 & Use of automated test data generation & Testing & Section 1.2 mentions integration with ChatGPT to generate automated test data. \\
+\midrule
+F-12 & Technical documentation using LaTeX & Documentation & Section 1.2 mentions Overleaf and LaTeX for the technical report. \\
+\midrule
+\end{longtable}
+
+\subsection{Examples of Uncovered or Weakly Covered Features}
+
+\begin{longtable}{p{1cm}p{4cm}p{2.5cm}p{6.5cm}}
+\caption{Sample Uncovered or Weakly Covered Features} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UF-1 & Explicit performance requirements & Performance & No quantitative performance targets (e.g., response time, throughput) are specified. \\
+\midrule
+UF-2 & Security requirements and threat analysis & Security & No explicit security requirements (authentication, authorization, data protection) or threat analysis are documented. \\
+\midrule
+UF-3 & Error handling and recovery strategy & Architecture & Error handling is only briefly mentioned in some use cases; no global strategy is described. \\
+\midrule
+UF-4 & Deployment architecture & Architecture & No deployment topology (e.g., server layout, environment) is described. \\
+\midrule
+UF-5 & Monitoring and logging strategy & Maintainability & No description of logging, monitoring or observability is provided. \\
+\midrule
+UF-6 & Scalability considerations & Performance & No discussion of how the system scales with number of users or data volume. \\
+\midrule
+UF-7 & Usability metrics & Documentation & Mockups are provided, but no usability goals or metrics are defined. \\
+\midrule
+UF-8 & Configuration management & Project Management & No description of configuration or environment management. \\
+\midrule
+UF-9 & Continuous integration / delivery & Project Management & No mention of CI/CD pipelines or automated build processes. \\
+\end{longtable}
+
+\subsection{Checklist Compliance Example: Layered Architecture}
+
+\textbf{Feature:} Layered architecture pattern
+
+\textbf{Description:} System uses a layered architecture with clear separation of concerns.
+
+\begin{longtable}{p{0.8cm}p{6cm}p{2cm}p{5cm}}
+\caption{Checklist Compliance for ``Layered architecture pattern''} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1.1 & Architecture pattern is identified and justified & \textcolor{coveredcolor}{True} & Section 3.1 explicitly describes three main packages with distinct responsibilities, justifying separation of concerns. \\
+\midrule
+1.2 & Layer responsibilities are clearly defined & \textcolor{coveredcolor}{True} & Business Logic, Domain Model and ORM responsibilities are described in detail. \\
+\midrule
+1.3 & Communication between layers is specified & \textcolor{partialcolor}{Partial} & Interactions between controllers, domain entities and DAOs are described, but interface contracts and data formats are not fully specified. \\
+\midrule
+1.4 & Dependencies flow in one direction & \textcolor{coveredcolor}{True} & Domain Model is independent of ORM; DAOs depend on ConnectionManager and domain entities; controllers depend on domain and DAOs. No reverse dependencies are indicated. \\
+\end{longtable}
+
+\section{Detailed Analysis}
+
+\subsection{Requirements Quality Assessment}
+
+\subsubsection{Issues and Recommendations}
+
+\textbf{Requirements needing more detail:}
+
+\begin{itemize}
+    \item \textbf{REQ-4 (notifications on course changes):} Does not specify timing (immediate vs. batch), failure handling or email content. \textbf{Recommendation:} Define when notifications are sent and what happens if email delivery fails.
+    \item \textbf{REQ-5 (workshift management):} Groups several operations; does not specify constraints (e.g., overlapping shifts). \textbf{Recommendation:} Split into separate requirements and define business rules for scheduling.
+    \item \textbf{REQ-6 (view employee data):} Does not specify access control or privacy constraints. \textbf{Recommendation:} Clarify which actor can see which fields and under what conditions.
+    \item \textbf{REQ-7 (payment reminders):} Does not specify reminder frequency or channels. \textbf{Recommendation:} Define schedule (e.g., weekly) and escalation rules.
+    \item \textbf{REQ-10 (material notifications):} Only upload success is mentioned. \textbf{Recommendation:} Clarify whether updates and deletions also trigger notifications.
+    \item \textbf{REQ-13 (fee payment):} Payment method and error handling are not described. \textbf{Recommendation:} Specify payment mechanisms (e.g., bank transfer, card) and what happens on failure. 
+\end{itemize}
+
+\textbf{Vague or high-level requirements:}
+
+\begin{itemize}
+    \item \textbf{REQ-15 (centralized notifications):} Good design principle but not measurable. \textbf{Recommendation:} Add acceptance criteria (e.g., ``All emails must be sent via Notifier; no direct SMTP calls elsewhere'').
+    \item \textbf{REQ-18 (overall goal):} High-level and non-testable. \textbf{Recommendation:} Keep as background but ensure it is refined into concrete functional and non-functional requirements (which is partially done via use cases).
+\end{itemize}
+
+\subsection{Use Case Completeness Analysis}
+
+\begin{itemize}
+    \item Main flows for the six key use cases are clearly described and aligned with actors and architecture.
+    \item Alternative flows are present for UC-1, UC-4 and UC-6 (input validation and upload failure), but missing for UC-2, UC-3 and UC-5.
+    \item Error scenarios (e.g., database failures, network issues) are not modeled as alternative flows.
+\end{itemize}
+
+\textbf{Recommendation:} Extend use case templates to include:
+\begin{itemize}
+    \item Error handling for course deletion when the course no longer exists (UC-2).
+    \item Behavior when no employees or courses are available (UC-3, UC-5).
+    \item Payment failure scenarios (UC-5).
+\end{itemize}
+
+\subsection{Architecture Quality Evaluation}
+
+\begin{table}[H]
+\centering
+\caption{Architecture Quality Metrics}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Principle} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Separation of Concerns & \textcolor{coveredcolor}{Good} & Clear package boundaries and DAO separation. \\
+Loose Coupling & \textcolor{coveredcolor}{Good} & Domain model is independent of persistence; DAOs encapsulate SQL. \\
+High Cohesion & \textcolor{partialcolor}{Moderate} & Controllers aggregate many operations; could be decomposed into services. \\
+Single Responsibility & \textcolor{partialcolor}{Moderate} & Admin and CompanyController handle multiple concerns (courses, employees, payments). \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Recommendations:}
+\begin{itemize}
+    \item Introduce service classes (e.g., CourseService, EmployeeService, BillingService) to reduce controller responsibilities.
+    \item Document error handling and transaction boundaries in the ORM layer.
+    \item Add a brief description of the presentation technology (e.g., JavaFX, web framework) to complete the architecture picture.
+\end{itemize}
+
+\subsection{Test Coverage Analysis}
+
+\begin{itemize}
+    \item Controllers and DAOs are well-covered by unit tests, with 51 tests executed successfully.
+    \item Tests follow a logical order for DAOs (insert, retrieve, update, delete) and include cleanup.
+    \item There is no explicit mention of integration or system-level tests that exercise full end-to-end flows including UI.
+\end{itemize}
+
+\textbf{Recommendations:}
+\begin{itemize}
+    \item Add a small set of integration tests that simulate complete user journeys (e.g., register employee then pay fee).
+    \item Document representative test method names and their mapping to use case steps for improved traceability.
+    \item Consider adding negative tests for error scenarios (invalid input, database errors).
+\end{itemize}
+
+\section{Recommendations}
+
+\subsection{Priority 1: Critical Items}
+
+\begin{enumerate}
+    \item \textbf{Clarify Non-Functional Requirements}
+    \begin{itemize}
+        \item Add explicit performance, security and usability requirements.
+        \item \textbf{Action:} Create a dedicated ``Requisiti Non-Funzionali'' section with measurable criteria.
+    \end{itemize}
+
+    \item \textbf{Extend Use Cases with Error and Alternative Flows}
+    \begin{itemize}
+        \item UC-2, UC-3 and UC-5 lack alternative flows.
+        \item \textbf{Action:} Add error scenarios (e.g., payment failure, missing data) and document system behavior.
+    \end{itemize}
+
+    \item \textbf{Improve Test Traceability}
+    \begin{itemize}
+        \item Current tests are described at class level.
+        \item \textbf{Action:} Document a table mapping key test methods to specific use case steps and alternative flows.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 2: Important Improvements}
+
+\begin{enumerate}
+    \item \textbf{Refine Controller Responsibilities}
+    \begin{itemize}
+        \item Controllers currently handle multiple concerns.
+        \item \textbf{Action:} Introduce service classes to encapsulate course management, employee management and billing logic.
+    \end{itemize}
+
+    \item \textbf{Document Error Handling and Transactions}
+    \begin{itemize}
+        \item ORM layer behavior on failures is not described.
+        \item \textbf{Action:} Add a subsection describing transaction management, rollback behavior and exception handling strategy.
+    \end{itemize}
+
+    \item \textbf{Add Deployment and Environment Description}
+    \begin{itemize}
+        \item No deployment architecture is provided.
+        \item \textbf{Action:} Include a simple deployment diagram and description of runtime environment (e.g., single server, local DB).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 3: Nice-to-Have Enhancements}
+
+\begin{enumerate}
+    \item Add basic performance tests or benchmarks for critical DAO operations.
+    \item Define logging and monitoring guidelines (e.g., what to log in controllers and DAOs).
+    \item Provide a short user manual or quick-start guide based on the mockups and use cases.
+\end{enumerate}
+
+\subsection{Summary Checklist}
+
+\begin{table}[H]
+\centering
+\caption{Action Item Summary}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Priority} & \textbf{Items} & \textbf{Indicative Effort} \\
+\midrule
+Critical (P1) & 3 & 2--3 days \\
+Important (P2) & 3 & 3--5 days \\
+Nice-to-Have (P3) & 3 & 3--5 days \\
+\midrule
+\textbf{Total} & \textbf{9} & \textbf{8--13 days} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

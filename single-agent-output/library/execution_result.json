@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "pdf_input": "/Users/matteominin/Desktop/tesi/pdf_extractor/Knowledge_Base/25-03-21_LascialfariSianiPuzzo/Library_Management_Software.pdf",
+  "output_directory": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764702139",
+  "raw_response_path": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764702139/raw_response.txt",
+  "latex_path": null,
+  "execution_stats": {
+    "start_time": "2025-12-02 20:02:19",
+    "end_time": "2025-12-02 20:05:23",
+    "total_time_seconds": 184.22,
+    "total_time_minutes": 3.07,
+    "pdf_extraction_time_seconds": 0.05,
+    "api_call_time_seconds": 183.65,
+    "latex_compilation_time_seconds": 0.52
+  },
+  "token_stats": {
+    "model": "gpt-5.1",
+    "input_tokens": 33434,
+    "output_tokens": 15756,
+    "total_tokens": 49190,
+    "estimated_cost": {
+      "input_cost_usd": 0.5015,
+      "output_cost_usd": 0.709,
+      "total_cost_usd": 1.2105,
+      "cost_per_1k_input": 0.015,
+      "cost_per_1k_output": 0.045
+    }
+  }
+}

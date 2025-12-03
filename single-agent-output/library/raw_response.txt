@@ -1,0 +1,1219 @@
+```latex
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+
+% Colors
+\definecolor{coveredcolor}{RGB}{34,139,34}
+\definecolor{partialcolor}{RGB}{255,165,0}
+\definecolor{uncoveredcolor}{RGB}{220,20,60}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{PDF Validation Report}
+\rhead{\today}
+\cfoot{\thepage}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\title{Software Engineering Report\\Validation Analysis\\\smallskip\large Library Management Application}
+\author{Automated Validation System}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% =========================================================
+% Section 1: Executive Summary
+% =========================================================
+\section{Executive Summary}
+
+\subsection{Scope of the Validation}
+
+This report presents an automated validation analysis of the document \textit{``Library Management Application''}, an elaborato di Ingegneria del Software describing the design and implementation of a library management system.
+
+The analysis follows these phases:
+
+\begin{enumerate}[leftmargin=*]
+    \item Extraction of structure and sections from the PDF.
+    \item Classification and extraction of requirements, use cases, architecture, and tests.
+    \item Consolidation of extracted content into a coherent model.
+    \item Traceability analysis between requirements, use cases, architecture components, and tests.
+    \item Feature-based validation against universal software engineering best practices.
+    \item Generation of this LaTeX-based validation report.
+\end{enumerate}
+
+\subsection{Validation Status}
+
+\begin{table}[H]
+\centering
+\caption{Overall Validation Metrics}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Requirements Extracted & 18 \\
+Total Use Cases Extracted & 13 (13 explicit, 0 implicit) \\
+Total Architecture Components & 16 \\
+Total Tests Extracted & 12 logical test suites (with multiple test methods each) \\
+\midrule
+Requirements Coverage & 100\% (18/18 linked to at least one use case) \\
+Use Case Coverage by Architecture & 100\% (13/13 mapped to components) \\
+Use Case Coverage by Tests & 100\% (13/13 have at least one associated test suite) \\
+\midrule
+Feature-Based Coverage (vs. generic SE KB) & 82.0\% (approx.\ 41/50 features covered) \\
+\midrule
+\textbf{Overall Status} & \textcolor{coveredcolor}{\textbf{PASSED (with minor improvement opportunities)}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Key Findings}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Strengths}
+    \begin{itemize}
+        \item Rich and precise use case documentation (13 explicit use cases with pre-conditions, post-conditions, normal and alternative flows).
+        \item Clear architectural organization using MVC, Service Layer, DAO, Singleton, and a relational database schema.
+        \item Good structural test coverage: DAO and Service layers are tested with JUnit 5, Mockito, and Maven.
+        \item Database schema is fully specified with SQL DDL, enabling unambiguous persistence design.
+    \end{itemize}
+
+    \item \textbf{Areas for Improvement}
+    \begin{itemize}
+        \item No explicit non-functional requirements (performance, security, usability, reliability) are stated as requirements.
+        \item Requirements are mostly implicit in use cases; a dedicated requirements section with identifiers is missing.
+        \item Test section focuses on structural tests; there is no explicit mapping to coverage metrics (e.g., code coverage, boundary conditions).
+        \item Error handling and robustness are well covered in use case alternative flows but not summarized as cross-cutting requirements.
+    \end{itemize}
+\end{itemize}
+
+% =========================================================
+% Section 2: Content Extraction Results
+% =========================================================
+\section{Content Extraction Results}
+
+\subsection{Phase 1: Table of Contents and Sections}
+
+\subsubsection{Extracted Table of Contents}
+
+From the provided PDF content, the following logical sections and page ranges were identified (page numbers approximate, based on the document excerpts):
+
+\begin{longtable}{p{6cm}p{2cm}p{2cm}}
+\caption{Extracted Table of Contents} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1 Introduzione & 4 & 4 \\
+1.1 Obiettivi del progetto & 4 & 4 \\
+1.2 Tecnologie e architettura utilizzate & 4 & 4 \\
+2 Progettazione & 5 & 20 \\
+2.1 Attori coinvolti e relativi casi d'uso & 5 & 5 \\
+2.2 Use Case Template & 6 & 12 \\
+2.2.1 Use Case condivisi & 6 & 7 \\
+2.2.2 Utente & 8 & 10 \\
+2.2.3 Amministratore & 10 & 12 \\
+2.3 Diagramma delle classi & 13 & 16 \\
+2.4 Aspetti rilevanti del progetto & 17 & 18 \\
+2.4.1 Model View Controller & 17 & 17 \\
+2.4.2 Singleton & 17 & 17 \\
+2.4.3 DAO & 18 & 18 \\
+2.5 Page Navigation Diagram & 19 & 19 \\
+2.6 Entity Relationship Diagram & 20 & 20 \\
+3 Implementazione delle classi & 21 & 37 \\
+3.1 DomainModel & 21 & 23 \\
+3.2 Controller & 24 & 28 \\
+3.3 Orm & 29 & 31 \\
+3.4 Service & 31 & 32 \\
+3.5 View & 32 & 35 \\
+3.6 HelloApplication & 36 & 36 \\
+3.7 Struttura del database & 36 & 37 \\
+4 Testing & 38 & 44 \\
+4.1--4.13 Test suites and Maven results & 39 & 44 \\
+\end{longtable}
+
+\subsubsection{Section Classification}
+
+Each section was classified into one or more categories: Requirements, Use Cases, Architecture, Test, Mockups.
+
+\begin{longtable}{p{5cm}p{7cm}}
+\caption{Section Classification} \\
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1.1 Obiettivi del progetto & Requirements \\
+1.2 Tecnologie e architettura utilizzate & Architecture \\
+2.1 Attori coinvolti e relativi casi d'uso & Use Cases \\
+2.2 Use Case Template (all subsections) & Use Cases, Requirements \\
+2.3 Diagramma delle classi & Architecture \\
+2.4 Aspetti rilevanti del progetto (MVC, Singleton, DAO) & Architecture \\
+2.5 Page Navigation Diagram & Architecture, Mockups \\
+2.6 Entity Relationship Diagram & Architecture \\
+3.1 DomainModel & Architecture \\
+3.2 Controller & Architecture \\
+3.3 Orm & Architecture \\
+3.4 Service & Architecture \\
+3.5 View & Architecture, Mockups \\
+3.6 HelloApplication & Architecture \\
+3.7 Struttura del database & Architecture \\
+4 Testing (4.1--4.13) & Test \\
+\end{longtable}
+
+\subsection{Requirements Extraction}
+
+The document does not contain a dedicated requirements chapter; requirements are mostly implicit in the project objectives and in the use case descriptions (pre-conditions, post-conditions, and flows). From these, 18 atomic requirements were extracted.
+
+\subsubsection{Requirements Quality Distribution}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Quality Assessment}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quality Level} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Well-defined & 12 & 66.7\% \\
+Needs Detail & 6 & 33.3\% \\
+Vague/Unquantified & 0 & 0.0\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Requirements by Type}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Classification}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Type} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Functional & 16 & 88.9\% \\
+Non-Functional & 0 & 0.0\% \\
+Constraint & 2 & 11.1\% \\
+Goal/Background & 0 & 0.0\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Detailed Requirements List}
+
+\begin{longtable}{p{1.5cm}p{2.2cm}p{8cm}p{2.3cm}}
+\caption{Extracted Requirements} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & Functional & The system must allow users to borrow and return books, digital media, and periodicals. & Needs Detail \\
+\midrule
+REQ-2 & Functional & The system must allow administrators to add, modify, and remove any type of element from the library catalog. & Well-defined \\
+\midrule
+REQ-3 & Constraint & The system must persist data using a remote PostgreSQL database accessed via JDBC. & Well-defined \\
+\midrule
+REQ-4 & Functional & The system must provide a login mechanism where users authenticate using email and password. & Well-defined \\
+\midrule
+REQ-5 & Functional & The system must provide a signup mechanism that creates a personal account for a new user. & Needs Detail \\
+\midrule
+REQ-6 & Functional & The system must validate email format, password strength, mandatory name and surname, and optional phone number during signup. & Well-defined \\
+\midrule
+REQ-7 & Functional & The system must allow authenticated users to view the catalog of elements in a tabular form. & Well-defined \\
+\midrule
+REQ-8 & Functional & The system must allow users to search the catalog using filters to obtain a list of elements with desired characteristics. & Needs Detail \\
+\midrule
+REQ-9 & Functional & The system must allow users to view detailed information about a selected element. & Well-defined \\
+\midrule
+REQ-10 & Functional & The system must allow a user to request an element on loan, subject to availability and existing loans. & Well-defined \\
+\midrule
+REQ-11 & Functional & The system must allow a user to return one or more borrowed elements, making them available again for loan. & Well-defined \\
+\midrule
+REQ-12 & Functional & The system must allow a user to view the list of elements currently borrowed by that user. & Well-defined \\
+\midrule
+REQ-13 & Functional & The system must allow an administrator to add a new element to the database, including validation of required fields and ISBN uniqueness for books. & Needs Detail \\
+\midrule
+REQ-14 & Functional & The system must allow an administrator to remove an element from the database, preventing removal if the element is currently on loan. & Well-defined \\
+\midrule
+REQ-15 & Functional & The system must allow an administrator to modify an existing element, including validation of fields and ISBN uniqueness for books. & Needs Detail \\
+\midrule
+REQ-16 & Functional & The system must allow an administrator to add one or more genres to the database, avoiding duplicates by name. & Well-defined \\
+\midrule
+REQ-17 & Functional & The system must allow associating and removing genres from elements. & Needs Detail \\
+\midrule
+REQ-18 & Constraint & The system must maintain a single shared instance of the database connection and of the main controller using the Singleton pattern. & Needs Detail \\
+\end{longtable}
+
+\paragraph{Notes on Requirements Quality}
+
+\begin{itemize}[leftmargin=*]
+    \item Several requirements (e.g., REQ-1, REQ-5, REQ-8, REQ-13, REQ-15, REQ-17, REQ-18) could be made more testable by adding explicit constraints (e.g., maximum number of concurrent loans, password policy metrics, maximum catalog size, performance expectations).
+    \item No explicit non-functional requirements (performance, security, usability, reliability) are stated, although some quality aspects are implicitly addressed via validation rules in use cases.
+\end{itemize}
+
+\subsection{Use Case Extraction}
+
+The report provides a detailed use case template section with 13 explicit use cases.
+
+\subsubsection{Use Case Summary}
+
+\begin{longtable}{p{1.5cm}p{4cm}p{2.5cm}p{5.5cm}}
+\caption{Extracted Use Cases} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & Login & Explicit & Utente, Amministratore, Sistema \\
+\midrule
+UC-2 & Visualizza dettagli elemento & Explicit & Utente, Amministratore, Sistema \\
+\midrule
+UC-3 & Logout & Explicit & Utente, Amministratore, Sistema \\
+\midrule
+UC-4 & Signup & Explicit & Utente, Sistema \\
+\midrule
+UC-5 & Ricerca nel catalogo & Explicit & Utente, Amministratore, Sistema \\
+\midrule
+UC-6 & Visualizza catalogo & Explicit & Utente, Amministratore, Sistema \\
+\midrule
+UC-7 & Richiesta di un elemento in prestito & Explicit & Utente, Sistema \\
+\midrule
+UC-8 & Restituzione di un elemento preso in prestito & Explicit & Utente, Sistema \\
+\midrule
+UC-9 & Visualizza elementi presi in prestito & Explicit & Utente, Sistema \\
+\midrule
+UC-10 & Aggiungere elemento al database & Explicit & Amministratore, Sistema \\
+\midrule
+UC-11 & Rimuovere elemento & Explicit & Amministratore, Sistema \\
+\midrule
+UC-12 & Modifica un elemento nel database & Explicit & Amministratore, Sistema \\
+\midrule
+UC-13 & Aggiunta di un genere & Explicit & Amministratore, Sistema \\
+\end{longtable}
+
+\subsubsection{Detailed Use Case Descriptions (Selected)}
+
+\paragraph{UC-1: Login}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Utente, Amministratore, Sistema
+    \item \textbf{Pre-conditions:} Disporre di un account; essere connessi al database.
+    \item \textbf{Post-conditions:} L'utente esegue l'accesso correttamente oppure viene segnalato errore al login.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item Utente inserisce e-mail e password.
+        \item Utente preme il tasto Login.
+        \item Login avviene con successo.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item 3A. Se identificativo non nel database, compare scritta ``E-mail non presente''.
+        \item 3B. Se identificativo esiste ma password sbagliata, compare scritta ``Password errata''.
+        \item 3C. Se non c'\`e connessione al database, compare scritta ``Impossibile connettersi con il database''.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC-4: Signup}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Utente, Sistema
+    \item \textbf{Pre-conditions:} Disporre di una e-mail; essere connessi al database.
+    \item \textbf{Post-conditions:} L'utente crea un account correttamente oppure viene segnalato errore al signup.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item Utente inserisce e-mail, password, nome e cognome.
+        \item Utente preme il tasto Signup.
+        \item Signup avviene con successo.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:} 3A--3G covering invalid email, weak password, missing name/surname, invalid phone, email already in use, and database connection failure.
+\end{itemize}
+
+\paragraph{UC-7: Richiesta di un elemento in prestito}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Utente, Sistema
+    \item \textbf{Pre-conditions:} Disporre di un account; essere connessi al database; aver effettuato il login.
+    \item \textbf{Post-conditions:} L'elemento viene dato in prestito all'utente oppure viene segnalato un errore.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item Utente visualizza un elemento.
+        \item Utente preme il tasto per il prestito.
+        \item Utente riceve l'elemento in prestito.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item 3A. Se l'elemento \`e gi\`a stato preso in prestito dall'utente, compare la scritta ``Elemento gi\`a preso in prestito''.
+        \item 3B. Se l'elemento non \`e disponibile, compare la scritta ``Elemento gi\`a preso in prestito'' (testo probabilmente intende ``Elemento non disponibile'').
+        \item 3C. Se non c'\`e connessione al database, compare la scritta ``Impossibile connettersi al database.''.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC-10: Aggiungere elemento al database}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Amministratore, Sistema
+    \item \textbf{Pre-conditions:} Avere effettuato il login; essere connessi al database.
+    \item \textbf{Post-conditions:} L'elemento viene aggiunto nel database correttamente oppure viene segnalato un errore.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item Amministratore clicca sul bottone ``Aggiungi elemento''.
+        \item Amministratore compila il form con le informazioni necessarie.
+        \item Amministratore clicca su ``Save''.
+        \item L'elemento viene aggiunto al database.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:} 3A (Cancel), 4A (informazioni insufficienti o non valide), 4B (ISBN gi\`a presente), 4C (impossibile connettersi al database).
+\end{itemize}
+
+\subsection{Architecture Extraction}
+
+\subsubsection{Architectural Pattern}
+
+The architecture is explicitly described as:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{MVC (Model-View-Controller)} for separation of concerns between data, UI, and control logic.
+    \item \textbf{Service Layer} between controllers and data access.
+    \item \textbf{DAO (Data Access Object)} for persistence abstraction.
+    \item \textbf{Singleton} for connection management and main controller.
+\end{itemize}
+
+Overall pattern: \textbf{Layered MVC Architecture with Service and DAO layers}.
+
+\subsubsection{Architecture Components}
+
+\begin{longtable}{p{3.5cm}p{5cm}p{5.5cm}}
+\caption{Architecture Components Analysis} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+DomainModel (Element, Book, DigitalMedia, PeriodicPublication, Genre, User) & Represents domain entities of the library (items, genres, users) with attributes and relationships. & Clear domain modeling; inheritance used for different element types; User includes isAdmin flag. \\
+\midrule
+Controller package (various ViewControllers) & Handles GUI events, orchestrates user interactions, and delegates to services. & Follows MVC; controllers extend BaseViewController for shared behavior. \\
+\midrule
+BaseViewController & Provides common controller methods and navigation support via lastView. & Promotes reuse; centralizes navigation logic. \\
+\midrule
+AddItemViewController & Manages UI for adding items (books, periodicals, digital media) with validation and type-specific fields. & Good separation of UI and validation; extends ElementCheckViewController. \\
+\midrule
+BorrowedItemsViewController & Displays items borrowed by a user, interacting with MainService and LibraryUserService. & Clear responsibility; interacts only with services, not DAOs. \\
+\midrule
+ElementCheckViewController & Validates text input fields according to predefined filters before acceptance. & Encapsulates input validation; improves consistency and maintainability. \\
+\midrule
+HomeViewController & Manages the main screen, showing catalog in a table and providing filters for search. & Central UI for browsing; aligns with UC-5 and UC-6. \\
+\midrule
+LoginViewController & Manages login screen and authentication flow. & Uses BaseViewController for error messages; aligns with UC-1. \\
+\midrule
+MenuBarViewController & Manages menu bar, options depending on user type, navigation, genre management, and logout. & Implements role-based UI; central navigation hub. \\
+\midrule
+SignupViewController & Manages signup screen, validates inputs, and logs user in on success. & Aligns with UC-4; encapsulates validation logic. \\
+\midrule
+Orm / ConnectionManager (Singleton) & Manages a single PostgreSQL database connection; provides configuration and validation methods. & Correct use of Singleton; centralizes DB access; potential single point of failure. \\
+\midrule
+Orm / ElementDAO and specialized DAOs (BookDAO, DigitalMediaDAO, PeriodicPublicationDAO, BorrowsDAO, GenreDAO, UserDAO) & Encapsulate CRUD operations and queries for elements, books, digital media, periodicals, borrows, genres, and users. & Clear DAO responsibilities; use ConnectionManager; some naming inconsistencies (Manager vs DAO) in text. \\
+\midrule
+Service / MainService (Singleton) & Core service that manages data access, tracks user state, and provides services to the rest of the application. & Combines state management and data access; could be decomposed further. \\
+\midrule
+Service / UserService & Manages user authentication, registration, logout, and element search/filtering. & Implements UC-1, UC-4, UC-5, UC-6; central user-related business logic. \\
+\midrule
+Service / LibraryUserService & Extends UserService to handle user operations such as loan requests and returns. & Implements UC-7, UC-8, UC-9; good specialization. \\
+\midrule
+Service / LibraryAdminService & Extends UserService to handle administrative operations on elements and genres. & Implements UC-10, UC-11, UC-12, UC-13; clear admin responsibility. \\
+\midrule
+View (JavaFX FXML views) & GUI screens: Signup-view, AddItem-view, ElementDetails-view, Login-view, Home-view, Borrowed-view. & Concrete MVC views; screenshots provided; no behavior. \\
+\midrule
+HelloApplication & Main JavaFX Application class; configures window, loads initial view, initializes singletons, and starts program. & Entry point; centralizes startup concerns. \\
+\midrule
+Database (PostgreSQL schema) & Stores users, elements, books, digital media, periodic publications, borrows, genres, and element-genre associations. & Well-defined relational schema; foreign keys enforce integrity. \\
+\end{longtable}
+
+\subsubsection{Architecture Analysis}
+
+\textbf{Pattern:} Layered MVC with Service and DAO layers.
+
+\textbf{Summary:} The architecture exhibits a clear separation of concerns:
+
+\begin{itemize}[leftmargin=*]
+    \item Presentation: JavaFX views and controllers.
+    \item Business logic: Service layer (UserService, LibraryUserService, LibraryAdminService, MainService).
+    \item Persistence: DAO layer and PostgreSQL database.
+    \item Infrastructure: ConnectionManager Singleton.
+\end{itemize}
+
+\textbf{Strengths:}
+
+\begin{itemize}[leftmargin=*]
+    \item Clear mapping between use cases and services/controllers.
+    \item Proper use of design patterns (MVC, DAO, Singleton, Service Layer).
+    \item Database schema is explicit and normalized for the domain.
+\end{itemize}
+
+\textbf{Areas for Improvement:}
+
+\begin{itemize}[leftmargin=*]
+    \item MainService has broad responsibilities (state, data access, coordination); could be decomposed.
+    \item Error handling and transaction management strategies are not described at the architectural level.
+    \item No explicit description of how concurrency or multiple simultaneous users are handled.
+\end{itemize}
+
+\subsection{Test Extraction}
+
+\subsubsection{Test Type Distribution}
+
+The Testing section lists 12 named test classes (suites). Each suite contains multiple test methods; the document summarizes representative tests for some DAOs.
+
+\begin{table}[H]
+\centering
+\caption{Test Suites by Type}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Test Type} & \textbf{Suites} & \textbf{Examples} \\
+\midrule
+Unit / Structural & 12 & BookDAOTest, BorrowsDAOTest, ConnectionManagerTest, DigitalMediaDAOTest, ElementDAOTest, GenreDAOTest, PeriodicPublicationDAOTest, UserDAOTest, MainServiceTest, UserServiceTest, LibraryUserServiceTest, LibraryAdminServiceTest \\
+Integration & 0 (explicit) & -- \\
+System / End-to-End & 0 (explicit) & -- \\
+Performance & 0 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Detailed Test List (Logical Level)}
+
+\begin{longtable}{p{1.5cm}p{2.2cm}p{5cm}p{5cm}}
+\caption{Extracted Test Suites and Representative Methods} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+TEST-1 & Unit & BookDAOTest.addBookTest & Insertion of a book into the database (UC-10, UC-12 support) \\
+\midrule
+TEST-2 & Unit & BookDAOTest.updateBookTest & Update of an existing book (UC-12 support) \\
+\midrule
+TEST-3 & Unit & BookDAOTest.getBookByIsbnTest & Retrieval of a book by ISBN (UC-5, UC-6 support) \\
+\midrule
+TEST-4 & Unit & BorrowsDAOTest.addBorrowTest & Addition of a loan (UC-7 main flow) \\
+\midrule
+TEST-5 & Unit & BorrowsDAOTest.removeBorrowTest & Removal of a loan (UC-8 main flow) \\
+\midrule
+TEST-6 & Unit & BorrowsDAOTest.getBorrowedElementsForUserTest & Retrieval of borrowed elements for a user (UC-9 main flow) \\
+\midrule
+TEST-7 & Unit & ConnectionManagerTest.getConnection / isConnectionValid / closeConnection & Connection lifecycle and Singleton behavior (infrastructure constraint) \\
+\midrule
+TEST-8 & Unit & DigitalMediaDAOTest.addDigitalMediaTest & Insertion of digital media (UC-10, UC-12 support) \\
+\midrule
+TEST-9 & Unit & DigitalMediaDAOTest.updateDigitalMediaTest & Update of digital media (UC-12 support) \\
+\midrule
+TEST-10 & Unit & DigitalMediaDAOTest.getDigitalMediaTest & Retrieval of digital media (UC-5, UC-6 support) \\
+\midrule
+TEST-11 & Unit & ElementDAOTest.removeElement / getElement & Removal and retrieval of generic elements (UC-10, UC-11, UC-12 support) \\
+\midrule
+TEST-12 & Unit & GenreDAOTest (associateGenreWithElementTest, addGenreTest, getAllGenresTest, getGenresForElementTest, removeGenreFromElementTest) & Genre management and associations (UC-10, UC-12, UC-13 support) \\
+\midrule
+TEST-13 & Unit & PeriodicPublicationDAOTest (add/update) & Management of periodic publications (UC-10, UC-12 support) \\
+\midrule
+TEST-14 & Unit & UserDAOTest & User CRUD and uniqueness checks (UC-1, UC-4 support) \\
+\midrule
+TEST-15 & Unit & MainServiceTest & Core service behavior and state management (multiple UCs support) \\
+\midrule
+TEST-16 & Unit & UserServiceTest & Implementation of UC-1, UC-4, UC-5, UC-6 including alternative flows \\
+\midrule
+TEST-17 & Unit & LibraryUserServiceTest & Implementation of UC-7, UC-8, UC-9 including alternative flows \\
+\midrule
+TEST-18 & Unit & LibraryAdminServiceTest & Implementation of UC-10, UC-11, UC-12, UC-13 including alternative flows \\
+\end{longtable}
+
+\paragraph{Observations}
+
+\begin{itemize}[leftmargin=*]
+    \item Tests are primarily unit/structural, focusing on DAOs and services.
+    \item The document explicitly states that tests verify correct interaction with the database and its usage.
+    \item There is no explicit mention of integration or system-level tests, nor of performance or load tests.
+\end{itemize}
+
+% =========================================================
+% Section 3: Consolidated Architecture Model
+% =========================================================
+\section{Consolidated Architecture Model}
+
+\subsection{Overall Pattern and Layers}
+
+\textbf{Pattern:} Layered MVC Architecture with Service and DAO layers, backed by a relational database and using Singleton for shared resources.
+
+\subsection{Layers and Components}
+
+\begin{longtable}{p{3cm}p{3cm}p{4cm}p{4cm}}
+\caption{Consolidated Architecture Layers and Components} \\
+\toprule
+\textbf{Layer} & \textbf{Component} & \textbf{Responsibility} & \textbf{Communicates With} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Layer} & \textbf{Component} & \textbf{Responsibility} & \textbf{Communicates With} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Presentation & JavaFX Views (Signup-view, AddItem-view, ElementDetails-view, Login-view, Home-view, Borrowed-view) & Render UI screens and capture user input. & Corresponding ViewControllers. \\
+\midrule
+Presentation & BaseViewController & Common controller behavior and navigation. & Other controllers, MainService. \\
+\midrule
+Presentation & LoginViewController & Login screen logic. & UserService, BaseViewController. \\
+\midrule
+Presentation & SignupViewController & Signup screen logic and validation. & UserService, ElementCheckViewController, BaseViewController. \\
+\midrule
+Presentation & HomeViewController & Home screen, catalog display, filters. & LibraryUserService, LibraryAdminService, MainService. \\
+\midrule
+Presentation & BorrowedItemsViewController & Borrowed items list for a user. & LibraryUserService, MainService. \\
+\midrule
+Presentation & AddItemViewController & Add/modify item UI. & LibraryAdminService, ElementCheckViewController. \\
+\midrule
+Presentation & MenuBarViewController & Menu bar, navigation, logout, genre management. & MainService, UserService, LibraryAdminService. \\
+\midrule
+Business / Service & MainService (Singleton) & Core service, manages access to data and user state, provides services to controllers. & DAOs, UserService, LibraryUserService, LibraryAdminService. \\
+\midrule
+Business / Service & UserService & Authentication, registration, logout, search/filter, view catalog. & UserDAO, ElementDAO, GenreDAO, MainService. \\
+\midrule
+Business / Service & LibraryUserService & User operations: request loan, return, view borrowed items. & BorrowsDAO, ElementDAO, MainService. \\
+\midrule
+Business / Service & LibraryAdminService & Admin operations: add, remove, modify elements; manage genres. & ElementDAO, BookDAO, DigitalMediaDAO, PeriodicPublicationDAO, GenreDAO, MainService. \\
+\midrule
+Persistence / DAO & ConnectionManager (Singleton) & Single PostgreSQL connection; configuration and validation. & All DAOs. \\
+\midrule
+Persistence / DAO & UserDAO & CRUD and uniqueness checks for users. & ConnectionManager, users table. \\
+\midrule
+Persistence / DAO & ElementDAO & CRUD for generic elements and complex associated data. & ConnectionManager, elements table, genres association. \\
+\midrule
+Persistence / DAO & BookDAO & Book-specific operations (ISBN, author, etc.). & ConnectionManager, books table, elements table. \\
+\midrule
+Persistence / DAO & DigitalMediaDAO & Digital media operations. & ConnectionManager, digitalmedias table, elements table. \\
+\midrule
+Persistence / DAO & PeriodicPublicationDAO & Periodic publication operations. & ConnectionManager, periodicpublication table, elements table. \\
+\midrule
+Persistence / DAO & BorrowsDAO & Loan operations and queries. & ConnectionManager, borrows table. \\
+\midrule
+Persistence / DAO & GenreDAO & Genre CRUD and element-genre associations. & ConnectionManager, genres and elementgenres tables. \\
+\midrule
+Infrastructure & PostgreSQL Database & Persistent storage for all domain data. & All DAOs. \\
+\midrule
+Infrastructure & HelloApplication & Application entry point; initializes singletons and loads initial view. & JavaFX runtime, MainService, ConnectionManager. \\
+\end{longtable}
+
+\subsection{Architecture Analysis Summary}
+
+\textbf{Separation of Concerns:} Good. Presentation, business logic, and persistence are clearly separated.
+
+\textbf{Coupling and Cohesion:}
+
+\begin{itemize}[leftmargin=*]
+    \item Controllers are coupled to services, not DAOs, which is appropriate.
+    \item Services are cohesive around user vs admin responsibilities, though MainService is somewhat broad.
+    \item DAOs are cohesive per entity type.
+\end{itemize}
+
+\textbf{Missing or Implicit Aspects:}
+
+\begin{itemize}[leftmargin=*]
+    \item No explicit description of transaction boundaries or rollback strategies (though tests mention rollback).
+    \item No explicit concurrency model or session management description.
+    \item Error handling is described in use cases but not summarized as a cross-cutting architectural concern.
+\end{itemize}
+
+% =========================================================
+% Section 4: Traceability Matrix
+% =========================================================
+\section{Traceability Matrix}
+
+\subsection{Requirements to Use Cases Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2.5cm}p{6.5cm}}
+\caption{Requirements to Use Cases Traceability} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & UC-7, UC-8, UC-9 & \textcolor{coveredcolor}{Covered} & Borrowing and returning elements, and viewing borrowed items, are explicitly modeled by UC-7, UC-8, and UC-9. \\
+\midrule
+REQ-2 & UC-10, UC-11, UC-12 & \textcolor{coveredcolor}{Covered} & Admin operations to add, remove, and modify elements are covered by UC-10, UC-11, and UC-12. \\
+\midrule
+REQ-3 & All UCs (pre-condition) & \textcolor{coveredcolor}{Covered} & Many use cases require being connected to the database as a pre-condition, implying PostgreSQL persistence. \\
+\midrule
+REQ-4 & UC-1 & \textcolor{coveredcolor}{Covered} & UC-1 describes login with email and password. \\
+\midrule
+REQ-5 & UC-4 & \textcolor{coveredcolor}{Covered} & UC-4 describes account creation (signup). \\
+\midrule
+REQ-6 & UC-4 & \textcolor{coveredcolor}{Covered} & UC-4 alternative flows specify validation rules for email, password, name, surname, and phone. \\
+\midrule
+REQ-7 & UC-6 & \textcolor{coveredcolor}{Covered} & UC-6 describes viewing the catalog in a table. \\
+\midrule
+REQ-8 & UC-5 & \textcolor{coveredcolor}{Covered} & UC-5 describes searching the catalog using filters. \\
+\midrule
+REQ-9 & UC-2 & \textcolor{coveredcolor}{Covered} & UC-2 describes viewing detailed information of a selected element. \\
+\midrule
+REQ-10 & UC-7 & \textcolor{coveredcolor}{Covered} & UC-7 describes requesting an element on loan with availability checks. \\
+\midrule
+REQ-11 & UC-8 & \textcolor{coveredcolor}{Covered} & UC-8 describes returning borrowed elements. \\
+\midrule
+REQ-12 & UC-9 & \textcolor{coveredcolor}{Covered} & UC-9 describes viewing currently borrowed elements. \\
+\midrule
+REQ-13 & UC-10 & \textcolor{coveredcolor}{Covered} & UC-10 describes adding an element with validation and ISBN uniqueness. \\
+\midrule
+REQ-14 & UC-11 & \textcolor{coveredcolor}{Covered} & UC-11 describes removing an element, preventing removal if on loan. \\
+\midrule
+REQ-15 & UC-12 & \textcolor{coveredcolor}{Covered} & UC-12 describes modifying an element with validation and ISBN uniqueness. \\
+\midrule
+REQ-16 & UC-13 & \textcolor{coveredcolor}{Covered} & UC-13 describes adding genres and avoiding duplicates. \\
+\midrule
+REQ-17 & UC-10, UC-12, UC-13 & \textcolor{coveredcolor}{Covered} & Genre association is implied in element add/modify and explicit in UC-13. \\
+\midrule
+REQ-18 & All UCs (infrastructure) & \textcolor{coveredcolor}{Covered} & Singleton ConnectionManager and MainService are used by all flows requiring DB access and state. \\
+\end{longtable}
+
+\subsection{Use Cases to Architecture Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{4.5cm}p{2.5cm}p{3cm}}
+\caption{Use Cases to Architecture Traceability} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & Login & LoginViewController, UserService, UserDAO, ConnectionManager, users table & \textcolor{coveredcolor}{Covered} & LoginViewController captures credentials, UserService authenticates via UserDAO and DB. \\
+\midrule
+UC-2 & Visualizza dettagli elemento & ElementDetailsViewController, LibraryUserService / LibraryAdminService, ElementDAO, ConnectionManager, elements table & \textcolor{coveredcolor}{Covered} & Controller requests element details from services, which query ElementDAO. \\
+\midrule
+UC-3 & Logout & MenuBarViewController, UserService, MainService & \textcolor{coveredcolor}{Covered} & MenuBarViewController triggers logout via UserService and updates state in MainService. \\
+\midrule
+UC-4 & Signup & SignupViewController, UserService, UserDAO, ConnectionManager, users table & \textcolor{coveredcolor}{Covered} & SignupViewController validates input and calls UserService to create user via UserDAO. \\
+\midrule
+UC-5 & Ricerca nel catalogo & HomeViewController, UserService, ElementDAO, GenreDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & HomeViewController sends filter parameters to UserService, which queries DAOs. \\
+\midrule
+UC-6 & Visualizza catalogo & HomeViewController, UserService, ElementDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & HomeViewController loads catalog via UserService and ElementDAO. \\
+\midrule
+UC-7 & Richiesta di un elemento in prestito & ElementDetailsViewController / HomeViewController, LibraryUserService, BorrowsDAO, ElementDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & Controllers call LibraryUserService, which uses BorrowsDAO and ElementDAO to register loan and update availability. \\
+\midrule
+UC-8 & Restituzione di un elemento preso in prestito & BorrowedItemsViewController, LibraryUserService, BorrowsDAO, ElementDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & BorrowedItemsViewController triggers return via LibraryUserService and DAOs. \\
+\midrule
+UC-9 & Visualizza elementi presi in prestito & BorrowedItemsViewController, LibraryUserService, BorrowsDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & Controller requests list of loans from LibraryUserService and BorrowsDAO. \\
+\midrule
+UC-10 & Aggiungere elemento al database & AddItemViewController, LibraryAdminService, ElementDAO, BookDAO, DigitalMediaDAO, PeriodicPublicationDAO, GenreDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & AddItemViewController collects data; LibraryAdminService validates and persists via DAOs. \\
+\midrule
+UC-11 & Rimuovere elemento & ElementDetailsViewController / HomeViewController, LibraryAdminService, ElementDAO, BorrowsDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & Admin triggers removal; LibraryAdminService checks loans via BorrowsDAO and removes via ElementDAO. \\
+\midrule
+UC-12 & Modifica un elemento nel database & AddItemViewController, LibraryAdminService, ElementDAO, BookDAO, DigitalMediaDAO, PeriodicPublicationDAO, GenreDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & Similar to UC-10 but updating existing records. \\
+\midrule
+UC-13 & Aggiunta di un genere & MenuBarViewController / dedicated view, LibraryAdminService, GenreDAO, ConnectionManager & \textcolor{coveredcolor}{Covered} & Admin uses UI to add genres; LibraryAdminService calls GenreDAO. \\
+\end{longtable}
+
+\subsection{Use Cases to Tests Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2cm}p{2cm}p{5.5cm}}
+\caption{Use Cases to Tests Traceability} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-1 & Login & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. UserServiceTest verifies correct implementation of UC-1, including alternative flows for invalid email, wrong password, and DB connection errors. \\
+\midrule
+UC-2 & Visualizza dettagli elemento & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested (DB errors)} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. ElementDAOTest and related service tests ensure retrieval of element details and error handling when DB is unavailable. \\
+\midrule
+UC-3 & Logout & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{N/A} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. UserServiceTest and MainServiceTest verify logout behavior and state reset. \\
+\midrule
+UC-4 & Signup & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. UserServiceTest covers signup, including all validation alternative flows described in UC-4. \\
+\midrule
+UC-5 & Ricerca nel catalogo & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Partially}} & \textcolor{coveredcolor}{\textbf{Fully Covered (functional)}}. UserServiceTest and DAO tests cover search and retrieval; some UI-level variations (e.g., no results) are likely but not explicitly described in tests. \\
+\midrule
+UC-6 & Visualizza catalogo & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested (DB errors)} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. UserServiceTest and ElementDAOTest ensure catalog retrieval and DB error handling. \\
+\midrule
+UC-7 & Richiesta di un elemento in prestito & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryUserServiceTest and BorrowsDAOTest verify loan creation and alternative flows (already borrowed, not available, DB errors). \\
+\midrule
+UC-8 & Restituzione di un elemento preso in prestito & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryUserServiceTest and BorrowsDAOTest verify returns and alternative flows (element not borrowed, DB errors). \\
+\midrule
+UC-9 & Visualizza elementi presi in prestito & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryUserServiceTest and BorrowsDAOTest verify retrieval of borrowed items and handling of empty lists and DB errors. \\
+\midrule
+UC-10 & Aggiungere elemento al database & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryAdminServiceTest plus DAO tests (ElementDAO, BookDAO, DigitalMediaDAO, PeriodicPublicationDAO, GenreDAO) cover main and alternative flows (cancel, invalid data, duplicate ISBN, DB errors). \\
+\midrule
+UC-11 & Rimuovere elemento & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryAdminServiceTest and ElementDAOTest verify removal and alternative flows (element on loan, DB errors). \\
+\midrule
+UC-12 & Modifica un elemento nel database & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryAdminServiceTest and DAOs verify update operations and alternative flows (cancel, invalid data, duplicate ISBN, DB errors). \\
+\midrule
+UC-13 & Aggiunta di un genere & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{Tested} & \textcolor{coveredcolor}{\textbf{Fully Covered}}. LibraryAdminServiceTest and GenreDAOTest verify genre addition and alternative flows (duplicate genre, DB errors). \\
+\end{longtable}
+
+\subsection{Complete Traceability Overview}
+
+\begin{table}[H]
+\centering
+\caption{Traceability Coverage Summary}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Artifact Type} & \textbf{Total} & \textbf{Covered} & \textbf{Uncovered} & \textbf{Coverage \%} \\
+\midrule
+Requirements & 18 & 18 & 0 & 100\% \\
+Use Cases & 13 & 13 & 0 & 100\% \\
+Components & 16 & 16 & 0 & 100\% \\
+Test Suites & 12 & 12 & 0 & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Orphan Artifacts}
+
+No orphan requirements, use cases, or test suites were identified based on the information provided. All functional requirements are traceable to at least one use case, which in turn are mapped to architecture components and to at least one test suite.
+
+% =========================================================
+% Section 5: Feature-Based Validation
+% =========================================================
+\section{Feature-Based Validation}
+
+\subsection{Overview}
+
+The report was evaluated against a generic knowledge base of 50 universal software engineering features (problem definition, architecture, security, performance, maintainability, testing, project management, documentation, etc.).
+
+Based on the content, approximately 41 of these features are covered to some extent, yielding an estimated coverage of 82\%.
+
+\begin{table}[H]
+\centering
+\caption{Feature-Based Validation Summary}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Knowledge Base Features & 50 \\
+Features Covered in Report (approx.) & 41 \\
+Features Not Covered (approx.) & 9 \\
+\midrule
+\textbf{Coverage Percentage} & \textbf{82.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Selected Covered Features}
+
+\begin{longtable}{p{1cm}p{4cm}p{2.5cm}p{6.5cm}}
+\caption{Examples of Covered Universal Features} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+F-1 & Clear functional scope & Problem Definition & ``Questo progetto implementa un sistema di gestione di una biblioteca che permette: agli utenti di prendere in prestito e restituire libri, media digitali e periodici; agli amministratori di aggiungere, modificare e rimuovere ognuno di questi elementi dal catalogo della biblioteca.'' \\
+\midrule
+F-2 & Technology stack explicitly documented & Architecture & Section 1.2 lists Java 23, IntelliJ, PostgreSQL, JDBC, JavaFX, Scene Builder, StarUML, JUnit 5, Mockito, Maven. \\
+\midrule
+F-3 & Use of layered architecture & Architecture & ``Tra le architetture utilizzate abbiamo invece: MVC, Service Layer, DAO.'' \\
+\midrule
+F-4 & Domain modeling with UML & Architecture & Section 2.3 describes class diagrams for DomainModel, Controller, ORM, Service. \\
+\midrule
+F-5 & Database schema specified & Architecture & Section 3.7 provides full SQL DDL for users, elements, books, digitalmedias, periodicpublication, borrows, genres, elementgenres. \\
+\midrule
+F-6 & Detailed use case descriptions & Documentation & Section 2.2 provides use case templates with pre-conditions, post-conditions, normal and alternative flows. \\
+\midrule
+F-7 & Input validation rules specified & Maintainability / Quality & UC-4 (Signup) details validation for email, password, name, surname, phone. \\
+\midrule
+F-8 & Error handling scenarios documented & Reliability & Many use cases include alternative flows for database connection failures and invalid operations. \\
+\midrule
+F-9 & Unit testing with mocking & Testing & Section 4 describes JUnit 5 and Mockito-based tests for DAOs and services. \\
+\midrule
+F-10 & Build automation & Project Management & Section 1.2 mentions Maven for build automation and test execution. \\
+\end{longtable}
+
+\subsection{Selected Uncovered or Weakly Covered Features}
+
+\begin{longtable}{p{1cm}p{4cm}p{2.5cm}p{6.5cm}}
+\caption{Examples of Uncovered or Weakly Covered Features} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UF-1 & Explicit performance requirements & Performance & No quantitative performance targets (e.g., response time, throughput) are specified. \\
+\midrule
+UF-2 & Security requirements and threat analysis & Security & No explicit security requirements (e.g., password hashing, encryption, access control policies) or threat analysis are documented. \\
+\midrule
+UF-3 & Scalability and concurrency considerations & Performance & No discussion of concurrent users, locking, or scalability strategies. \\
+\midrule
+UF-4 & Deployment architecture & Architecture & No description of deployment topology (e.g., single machine, client-server, cloud). \\
+\midrule
+UF-5 & Monitoring and logging strategy & Maintainability & No mention of logging, monitoring, or observability. \\
+\midrule
+UF-6 & Configuration management & Project Management & No description of configuration files, environment separation, or secrets management. \\
+\midrule
+UF-7 & Code quality metrics & Maintainability & No mention of static analysis, code coverage, or style guidelines. \\
+\midrule
+UF-8 & Usability evaluation & Documentation & UI screenshots are provided, but no usability goals or evaluation results are documented. \\
+\midrule
+UF-9 & Backup and recovery strategy & Reliability & No description of backup, restore, or disaster recovery procedures. \\
+\end{longtable}
+
+\subsection{Checklist Compliance Example: Clear Functional Scope}
+
+\textbf{Feature:} Clear functional scope.
+
+\textbf{Description:} The system's functional scope is clearly defined with main actors and capabilities.
+
+\begin{longtable}{p{0.8cm}p{6cm}p{2cm}p{5cm}}
+\caption{Checklist Compliance for ``Clear functional scope''} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1.1 & Main actors are identified & \textcolor{coveredcolor}{True} & Section 2.1 explicitly identifies ``Amministratore'' and ``Utente'' as actors, plus the system itself. \\
+\midrule
+1.2 & Core capabilities are described & \textcolor{coveredcolor}{True} & Section 1.1 lists borrowing/returning items for users and catalog management for administrators. \\
+\midrule
+1.3 & Out-of-scope items are mentioned or implied & \textcolor{partialcolor}{Partial} & The scope is clear for core functions, but there is no explicit ``Out of Scope'' subsection; non-functional aspects are not scoped. \\
+\midrule
+1.4 & Functional scope is consistent across sections & \textcolor{coveredcolor}{True} & Use cases, architecture, and tests consistently reflect the same set of functionalities. \\
+\end{longtable}
+
+% =========================================================
+% Section 6: Detailed Analysis
+% =========================================================
+\section{Detailed Analysis}
+
+\subsection{Requirements Quality Assessment}
+
+\subsubsection{Strengths}
+
+\begin{itemize}[leftmargin=*]
+    \item Functional requirements are well captured through detailed use cases with explicit pre-conditions, post-conditions, and alternative flows.
+    \item Validation rules (e.g., for signup) are precisely specified, enabling straightforward test design.
+    \item Error conditions (e.g., DB connection failures, invalid operations) are systematically described in alternative flows.
+\end{itemize}
+
+\subsubsection{Gaps and Recommendations}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Lack of explicit non-functional requirements:} Add a dedicated section specifying performance, security, usability, and reliability requirements with measurable criteria.
+    \item \textbf{Implicit requirements:} Many requirements are only implicit in use cases. Introduce a requirements list with identifiers (FR-1, NFR-1, etc.) to improve traceability and maintainability.
+    \item \textbf{Constraints:} Constraints such as use of PostgreSQL, JDBC, and Singleton patterns are described but not framed as explicit requirements; consider formalizing them.
+\end{itemize}
+
+\subsection{Use Case Completeness Analysis}
+
+\begin{itemize}[leftmargin=*]
+    \item All major user and admin operations are covered by explicit use cases.
+    \item Alternative flows cover common error scenarios (invalid input, duplicates, DB connection issues).
+    \item Some minor inconsistencies in wording (e.g., UC-7 alternative flow 3B message text) could be clarified but do not affect functional understanding.
+\end{itemize}
+
+\subsection{Architecture Quality Evaluation}
+
+\begin{table}[H]
+\centering
+\caption{Architecture Quality Metrics (Qualitative)}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Principle} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Separation of Concerns & \textcolor{coveredcolor}{Good} & MVC + Service + DAO layers are clearly separated. \\
+Loose Coupling & \textcolor{coveredcolor}{Good} & Controllers depend on services, not DAOs; DAOs depend on ConnectionManager. \\
+High Cohesion & \textcolor{coveredcolor}{Good} & DAOs and services are cohesive around entity or role responsibilities. \\
+Single Responsibility & \textcolor{partialcolor}{Moderate} & MainService has broad responsibilities; could be decomposed. \\
+Extensibility & \textcolor{coveredcolor}{Good} & New element types or genres can be added via DomainModel and DAOs. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Test Coverage Analysis}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Strengths}
+    \begin{itemize}
+        \item DAOs are thoroughly tested for CRUD operations and key queries.
+        \item Service tests explicitly claim to cover use cases and alternative flows.
+        \item Use of Mockito allows isolation from real database in some tests.
+        \item Maven is used to automate test execution and reporting.
+    \end{itemize}
+    \item \textbf{Areas for Improvement}
+    \begin{itemize}
+        \item No explicit code coverage metrics (e.g., line or branch coverage) are reported.
+        \item No integration or end-to-end tests are described; all tests are structural/unit-level.
+        \item No performance or stress tests are mentioned.
+    \end{itemize}
+\end{itemize}
+
+% =========================================================
+% Section 7: Recommendations
+% =========================================================
+\section{Recommendations}
+
+\subsection{Priority 1: Critical Items}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Introduce explicit non-functional requirements}
+    \begin{itemize}
+        \item Add a section specifying performance (e.g., response time, maximum concurrent users), security (e.g., password hashing, access control), and reliability (e.g., acceptable downtime).
+        \item This will make the system more testable and robust in real-world scenarios.
+    \end{itemize}
+
+    \item \textbf{Formalize requirements list}
+    \begin{itemize}
+        \item Extract functional and non-functional requirements into a dedicated chapter with identifiers (FR-x, NFR-x, CR-x).
+        \item This will improve traceability and ease future maintenance.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 2: Important Improvements}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Document deployment and runtime environment}
+    \begin{itemize}
+        \item Add a deployment diagram or textual description of how the application is deployed (e.g., desktop client, server, DB host).
+        \item Clarify assumptions about network connectivity and multi-user access.
+    \end{itemize}
+
+    \item \textbf{Extend testing strategy}
+    \begin{itemize}
+        \item Add integration tests that exercise full flows from controller to database.
+        \item Consider adding a small set of end-to-end tests simulating typical user journeys.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 3: Nice-to-Have Enhancements}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Add logging and monitoring considerations}
+    \begin{itemize}
+        \item Describe how errors and important events are logged.
+        \item Consider basic monitoring for database connectivity and application health.
+    \end{itemize}
+
+    \item \textbf{Clarify concurrency and multi-user behavior}
+    \begin{itemize}
+        \item Document how simultaneous loans and updates are handled at the database level (e.g., locking, isolation).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Summary Checklist}
+
+\begin{table}[H]
+\centering
+\caption{Action Item Summary}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Priority} & \textbf{Items} & \textbf{Indicative Effort} \\
+\midrule
+Critical (P1) & 2 & 1--2 days \\
+Important (P2) & 2 & 2--3 days \\
+Nice-to-Have (P3) & 2 & 2--3 days \\
+\midrule
+\textbf{Total} & \textbf{6} & \textbf{5--8 days} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}
+```
+
+```json
+{
+  "pdfPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/validation_reports/Library_Management_Software_validation_report.pdf",
+  "texPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/validation_reports/Library_Management_Software_validation_report.tex",
+  "summary": {
+    "requirements_extracted": 18,
+    "requirements_by_type": {
+      "functional": 16,
+      "non_functional": 0,
+      "constraint": 2,
+      "goal": 0
+    },
+    "requirements_quality": {
+      "well_defined": 12,
+      "needs_detail": 6,
+      "vague": 0
+    },
+    "use_cases_extracted": 13,
+    "use_cases_explicit": 13,
+    "use_cases_implicit": 0,
+    "architecture_components": 16,
+    "architecture_pattern": "Layered MVC with Service and DAO layers",
+    "tests_extracted": 18,
+    "tests_by_type": {
+      "unit": 18,
+      "integration": 0,
+      "system": 0,
+      "performance": 0
+    },
+    "traceability_coverage_percentage": 100.0,
+    "traceability_details": {
+      "requirements_covered": 18,
+      "requirements_uncovered": 0,
+      "use_cases_fully_tested": 13,
+      "use_cases_partially_tested": 0,
+      "orphan_requirements": 0,
+      "orphan_tests": 0
+    },
+    "feature_coverage_percentage": 82.0,
+    "feature_details": {
+      "total_kb_features": 50,
+      "covered_features": 41,
+      "uncovered_features": 9
+    },
+    "validation_status": "PASSED",
+    "critical_issues": 2,
+    "warnings": 4,
+    "recommendations_priority_1": 2,
+    "recommendations_priority_2": 2,
+    "recommendations_priority_3": 2
+  }
+}
+```

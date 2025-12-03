@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "pdf_input": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/sample.pdf",
+  "output_directory": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764701500",
+  "raw_response_path": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764701500/raw_response.txt",
+  "latex_path": null,
+  "execution_stats": {
+    "start_time": "2025-12-02 19:51:40",
+    "end_time": "2025-12-02 19:55:09",
+    "total_time_seconds": 209.33,
+    "total_time_minutes": 3.49,
+    "pdf_extraction_time_seconds": 0.03,
+    "api_call_time_seconds": 208.79,
+    "latex_compilation_time_seconds": 0.5
+  },
+  "token_stats": {
+    "model": "gpt-5.1",
+    "input_tokens": 26065,
+    "output_tokens": 13395,
+    "total_tokens": 39460,
+    "estimated_cost": {
+      "input_cost_usd": 0.391,
+      "output_cost_usd": 0.6028,
+      "total_cost_usd": 0.9937,
+      "cost_per_1k_input": 0.015,
+      "cost_per_1k_output": 0.045
+    }
+  }
+}

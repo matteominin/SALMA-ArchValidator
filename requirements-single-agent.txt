@@ -1,0 +1,7 @@
+# Requirements for Single-Agent PDF Validator
+
+# Anthropic API (for Claude)
+anthropic>=0.39.0
+
+# Optional but recommended
+python-dotenv>=1.0.0  # For loading API keys from .env file

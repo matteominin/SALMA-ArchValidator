@@ -1,0 +1,51 @@
+{
+  "pdfPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/validation_reports/Library_Management_Software_validation_report.pdf",
+  "texPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/validation_reports/Library_Management_Software_validation_report.tex",
+  "summary": {
+    "requirements_extracted": 18,
+    "requirements_by_type": {
+      "functional": 16,
+      "non_functional": 0,
+      "constraint": 2,
+      "goal": 0
+    },
+    "requirements_quality": {
+      "well_defined": 12,
+      "needs_detail": 6,
+      "vague": 0
+    },
+    "use_cases_extracted": 13,
+    "use_cases_explicit": 13,
+    "use_cases_implicit": 0,
+    "architecture_components": 16,
+    "architecture_pattern": "Layered MVC with Service and DAO layers",
+    "tests_extracted": 18,
+    "tests_by_type": {
+      "unit": 18,
+      "integration": 0,
+      "system": 0,
+      "performance": 0
+    },
+    "traceability_coverage_percentage": 100.0,
+    "traceability_details": {
+      "requirements_covered": 18,
+      "requirements_uncovered": 0,
+      "use_cases_fully_tested": 13,
+      "use_cases_partially_tested": 0,
+      "orphan_requirements": 0,
+      "orphan_tests": 0
+    },
+    "feature_coverage_percentage": 82.0,
+    "feature_details": {
+      "total_kb_features": 50,
+      "covered_features": 41,
+      "uncovered_features": 9
+    },
+    "validation_status": "PASSED",
+    "critical_issues": 2,
+    "warnings": 4,
+    "recommendations_priority_1": 2,
+    "recommendations_priority_2": 2,
+    "recommendations_priority_3": 2
+  }
+}

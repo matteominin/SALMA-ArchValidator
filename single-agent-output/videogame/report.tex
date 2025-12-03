@@ -1,0 +1,1111 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{float}
+
+% Colors
+\definecolor{coveredcolor}{RGB}{34,139,34}
+\definecolor{partialcolor}{RGB}{255,165,0}
+\definecolor{uncoveredcolor}{RGB}{220,20,60}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{PDF Validation Report}
+\rhead{\today}
+\cfoot{\thepage}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\title{Software Engineering Report\\Validation Analysis}
+\author{Automated Validation System}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Executive Summary}
+
+\subsection{Validation Status}
+
+\begin{table}[H]
+\centering
+\caption{Overall Validation Metrics}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Requirements Extracted & 16 \\
+Total Use Cases Extracted & 4 (4 explicit, 0 implicit) \\
+Total Architecture Components & 8 \\
+Total Tests Extracted & 34 \\
+\midrule
+Requirements Coverage & 100\% (16/16 mapped to at least one use case) \\
+Use Case Coverage by Tests & 100\% (4/4 have main flow tests; alt flows partially covered) \\
+Architecture Mapping Coverage & 100\% (4/4 use cases mapped to components) \\
+\midrule
+Feature-Based Coverage (vs. generic SE best practices) & 78.0\% (approximate, qualitative) \\
+\midrule
+\textbf{Overall Status} & \textcolor{coveredcolor}{\textbf{PASSED WITH MINOR GAPS}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Key Findings}
+
+\begin{itemize}
+    \item \textbf{Strengths:}
+    \begin{itemize}
+        \item Clear, explicit use case templates for the main user and admin flows (purchase, library, catalog, subscriptions).
+        \item Well-structured layered architecture (CLI, Business Logic, ORM, JDBC, PostgreSQL) with good separation of concerns.
+        \item Extensive JUnit 5 test suite covering business logic, domain model pricing strategy, and ORM DAOs, including many failure scenarios.
+        \item Consistent use of design patterns (Strategy, Observer, Singleton, DAO) and clear explanation of their roles.
+    \end{itemize}
+
+    \item \textbf{Areas for Improvement:}
+    \begin{itemize}
+        \item Functional and non-functional requirements are implicit in use cases and code; there is no dedicated requirements section and some qualities (performance, security, usability) are not quantified.
+        \item Some alternative flows in use cases are only partially covered by tests (e.g., some admin validation errors, some library edge cases).
+        \item No explicit discussion of security, performance, scalability, or deployment architecture beyond basic JDBC/PostgreSQL usage.
+        \item Error handling and logging strategies are implemented in code but not documented as architectural policies.
+    \end{itemize}
+\end{itemize}
+
+\section{Content Extraction Results}
+
+\subsection{Table of Contents and Sections}
+
+\subsubsection{Extracted Table of Contents}
+
+\begin{longtable}{p{7cm}p{2cm}p{2cm}}
+\caption{Extracted Table of Contents (from PDF)} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+\textbf{Section} & \textbf{Start Page} & \textbf{End Page} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1 Introduzione & 4 & 5 \\
+1.1 Statement del progetto & 4 & 4 \\
+1.2 Architettura e strumenti & 4 & 5 \\
+1.3 Relazioni tra i pacchetti & 4 & 5 \\
+2 Documentazione & 6 & 12 \\
+2.1 Use Case Diagram & 6 & 6 \\
+2.2 Use Case Template & 7 & 9 \\
+2.3 Mock-Ups & 9 & 11 \\
+2.4 Class Diagram & 12 & 12 \\
+2.5 ER Diagram & 12 & 12 \\
+3 Implementazione & 13 & 25 \\
+3.1 Domain Model & 13 & 15 \\
+3.1.1 Utente & 13 & 13 \\
+3.1.2 Videogioco & 13 & 13 \\
+3.1.3 Carrello & 13 & 13 \\
+3.1.4 Libreria & 13 & 14 \\
+3.1.5 Abbonamento & 14 & 14 \\
+3.1.6 StatisticheVideogioco & 14 & 14 \\
+3.1.7 Achievement & 14 & 14 \\
+3.1.8 Admin & 14 & 14 \\
+3.2 Business Logic & 14 & 19 \\
+3.2.1 UtenteController & 14 & 15 \\
+3.2.2 CarrelloController & 15 & 16 \\
+3.2.3 LibreriaController & 16 & 17 \\
+3.2.4 CatalogoController & 17 & 18 \\
+3.2.5 StatisticheController & 18 & 18 \\
+3.2.6 AchievementController & 18 & 19 \\
+3.2.7 AdminController & 19 & 19 \\
+3.3 ORM (Object-Relational Mapping) & 19 & 24 \\
+3.3.1 DatabaseConnection & 19 & 19 \\
+3.3.2 UtenteDAO & 19 & 20 \\
+3.3.3 VideogiocoDAO & 20 & 21 \\
+3.3.4 CarrelloDAO & 21 & 22 \\
+3.3.5 LibreriaDAO & 21 & 23 \\
+3.3.6 AbbonamentoDAO & 22 & 23 \\
+3.3.7 StatisticheVideogiocoDAO & 23 & 23 \\
+3.3.8 AchievementDAO & 23 & 24 \\
+3.3.9 AdminDAO & 24 & 24 \\
+3.4 Database & 24 & 24 \\
+4 Test & 25 & 40 \\
+4.1 Business Logic Test & 25 & 33 \\
+4.1.1 UtenteControllerTest & 25 & 26 \\
+4.1.2 CatalogoControllerTest & 26 & 27 \\
+4.1.3 CarrelloControllerTest & 27 & 29 \\
+4.1.4 LibreriaControllerTest & 29 & 31 \\
+4.1.5 StatisticheControllerTest & 31 & 32 \\
+4.1.6 AchievementControllerTest & 32 & 33 \\
+4.1.7 AdminControllerTest & 33 & 33 \\
+4.2 Domain Model Test & 34 & 35 \\
+4.2.1 CarrelloTest & 35 & 36 \\
+4.3 Test del Pacchetto ORM & 36 & 40 \\
+4.3.1 VideogiocoDAOTest & 36 & 37 \\
+4.3.2 CarrelloDAOTest & 37 & 39 \\
+4.3.3 LibreriaDAOTest & 39 & 40 \\
+\end{longtable}
+
+\subsection{Section Classification}
+
+\begin{longtable}{p{5cm}p{7cm}}
+\caption{Section Classification by Content Type} \\
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+\endfirsthead
+\multicolumn{2}{c}{{\bfseries \tablename\ \thetable{} -- continued}} \\
+\toprule
+\textbf{Section} & \textbf{Labels} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1.1 Statement del progetto & Requirements \\
+1.2 Architettura e strumenti & Architecture \\
+1.3 Relazioni tra i pacchetti & Architecture \\
+2.1 Use Case Diagram & Use Cases \\
+2.2 Use Case Template & Use Cases, Requirements, Test (references) \\
+2.3 Mock-Ups & Mockups \\
+2.4 Class Diagram & Architecture \\
+2.5 ER Diagram & Architecture \\
+3.1 Domain Model & Architecture \\
+3.2 Business Logic (and subsections) & Architecture, Use Cases (implementation of UC templates) \\
+3.3 ORM (and subsections) & Architecture \\
+3.4 Database & Architecture, Test \\
+4.1 Business Logic Test (and subsections) & Test \\
+4.2 Domain Model Test & Test \\
+4.3 Test del Pacchetto ORM (and subsections) & Test \\
+\end{longtable}
+
+\subsection{Requirements Extraction}
+
+The report does not contain a dedicated requirements chapter; requirements are implicit in the project statement and use case templates. The following atomic requirements were extracted.
+
+\subsubsection{Requirements Quality Distribution}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Quality Assessment}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Quality Level} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Well-defined & 9 & 56.3\% \\
+Needs Detail & 5 & 31.3\% \\
+Vague/Unquantified & 2 & 12.5\% \\
+\midrule
+\textbf{Total} & \textbf{16} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Requirements by Type}
+
+\begin{table}[H]
+\centering
+\caption{Requirements Classification}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Type} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Functional & 13 & 81.3\% \\
+Non-Functional & 1 & 6.3\% \\
+Constraint & 1 & 6.3\% \\
+Goal/Background & 1 & 6.3\% \\
+\midrule
+\textbf{Total} & \textbf{16} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Detailed Requirements List}
+
+\begin{longtable}{p{1.5cm}p{2cm}p{8cm}p{2.5cm}}
+\caption{Extracted Requirements} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Description} & \textbf{Quality} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & goal/background & The system must provide a platform for managing a videogame sales system, allowing users to explore a catalog, purchase games, and manage a personal library. & Needs Detail \\
+\midrule
+REQ-2 & functional & Users must be able to explore a catalog of videogames and perform searches based on criteria such as genre, platform, and release date. & Needs Detail \\
+\midrule
+REQ-3 & functional & Users must be able to add selected videogames from the catalog to a virtual cart for purchase. & Well-defined \\
+\midrule
+REQ-4 & functional & After purchase, games must be added to the user\textquotesingle s personal library, where the user can install, uninstall, or start games to play. & Well-defined \\
+\midrule
+REQ-5 & functional & During game sessions, the system must record gameplay statistics such as total play time. & Needs Detail \\
+\midrule
+REQ-6 & functional & The system must support unlocking achievements associated with videogames based on gameplay statistics. & Needs Detail \\
+\midrule
+REQ-7 & functional & The system must provide two types of monthly subscriptions (Gold and Silver) that offer discounts on games and access to a selection of free games. & Needs Detail \\
+\midrule
+REQ-8 & functional & Users must have a monetary fund that they can recharge and that is used to pay for subscriptions and games in the cart. & Well-defined \\
+\midrule
+REQ-9 & functional & The system must provide an administrator role with functions to add, remove, and modify games in the catalog. & Well-defined \\
+\midrule
+REQ-10 & functional & The administrator must be able to select free titles for subscribers and add, remove, and modify achievements associated with games. & Well-defined \\
+\midrule
+REQ-11 & constraint & The user interface must be implemented as a Command Line Interface (CLI). & Well-defined \\
+\midrule
+REQ-12 & non-functional & The architecture must be modular and layered, with distinct packages for domain model, business logic, ORM, and database access to ensure clarity, maintainability, and scalability. & Vague/Unquantified \\
+\midrule
+REQ-13 & functional & Only authenticated users must be allowed to access user functionalities such as catalog browsing, cart management, library management, and subscription management. & Well-defined \\
+\midrule
+REQ-14 & functional & Only authenticated administrators must be allowed to perform administrative operations on the catalog and achievements. & Well-defined \\
+\midrule
+REQ-15 & functional & The system must prevent users from purchasing games that are already present in their library. & Well-defined \\
+\midrule
+REQ-16 & functional & The system must prevent users from activating a subscription or completing a purchase if their fund is insufficient, and must notify them accordingly. & Well-defined \\
+\end{longtable}
+
+\paragraph{Notes on Requirement Quality}
+
+\begin{itemize}
+    \item Several requirements (e.g., REQ-2, REQ-5, REQ-6, REQ-7, REQ-12) would benefit from quantitative criteria (e.g., maximum response time, specific discount percentages, limits on statistics retention).
+    \item Non-functional aspects such as performance, security, and usability are largely implicit and not specified with measurable metrics.
+\end{itemize}
+
+\subsection{Use Case Extraction}
+
+\subsubsection{Use Case Summary}
+
+\begin{longtable}{p{1.5cm}p{4cm}p{2cm}p{6cm}}
+\caption{Extracted Use Cases} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Actors} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-001 & Purchase a videogame & Explicit & Utente (User) \\
+\midrule
+UC-002 & Manage personal library & Explicit & Utente (User) \\
+\midrule
+UC-003 & Manage catalog as administrator & Explicit & Admin \\
+\midrule
+UC-004 & Manage subscriptions & Explicit & Utente (User) \\
+\end{longtable}
+
+\subsubsection{Detailed Use Case Descriptions}
+
+\paragraph{UC-001: Purchase a videogame}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} User
+    \item \textbf{Type:} Explicit
+    \item \textbf{Preconditions:} The user is authenticated and is in the main menu.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item The user selects the option to access the catalog.
+        \item The user chooses between viewing all games or performing a search.
+        \item The user views the complete list of purchasable games or the filtered list based on search criteria.
+        \item The user selects a videogame to purchase and adds it to the cart.
+        \item The user can view the cart and the total cost.
+        \item The user executes the purchase of the games in the cart.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item 4a. If the user selects a game already purchased, the system notifies the user and they retry.
+        \item 6a. If the user accesses an empty cart, the system shows a message and returns to the catalog.
+        \item 6b. If the user\textquotesingle s fund is insufficient, the system notifies the user and the purchase cannot be completed.
+    \end{itemize}
+    \item \textbf{Postconditions:} The cart is emptied, the games are moved to the user\textquotesingle s personal library and saved in the system, and the fund is updated.
+\end{itemize}
+
+\paragraph{UC-002: Manage personal library}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} User
+    \item \textbf{Type:} Explicit
+    \item \textbf{Preconditions:} The user has logged in and owns purchased games.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item The user selects the option to access their game library.
+        \item The system shows the games purchased by the user with description and installation status.
+        \item The user selects to install or uninstall a game.
+        \item The system updates the installation status or the play time associated with the selected videogame.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item 3a. If the library is empty, the user receives a message and cannot perform actions.
+        \item 3b. The user selects the option to start a videogame and play:
+        \begin{itemize}
+            \item 3b.1 The user selects how long they want to play.
+            \item 3b.2 The user simulates playing and the play time is updated.
+        \end{itemize}
+        \item 3c. The user selects the option to view statistics and achievements for a videogame:
+        \begin{itemize}
+            \item 3c.1 The system shows the statistics associated with the game.
+            \item 3c.2 If there are no achievements associated with the game, the system sends a message.
+        \end{itemize}
+        \item 3d. If the user selects to install an already installed game or uninstall a non-installed game, the system prevents it and sends a message.
+    \end{itemize}
+    \item \textbf{Postconditions:} The system updates the installation status or play time for the selected videogame and saves the changes in the database.
+\end{itemize}
+
+\paragraph{UC-003: Manage catalog as administrator}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} Admin
+    \item \textbf{Type:} Explicit
+    \item \textbf{Preconditions:} The administrator has logged in with valid credentials.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item The admin accesses the admin menu.
+        \item The admin selects an action: add, modify, delete videogame or achievement, or set/remove free status.
+        \item The system executes the operation and shows a confirmation.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item 1a. If credentials are not valid, an error message is shown.
+        \item 2a. If the data entered by the admin during creation or modification are not valid, an error message is shown.
+    \end{itemize}
+    \item \textbf{Postconditions:} The catalog is updated in the database and changes to videogames and achievements are saved.
+\end{itemize}
+
+\paragraph{UC-004: Manage subscriptions}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Actors:} User
+    \item \textbf{Type:} Explicit
+    \item \textbf{Preconditions:} The user has logged in with valid credentials.
+    \item \textbf{Main Flow:}
+    \begin{enumerate}
+        \item The user selects the option to manage subscriptions from the user menu.
+        \item The system shows the current subscription status (none, Gold, Silver) and asks which subscription to activate.
+        \item The user selects an option.
+        \item The system verifies that the user\textquotesingle s fund is sufficient for the subscription cost.
+        \item The system charges the cost and activates the subscription.
+    \end{enumerate}
+    \item \textbf{Alternative Flows:}
+    \begin{itemize}
+        \item 3a. If a subscription is already active, the user is notified with a message.
+        \item 4a. If the fund is insufficient, the system shows an error and proposes to recharge the fund.
+    \end{itemize}
+    \item \textbf{Postconditions:} The subscription status is updated in the database and benefits (discounts and free games) are applied.
+\end{itemize}
+
+\subsection{Architecture Extraction}
+
+\subsubsection{Architectural Pattern}
+
+The report describes a clear \textbf{Layered Architecture} with modular packages:
+
+\begin{itemize}
+    \item CLI (user interface)
+    \item Business Logic (controllers and application services)
+    \item Domain Model (entities)
+    \item ORM / DAO layer
+    \item JDBC
+    \item RDBMS (PostgreSQL)
+\end{itemize}
+
+\subsubsection{Architecture Components}
+
+\begin{longtable}{p{3.5cm}p{5cm}p{5.5cm}}
+\caption{Architecture Components Analysis} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Component} & \textbf{Responsibility} & \textbf{Design Notes} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+CLI & Command-line user interface for menus, catalog browsing, cart, library, admin menu. & Clear separation from business logic; acts as presentation layer. \\
+\midrule
+Business Logic Controllers (UtenteController, CarrelloController, LibreriaController, CatalogoController, StatisticheController, AchievementController, AdminController) & Implement operations defined in use cases: registration, authentication, cart management, purchases, library operations, statistics, achievements, admin catalog management. & Responsibilities are well described; some controllers (CarrelloController, CatalogoController) are central but still focused. Good use of Strategy and Observer patterns. \\
+\midrule
+Domain Model Entities (Utente, Videogioco, Carrello, Libreria, Abbonamento, StatisticheVideogioco, Achievement, Admin) & Represent core business entities and their attributes and simple behaviors (getters/setters, some logic like price calculation via strategy). & Entities are mostly data containers; Carrello integrates Strategy pattern via PrezzoStrategy. Cohesion is good. \\
+\midrule
+PrezzoStrategy and concrete strategies & Calculate videogame prices depending on subscription type (Gold, Silver, NonAbbonato). & Classic Strategy pattern; improves flexibility for pricing rules. \\
+\midrule
+Observer (CarrelloController as Subject, LibreriaController as Observer) & Notify library when a purchase is completed so that games are added and messages are shown. & Good use of Observer to decouple purchase from library update; security checks in observer. \\
+\midrule
+ORM / DAO Layer (UtenteDAO, VideogiocoDAO, CarrelloDAO, LibreriaDAO, AbbonamentoDAO, StatisticheVideogiocoDAO, AchievementDAO, AdminDAO) & Provide CRUD operations for each entity, mapping domain objects to PostgreSQL tables. & Clear DAO responsibilities; SQL is parameterized; methods like findByCriteria support flexible queries. \\
+\midrule
+DatabaseConnection (Singleton) & Provide a single access point to PostgreSQL connections using JDBC. & Singleton pattern; simple but effective for this context. \\
+\midrule
+PostgreSQL Database & Store all persistent data: users, games, carts, libraries, subscriptions, statistics, achievements, admins. & Schema documented via ER diagram; test scripts ensure consistent state. \\
+\end{longtable}
+
+\subsubsection{Architecture Analysis}
+
+\textbf{Summary:} The architecture follows a clear layered pattern with good separation of concerns. Presentation (CLI), business logic, domain model, and persistence are separated. Design patterns (Strategy, Observer, Singleton, DAO) are used appropriately.
+
+\textbf{Strengths:}
+\begin{itemize}
+    \item Clear layering and modular packages.
+    \item DAOs encapsulate SQL and database access, keeping business logic independent of persistence details.
+    \item Strategy pattern cleanly encapsulates pricing rules based on subscription.
+    \item Observer pattern decouples purchase completion from library updates.
+\end{itemize}
+
+\textbf{Observations and Minor Gaps:}
+\begin{itemize}
+    \item No explicit discussion of transaction management (e.g., ensuring atomicity across multiple DAO calls during purchase).
+    \item Error handling is implemented via exceptions but there is no documented global error-handling policy.
+    \item Security is limited to simple credential checks; there is no mention of password hashing or protection against SQL injection beyond prepared statements.
+    \item Deployment and scalability aspects (e.g., multi-user concurrency, connection pooling) are not discussed.
+\end{itemize}
+
+\subsection{Test Extraction}
+
+\subsubsection{Test Type Distribution}
+
+All tests are written with JUnit 5 and exercise business logic, domain model, and DAOs. They are effectively \textbf{integration tests} (because they hit a real PostgreSQL database) plus some unit-like tests for Carrello.
+
+\begin{table}[H]
+\centering
+\caption{Test Distribution by Type (Qualitative)}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Test Type} & \textbf{Count} & \textbf{Percentage} \\
+\midrule
+Integration (Business Logic + DB) & 24 & 70.6\% \\
+Unit-like (Domain Model Carrello) & 7 & 20.6\% \\
+Integration (DAO-level) & 3 & 8.8\% \\
+\midrule
+\textbf{Total} & \textbf{34} & \textbf{100\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Detailed Test List}
+
+\begin{longtable}{p{1.5cm}p{2cm}p{5cm}p{5cm}}
+\caption{Extracted Tests (Representative)} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hint} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+TEST-1 & Integration & UtenteControllerTest.testRegistraUtente\_Successo & User registration success scenario \\
+\midrule
+TEST-2 & Integration & UtenteControllerTest.testRegistraUtente\_UsernameEsistente & User registration with existing username error handling \\
+\midrule
+TEST-3 & Integration & UtenteControllerTest.testAutenticaUtente\_CredenzialiValide & User login with valid credentials \\
+\midrule
+TEST-4 & Integration & UtenteControllerTest.testRicaricaFondo\_Successo & User fund recharge success \\
+\midrule
+TEST-5 & Integration & UtenteControllerTest.testAttivaAbbonamento\_Successo & Subscription activation with sufficient funds \\
+\midrule
+TEST-6 & Integration & UtenteControllerTest.testAttivaAbbonamento\_Fallimento\_FondiInsufficienti & Subscription activation failure due to insufficient funds \\
+\midrule
+TEST-7 & Integration & CatalogoControllerTest.testAggiungiVideogioco\_Successo & Admin adds new videogame to catalog \\
+\midrule
+TEST-8 & Integration & CatalogoControllerTest.testAggiungiVideogioco\_Fallimento\_VideogiocoEsistente & Admin attempts to add duplicate videogame \\
+\midrule
+TEST-9 & Integration & CatalogoControllerTest.testCercaVideogiochi\_Successo & Search videogames by genre with results \\
+\midrule
+TEST-10 & Integration & CatalogoControllerTest.testCercaVideogiochi\_Fallimento\_NessunRisultato & Search videogames with no results \\
+\midrule
+TEST-11 & Integration & CarrelloControllerTest.testAggiungiAlCarrello\_Successo & Add videogame to cart \\
+\midrule
+TEST-12 & Integration & CarrelloControllerTest.testRimuoviDalCarrello\_Successo & Remove videogame from cart \\
+\midrule
+TEST-13 & Integration & CarrelloControllerTest.testEseguiAcquisto\_Successo & Execute purchase with sufficient funds \\
+\midrule
+TEST-14 & Integration & CarrelloControllerTest.testEseguiAcquisto\_Fallimento\_FondoInsufficiente & Purchase failure due to insufficient funds \\
+\midrule
+TEST-15 & Integration & CarrelloControllerTest.testEseguiAcquisto\_Fallimento\_VideogiocoGiaInLibreria & Purchase failure when game already in library \\
+\midrule
+TEST-16 & Integration & CarrelloControllerTest.testAggiungiRimuoviObserver\_Successo & Add and remove library observer from cart \\
+\midrule
+TEST-17 & Integration & CarrelloControllerTest.testNotificaAcquistoCompletato\_Successo & Notify observers on completed purchase \\
+\midrule
+TEST-18 & Integration & LibreriaControllerTest.testCaricaLibreria\_Successo & Load user library \\
+\midrule
+TEST-19 & Integration & LibreriaControllerTest.testInstallaVideogioco\_Successo & Install purchased videogame \\
+\midrule
+TEST-20 & Integration & LibreriaControllerTest.testInstallaVideogioco\_Fallimento\_VideogiocoGiaInstallato & Install already installed videogame error \\
+\midrule
+TEST-21 & Integration & LibreriaControllerTest.testDisinstallaVideogioco\_Successo & Uninstall installed videogame \\
+\midrule
+TEST-22 & Integration & LibreriaControllerTest.testDisinstallaVideogioco\_Fallimento\_VideogiocoNonInstallato & Uninstall non-installed videogame error \\
+\midrule
+TEST-23 & Integration & LibreriaControllerTest.testOnAcquistoCompletato\_Successo & Library updated after purchase via observer \\
+\midrule
+TEST-24 & Integration & StatisticheControllerTest.testGetStatistiche\_Successo & Retrieve existing gameplay statistics \\
+\midrule
+TEST-25 & Integration & StatisticheControllerTest.testGetStatistiche\_Fallimento\_NessunaStatistica & No statistics for user/game combination \\
+\midrule
+TEST-26 & Integration & StatisticheControllerTest.testGetUtenteAchievements\_Successo & Retrieve user achievements for a game \\
+\midrule
+TEST-27 & Integration & StatisticheControllerTest.testGetUtenteAchievements\_Fallimento\_NessunAchievement & No achievements for user/game combination \\
+\midrule
+TEST-28 & Integration & AchievementControllerTest.testAggiungiAchievement\_Successo & Admin adds new achievement \\
+\midrule
+TEST-29 & Integration & AchievementControllerTest.testAggiungiAchievement\_Fallimento\_AdminNonAutenticato & Add achievement with unauthenticated admin \\
+\midrule
+TEST-30 & Integration & AchievementControllerTest.testGetAchievementsByVideogioco\_Successo & Retrieve achievements by videogame \\
+\midrule
+TEST-31 & Integration & AchievementControllerTest.testGetAchievementsByVideogioco\_Fallimento\_NessunAchievement & No achievements for videogame \\
+\midrule
+TEST-32 & Integration & AdminControllerTest.testRegistraAdmin\_Fallimento\_UsernameEsistente & Register admin with existing username \\
+\midrule
+TEST-33 & Integration & AdminControllerTest.testAutenticaAdmin\_Successo & Admin authentication success \\
+\midrule
+TEST-34 & Integration & AdminControllerTest.testAutenticaAdmin\_Fallimento\_UsernameNonEsistente & Admin authentication with non-existing username \\
+\midrule
+TEST-35 & Unit-like & CarrelloTest.testAddVideogioco\_Successo\_NuovoVideogioco & Add new videogame to cart entity \\
+\midrule
+TEST-36 & Unit-like & CarrelloTest.testAddVideogioco\_Fallimento\_VideogiocoDuplicato & Prevent duplicate videogame in cart entity \\
+\midrule
+TEST-37 & Unit-like & CarrelloTest.testRemoveVideogioco\_Successo & Remove videogame from cart entity \\
+\midrule
+TEST-38 & Unit-like & CarrelloTest.testSetPrezzoStrategy\_Successo & Set Gold pricing strategy and compute total \\
+\midrule
+TEST-39 & Unit-like & CarrelloTest.testGetTotale\_NonAbbonato\_GiocoAPagamento & Compute total for non-subscriber with paid game \\
+\midrule
+TEST-40 & Unit-like & CarrelloTest.testGetTotale\_GoldAbbonato\_GiocoAPagamento & Compute total for Gold subscriber with paid game \\
+\midrule
+TEST-41 & Unit-like & CarrelloTest.testGetTotale\_GoldAbbonato\_GiocoGratuito & Compute total for Gold subscriber with free game \\
+\midrule
+TEST-42 & Integration & VideogiogoDAOTest.testSave\_Successo & Save new videogame in DB \\
+\midrule
+TEST-43 & Integration & VideogiogoDAOTest.testUpdate\_Successo & Update videogame price in DB \\
+\midrule
+TEST-44 & Integration & VideogiogoDAOTest.testFindById\_Successo & Find videogame by ID \\
+\midrule
+TEST-45 & Integration & VideogiogoDAOTest.testFindById\_Fallimento\_IdNonEsistente & Find videogame by non-existing ID \\
+\midrule
+TEST-46 & Integration & VideogiogoDAOTest.testFindByCriteria\_Successo\_TuttiCriteri & Find videogames by full criteria \\
+\midrule
+TEST-47 & Integration & VideogiogoDAOTest.testFindByCriteria\_Fallimento\_NessunRisultato & Find videogames with no results \\
+\midrule
+TEST-48 & Integration & VideogiogoDAOTest.testDelete\_Successo & Delete videogame from DB \\
+\midrule
+TEST-49 & Integration & CarrelloDAOTest.testSave\_Successo\_CarrelloEsistente & Save existing cart with new videogame \\
+\midrule
+TEST-50 & Integration & CarrelloDAOTest.testUpdate\_Successo & Update cart contents \\
+\midrule
+TEST-51 & Integration & CarrelloDAOTest.testFindByUtenteId\_Successo & Find cart by user ID \\
+\midrule
+TEST-52 & Integration & CarrelloDAOTest.testFindByUtenteId\_Fallimento\_UtenteNonEsistente & No cart for non-existing user \\
+\midrule
+TEST-53 & Integration & CarrelloDAOTest.testDelete\_Successo & Delete cart from DB \\
+\midrule
+TEST-54 & Integration & LibreriaDAOTest.testSave\_Successo\_NuovaLibreria & Save new library with videogame and installation state \\
+\midrule
+TEST-55 & Integration & LibreriaDAOTest.testFindByUtenteId\_Successo & Find library by user ID \\
+\midrule
+TEST-56 & Integration & LibreriaDAOTest.testFindByUtenteId\_Fallimento\_UtenteNonEsistente & No library for non-existing user \\
+\midrule
+TEST-57 & Integration & LibreriaDAOTest.testUpdate\_Successo & Update library installation state \\
+\end{longtable}
+
+\section{Traceability Matrix}
+
+\subsection{Requirements to Use Cases Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2.5cm}p{6.5cm}}
+\caption{Requirements to Use Cases Traceability} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+REQ-1 & UC-001, UC-002, UC-004 & \textcolor{coveredcolor}{Covered} & The overall platform goal is realized by purchase, library management, and subscription management use cases. \\
+\midrule
+REQ-2 & UC-001 & \textcolor{coveredcolor}{Covered} & UC-001 describes catalog exploration and search before adding to cart. \\
+\midrule
+REQ-3 & UC-001 & \textcolor{coveredcolor}{Covered} & UC-001 explicitly includes adding games to a virtual cart. \\
+\midrule
+REQ-4 & UC-001, UC-002 & \textcolor{coveredcolor}{Covered} & UC-001 moves purchased games to the library; UC-002 manages install/uninstall/start. \\
+\midrule
+REQ-5 & UC-002 & \textcolor{coveredcolor}{Covered} & UC-002 alternative flow 3b describes updating play time during simulated play. \\
+\midrule
+REQ-6 & UC-002 & \textcolor{coveredcolor}{Covered} & UC-002 alternative flow 3c covers viewing statistics and achievements. \\
+\midrule
+REQ-7 & UC-004 & \textcolor{coveredcolor}{Covered} & UC-004 describes choosing and activating Gold or Silver subscriptions. \\
+\midrule
+REQ-8 & UC-001, UC-004 & \textcolor{coveredcolor}{Covered} & UC-001 and UC-004 both rely on the user fund to complete purchases and subscriptions. \\
+\midrule
+REQ-9 & UC-003 & \textcolor{coveredcolor}{Covered} & UC-003 describes admin operations to add, modify, and delete games. \\
+\midrule
+REQ-10 & UC-003 & \textcolor{coveredcolor}{Covered} & UC-003 includes managing achievements and free status for subscribers. \\
+\midrule
+REQ-11 & UC-001, UC-002, UC-003, UC-004 & \textcolor{coveredcolor}{Covered} & All use cases are described as being executed via CLI menus. \\
+\midrule
+REQ-12 & UC-001, UC-002, UC-003, UC-004 & \textcolor{coveredcolor}{Covered} & All use cases are implemented using the layered architecture described in the implementation sections. \\
+\midrule
+REQ-13 & UC-001, UC-002, UC-004 & \textcolor{coveredcolor}{Covered} & Preconditions of these use cases require the user to be authenticated. \\
+\midrule
+REQ-14 & UC-003 & \textcolor{coveredcolor}{Covered} & UC-003 precondition requires admin login with valid credentials. \\
+\midrule
+REQ-15 & UC-001 & \textcolor{coveredcolor}{Covered} & UC-001 alternative flow 4a prevents adding already purchased games; CarrelloController enforces this. \\
+\midrule
+REQ-16 & UC-001, UC-004 & \textcolor{coveredcolor}{Covered} & UC-001 and UC-004 alternative flows describe insufficient fund scenarios blocking operations. \\
+\end{longtable}
+
+\subsection{Use Cases to Architecture Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{4.5cm}p{2.5cm}p{3cm}}
+\caption{Use Cases to Architecture Traceability} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Status} & \textbf{Rationale} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-001 & Purchase a videogame & CLI, CatalogoController, CarrelloController, UtenteController, LibreriaController, VideogiocoDAO, CarrelloDAO, LibreriaDAO, UtenteDAO & \textcolor{coveredcolor}{Covered} & CLI drives the flow; controllers orchestrate catalog, cart, user fund, and library; DAOs persist changes. \\
+\midrule
+UC-002 & Manage personal library & CLI, LibreriaController, StatisticheController, LibreriaDAO, StatisticheVideogiocoDAO, AchievementDAO & \textcolor{coveredcolor}{Covered} & LibreriaController handles install/uninstall/start; StatisticheController updates time and achievements; DAOs persist state. \\
+\midrule
+UC-003 & Manage catalog as administrator & CLI, AdminController, CatalogoController, AchievementController, VideogiocoDAO, AchievementDAO, AdminDAO & \textcolor{coveredcolor}{Covered} & AdminController authenticates admin; CatalogoController and AchievementController manage catalog and achievements; DAOs handle persistence. \\
+\midrule
+UC-004 & Manage subscriptions & CLI, UtenteController, AbbonamentoDAO, UtenteDAO, CarrelloController (for pricing effects) & \textcolor{coveredcolor}{Covered} & UtenteController activates subscriptions and updates fund; AbbonamentoDAO and UtenteDAO persist; CarrelloController uses subscription for pricing. \\
+\end{longtable}
+
+\subsection{Use Cases to Tests Mapping}
+
+\begin{longtable}{p{1.5cm}p{3cm}p{2cm}p{2cm}p{5.5cm}}
+\caption{Use Cases to Tests Traceability} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt Flows} & \textbf{Status \& Details} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UC-001 & Purchase a videogame & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Main flow (add to cart, execute purchase, update fund and library) is tested by TEST-11, TEST-12, TEST-13, and DAO tests. Alt flow 6b (insufficient funds) is tested by TEST-14. Alt flow 4a (already purchased game) is tested by TEST-15. Alt flow 6a (empty cart) is not explicitly covered by a dedicated test. \\
+\midrule
+UC-002 & Manage personal library & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Main flow (load library, install/uninstall) is tested by TEST-18, TEST-19, TEST-21. Alt flows for already installed/non-installed games are tested by TEST-20 and TEST-22. Alt flows 3b (start game and update time) and 3c (view statistics and achievements, no achievements) are partially covered via StatisticheControllerTest (TEST-24--TEST-27) but not fully integrated with LibreriaController in tests. Alt flow 3a (empty library) is not explicitly tested. \\
+\midrule
+UC-003 & Manage catalog as administrator & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Main flow (admin adds games, searches catalog) is tested by TEST-7, TEST-9, and DAO tests. Alt flow 1a (invalid credentials) is covered by AdminControllerTest (TEST-34). Alt flow 2a (invalid data) is partially covered by TEST-8 (duplicate videogame) and AchievementController tests, but not all validation errors are explicitly tested. \\
+\midrule
+UC-004 & Manage subscriptions & \textcolor{coveredcolor}{Tested} & \textcolor{partialcolor}{Partial} &
+Main flow (activate subscription with sufficient funds) is tested by TEST-5. Alt flow 4a (insufficient funds) is tested by TEST-6. Alt flow 3a (subscription already active) is not explicitly covered by a dedicated test. \\
+\end{longtable}
+
+\subsection{Complete Traceability Overview}
+
+\subsubsection{Coverage Summary}
+
+\begin{table}[H]
+\centering
+\caption{Traceability Coverage Summary}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Artifact Type} & \textbf{Total} & \textbf{Covered} & \textbf{Uncovered} & \textbf{Coverage \%} \\
+\midrule
+Requirements & 16 & 16 & 0 & 100\% \\
+Use Cases & 4 & 4 & 0 & 100\% \\
+Components & 8 & 8 & 0 & 100\% \\
+Use Case Main Flows & 4 & 4 & 0 & 100\% \\
+Use Case Alt Flows & 11 & 7 (fully) + 4 (not explicit) & -- & \textasciitilde 64\% fully tested \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Orphan Artifacts}
+
+All extracted requirements are mapped to at least one use case and to implementation components. All use cases have at least one associated test for the main flow. No clear orphan requirements, use cases, or tests were identified based on the provided text.
+
+\section{Feature-Based Validation}
+
+\subsection{Overview}
+
+This section evaluates the report qualitatively against universal software engineering best practices. Because there is no external knowledge base provided, coverage percentages are approximate and based on typical expectations for a course project.
+
+\begin{table}[H]
+\centering
+\caption{Feature-Based Validation Summary (Qualitative)}
+\begin{tabular}{lr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Total Reference Best-Practice Features (assumed) & 50 \\
+Features Clearly Covered in Report & \textasciitilde 39 \\
+Features Not Evident in Report & \textasciitilde 11 \\
+\midrule
+\textbf{Coverage Percentage} & \textbf{78.0\% (approx.)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Selected Covered Features}
+
+\begin{longtable}{p{1cm}p{3.5cm}p{2cm}p{7cm}}
+\caption{Examples of Covered Universal Features} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence from Report} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+F-1 & Clear problem statement & Problem Definition & ``L\textquoteright obiettivo del progetto e lo sviluppo di un\textquoteright applicazione per la gestione di un sistema di vendita di videogiochi.'' (Section 1.1) \\
+\midrule
+F-2 & Use case driven specification & Requirements & Section 2.2 provides detailed use case templates (UC-001 to UC-004) with preconditions, steps, alternative flows, and postconditions. \\
+\midrule
+F-3 & Layered architecture & Architecture & Section 1.2 and 1.3 describe a modular, layered architecture with Domain Model, Business Logic, ORM, JDBC, and PostgreSQL. \\
+\midrule
+F-4 & Use of design patterns & Architecture & Domain Model and Business Logic sections describe Strategy (PrezzoStrategy), Observer (CarrelloController/LibreriaController), Singleton (DatabaseConnection), and DAO patterns. \\
+\midrule
+F-5 & Database schema documentation & Architecture & Section 2.5 presents an ER diagram representing the structure of the tables created by the DBMS. \\
+\midrule
+F-6 & Automated tests with realistic data & Testing & Section 4 describes JUnit 5 tests using SQL scripts (reset.sql, ProgettoSWE.sql, InserimentoProgettoSWE.sql) to initialize the database. \\
+\midrule
+F-7 & Negative and edge case testing & Testing & Many tests explicitly cover failure scenarios (e.g., insufficient funds, duplicate usernames, non-existing IDs, invalid admin). \\
+\midrule
+F-8 & Separation of concerns & Architecture & Business Logic uses DAOs for persistence and does not interact directly with JDBC; CLI only invokes controller methods. \\
+\midrule
+F-9 & Reproducible test environment & Testing & Section 3.4 explains that SQL scripts are executed beforeEach and afterEach to ensure a consistent DB state for tests. \\
+\midrule
+F-10 & Documentation of main entities & Documentation & Section 3.1 describes each domain entity (Utente, Videogioco, Carrello, Libreria, Abbonamento, StatisticheVideogioco, Achievement, Admin) with roles and attributes. \\
+\end{longtable}
+
+\subsection{Examples of Uncovered or Weakly Covered Features}
+
+\begin{longtable}{p{1cm}p{4cm}p{2.5cm}p{6.5cm}}
+\caption{Examples of Uncovered or Weakly Covered Features} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Feature} & \textbf{Category} & \textbf{Description} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+UF-1 & Performance requirements & Performance & No explicit performance targets (e.g., response time, throughput) are specified. \\
+\midrule
+UF-2 & Security requirements and threat analysis & Security & Security is limited to simple credential checks; there is no discussion of password storage, SQL injection, or threat modeling. \\
+\midrule
+UF-3 & Usability and accessibility & Documentation & The CLI is described, but there are no usability or accessibility criteria or evaluations. \\
+\midrule
+UF-4 & Deployment architecture & Architecture & No description of deployment topology (e.g., single machine, client-server, containerization) is provided. \\
+\midrule
+UF-5 & Logging and monitoring strategy & Maintainability & Logging is used in some methods (System.out.println) but there is no documented logging or monitoring strategy. \\
+\midrule
+UF-6 & Scalability considerations & Performance & No discussion of how the system would behave with many users or large data volumes. \\
+\midrule
+UF-7 & Backup and recovery & Reliability & No mention of backup, recovery, or disaster recovery strategies. \\
+\midrule
+UF-8 & Configuration management & Maintainability & No description of how DB credentials or environment-specific settings are managed. \\
+\midrule
+UF-9 & Continuous integration / delivery & Project Management & No mention of CI/CD pipelines or automated build processes. \\
+\midrule
+UF-10 & Coding standards and style guidelines & Maintainability & No explicit coding standards or style guidelines are documented. \\
+\midrule
+UF-11 & Formal non-functional requirements & Requirements & Non-functional requirements (performance, security, usability) are not formally specified with measurable metrics. \\
+\end{longtable}
+
+\subsection{Checklist Compliance Example: Clear Problem Definition}
+
+\textbf{Feature:} Clear problem definition
+
+\textbf{Description:} The problem is clearly defined with appropriate context and scope.
+
+\begin{longtable}{p{0.8cm}p{6cm}p{2cm}p{5cm}}
+\caption{Checklist Compliance for ``Clear problem definition''} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endfirsthead
+\multicolumn{4}{c}{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Explanation} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+1.1 & Problem statement is clear and specific & \textcolor{coveredcolor}{True} & Section 1.1 clearly states that the goal is to develop an application for managing a videogame sales system with catalog, cart, library, statistics, achievements, and subscriptions. \\
+\midrule
+1.2 & Context and background are provided & \textcolor{partialcolor}{Partial} & The statement describes what the system will do but does not explicitly discuss current limitations of existing solutions or stakeholders\textquotesingle  needs. Adding a short motivation and context paragraph would improve this. \\
+\midrule
+1.3 & Problem scope is well-defined & \textcolor{partialcolor}{Partial} & Functional scope is described through features, but boundaries (e.g., no real game execution, only simulation; single-user vs multi-user) are not explicitly stated. A ``Scope and Limitations'' subsection would clarify this. \\
+\midrule
+1.4 & Target users and stakeholders are identified & \textcolor{partialcolor}{Partial} & Users and admins are implicit in use cases, but stakeholders (e.g., platform operators) are not explicitly listed. A short stakeholder list would complete this. \\
+\end{longtable}
+
+\section{Detailed Analysis}
+
+\subsection{Requirements Quality Assessment}
+
+\subsubsection{Issues and Recommendations}
+
+\textbf{Requirements needing more detail:}
+
+\begin{itemize}
+    \item \textbf{REQ-2:} Search criteria are mentioned but not fully specified (e.g., case sensitivity, partial matches). \textbf{Recommendation:} Specify supported search operators and expected behavior.
+    \item \textbf{REQ-5:} Statistics are recorded but retention period and precision are not defined. \textbf{Recommendation:} Define how long statistics are stored and at what granularity.
+    \item \textbf{REQ-6:} Achievements are unlocked based on time, but other possible conditions are not discussed. \textbf{Recommendation:} Clarify whether only time-based achievements are supported.
+    \item \textbf{REQ-7:} Subscription benefits are described qualitatively. \textbf{Recommendation:} Explicitly state discount percentages and rules for free games (e.g., number of free games per month).
+    \item \textbf{REQ-12:} Maintainability and scalability are goals but not quantified. \textbf{Recommendation:} Add maintainability goals (e.g., maximum coupling, test coverage) or scalability assumptions (e.g., expected number of users). 
+\end{itemize}
+
+\textbf{Vague or missing non-functional requirements:}
+
+\begin{itemize}
+    \item No explicit performance targets (e.g., maximum response time for catalog search).
+    \item No explicit security requirements (e.g., password hashing, access control policies).
+    \item No usability or accessibility requirements for the CLI.
+\end{itemize}
+
+\subsection{Use Case Completeness Analysis}
+
+\subsubsection{Explicit vs. Implicit Use Cases}
+
+All four main use cases are explicitly documented with templates. No additional implicit use cases are strictly required, although one could formalize ``User registration'' and ``User authentication'' as separate use cases, which are currently only described in tests and controller descriptions.
+
+\subsubsection{Alternative Flow Coverage}
+
+\begin{itemize}
+    \item \textbf{Strong:} UC-001 and UC-002 have rich alternative flows covering empty cart, insufficient funds, already purchased games, empty library, already installed games, and missing achievements.
+    \item \textbf{Moderate:} UC-003 and UC-004 include some alternative flows (invalid credentials, invalid data, insufficient funds, already active subscription) but not all possible error conditions are enumerated.
+\end{itemize}
+
+\textbf{Recommendations:}
+\begin{itemize}
+    \item Add explicit use cases or at least templates for user registration and login, since they are central to the platform and heavily tested.
+    \item For UC-003 and UC-004, expand alternative flows to cover all validation errors that are implemented in code (e.g., invalid videogame data, invalid achievement parameters).
+\end{itemize}
+
+\subsection{Architecture Quality Evaluation}
+
+\subsubsection{Design Principles Assessment}
+
+\begin{table}[H]
+\centering
+\caption{Architecture Quality Metrics (Qualitative)}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Principle} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Separation of Concerns & \textcolor{coveredcolor}{Good} & CLI, controllers, DAOs, and entities are clearly separated. \\
+Loose Coupling & \textcolor{coveredcolor}{Good} & Controllers depend on DAOs via interfaces/constructors; DB details are encapsulated. \\
+High Cohesion & \textcolor{coveredcolor}{Good} & Each controller focuses on a specific area (users, cart, library, catalog, etc.). \\
+Single Responsibility & \textcolor{partialcolor}{Moderate} & Some controllers (e.g., CarrelloController) handle several responsibilities but still within one domain. \\
+Error Handling & \textcolor{partialcolor}{Moderate} & Exceptions are thrown for invalid states; no global error-handling policy is documented. \\
+Security & \textcolor{uncoveredcolor}{Weak} & Only basic credential checks; no mention of password hashing or authorization beyond role checks. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Recommendations:}
+\begin{itemize}
+    \item Document transaction boundaries for operations like purchase and subscription activation to ensure atomicity.
+    \item Introduce a simple error-handling strategy (e.g., mapping exceptions to user-friendly CLI messages) and document it.
+    \item Add a short section on security practices (e.g., password hashing, use of prepared statements, minimal privileges for DB user).
+\end{itemize}
+
+\subsection{Test Coverage Analysis}
+
+\subsubsection{Coverage by Area}
+
+\begin{itemize}
+    \item \textbf{Business Logic:} Well covered by controller tests, including many negative scenarios.
+    \item \textbf{Domain Model:} Carrello is thoroughly tested, especially pricing strategy; other entities are simple and not individually tested.
+    \item \textbf{Persistence:} VideogiocoDAO, CarrelloDAO, and LibreriaDAO are tested; other DAOs (UtenteDAO, AbbonamentoDAO, StatisticheVideogiocoDAO, AchievementDAO, AdminDAO) are used indirectly in controller tests but not all have dedicated DAO tests.
+\end{itemize}
+
+\textbf{Recommendations:}
+\begin{itemize}
+    \item Add explicit tests for remaining DAOs to ensure full CRUD coverage.
+    \item Add integration tests for some missing alternative flows (e.g., empty cart, already active subscription).
+    \item Consider adding performance-oriented tests (even simple ones) to measure basic operations like catalog search under load.
+\end{itemize}
+
+\section{Recommendations}
+
+\subsection{Priority 1: Critical Items}
+
+\begin{enumerate}
+    \item \textbf{Formalize Non-Functional Requirements}
+    \begin{itemize}
+        \item Add a short section specifying performance, security, and usability requirements (even at a basic level).
+        \item \textbf{Action:} Define simple metrics (e.g., response time for catalog search, password hashing requirement, basic usability goals for CLI).
+    \end{itemize}
+
+    \item \textbf{Complete Test Coverage for Key Alternative Flows}
+    \begin{itemize}
+        \item Missing or weakly tested flows: empty cart (UC-001), empty library (UC-002), already active subscription (UC-004), some admin validation errors (UC-003).
+        \item \textbf{Action:} Add JUnit tests that explicitly exercise these scenarios and assert correct error messages or behavior.
+    \end{itemize}
+
+    \item \textbf{Document Security and Transaction Handling}
+    \begin{itemize}
+        \item Security and transaction management are implemented implicitly but not documented.
+        \item \textbf{Action:} Add a short subsection describing how credentials are stored, how SQL injection is prevented (prepared statements), and how multi-step operations (e.g., purchase) are kept consistent.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 2: Important Improvements}
+
+\begin{enumerate}
+    \item \textbf{Add Explicit Use Cases for Registration and Authentication}
+    \begin{itemize}
+        \item These flows are central and already tested but not documented as use cases.
+        \item \textbf{Action:} Create UC templates for ``Register user'' and ``Authenticate user'' with preconditions, steps, and alternative flows (e.g., invalid credentials).
+    \end{itemize}
+
+    \item \textbf{Extend DAO Test Coverage}
+    \begin{itemize}
+        \item Some DAOs are only indirectly tested.
+        \item \textbf{Action:} Add tests for UtenteDAO, AbbonamentoDAO, StatisticheVideogiocoDAO, AchievementDAO, and AdminDAO similar to VideogiocoDAOTest.
+    \end{itemize}
+
+    \item \textbf{Clarify Scope and Limitations}
+    \begin{itemize}
+        \item The system simulates gameplay and uses a CLI; these constraints should be explicit.
+        \item \textbf{Action:} Add a ``Scope and Limitations'' subsection in the introduction describing what is intentionally out of scope (e.g., real game execution, graphical UI).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Priority 3: Nice-to-Have Enhancements}
+
+\begin{enumerate}
+    \item \textbf{Add Deployment and Scalability Notes}
+    \begin{itemize}
+        \item Even a simple description (single machine, local PostgreSQL) would improve completeness.
+    \end{itemize}
+
+    \item \textbf{Introduce Basic Logging Strategy}
+    \begin{itemize}
+        \item Replace System.out.println with a simple logging framework and document log levels.
+    \end{itemize}
+
+    \item \textbf{Summarize Coding Standards}
+    \begin{itemize}
+        \item A short note on naming conventions and code style would strengthen maintainability documentation.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Summary Checklist}
+
+\begin{table}[H]
+\centering
+\caption{Action Item Summary}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Priority} & \textbf{Items} & \textbf{Est. Effort} \\
+\midrule
+Critical (P1) & 3 & 1--2 days \\
+Important (P2) & 3 & 2--3 days \\
+Nice-to-Have (P3) & 3 & 2--4 days \\
+\midrule
+\textbf{Total} & \textbf{9} & \textbf{5--9 days} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

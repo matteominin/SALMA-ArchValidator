@@ -1,0 +1,1629 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./report.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/size11.clo))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty (/usr/local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2025/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2025/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2025/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+))) (/usr/local/texlive/2025/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file report.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/local/texlive/2025/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+No file report.toc.
+
+[1{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/l
+ocal/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 113--113
+[]|\T1/cmr/bx/n/10.95 Start
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+[]|\T1/cmr/bx/n/10.95 Start
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[2
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.150 \end{longtable}
+                     {/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-sup
+er/cm-super-ts1.enc}]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[3]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[4
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.236 
+      ]
+Underfull \hbox (badness 1783) in paragraph at lines 260--261
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+\T1/cmr/m/n/10.95 (role model
+
+Underfull \hbox (badness 10000) in paragraph at lines 260--261
+\T1/cmr/m/n/10.95 not fully
+
+Underfull \hbox (badness 1783) in paragraph at lines 264--265
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\T1/cmr/m/n/10.95 (op-er-a-tions
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\T1/cmr/m/n/10.95 and con-
+
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
+\T1/cmr/m/n/10.95 straints not
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+[]|\T1/cmr/m/n/10.95 Needs De-
+
+Underfull \hbox (badness 7540) in paragraph at lines 266--267
+\T1/cmr/m/n/10.95 tail (la-tency
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\T1/cmr/m/n/10.95 and con-sis-
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
+\T1/cmr/m/n/10.95 tency not
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 272--273
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified
+
+Underfull \hbox (badness 3679) in paragraph at lines 272--273
+\T1/cmr/m/n/10.95 or stan-dards
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--276
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Overfull \hbox (20.34674pt too wide) in paragraph at lines 276--276
+[]|\T1/cmr/m/n/10.95 Goal/background| 
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 276--277
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified
+
+Underfull \hbox (badness 2772) in paragraph at lines 276--277
+\T1/cmr/m/n/10.95 (no us-abil-ity
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--278
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 1783) in paragraph at lines 278--279
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+
+Underfull \hbox (badness 3792) in paragraph at lines 278--279
+\T1/cmr/m/n/10.95 (stor-age and
+
+Underfull \hbox (badness 1946) in paragraph at lines 278--279
+\T1/cmr/m/n/10.95 con-flict rules
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--280
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+[]|\T1/cmr/m/n/10.95 Needs De-
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 tail (sync
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 strat-egy
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 and con-flict
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
+\T1/cmr/m/n/10.95 res-o-lu-tion
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--282
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 1783) in paragraph at lines 282--283
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+\T1/cmr/m/n/10.95 (lim-its and
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--283
+\T1/cmr/m/n/10.95 rec-on-cil-i-a-tion
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--284
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Overfull \hbox (20.34674pt too wide) in paragraph at lines 284--284
+[]|\T1/cmr/m/n/10.95 Goal/background| 
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 284--285
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified| 
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--286
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 1783) in paragraph at lines 286--287
+[]|\T1/cmr/m/n/10.95 Needs De-tail
+
+Underfull \hbox (badness 7379) in paragraph at lines 286--287
+\T1/cmr/m/n/10.95 (schema not
+
+Underfull \hbox (badness 10000) in paragraph at lines 288--288
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--290
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
+[]|\T1/cmr/m/n/10.95 Non-
+
+Underfull \hbox (badness 10000) in paragraph at lines 294--294
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--296
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 298--298
+[]|\T1/cmr/m/n/10.95 Non-
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 298--299
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified| 
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--300
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Overfull \hbox (30.42784pt too wide) in paragraph at lines 300--301
+[]|\T1/cmr/m/n/10.95 Vague/Unquantified
+
+Underfull \hbox (badness 10000) in paragraph at lines 300--301
+\T1/cmr/m/n/10.95 (scope un-
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--302
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 304--304
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.305 \end{longtable}
+                     ]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 336--337
+[]|\T1/cmr/m/n/10.95 Customer, Sys-tem, Pay-ment
+
+Underfull \hbox (badness 1360) in paragraph at lines 340--340
+[]|\T1/cmr/m/n/10.95 Complete Main-te-nance
+
+Underfull \hbox (badness 2158) in paragraph at lines 354--354
+[]|\T1/cmr/m/n/10.95 View An-a-lyt-ics Dash-
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[7]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[8]
+Underfull \hbox (badness 7168) in paragraph at lines 451--452
+[]|\T1/cmr/m/n/10.95 Clear UI fo-cus; technology-
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+[]|\T1/cmr/m/n/10.95 Controller Layer
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+\T1/cmr/m/n/10.95 (User-Con-troller,
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+\T1/cmr/m/n/10.95 Ma-chineCon-troller,
+
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
+\T1/cmr/m/n/10.95 Trans-ac-tion-Con-
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--455
+\T1/cmr/m/n/10.95 tom-erSer-vice, Ad-
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--455
+\T1/cmr/m/n/10.95 min-Ser-vice, Work-
+
+Underfull \hbox (badness 2486) in paragraph at lines 455--455
+[]|\T1/cmr/m/n/10.95 Business logic or-ches-tra-tion
+
+Underfull \hbox (badness 4229) in paragraph at lines 455--455
+\T1/cmr/m/n/10.95 for cus-tomer, ad-min, and
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+[]|\T1/cmr/m/n/10.95 Responsibilities some-what
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+\T1/cmr/m/n/10.95 broad; rec-om-men-da-tion to
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+\T1/cmr/m/n/10.95 chase-Orches-tra-tionSer-vice,
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--456
+\T1/cmr/m/n/10.95 In-ven-to-ry-Man-age-mentSer-vice,
+
+Underfull \hbox (badness 3735) in paragraph at lines 457--457
+[]|\T1/cmr/m/n/10.95 DAO Layer (User-
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--457
+\T1/cmr/m/n/10.95 Dao, Trans-ac-tion-
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--457
+\T1/cmr/m/n/10.95 Dao, Item-Dao,
+
+Underfull \hbox (badness 1389) in paragraph at lines 457--457
+[]|\T1/cmr/m/n/10.95 Data ac-cess ab-strac-tion for
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--459
+[]|\T1/cmr/m/n/10.95 Persistence Layer
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--459
+\T1/cmr/m/n/10.95 (JPA/Hibernate,
+
+Underfull \hbox (badness 10000) in paragraph at lines 459--460
+[]|\T1/cmr/m/n/10.95 Clear in-fras-truc-ture con-cern;
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+[]|\T1/cmr/m/n/10.95 Domain Model
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+\T1/cmr/m/n/10.95 (Con-creteVend-ing-
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+\T1/cmr/m/n/10.95 Ma-chine, Trans-
+
+Underfull \hbox (badness 10000) in paragraph at lines 461--461
+\T1/cmr/m/n/10.95 ac-tion, In-ven-tory,
+
+Underfull \hbox (badness 1902) in paragraph at lines 461--461
+[]|\T1/cmr/m/n/10.95 Business en-ti-ties and value
+
+Underfull \hbox (badness 10000) in paragraph at lines 463--463
+[]|\T1/cmr/m/n/10.95 Payment Gate-way
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.465 (Planned)
+                Domain Events Infrastructure & Publish domain events such as...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   d
+l.465 (Planned)
+                Domain Events Infrastructure & Publish domain events such as...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   d
+l.465 (Planned)
+                Domain Events Infrastructure & Publish domain events such as...
+
+
+Underfull \hbox (badness 1735) in paragraph at lines 465--465
+[]|\T1/cmr/m/n/10.95 Domain Events In-
+
+Underfull \hbox (badness 4927) in paragraph at lines 465--465
+\T1/cmr/m/n/10.95 as Pro-duct-Pur-chased, Bal-
+
+Underfull \hbox (badness 1596) in paragraph at lines 465--465
+\T1/cmr/m/n/10.95 anceRecharged, Main-te-nanc-
+
+Underfull \hbox (badness 2042) in paragraph at lines 465--466
+[]|\T1/cmr/m/n/10.95 Not yet im-ple-mented; rec-om-
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[9]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[10]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.513 \textbf
+             {Domain} & \textbf{Tests} & \textbf{Coverage} & \textbf{Notes} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.515 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.518 \textbf
+             {Domain} & \textbf{Tests} & \textbf{Coverage} & \textbf{Notes} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.520 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.522 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.525 \endlastfoot
+                  
+
+Underfull \hbox (badness 1337) in paragraph at lines 527--528
+\T1/cmr/m/n/10.95 den-tials, in-put val-i-da-
+
+Underfull \hbox (badness 8038) in paragraph at lines 527--528
+\T1/cmr/m/n/10.95 tion, er-ror han-dling,
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.529 T
+       ransaction \& Payment & 18 & High & Covers purchase flow, wallet oper...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
+[]|\T1/cmr/m/n/10.95 Transaction &
+
+Underfull \hbox (badness 2903) in paragraph at lines 529--530
+[]|\T1/cmr/m/n/10.95 Covers pur-chase flow,
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.531 O
+       ffline Operation & 0 & None & No tests for offline scenarios. \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.533 I
+       nventory \& Product Management & 13 & High & Covers CRUD, validation,...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 533--533
+[]|\T1/cmr/m/n/10.95 Inventory &
+
+Underfull \hbox (badness 1028) in paragraph at lines 533--534
+[]|\T1/cmr/m/n/10.95 Covers CRUD, val-i-da-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.535 M
+       aintenance \& Worker Operations & 5 & Partial & Tests for UC-8 only; ...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--535
+[]|\T1/cmr/m/n/10.95 Maintenance &
+
+Underfull \hbox (badness 10000) in paragraph at lines 535--535
+\T1/cmr/m/n/10.95 Worker Op-er-a-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.537 C
+       ross-Cutting Error Handling & Several & Partial & Tests verify errors...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.545 \textbf
+             {ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hin...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.547 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.550 \textbf
+             {ID} & \textbf{Type} & \textbf{Artifact} & \textbf{Coverage Hin...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.552 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.554 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.557 \endlastfoot
+                  
+
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
+[]|\T1/cmr/m/n/10.95 Authentication tests
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.561 T
+       EST-2 & Unit & Registration tests (duplicate email) & User Registrati...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
+[]|\T1/cmr/m/n/10.95 User Reg-is-tra-tion busi-ness
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.563 T
+       EST-10 & Integration & Transaction rollback tests & Purchase Item err...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--563
+[]|\T1/cmr/m/n/10.95 TEST-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.565 T
+       EST-20 & Unit & Inventory CRUD tests & Add/Update/Delete/View Items (...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--565
+[]|\T1/cmr/m/n/10.95 TEST-
+
+Underfull \hbox (badness 10000) in paragraph at lines 565--566
+[]|\T1/cmr/m/n/10.95 Add/Update/Delete/View
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.567 T
+       EST-30 & Unit & Maintenance task completion tests & Complete Maintena...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 567--567
+[]|\T1/cmr/m/n/10.95 TEST-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.569 T
+       EST-40 & System & End-to-end purchase flow & Purchase Item main flow ...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 569--569
+[]|\T1/cmr/m/n/10.95 TEST-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.571 T
+       EST-50 & System & Navigation tests & \textit{Missing} according to Se...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 571--571
+[]|\T1/cmr/m/n/10.95 TEST-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.573 T
+       EST-60 & System & Hardware integration tests & \textit{Missing}; no r...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 573--573
+[]|\T1/cmr/m/n/10.95 TEST-
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[11
+pdfTeX warning (ext4): destination with the same identifier (name{table.9}) has
+ been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.574 \end{longtable}
+                     ]
+Overfull \hbox (6.01488pt too wide) in paragraph at lines 583--593
+ [][] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.600 \textbf
+             {Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Ratio...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.602 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.605 \textbf
+             {Req ID} & \textbf{Use Cases} & \textbf{Status} & \textbf{Ratio...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.607 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.609 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.612 \endlastfoot
+                  
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.616 R
+       EQ-2 & UC-2 & \textcolor{coveredcolor}{Covered} & UC-2 (User Registra...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.618 R
+       EQ-3 & UC-3 & \textcolor{coveredcolor}{Covered} & QR code generation ...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.620 R
+       EQ-4 & UC-12, UC-13, UC-14, UC-15 & \textcolor{coveredcolor}{Covered}...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 620--620
+[]|\T1/cmr/m/n/10.95 UC-12, UC-13,
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.622 R
+       EQ-5 & UC-3, UC-12--UC-15 & \textcolor{partialcolor}{Partial} & Real-...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 622--622
+[]|\T1/cmr/m/n/10.95 UC-3, UC-12--
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.624 R
+       EQ-6 & UC-3, UC-4 & \textcolor{coveredcolor}{Covered} & Wallet balanc...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.626 R
+       EQ-8 & UC-3, UC-4 & \textcolor{partialcolor}{Partial} & Digital payme...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 626--627
+[]|\T1/cmr/m/n/10.95 Digital pay-ments used, but
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.628 R
+       EQ-9 & UC-3, UC-6 & \textcolor{coveredcolor}{Covered} & Transaction h...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
+[]|\T1/cmr/m/n/10.95 Transaction his-tory recorded and
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.630 R
+       EQ-10 & UC-1--UC-4, UC-6 & \textcolor{partialcolor}{Partial} & ``Impr...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.632 R
+       EQ-18 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No offline use...
+
+
+Overfull \hbox (13.36685pt too wide) in paragraph at lines 632--632
+[]|[]\T1/cmr/m/n/10.95 UNSUPPORTED[]| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.634 R
+       EQ-19 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No sync use ca...
+
+
+Overfull \hbox (13.36685pt too wide) in paragraph at lines 634--634
+[]|[]\T1/cmr/m/n/10.95 UNSUPPORTED[]| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.636 R
+       EQ-20 & -- & \textcolor{uncoveredcolor}{UNSUPPORTED} & No anonymous c...
+
+
+Overfull \hbox (13.36685pt too wide) in paragraph at lines 636--636
+[]|[]\T1/cmr/m/n/10.95 UNSUPPORTED[]| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.638 R
+       EQ-22 & UC-8 & \textcolor{coveredcolor}{Covered} & Worker task assign...
+
+
+Underfull \hbox (badness 1629) in paragraph at lines 638--639
+[]|\T1/cmr/m/n/10.95 Worker task as-sign-ment re-al-ized in
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.640 R
+       EQ-24 & UC-8 & \textcolor{coveredcolor}{Covered} & Maintenance notifi...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.642 R
+       EQ-34 & UC-1 & \textcolor{partialcolor}{Partial} & Authentication err...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.644 R
+       EQ-35 & UC-3 & \textcolor{partialcolor}{Partial} & Transaction errors...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.646 R
+       EQ-45 & UC-1--UC-4 & \textcolor{partialcolor}{Partial} & Validation e...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.648 R
+       EQ-46--REQ-49 & Multiple & \textcolor{coveredcolor}{Covered} & Valida...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--648
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 648--648
+\T1/cmr/m/n/10.95 46--
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.650 R
+       EQ-50--REQ-53 & All & \textcolor{coveredcolor}{Covered} & Architectur...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
+[]|\T1/cmr/m/n/10.95 REQ-
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--650
+\T1/cmr/m/n/10.95 50--
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.652 R
+       EQ-60 & UC-18 & \textcolor{partialcolor}{Partial} & Remote maintenanc...
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[12
+pdfTeX warning (ext4): destination with the same identifier (name{table.12}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.653 \end{longtable}
+                     ]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.660 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Stat...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.662 \endfirsthead
+                   
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 657--662
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.665 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Components} & \textbf{Stat...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.667 \endhead
+              
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 662--667
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.669 \multicolumn
+                  {5}{r}{{Continued on next page}} \\
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 667--670
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.672 \endlastfoot
+                  
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 670--672
+ [] [] [] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--674
+[]|\T1/cmr/m/n/10.95 Presentation, User-Con-
+
+Underfull \hbox (badness 10000) in paragraph at lines 674--674
+\T1/cmr/m/n/10.95 troller, Cus-tom-erSer-
+
+Overfull \hbox (38.00237pt too wide) in paragraph at lines 674--674
+\T1/cmr/m/n/10.95 vice/AdminService/WorkerService,
+
+Underfull \hbox (badness 1484) in paragraph at lines 674--674
+\T1/cmr/m/n/10.95 User-Dao, Do-main Model
+
+Underfull \hbox (badness 1629) in paragraph at lines 674--675
+[]|\T1/cmr/m/n/10.95 Standard lay-ered
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.676 U
+       C-2 & User Registration & Presentation, UserController, Services, Use...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--676
+[]|\T1/cmr/m/n/10.95 Presentation, User-Con-
+
+Underfull \hbox (badness 1762) in paragraph at lines 676--677
+[]|\T1/cmr/m/n/10.95 Similar to UC-1
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\T1/cmr/m/n/10.95 with ad-di-tional
+
+Underfull \hbox (badness 10000) in paragraph at lines 676--677
+\T1/cmr/m/n/10.95 role as-sign-ment
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.678 U
+       C-3 & Purchase Item & Presentation, TransactionController, CustomerSe...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--678
+[]|\T1/cmr/m/n/10.95 Presentation, Trans-ac-
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--678
+\T1/cmr/m/n/10.95 tion-Con-troller, Cus-tom-
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--678
+\T1/cmr/m/n/10.95 Trans-ac-tion-Item-Dao,
+
+Underfull \hbox (badness 4752) in paragraph at lines 678--678
+\T1/cmr/m/n/10.95 Wal-let, In-ven-tory, Con-
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+[]|\T1/cmr/m/n/10.95 Purchase or-
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+\T1/cmr/m/n/10.95 ches-tra-tion,
+
+Underfull \hbox (badness 6927) in paragraph at lines 678--679
+\T1/cmr/m/n/10.95 per-sis-tence, and
+
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
+\T1/cmr/m/n/10.95 vend-ing op-er-a-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.680 U
+       C-4 & Recharge Wallet & Presentation, TransactionController, Customer...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--680
+[]|\T1/cmr/m/n/10.95 Presentation, Trans-ac-
+
+Underfull \hbox (badness 10000) in paragraph at lines 680--680
+\T1/cmr/m/n/10.95 tion-Con-troller, Cus-tom-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.682 U
+       C-6 & View Transaction History & Presentation, TransactionController,...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 682--682
+\T1/cmr/m/n/10.95 Con-troller, Trans-ac-tion-
+
+Underfull \hbox (badness 2012) in paragraph at lines 682--683
+[]|\T1/cmr/m/n/10.95 Read-only ac-cess
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.684 U
+       C-8 & Complete Maintenance Task & Presentation, WorkerService, TaskMa...
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 684--684
+[]|\T1/cmr/m/n/10.95 Presentation, Work-erSer-
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--685
+[]|\T1/cmr/m/n/10.95 Task life-cy-cle
+
+Underfull \hbox (badness 1895) in paragraph at lines 684--685
+\T1/cmr/m/n/10.95 man-aged in ser-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.686 U
+       C-12--UC-15 & Inventory CRUD & Presentation, AdminService, ItemDao, M...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--686
+[]|\T1/cmr/m/n/10.95 UC-12--
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--686
+[]|\T1/cmr/m/n/10.95 Presentation, Ad-min-
+
+Underfull \hbox (badness 10000) in paragraph at lines 686--686
+\T1/cmr/m/n/10.95 Ser-vice, Item-Dao, Ma-
+
+Underfull \hbox (badness 3219) in paragraph at lines 686--686
+\T1/cmr/m/n/10.95 chineDao, In-ven-to-ryMap-
+
+Underfull \hbox (badness 7777) in paragraph at lines 686--687
+\T1/cmr/m/n/10.95 mapped to ad-
+
+Underfull \hbox (badness 2486) in paragraph at lines 686--687
+\T1/cmr/m/n/10.95 min ser-vice and
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.688 U
+       C-18 & Remote Maintenance & Presentation, WorkerService & \textcolor{...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--688
+[]|\T1/cmr/m/n/10.95 Remote Main-te-
+
+Underfull \hbox (badness 5008) in paragraph at lines 688--688
+[]|\T1/cmr/m/n/10.95 Presentation, Work-erSer-
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--688
+[]|[]\T1/cmr/m/n/10.95 Not Im-ple-
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+[]|\T1/cmr/m/n/10.95 No hard-ware
+
+Underfull \hbox (badness 4673) in paragraph at lines 688--689
+\T1/cmr/m/n/10.95 ab-strac-tion, IoT
+
+Underfull \hbox (badness 3514) in paragraph at lines 688--689
+\T1/cmr/m/n/10.95 gate-way, or de-
+
+Underfull \hbox (badness 10000) in paragraph at lines 688--689
+\T1/cmr/m/n/10.95 vice pro-to-col
+
+Overfull \hbox (19.59703pt too wide) in alignment at lines 672--689
+ [] [] [] [] [] 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[13]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.696 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt F...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 696--696
+[]|\T1/cmr/bx/n/10.95 Main
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.698 \endfirsthead
+                   
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 693--698
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.701 \textbf
+             {UC ID} & \textbf{UC Name} & \textbf{Main Flow} & \textbf{Alt F...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 701--701
+[]|\T1/cmr/bx/n/10.95 Main
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.703 \endhead
+              
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 698--703
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.705 \multicolumn
+                  {5}{r}{{Continued on next page}} \\
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 703--706
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.708 \endlastfoot
+                  
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 706--708
+ [] [] [] [] [] 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.713 U
+       C-2 & User Registration & \textcolor{coveredcolor}{Tested} & \textcol...
+
+
+Underfull \hbox (badness 1910) in paragraph at lines 714--715
+[]|\T1/cmr/m/n/10.95 Registration suc-cess, du-pli-cate
+
+Underfull \hbox (badness 8038) in paragraph at lines 714--715
+\T1/cmr/m/n/10.95 email, and val-i-da-tion er-rors
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.716 U
+       C-3 & Purchase Item & \textcolor{coveredcolor}{Tested} & \textcolor{c...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.719 U
+       C-4 & Recharge Wallet & \textcolor{coveredcolor}{Tested} & \textcolor...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.722 U
+       C-6 & View Transaction History & \textcolor{coveredcolor}{Tested} & \...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.725 U
+       C-8 & Complete Maintenance Task & \textcolor{coveredcolor}{Tested} & ...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.728 U
+       C-12--UC-15 & Inventory CRUD & \textcolor{coveredcolor}{Tested} & \te...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 728--728
+[]|\T1/cmr/m/n/10.95 UC-12--
+
+Underfull \hbox (badness 2050) in paragraph at lines 729--730
+[]|\T1/cmr/m/n/10.95 CRUD op-er-a-tions and val-i-da-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.731 U
+       C-18 & Remote Maintenance & \textcolor{uncoveredcolor}{Not Tested} & ...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 731--731
+[]|\T1/cmr/m/n/10.95 Remote Main-te-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.734 M
+       ulti-UC Journeys & Register \textrightarrow{} Recharge \textrightarro...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+[]|\T1/cmr/m/n/10.95 Multi-
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+\T1/cmr/m/n/10.95 UC
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+[]|\T1/cmr/m/n/10.95 Register \TS1/cmr/m/n/10.95 ^^Y
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+\T1/cmr/m/n/10.95 Recharge \TS1/cmr/m/n/10.95 ^^Y
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
+\T1/cmr/m/n/10.95 Pur-chase \TS1/cmr/m/n/10.95 ^^Y
+
+Overfull \hbox (5.37064pt too wide) in alignment at lines 708--736
+ [] [] [] [] [] 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[14]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[15]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.789 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence ...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.791 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.794 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Evidence ...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.796 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.798 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.801 \endlastfoot
+                  
+
+Underfull \hbox (badness 10000) in paragraph at lines 803--803
+[]|\T1/cmr/m/n/10.95 Clear ar-chi-tec-tural
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 803--803
+[]|\T1/cmr/m/n/10.95 Architecture| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.805 F
+       -2 & Layer responsibilities defined & Architecture & Table in Section...
+
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 805--805
+[]|\T1/cmr/m/n/10.95 Architecture| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.807 F
+       -3 & Traceability from requirements to tests & Documentation & ``Auto...
+
+
+Overfull \hbox (16.13089pt too wide) in paragraph at lines 807--807
+[]|\T1/cmr/m/n/10.95 Documentation| 
+
+Underfull \hbox (badness 1038) in paragraph at lines 807--808
+\T1/cmr/m/n/10.95 to-mated trace-abil-ity from re-quire-ments
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.809 F
+       -4 & Test pyramid adherence & Testing & ``Unit Tests (71\%), Integrat...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.811 F
+       -5 & Error handling strategy identified & Cross-Cutting & Section 3.1...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 811--811
+[]|\T1/cmr/m/n/10.95 Cross-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.813 F
+       -6 & Requirements inventory & Documentation & Appendix lists all 62 r...
+
+
+Overfull \hbox (16.13089pt too wide) in paragraph at lines 813--813
+[]|\T1/cmr/m/n/10.95 Documentation| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.815 F
+       -7 & Identification of vague requirements & Requirements & Section 3....
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 815--815
+[]|\T1/cmr/m/n/10.95 Identification of
+
+Overfull \hbox (8.02734pt too wide) in paragraph at lines 815--815
+[]|\T1/cmr/m/n/10.95 Requirements| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.817 F
+       -8 & Use of design patterns & Architecture & Section 2.6 and 2.7 desc...
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 817--817
+[]|\T1/cmr/m/n/10.95 Use of de-sign pat-
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 817--817
+[]|\T1/cmr/m/n/10.95 Architecture| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.819 F
+       -9 & Domain-driven design elements & Architecture & ``The domain mode...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 819--819
+[]|\T1/cmr/m/n/10.95 Domain-driven
+
+Overfull \hbox (2.37413pt too wide) in paragraph at lines 819--819
+[]|\T1/cmr/m/n/10.95 Architecture| 
+
+Underfull \hbox (badness 4266) in paragraph at lines 819--820
+[]|\T1/cmr/m/n/10.95 ``The do-main model fol-lows Domain-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.821 F
+       -10 & Risk identification & Project Management & Executive summary an...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--821
+[]|\T1/cmr/m/n/10.95 Project
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--821
+\T1/cmr/m/n/10.95 Man-age-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.823 F
+       -11 & Methodology validation & Documentation & ``This report was vali...
+
+
+Overfull \hbox (16.13089pt too wide) in paragraph at lines 823--823
+[]|\T1/cmr/m/n/10.95 Documentation| 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[16
+pdfTeX warning (ext4): destination with the same identifier (name{table.16}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.824 \end{longtable}
+                     ]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.831 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Descripti...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.833 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.836 \textbf
+             {ID} & \textbf{Feature} & \textbf{Category} & \textbf{Descripti...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.838 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.840 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.843 \endlastfoot
+                  
+
+Underfull \hbox (badness 10000) in paragraph at lines 845--845
+[]|\T1/cmr/m/n/10.95 Performance re-quire-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.847 U
+       F-2 & Security threat analysis & Security & No systematic threat mode...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.849 U
+       F-3 & Deployment architecture & Architecture & No deployment topology...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 849--849
+[]|\T1/cmr/m/n/10.95 Deployment ar-chi-tec-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.851 U
+       F-4 & Monitoring and observability & Maintainability & No logging/mon...
+
+
+Overfull \hbox (2.06168pt too wide) in paragraph at lines 851--851
+[]|\T1/cmr/m/n/10.95 Maintainability| 
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.853 U
+       F-5 & Formal non-functional requirements & Requirements & Usability a...
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 853--853
+[]|\T1/cmr/m/n/10.95 Formal non-functional
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.867 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.869 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.872 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.874 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.876 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.879 \endlastfoot
+                  
+
+Underfull \hbox (badness 1092) in paragraph at lines 881--882
+[]|\T1/cmr/m/n/10.95 Section 2.6 ex-plic-itly states
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.883 1
+       .2 & Pattern is justified & \textcolor{coveredcolor}{True} & Benefits...
+
+
+Underfull \hbox (badness 1270) in paragraph at lines 883--884
+[]|\T1/cmr/m/n/10.95 Benefits such as testa-bil-ity,
+
+Underfull \hbox (badness 4013) in paragraph at lines 883--884
+\T1/cmr/m/n/10.95 no layer skip-ping are de-
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.885 1
+       .3 & Layer responsibilities are clear & \textcolor{partialcolor}{Part...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.887 1
+       .4 & Pattern is consistently applied & \textcolor{coveredcolor}{True}...
+
+
+Underfull \hbox (badness 1888) in paragraph at lines 887--888
+[]|\T1/cmr/m/n/10.95 No layer-skipping vi-o-la-tions
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[17]
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.899 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.901 \endfirsthead
+                   
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.904 \textbf
+             {ID} & \textbf{Checklist Item} & \textbf{Status} & \textbf{Expl...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.906 \endhead
+              
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.908 \multicolumn
+                  {4}{r}{{Continued on next page}} \\
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.911 \endlastfoot
+                  
+
+Underfull \hbox (badness 8132) in paragraph at lines 913--914
+[]|\T1/cmr/m/n/10.95 Appendix lists REQ-1 to
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.915 2
+       .2 & Requirements are categorized & \textcolor{coveredcolor}{True} & ...
+
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.917 2
+       .3 & Vague requirements are flagged & \textcolor{coveredcolor}{True} ...
+
+
+Underfull \hbox (badness 5374) in paragraph at lines 917--918
+[]|\T1/cmr/m/n/10.95 Section 3.2 ex-plic-itly lists
+! Undefined control sequence.
+<argument> ...al \expandafter \let \cmrsideswitch 
+                                                  \@tempa \fi \fi 
+l.919 2
+       .4 & All requirements are testable & \textcolor{uncoveredcolor}{False...
+
+
+Underfull \hbox (badness 1163) in paragraph at lines 919--920
+[]|\T1/cmr/m/n/10.95 Several re-quire-ments (REQ-
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[18]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[19
+pdfTeX warning (ext4): destination with the same identifier (name{table.21}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.977 \end{itemize}
+                   ]
+Overfull \hbox (37.17882pt too wide) in paragraph at lines 994--1006
+ [][] 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[20
+pdfTeX warning (ext4): destination with the same identifier (name{table.22}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1034 \end{itemize}
+                    ]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[21]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[22
+pdfTeX warning (ext4): destination with the same identifier (name{table.23}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1108 \end{document}
+                     ] (./report.aux)
+
+Package rerunfilecheck Warning: File `report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(\end occurred when \ifx on line 465 was incomplete)
+(see the transcript file for additional information)</usr/local/texlive/2025/te
+xmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2025/texm
+f-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-
+dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-di
+st/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2025/texmf-dist
+/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/f
+onts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2025/texmf-dist/fon
+ts/type1/public/cm-super/sfti1095.pfb>
+Output written on report.pdf (22 pages, 195093 bytes).
+Transcript written on report.log.
+
+

@@ -1,0 +1,55 @@
+\contentsline {section}{\numberline {1}Executive Summary}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Scope of the Validation}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Validation Status}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Key Findings}{2}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Content Extraction Results}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Phase 1: Table of Contents and Sections}{3}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Extracted Table of Contents}{3}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Section Classification}{4}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}Requirements Extraction}{4}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Requirements Quality Distribution}{5}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Requirements by Type}{5}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Detailed Requirements List}{5}{subsubsection.2.2.3}%
+\contentsline {paragraph}{Notes on Requirements Quality}{6}{section*.2}%
+\contentsline {subsection}{\numberline {2.3}Use Case Extraction}{6}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Use Case Summary}{7}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Detailed Use Case Descriptions (Selected)}{7}{subsubsection.2.3.2}%
+\contentsline {paragraph}{UC-1: Login}{7}{section*.3}%
+\contentsline {paragraph}{UC-4: Signup}{8}{section*.4}%
+\contentsline {paragraph}{UC-7: Richiesta di un elemento in prestito}{8}{section*.5}%
+\contentsline {paragraph}{UC-10: Aggiungere elemento al database}{8}{section*.6}%
+\contentsline {subsection}{\numberline {2.4}Architecture Extraction}{9}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Architectural Pattern}{9}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Architecture Components}{9}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Architecture Analysis}{11}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Test Extraction}{11}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Test Type Distribution}{11}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Detailed Test List (Logical Level)}{12}{subsubsection.2.5.2}%
+\contentsline {paragraph}{Observations}{13}{section*.7}%
+\contentsline {section}{\numberline {3}Consolidated Architecture Model}{13}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Overall Pattern and Layers}{13}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Layers and Components}{13}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Architecture Analysis Summary}{15}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Traceability Matrix}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Requirements to Use Cases Mapping}{16}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Use Cases to Architecture Mapping}{17}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Use Cases to Tests Mapping}{19}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Complete Traceability Overview}{21}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Orphan Artifacts}{21}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Feature-Based Validation}{21}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Overview}{21}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Selected Covered Features}{22}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Selected Uncovered or Weakly Covered Features}{22}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Checklist Compliance Example: Clear Functional Scope}{23}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Detailed Analysis}{24}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Requirements Quality Assessment}{24}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Strengths}{24}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Gaps and Recommendations}{24}{subsubsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.2}Use Case Completeness Analysis}{24}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Architecture Quality Evaluation}{25}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Test Coverage Analysis}{25}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Recommendations}{25}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Priority 1: Critical Items}{25}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Priority 2: Important Improvements}{25}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Priority 3: Nice-to-Have Enhancements}{26}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Summary Checklist}{26}{subsection.7.4}%

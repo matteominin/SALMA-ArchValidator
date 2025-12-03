@@ -1,0 +1,54 @@
+{
+  "pdfPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/Knowledge_Base/25-06-19_Ciabatti/validation_report_SWE_Relazione_Ciabatti.pdf",
+  "texPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/Knowledge_Base/25-06-19_Ciabatti/validation_report_SWE_Relazione_Ciabatti.tex",
+  "summary": {
+    "requirements_extracted": 18,
+    "requirements_by_type": {
+      "functional": 14,
+      "non_functional": 2,
+      "constraint": 1,
+      "goal": 1
+    },
+    "requirements_quality": {
+      "well_defined": 10,
+      "needs_detail": 6,
+      "vague": 2
+    },
+    "use_cases_extracted": 6,
+    "use_cases_explicit": 6,
+    "use_cases_implicit": 0,
+    "architecture_components": 15,
+    "architecture_pattern": "Layered Architecture",
+    "tests_extracted": 4,
+    "tests_by_type": {
+      "unit_controllers": 3,
+      "unit_dao": 1,
+      "integration": 0,
+      "system": 0,
+      "performance": 0
+    },
+    "traceability_coverage_percentage": 100.0,
+    "traceability_details": {
+      "requirements_covered": 18,
+      "requirements_fully_covered": 14,
+      "requirements_partially_covered": 4,
+      "requirements_uncovered": 0,
+      "use_cases_fully_tested_main_flow": 6,
+      "use_cases_with_alt_flow_gaps": 5,
+      "orphan_requirements": 0,
+      "orphan_tests": 0
+    },
+    "feature_coverage_percentage": 82.0,
+    "feature_details": {
+      "total_kb_features": 50,
+      "covered_features": 41,
+      "uncovered_features": 9
+    },
+    "validation_status": "PASSED",
+    "critical_issues": 3,
+    "warnings": 5,
+    "recommendations_priority_1": 3,
+    "recommendations_priority_2": 3,
+    "recommendations_priority_3": 3
+  }
+}

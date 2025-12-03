@@ -1,0 +1,1640 @@
+--- Page 1 ---
+Library Management Application
+Elaborato di Ingegneria del Software
+Docente: Enrico Vicario
+Studenti: Luca Lascialfari, Marco Siani, Tommaso Puzzo
+
+
+--- Page 2 ---
+Contenuti
+1
+Introduzione
+1
+1.1
+Obiettivi del progetto . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1
+1.2
+Tecnologie e architettura utilizzate
+. . . . . . . . . . . . . . . . . . .
+1
+2
+Progettazione
+2
+2.1
+Attori coinvolti e relativi casi d’uso . . . . . . . . . . . . . . . . . . .
+2
+2.2
+Use Case Template . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+3
+2.2.1
+Use Case condivisi
+. . . . . . . . . . . . . . . . . . . . . . . .
+3
+2.2.2
+Utente . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5
+2.2.3
+Amministratore . . . . . . . . . . . . . . . . . . . . . . . . . .
+7
+2.3
+Diagramma delle classi . . . . . . . . . . . . . . . . . . . . . . . . . .
+10
+2.4
+Aspetti rilevanti del progetto . . . . . . . . . . . . . . . . . . . . . . .
+14
+2.4.1
+Model View Controller . . . . . . . . . . . . . . . . . . . . . .
+14
+2.4.2
+Singleton
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+14
+2.4.3
+DAO . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+15
+2.5
+Page Navigation Diagram
+. . . . . . . . . . . . . . . . . . . . . . . .
+16
+2.6
+Entity Relationship Diagram . . . . . . . . . . . . . . . . . . . . . . .
+17
+3
+Implementazione delle classi
+18
+3.1
+DomainModel . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+18
+3.1.1
+Element . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+3.1.2
+Book . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+3.1.3
+DigitalMedia
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+19
+3.1.4
+Periodic Publication
+. . . . . . . . . . . . . . . . . . . . . . .
+20
+3.1.5
+Genre
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+3.1.6
+User . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+20
+3.2
+Controller . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+21
+3.2.1
+AddItemViewController
+. . . . . . . . . . . . . . . . . . . . .
+21
+3.2.2
+BaseViewController . . . . . . . . . . . . . . . . . . . . . . . .
+21
+3.2.3
+BorrowedItemsViewController . . . . . . . . . . . . . . . . . .
+23
+3.2.4
+ElementCheckViewController
+. . . . . . . . . . . . . . . . . .
+23
+3.2.5
+ElementDetailsViewController . . . . . . . . . . . . . . . . . .
+23
+3.2.6
+HomeViewController . . . . . . . . . . . . . . . . . . . . . . .
+24
+3.2.7
+LoginViewController . . . . . . . . . . . . . . . . . . . . . . .
+24
+3.2.8
+MenuBarViewController . . . . . . . . . . . . . . . . . . . . .
+24
+3.2.9
+SignupViewController
+. . . . . . . . . . . . . . . . . . . . . .
+24
+3.3
+Orm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+3.3.1
+ConnectionManager . . . . . . . . . . . . . . . . . . . . . . . .
+26
+3.3.2
+ElementDAO
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+3.3.3
+BookDAO . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+26
+3.3.4
+BorrowsDAO
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+3.3.5
+DigitalMediaDAO . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+3.3.6
+GenreDAO
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27
+3.3.7
+PeriodicPublicationDAO . . . . . . . . . . . . . . . . . . . . .
+27
+3.3.8
+UserDAO
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+
+
+--- Page 3 ---
+3.4
+Service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.4.1
+LibraryAdminService . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.4.2
+LibraryUserService . . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.4.3
+MainService . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.4.4
+UserService . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28
+3.5
+View . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+29
+3.5.1
+SignUp-view . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+30
+3.5.2
+AddItem-view . . . . . . . . . . . . . . . . . . . . . . . . . . .
+30
+3.5.3
+ElementDetails-view
+. . . . . . . . . . . . . . . . . . . . . . .
+31
+3.5.4
+Login-view . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+31
+3.5.5
+Home-view
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+32
+3.5.6
+Borrowed-view
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+32
+3.6
+HelloApplication
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+33
+3.7
+Struttura del database . . . . . . . . . . . . . . . . . . . . . . . . . .
+33
+4
+Testing
+35
+4.1
+BookDAOTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+36
+4.2
+BorrowsDAOTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+36
+4.3
+ConnectionManagerTest
+. . . . . . . . . . . . . . . . . . . . . . . . .
+37
+4.4
+DigitalMediaDAOTest
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+37
+4.5
+ElementDAOTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+38
+4.6
+GenreDAOTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+39
+4.7
+PeriodicPublicationDAOTest . . . . . . . . . . . . . . . . . . . . . . .
+40
+4.8
+UserDAOTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+40
+4.9
+MainServiceTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+4.10 UserServiceTest . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+4.11 LibraryUserServiceTest . . . . . . . . . . . . . . . . . . . . . . . . . .
+41
+4.12 LibraryAdminServiceTest
+. . . . . . . . . . . . . . . . . . . . . . . .
+41
+4.13 Risultati Maven . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+42
+
+
+--- Page 4 ---
+Sezione 1: Introduzione
+1
+Introduzione
+1.1
+Obiettivi del progetto
+Questo progetto implementa un sistema di gestione di una biblioteca che permette:
+• agli utenti di prendere in prestito e restituire libri, media digitali e periodici.
+• agli amministratori di aggiungere, modificare e rimuovere ognuno di questi
+elementi dal catalogo della biblioteca.
+Per elemento si intende un qualsiasi prodotto presente nel catalogo della biblioteca,
+indipendentemente dalla sua tipologia effettiva.
+1.2
+Tecnologie e architettura utilizzate
+L’applicativo `e sviluppato in Java 23 utilizzando l’IDE IntelliJ della suite di Jet-
+Brains. Per garantire la persistenza dei dati, `e stato adottato un database da remoto
+gestito tramite PostgreSQL1. La connessione al database `e gestita attraverso le
+librerie JDBC. L’interfaccia grafica `e stata sviluppata utilizzando le librerie open-
+source JavaFX v. 17.0.62, le quali permettono la creazione di applicazioni GUI
+in Java. Per la realizzazione delle pagine di navigazione `e stato impiegato Scene
+Builder, che fornisce un’interfaccia grafica utile a tale scopo. I diagrammi di pro-
+gettazione, inclusi i diagrammi delle classi e quelli relativi ai casi d’uso, sono stati
+creati tramite StarUML. Il processo di testing `e stato realizzato con l’utilizzo del
+framework JUnit 53, supportato dall’uso della libreria Mockito v. 5.7.04 per la
+simulazione delle dipendenze e dall’adozione di Maven v. 4.0.05 per l’automazione
+del processo di build.
+Tra le architetture utilizzate abbiamo invece:
+• MVC: Struttura l’applicazione separando i dati o Model, l’interfaccia utente,
+definita anche come View, e la logica di controllo, implementata tramite i
+Controller.
+• Service Layer: Introduce un livello intermedio tra il Controller e il Database.
+• DAO: Fornisce un’interfaccia per l’accesso ai dati, incapsulando le query SQL
+e l’interazione con il database.
+1PostgreSQL
+2JavaFX
+3JUnit
+4Mockito
+5Maven
+1
+
+
+--- Page 5 ---
+Sezione 2: Progettazione
+2
+Progettazione
+2.1
+Attori coinvolti e relativi casi d’uso
+L’applicativo individua 2 diversi attori:
+• Amministratore,
+• Utente.
+Un ulteriore attore `e il sistema stesso, il quale per`o agisce solo in risposta alle azioni
+degli altri.
+Ognuno degli attori `e caratterizzato da diverse funzionalit`a, alcune delle quali in
+comune, come si pu`o notare nei seguenti diagrammi dei casi d’uso.
+Figure 1: Diagramma dei casi d’uso
+2
+
+
+--- Page 6 ---
+2.2
+Use Case Template
+2.2
+Use Case Template
+2.2.1
+Use Case condivisi
+In questa sezione sono riportati gli Use Case relativi a molteplici attori.
+Use Case
+1. Login
+Level
+Function
+Description
+Utente usa e-mail e password per fare il login
+Actors
+Utente, Amministratore
+Pre-conditions
+Disporre di un account
+Essere connessi al database
+Post-conditions
+Utente esegue l’accesso correttamente o viene segnalato errore al
+login
+Normal flow
+1. Utente inserisce e-mail e password
+2. Utente preme il tasto Login
+3. Login avviene con successo
+Alternative flows
+3A. Se identificativo non nel database, compare scritta ”E-mail non
+presente”
+3B. Se identificativo esiste ma password sbagliata, compare scritta
+”Password errata”
+3C. Se non c’`e connessione al database, compare scritta ”Impossi-
+bile connettersi con il database”
+Table 1: Use Case Login
+Use Case
+2. Visualizza dettagli elemento
+Level
+Function
+Description
+Utente visualizza informazioni dettagliate di uno specifico elemento
+selezionato
+Actors
+Utente, Amministratore
+Pre-conditions
+1. Essere connessi al database
+2. Aver effettuato il login
+Post-conditions
+Utente visualizza informazioni dettagliate sull’elemento
+Normal flow
+1. Utente clicca su un elemento dalla pagina Home
+2. Le informazioni sull’elemento vengono fornite
+Variations
+1. Un Utente pu`o accedere ai dettagli di un elemento anchge dalla
+pagina Prestiti
+Alternative flows
+1A. Se non c’`e connessione al database, compare la scritta ”Impos-
+sibile connettersi al database.”
+Table 2: Use Case Dettagli elemento
+3
+
+
+--- Page 7 ---
+2.2
+Use Case Template
+Use Case
+3. Logout
+Level
+Function
+Description
+Utente effettua il logout
+Actors
+Utente, Amministratore
+Pre-conditions
+Disporre di un account
+Avere eseguito il login
+Post-conditions
+Utente viene disconnesso correttamente
+Normal flow
+1. Utente preme il tasto Logout
+2. Logout avviene con successo
+Table 3: Use Case Logout
+Use Case
+5. Ricerca nel catalogo
+Level
+User goal
+Description
+Utente utilizza filtri per ottenere una lista di elementi con le carat-
+teristiche desiderate
+Actors
+Utente, Amministratore
+Pre-conditions
+1. Disporre di un account
+2. Essere connessi al database
+Post-conditions
+Vengono mostrati uno o pi`u elementi cercati o viene segnalato errore
+al login
+Normal flow
+1. Utente inserisce parametri di ricerca
+2. Vengono visualizzati a schermo gli elementi che corrispondono
+ai parametri inseriti
+Table 4: Use Case Ricerca nel catalogo
+Use Case
+6. Visualizza catalogo
+Level
+Function
+Description
+Utente visualizza una tabella contenente gli elementi presenti nel
+catalogo
+Actors
+Utente, Amministratore
+Pre-conditions
+1. Disporre di un account
+2. Essere connessi al database
+3. Aver effettuato il login
+Post-conditions
+Utente visualizza una serie di elementi
+Normal flow
+1. Utente accede e visualizza tutti gli elementi presenti nel catalogo
+Table 5: Use Case Visualizza catalogo
+4
+
+
+--- Page 8 ---
+2.2
+Use Case Template
+2.2.2
+Utente
+L’Utente `e l’attore che si connetter`a al sistema con lo scopo di visualizzare il catal-
+ogo, prenotare uno o pi`u elementi e di restituirli. Qui di seguito saranno presentati
+solo gli Use Case che prevedono l’Utente come unico attore:
+Use Case
+4. Signup
+Level
+User Goal
+Description
+Utente crea un account personale
+Actors
+Utente
+Pre-conditions
+1. Disporre di una e-mail
+2. Essere connessi al database
+Post-conditions
+Utente crea un account correttamente o viene segnalato errore al
+signup
+Normal flow
+1. Utente inserisce e-mail, password, nome e cognome
+2. Utente preme il tasto Signup
+3. Signup avviene con successo
+Variations
+1. Utente pu`o inserire anche un numero di telefono
+Alternative flows
+3A. Se il testo inserito nel campo e-mail non corrisponde a un ind-
+irizzo e-mail possibile, compare scritta ”E-mail non valida”
+3B. Se la password contiene meno di 8 caratteri o non ha almeno una
+lettera minuscola, una maiuscola, una cifra e un carattere speciale
+(!, #, $, %, &, =, ?, @), compare la scritta ”Password non valida”
+3C. Se il nome non `e stato inserito, compare la scritta ”Nome non
+inserito”
+3D. Se il cognome non `e stato inserito, compare la scritta ”Cognome
+non inserito”
+3E. Se `e stato inserito un numero di telefono non valido, compare
+la scritta ”Numero di telefono non valido”
+3F. Se e-mail nel database, compare scritta ”E-mail gi`a in uso”
+3G. Se non c’`e connessione al database, compare scritta ”Impossi-
+bile connettersi al database.”
+Table 6: Use Case Signup
+5
+
+
+--- Page 9 ---
+2.2
+Use Case Template
+Use Case
+7. Richiesta di un elemento in prestito
+Level
+User Goal
+Description
+Utente prende un elemento in prestito
+Actors
+Utente
+Pre-conditions
+1. Disporre di un account
+2. Essere connessi al database
+3. Aver effettuato il login
+Post-conditions
+L’elemento viene dato in prestito all’Utente o viene seg-
+nalato un errore
+Normal flow
+1. Utente visualizza un elemento
+2. Utente preme il tasto per il prestito
+3. Utente riceve l’elemento in prestito
+Alternative flows
+3A. Se l’elemento `e gi`a stato preso in prestito dall’Utente,
+compare la scritta ”Elemento gi`a preso in prestito”
+3B. Se l’elemento non `e disponibile, compare la scritta ”El-
+emento gi`a preso in prestito”
+3C. Se non c’`e connessione al database, compare la scritta
+”Impossibile connettersi al database.”
+Table 7: Use Case Richiesta di un elemento in prestito
+Use Case
+8. Restituzione di un elemento preso in prestito
+Level
+User goal
+Description
+Utente restituisce uno o pi`u elementi che ha preso in prestito
+Actors
+Utente
+Pre-conditions
+Disporre di un account
+Essere connessi al database
+Aver preso in prestito almeno un elemento
+Post-conditions
+Elemento viene reso nuovamente disponibile per il prestito
+o viene segnalato errore
+Normal flow
+1.
+Utente visualizza i dettagli di un elemento preso in
+prestito
+2. Utente preme il tasto ”Restituisci”
+3. L’elemento viene restituito correttamente
+Alternative flows
+3A. Se l’elemento selezionato non `e stato preso in prestito
+dall’Utente, compare la scritta ”Elemento non preso in
+prestito.”
+3B. Se non c’`e connessione al database, compare scritta
+”Impossibile connettersi al database.”
+Table 8: Use Case Restituzione di un elemento preso in prestito
+6
+
+
+--- Page 10 ---
+2.2
+Use Case Template
+Use Case
+9. Visualizza elementi presi in prestito
+Level
+User Goal
+Description
+Visualizzazione degli elementi attualmente presi in prestito
+Actors
+Utente
+Pre-conditions
+1. Essere connessi al database
+2. Avere un account
+3. Aver effettuato il login
+Normal flow
+1. Utente clicca su apposito menu
+2. Viene visualizzata una lista con gli elementi attualmente presi
+in prestito dall’utente
+Alternative flows
+1A. Se non c’`e attualmente alcun prestito per l’Utente, compare la
+scritta ”Nessun elemento preso in prestito.”
+1A. Se non c’`e connessione al database, compare la scritta ”Impos-
+sibile connettersi al database.”
+Table 9: Use Case Visualizza elementi presi in prestito
+2.2.3
+Amministratore
+L’amministratore `e quell’attore che si occupa di gestire il sistema e il suo database.
+Tra i suoi compiti troviamo quelli di aggiungere, rimuovere e modificare i vari ele-
+menti e anche quello di aggiungere o rimuovere account amministratori.
+Qui saranno presentati tutti gli Use Case che prevedono l’amministratore come
+unico attore in gioco:
+Use Case
+11. Rimuovere elemento
+Level
+User goal
+Description
+Amministratore elimina un elemento dal database
+Actors
+Amministratore
+Pre-conditions
+Avere effettuato il login
+Essere connessi al database
+Il database deve contenere almeno un elemento
+Post-conditions
+Elemento viene eliminato dal database o viene segnalato un
+errore
+Normal flow
+1. Amministratore visualizza i dettagli dell’elemento che
+intende eliminare
+2. Amministratore preme il tasto ”Rimuovi”
+3. La rimozione dell’elemento avviene con successo
+Alternative flows
+3A. Se l’elemento `e al momento in prestito, compare
+la scritta ”Impossibile rimuovere un elemento ancora in
+prestito.”
+3B. Se non c’`e connessione al database, compare scritta
+”Impossibile connettersi al database.”
+Table 10: Use Case Rimuovere elemento
+7
+
+
+--- Page 11 ---
+2.2
+Use Case Template
+Use Case
+10. Aggiungere elemento al database
+Level
+User goal
+Description
+Amministratore aggiunge un elemento nel database
+Actors
+Amministratore
+Pre-conditions
+Avere effettuato il login
+Essere connessi al database
+Post-conditions
+Elemento viene aggiunto nel database correttamente o viene
+segnalato un errore
+Normal flow
+1. Amministratore clicca sul bottone ”Aggiungi elemento”
+2. Amministratore compila il form con le informazioni nec-
+essarie
+3. Amministratore clicca su ”Save”
+4. L’elemento viene aggiunto al database
+Alternative flows
+3A. Se l’Amministratore clicca su ”Cancel”, viene annullata
+l’operazione
+4A. Se i campi del form non sono stati compilati corretta-
+mente, compare la scritta ”Informazioni insufficienti o non
+valide.”
+4B. Se l’elemento che deve essere inserito `e un libro ed esiste
+gi`a nel catalogo un libro con lo stesso codice ISBN, compare
+la scritta ”ISBN gi`a presente nel database.”
+4C. Se non c’`e connessione al database, compare scritta
+”Impossibile connettersi al database.”
+Table 11: Use Case Aggiungere elemento al database
+Use Case
+13. Aggiunta di un genere
+Level
+User Goal
+Description
+L’amministratore della biblioteca pu`o aggiungere uno o
+pi`u generi al database.
+Actors
+Amministratore
+Pre conditions
+Il sistema `e connesso al database.
+Il amministratore ha effettuato l’accesso.
+Normal Flows
+1.L’amministratore seleziona l’opzione per aggiungere
+un nuovo genere.
+2. L’amministratore inserisce i nomi dei generi.
+3. I generi vengono salvati correttamente nel database,
+o viene segnalato errore.
+Alternative Flows
+3A.Se un genere con quel nome `e gi`a presente, non viene
+aggiunto e compare la scritta di errore ”Genere gi`a pre-
+sente nel database”.
+3B. Se non c’`e connessione al database, compare scritta
+”Impossibile connettersi al database”.
+Table 12: Caso d’Uso 13: Aggiunta di un genere
+8
+
+
+--- Page 12 ---
+2.2
+Use Case Template
+Use Case
+12. Modifica un elemento nel database
+Level
+User goal
+Description
+Amministratore modifica un elemento selezionato
+Actors
+Amministratore
+Pre-conditions
+Avere effettuato il login
+Essere connessi al database
+Il database deve contenere almeno un elemento
+Post-conditions
+Amministratore modifica correttamente l’elemento o viene
+segnalato un errore
+Normal flow
+1. Amministratore visualizza i dettagli dell’elemento che
+intende modificare
+2. Amministratore clicca su ”Modifica”
+3. Pagina della modifica viene caricata
+4. L’Amministratore effettua le modifiche necessarie
+5. Viene premuto il tasto ”Save”
+6. Le modifiche vengono aggiunte al database
+Alternative flows
+5A. Se l’Amministratore clicca su ”Cancel”, viene annullata
+l’operazione
+6A. Se i campi del form non sono stati compilati corretta-
+mente, compare la scritta ”Informazioni insufficienti o non
+valide.”
+6B. Se viene modificato l’ISBN di un libro ed esiste gi`a nel
+catalogo un libro con lo stesso codice ISBN, compare la
+scritta ”ISBN gi`a presente nel database.”
+6C. Se non c’`e connessione al database, compare scritta
+”Impossibile connettersi al database.”
+Table 13: Use Case Modifica un elemento nel database
+9
+
+
+--- Page 13 ---
+2.3
+Diagramma delle classi
+2.3
+Diagramma delle classi
+Il diagramma delle classi `e il seguente:
+Figure 2: Diagramma delle classi
+10
+
+
+--- Page 14 ---
+2.3
+Diagramma delle classi
+Entrando pi`u nel dettaglio i diagrammi UML delle singole componenti sono:
+Figure 3: Nel diagramma UML del Domain Model possiamo trovare le classi: User,
+Element, Genre e classi come PeriodicPublication, DigitalMedia e Book che esten-
+dono Element
+.
+11
+
+
+--- Page 15 ---
+2.3
+Diagramma delle classi
+Figure 4: Nel diagramma UML del controller invece possiamo trovare le classi:
+MenuBarViewController,
+BorrowedItemsController,
+SignupController,
+Descrip-
+tionElementController, LoginController, ElementCheckViewController che eredi-
+tano tutte dalla classe BaseViewController. Poi ci possiamo trovare BaseView-
+Controller, MainViewController e HomeController e AddItemController che eredi-
+tano da ElementCheckViewController
+.
+Figure 5: Nel Diagramma UML di ORM, possiamo vedere tutte le classi che si in-
+terfacciano con il database. Queste classi sono: BorrowsDAO, PeriodicPublication-
+DAO, GenreDAO, UserDAO, ElementDAO, DigitalMediaDAO, ConnectionMenager
+e BookDAO
+12
+
+
+--- Page 16 ---
+2.3
+Diagramma delle classi
+Figure 6: Nel diagramma UML di service, invece ci troviamo: MainService, UserSer-
+vice, LibraryUserService e LibraryAdminService. LibraryUserService e LibraryAd-
+minService estendono UserService
+.
+13
+
+
+--- Page 17 ---
+2.4
+Aspetti rilevanti del progetto
+2.4
+Aspetti rilevanti del progetto
+Nella progettazione di questo applicativo sono stati utilizzati alcuni Design Pat-
+tern.
+2.4.1
+Model View Controller
+Il Model View Controller `e un pattern in grado di separare la logica di presentazione
+dei dati dalla logica di business.
+Figure 7: Diagramma UML del pattern MVC adattato al progetto
+Nell’applicativo la parte del Model `e rappresentata dall’insieme dei package Do-
+mainModel e DAO, con l’aggiunta del database stesso.
+Il Controller `e composto dai package Service e Controller.
+Infine la View `e costituita dall’insieme dei vari file in formato fxml.
+2.4.2
+Singleton
+Nella gestione della connessione al database e nel mantenimento dello stato del pro-
+gramma `e stato implementato il pattern Singleton. Questo garantisce l’esistenza di
+un unico ConnectionManager responsabile di gestire la connessione al database,
+e di un solo MainController, responsabile invece del mantenimento dello stato del
+sistema.
+14
+
+
+--- Page 18 ---
+2.4
+Aspetti rilevanti del progetto
+2.4.3
+DAO
+Il DAO, o Data Access Object, `e un pattern utilizzato per separare la logica di
+accesso ai dati da quella di business in un’applicazione. Permette di isolare le op-
+erazioni di lettura e scrittura dei dati su un database da parte dell’applicazione che
+gestisce la logica aziendale.
+Il pattern offre un’interfaccia che definisce le operazioni di base come creare, leggere,
+aggiornare ed eliminare, ovvero le operazioni CRUD sui dati.
+Figure 8: DAO
+15
+
+
+--- Page 19 ---
+2.5
+Page Navigation Diagram
+2.5
+Page Navigation Diagram
+L’interazione prevista che l’utente deve avere con l’interfaccia `e la seguente:
+Figure 9: Diagramma di Navigazione
+16
+
+
+--- Page 20 ---
+2.6
+Entity Relationship Diagram
+2.6
+Entity Relationship Diagram
+Qui di seguito `e presentato il diagramma ER:
+Figure 10: Diagramma ER
+17
+
+
+--- Page 21 ---
+Sezione 3: Implementazione delle classi
+3
+Implementazione delle classi
+Il codice sorgente `e articolato nel modo seguente:
+Figure 11: Stuttura del codice sorgente
+3.1
+DomainModel
+Il DomainModel `e il package che si occupa di definire un modello di composizione
+di classi su cui `e possibile eseguire i casi d’uso espressi nello Use Case Diagram.
+Questo package si articola nelle seguenti classi, che descrivono le entit`a del do-
+minio dell’applicazione:
+18
+
+
+--- Page 22 ---
+3.1
+DomainModel
+3.1.1
+Element
+Questa classe si occupa di fornire attributi e metodi comuni tra i vari elementi
+presenti all’interno del sistema. Gli elementi condivisi tra le varie classi sono:
+1. id
+2. title
+3. releaseYear
+4. description
+5. quantity
+6. quantityAvailable
+7. lenght
+8. genres
+3.1.2
+Book
+Questa classe mantiene i dati riguardanti i libri presenti all’interno del catalogo
+della biblioteca.
+Tra questi dati, oltre a quelli ereditati dalla classe Element abbiamo:
+• isbn
+• author
+• publisher
+• edition
+3.1.3
+DigitalMedia
+Questa classe si occupa di mentenere le informazioni relative ai media digitali
+presenti all’interno della biblioteca.
+Tra questi dati, oltre a quelli ereditati dalla classe Element abbiamo:
+• producer
+• ageRating
+• director
+19
+
+
+--- Page 23 ---
+3.1
+DomainModel
+3.1.4
+Periodic Publication
+Questa classe `e stata progettata per mantenere le informazioni relative alle pubbli-
+cazioni di riviste o altri elementi periodici. Oltre alle informazioni ereditate dalla
+classe Element, al suo interno troviamo:
+• publisher
+• frequency
+• releaseMonth
+• releaseDay
+3.1.5
+Genre
+Questa classe viene utilizzata per mantenere informazioni sui vari generi che carat-
+terizzano un elemento.
+Al suo interno troviamo gli attributi name e code
+3.1.6
+User
+Questa classe si occupa di mantenere le informazioni relative agli utenti all’interno
+del sistema. Tra queste informazioni `e presente un attributo Boolean utilizzato per
+identificare se un utente `e Amministratore, o se non lo `e.
+Al suo interno troviamo:
+• email
+• password
+• name
+• surname
+• phone
+• isAdmin
+L’email `e utilizzata per effettuare le operazioni di login e signup, oltre ad essere
+l’identificativo di un user.
+20
+
+
+--- Page 24 ---
+3.2
+Controller
+3.2
+Controller
+In questo package si trovano tutte le classi che si occupano di fornire i servizi
+richiesti da un utente tramite la GUI.
+3.2.1
+AddItemViewController
+Questa classe `e il controller di una vista che si occupa di gestire l’interfaccia grafica
+per aggiungere un item, che pu`o essere un libro, una rivista periodica o un media
+digitale all’interno del sistema della libreria. Questa classe estende la classe El-
+ementCheckViewController e permette di fare questa operazione in maniera
+corretta tramite controlli di validit`a e permettendo di selezionare anche il tipo di
+item che stiamo inserendo, in modo tale da richiedere per ognuno di questi ultimi,
+solo le informazioni che lo riguardano.
+3.2.2
+BaseViewController
+Questa classe `e un controller che viene utilizzato per offrire metodi comuni a tutti
+i controller e permette inoltre di tornare alla vista precedente tramite attributo
+lastView. Molti controller estendono questa classe e fanno l’overloading dei suoi
+metodi.
+21
+
+
+--- Page 25 ---
+3.2
+Controller
+Figure 12: Classe BaseViewController
+22
+
+
+--- Page 26 ---
+3.2
+Controller
+3.2.3
+BorrowedItemsViewController
+Questa classe `e un controller che gestisce la visualizzazione degli elementi presi in
+prestito da un utente della biblioteca.
+Questa classe estende BaseViewController e interagisce con MainService e Li-
+braryUserService per recuperare i dati degli elementi presi in prestito.
+Figure 13: Metodo initialize() di BorrowedItemsController
+3.2.4
+ElementCheckViewController
+Questo controller serve a gestire la validazione dell’inout nei campi di testo.
+Estende BaseViewController e contiene dei metodi per formattare correttamente
+il testo inserito dall’utente prima che esso venga accettato nel campo selezionato.
+Ognuna di queste operazioni viene fatta sulla base di alcuni filtri stabiliti durante
+la progettazione, atti ad accettare o meno il testo.
+3.2.5
+ElementDetailsViewController
+Questa classe controller serve per la visualizzazione dei dettagli di uno degli elementi
+selezionato, presenti all’interno del catalogo della biblioteca.
+23
+
+
+--- Page 27 ---
+3.2
+Controller
+3.2.6
+HomeViewController
+Questa classe controller gestisce la schermata principale dell’applicazione, mostrando
+il catalogo degli elementi, presenti all’interno del sistema, utilizzando una tabella.
+Inoltre questa classe fornisce anche la scelta di filtri, utili a ricercare un determinato
+elemento, o magari utili a cercare elementi simili a quelli gi`a presi in prestito in
+passato.
+3.2.7
+LoginViewController
+Questa classe controller gestisce la schermata di login dell’applicativo e permette
+quindi l’autenticazione e l’accesso, di un utente, al sistema.
+Estende il controller BaseViewController, per esempio per mostrare messaggi di
+errore che possono avvenire nell’autenticazione.
+3.2.8
+MenuBarViewController
+Questa classe controller gestisce la barra dei menu dell’applicazione. A seconda del
+tipo di utente loggato, quindi utente normale o amministratore, questo controller
+mostra pi`u o meno opzioni. Un altro suo compito `e quello di gestire le azioni associate
+ai menu, come la navigazione tra le viste, la gestione dei generi e il logout.
+3.2.9
+SignupViewController
+Questa classe controller si occupa di gestire la schermata di registrazione del sis-
+tema, permettendo la creazione di un nuovo utente, validandone gli input inseriti e
+facendolo accedere in automatico, nel caso in cui l’operazione andasse a buon fine.
+24
+
+
+--- Page 28 ---
+3.2
+Controller
+Figure 14: Metodo initialize() di MenuBarViewController
+25
+
+
+--- Page 29 ---
+3.3
+Orm
+3.3
+Orm
+Questo package si occupa di gestire le comunicazioni con il database sia in lettura
+che in scrittura.
+3.3.1
+ConnectionManager
+La classe si occupa della gestione della connessione al database PostgreSQL per
+l’applicazione e garantisce che essa sia unica attraverso il design pattern single-
+ton.
+La classe contiene: La classe fornisce quindi un’interfaccia sicura e centralizzata
+Metodo
+Descrizione
+getInstance()
+Restituisce l’unica istanza della classe, in quanto Single-
+ton.
+getConnection()
+Restituisce una connessione attiva al database, crean-
+dola se necessario.
+setDbUser(String dbUser)
+Imposta dinamicamente il nome utente del database.
+setDbPass(String dbPass)
+Imposta dinamicamente la password del database.
+isConnectionValid()
+Verifica se la connessione al database `e ancora valida.
+closeConnection()
+Chiude la connessione al database se `e attiva.
+Table 14: Metodi principali della classe ConnectionManager
+per la gestione della connessione al database, seguendo il pattern Singleton e im-
+plementando metodi per configurare, verificare e chiudere la connessione in modo
+efficiente.
+3.3.2
+ElementDAO
+Questa classe si occupa di fornire tutti i metodi necessari per la gestione di un
+elemento all’interno del sistema. Tali metodi si occupano, oltre che degli elementi
+stessi, anche dei dati complessi associati all’elemento su cui si opera, come ad esempio
+l’associazione di un genere ad un nuovo elemento.
+Da essa ereditano le classi:
+• BookManager
+• DigitalMediaManager
+• PeriodicPublicationManager
+3.3.3
+BookDAO
+La classe BookManager gestisce le operazioni relative ai libri nel database, esten-
+dendo ElementManager. Si occupa di aggiungere, aggiornare, recuperare ed ef-
+fettuare ricerche sui libri.
+26
+
+
+--- Page 30 ---
+3.3
+Orm
+3.3.4
+BorrowsDAO
+La classe BorrowsManager gestisce i prestiti di elementi nella biblioteca, interagendo
+con la tabella borrows del database dalla quale possiamo ricavare informazioni che
+collegano i vari utenti agli elementi che questi hanno preso in prestito.
+3.3.5
+DigitalMediaDAO
+Questa classe si occupa della gestione di oggetti di tipo DigitalMedia. Essa es-
+tende la classe ElementManager e interagisce con il database tramite query SQL
+per eseguire operazioni di inserimento, aggiornamento, recupero e filtraggio di me-
+dia digitali.
+3.3.6
+GenreDAO
+Questa classe fornisce metodi per aggiungere, rimuovere e recuperare i generi e
+per associare generi agli elementi nel sistema. Utilizza il ConnectionManager per
+ottenere le connessioni al database e le query SQL per manipolare i dati.
+Tra i suoi metodi notiamo, oltre ai metodi di aggiunta e rimozione dal database:
+Metodo
+Descrizione
+getAllGenres()
+Recupera tutti i generi dal database. La query SELECT
+eseguita senza filtri restituir`a tutti i generi presenti nella
+tabella genres.
+associateGenreWithElement(Integer elementId, Integer genreCode) Associa
+un
+genere
+a
+un
+elemento.
+La
+query
+INSERT inserisce una riga nella tabella di associazione
+elementgenres utilizzando l’ID dell’elemento e il codice
+del genere. Restituisce true se l’associazione ha successo.
+Viene invocato dai metodi addElement e updateElement
+di ElementDAO.
+getGenresForElement(Integer elementId)
+Recupera tutti i generi associati a un elemento. La query
+SELECT unisce le tabelle genres ed elementgenres per
+ottenere i generi per l’elemento specificato.
+removeGenreFromElement(Integer elementId, Integer genreCode)
+Rimuove l’associazione tra un elemento e un genere. La
+query DELETE elimina la riga corrispondente nella tabella
+elementgenres, che collega l’elemento al genere. Resti-
+tuisce true se l’operazione ha successo. Viene invocato
+dai metodi updateElement e removeElement di Ele-
+mentDAO.
+Table 15: Metodi della classe GenreManager e descrizione
+3.3.7
+PeriodicPublicationDAO
+La classe PeriodicPublicationManager `e una sottoclasse di ElementManager ed `e
+responsabile della gestione delle pubblicazioni periodiche.
+27
+
+
+--- Page 31 ---
+3.4
+Service
+3.3.8
+UserDAO
+Questa classe si occupa della gestione degli utenti all’interno del database e offre la
+possibilit`a di: creare, aggiungere, rimuovere e aggiornare gli utenti.
+Inoltre, questa classe si occupa anche di controllare l’unicit`a degli attributi utili
+all’identificazione dell’utente, insieme a un controllo che permetta di vedere se
+l’attributo inserito esiste o meno all’interno del sistema.
+3.4
+Service
+In un progetto i service permettono di separare la logica di buisness e la gestione
+dei dati dai controller che si occupano dell’interfaccia grafica. Sono classi riutiliz-
+zabili, ovvero possono essere usate da pi`u controller senza duplicare il codice.
+Comunicano con database e altre risorse.
+3.4.1
+LibraryAdminService
+Questa classe service estende UserService e si occupa di gestire le operazioni am-
+ministrative dell’applicativo, come ad esempio l’aggiunta, la rimozione e l’aggiornamento
+di elementi all’interno della biblioteca.
+Utilizza i DAO per interagire con il database e controlla prima la correttezza dei
+dati prima di eseguire operazioni, gestendo anche errori ed eccezioni.
+3.4.2
+LibraryUserService
+Questo service estende UserService e si occupa di gestire le operazioni che possono
+essere effettuate da un utente normale della biblioteca, come la richiesta di prestito
+e la restituzione.
+3.4.3
+MainService
+Questo service `e alla base dell’applicazione. In questa classe viene implementato il
+design pattern Singleton e comunicare con il DAO.
+Il suo compito `e quello di:
+1. Gestire l’accesso ai dati
+2. Tenere traccia dello stato dell’utente
+3. Fornisce i servizi per il resto dell’applicativo
+3.4.4
+UserService
+Questo `e il service principale per la gestione degli utenti.
+Si occupa di gestire l’autenticazione, la registrazione e il logout al sistema. Inoltre
+permette di cercare,filtrare e visualizzare gli elementi nel sistema.
+28
+
+
+--- Page 32 ---
+3.5
+View
+3.5
+View
+Nel progetto sono presenti varie viste, realizzate utilizzando JavaFX che, grazie
+all’applicazione SceneBuilder, consente di realizzare interfacce in modo rapido e
+semplice. Di seguito verranno mostrate e brevemente spiegate alcune viste:
+Figure 15: Viste dell’applicativo
+29
+
+
+--- Page 33 ---
+3.5
+View
+3.5.1
+SignUp-view
+Figure 16: Screenshot della pagina di Signup
+3.5.2
+AddItem-view
+Figure 17: Screenshot della pagina usata per aggiungere nuovi elementi al catalogo,
+visibile solo agli Amministratori. Questa pagina viene anche utilizzata per la mod-
+ifica degli elementi
+30
+
+
+--- Page 34 ---
+3.5
+View
+3.5.3
+ElementDetails-view
+Figure 18: Screenshot della pagina che mostra i dettagli dell’elemento selezionato
+3.5.4
+Login-view
+Figure 19: Screenshot della pagina di Login
+31
+
+
+--- Page 35 ---
+3.5
+View
+3.5.5
+Home-view
+Figure 20: Screenshot della pagina Home
+3.5.6
+Borrowed-view
+Figure 21: Screenshot della pagina dei Prestiti, visibile solo ad un Utente
+.
+32
+
+
+--- Page 36 ---
+3.6
+HelloApplication
+3.6
+HelloApplication
+Questa `e la classe Main del sistema. Si tratta di una classe derivata di Application,
+il cui scopo `e quello di gestire la configurazione della finestra e il caricamento della
+vista iniziale, oltre che a inizializzare i vari singleton.
+La funzione main si occupa di avviare il programma.
+3.7
+Struttura del database
+Per la gestione dei dati sia degli utenti, degli elementi, delle prese in prestito e delle
+restituzioni si utilizza un database relazionale gestito attraverso PostgreSQL. In
+figura si mostra la struttura del database.
+CREATE TABLE users (
+email VARCHAR PRIMARY KEY,
+password VARCHAR,
+name VARCHAR,
+surname VARCHAR,
+phone VARCHAR,
+isadmin BOOLEAN
+);
+CREATE TABLE elements (
+id SERIAL PRIMARY KEY,
+title VARCHAR,
+releaseyear INT,
+description TEXT,
+quantity INT,
+quantityavailable INT,
+length INT
+);
+CREATE TABLE books (
+id INT PRIMARY KEY,
+isbn VARCHAR,
+author VARCHAR,
+publisher VARCHAR,
+edition VARCHAR,
+FOREIGN KEY (id) REFERENCES elements(id)
+);
+33
+
+
+--- Page 37 ---
+3.7
+Struttura del database
+CREATE TABLE digitalmedias (
+id INT PRIMARY KEY,
+producer VARCHAR,
+agerating VARCHAR,
+director VARCHAR,
+FOREIGN KEY (id) REFERENCES elements(id)
+);
+CREATE TABLE periodicpublication (
+id INT PRIMARY KEY,
+publisher VARCHAR,
+frequency VARCHAR,
+releasemonth INT,
+releaseday INT,
+FOREIGN KEY (id) REFERENCES elements(id)
+);
+CREATE TABLE borrows (
+elementid INT,
+userid VARCHAR,
+PRIMARY KEY (elementid, userid),
+FOREIGN KEY (elementid) REFERENCES elements(id),
+FOREIGN KEY (userid) REFERENCES users(email)
+);
+CREATE TABLE genres (
+code VARCHAR PRIMARY KEY,
+name VARCHAR
+);
+CREATE TABLE elementgenres (
+elementid INT,
+genrecodes VARCHAR,
+PRIMARY KEY (elementid, genrecodes),
+FOREIGN KEY (elementid) REFERENCES elements(id),
+FOREIGN KEY (genrecodes) REFERENCES genres(code)
+);
+Figure 22: Struttura del database
+34
+
+
+--- Page 38 ---
+Sezione 4: Testing
+4
+Testing
+In questa sezione verranno elencati i test che sono stati effettuati. Per fare i test
+sono stati utilizzati Maven, JUnit5 e Mockito-JUnit.
+I test sono di tipo strutturale e sono atti a verificare la corretta interazione con il
+database e sul suo utilizzo.
+La struttura dei test `e la seguente:
+Figure 23: Struttura dei test
+35
+
+
+--- Page 39 ---
+4.1
+BookDAOTest
+4.1
+BookDAOTest
+La classe BookDAOTest `e una suite di test che verifica il corretto funzionamento
+della classe BookDAO, che si occupa della gestione dei libri nel database. I test
+utilizzano Mocking con Mockito per simulare il comportamento delle dipendenze,
+evitando di interagire direttamente con il database in alcuni casi.
+Nome Test
+Scopo
+Aspettativa
+Possibili
+Falli-
+menti
+addBookTest
+Verifica
+l’inserimento
+di
+un
+libro
+nel
+database
+Deve restituire un
+ID
+valido
+dopo
+l’inserimento
+Il libro non viene
+aggiunto e l’ID `e
+null
+updateBookTest
+Verifica
+l’aggiornamento
+di
+un
+libro
+es-
+istente
+La funzione deve
+restituire true se
+l’aggiornamento
+ha successo
+Il libro non viene
+aggiornato corret-
+tamente
+getBookByIsbnTest Verifica
+il
+recu-
+pero di un libro
+tramite ISBN
+Il
+libro
+trovato
+deve
+avere
+lo
+stesso
+ISBN
+richiesto
+Nessun
+libro
+trovato
+oppure
+ISBN errato
+Table 16: Riepilogo dei test eseguiti su BookDAO.
+Questa classe testa correttamente le operazioni CRUD sulla gestione dei libri,
+verificando che l’aggiunta, l’aggiornamento e il recupero funzionino come previsto. I
+test utilizzano mocking per isolare il database e altre classi, garantendo che i risultati
+siano affidabili senza dipendere da una connessione attiva al database.
+4.2
+BorrowsDAOTest
+Questa classe di test BorrowsDAOTest verifica il corretto funzionamento della
+classe BorrowsDAO, che gestisce il prestito di elementi.
+Nome Test
+Scopo
+Aspettativa
+Possibili Fallimenti
+addBorrowTest
+Verifica
+l’aggiunta
+di un prestito
+Deve restituire true
+dopo aver aggiunto il
+prestito
+Il prestito non viene
+registrato e il metodo
+restituisce false
+removeBorrowTest
+Verifica
+la
+ri-
+mozione
+di
+un
+prestito
+Deve restituire true
+dopo aver rimosso il
+prestito
+Il prestito non viene
+rimosso dal database
+getBorrowedElementsForUserTest
+Verifica il recupero
+dei prestiti per un
+utente
+Deve
+restituire
+un
+elenco di prestiti non
+null
+Il metodo restituisce
+null,
+indicando
+un
+problema
+Table 17: Tabella riassuntiva dei test su BorrowsDAO
+I test effettuati sulla classe BorrowsDAO hanno verificato le funzionalit`a principali
+relative alla gestione dei prestiti. In particolare:
+36
+
+
+--- Page 40 ---
+4.3
+ConnectionManagerTest
+• Aggiunta di un prestito:
+Il test addBorrowTest ha confermato che il
+metodo registra correttamente un nuovo prestito nel database, restituendo
+un valore positivo in caso di successo.
+• Rimozione di un prestito: Il test removeBorrowTest ha dimostrato che
+`e possibile eliminare un prestito esistente, garantendo che l’elemento venga
+effettivamente rimosso dal sistema.
+• Recupero dei prestiti di un utente: Il test getBorrowedElementsForUserTest
+ha garantito che l’applicazione `e in grado di restituire un elenco valido di ele-
+menti attualmente presi in prestito da un utente specifico.
+I test hanno fornito risultati coerenti con le aspettative, garantendo che il sistema
+gestisca correttamente l’aggiunta, la rimozione e il recupero dei prestiti.
+4.3
+ConnectionManagerTest
+Questa classe, ConnectionManagerTest, gestisce la connessione a un database Post-
+greSQL per i test.
+• Connessione al database: Il metodo getConnection() viene chiamato per
+assicurarsi che la connessione al database per i test venga creata correttamente.
+• Verifica della validit`a: isConnectionValid() garantisce che la connessione
+sia utilizzabile prima di procedere con altre operazioni.
+• Chiusura della connessione: closeConnection() assicura che la connes-
+sione venga chiusa correttamente dopo l’uso.
+Per questi test dobbiamo tenere di conto che:
+• Pattern Singleton: Usato per mantenere un’unica connessione.
+• Gestione delle eccezioni: Gli errori di connessione vengono catturati e stam-
+pati.
+• Metodi setDbUser() e setDbPass(): Permettono di cambiare le credenziali.
+4.4
+DigitalMediaDAOTest
+Questa classe testa le operazioni di gestione dei media digitali effettuati da Digi-
+talMediaDAO, verificando che i metodi funzionino correttamente con il database.
+I test condotti sulla classe DigitalMediaDAO confermano il corretto funziona-
+mento delle operazioni principali sulla gestione dei media digitali. In particolare:
+• Il metodo di inserimento di un media digitale, addDigitalMediaTest, ha sem-
+pre restituito un identificativo valido, dimostrando la corretta interazione con
+il database.
+• Il metodo di aggiornamento updateDigitalMediaTest ha sempre restituito
+true, segnalando che le modifiche ai dati vengono applicate correttamente.
+37
+
+
+--- Page 41 ---
+4.5
+ElementDAOTest
+Test
+Scopo
+Criterio di Successo
+addDigitalMediaTest()
+Verifica che un media digitale
+possa essere inserito nel database.
+Il metodo restituisce un
+ID valido, non null.
+updateDigitalMediaTest()
+Controlla che i dati di un media
+digitale possano essere aggiornati.
+Il
+metodo
+restituisce
+true.
+getDigitalMediaTest()
+Testa il recupero di un media dig-
+itale dal database.
+Il metodo restituisce un
+oggetto valido, non null.
+Table 18: Riassunto dei test effettuati sulla classe DigitalMediaDAO
+• Il metodo di recupero dei media digitali getDigitalMediaTest ha restituito
+oggetti validi, confermando l’integrit`a dei dati salvati.
+L’uso di Mockito per il mocking del ConnectionManager e del MainService ha
+permesso di isolare il codice e testare le funzionalit`a senza dipendere da un database
+reale. Inoltre, grazie all’uso del rollback alla fine dei test, i dati temporanei non
+vengono mantenuti nel database.
+4.5
+ElementDAOTest
+I test condotti nella classe ElementDAOTest si occupano di verificare il corretto
+funzionamento di operazioni CRUD sugli elementi all’interno del database.
+Per
+testare la rimozione di un elemento si opera nel seguente modo:
+• Preparazione: Viene inserito un elemento nel database con una query SQL.
+L’ID generato per l’elemento viene salvato per essere utilizzato nel test.
+• Test: Viene chiamato il metodo removeElement(generatedId) per rimuo-
+vere l’elemento dal database. Successivamente, viene effettuata l’asserzione
+assertTrue(removeElement(generatedId)), che verifica che la rimozione sia
+stata eseguita correttamente.
+• Verifica: Se il test passa, significa che l’elemento `e stato correttamente ri-
+mosso dal database.
+Invece per quanto riguarda il corretto recupero di un elemento:
+• Preparazione: Viene inserito un nuovo elemento nel database, e l’ID generato
+per l’elemento viene salvato per essere utilizzato nel test.
+• Test:
+Viene chiamato il metodo getElement(generatedId) per recuper-
+are l’elemento dal database.
+Successivamente, viene effettuata l’asserzione
+assertEquals(generatedId, element.getId()), che verifica che l’ID dell’elemento
+recuperato corrisponda all’ID generato precedentemente.
+• Verifica: Se l’asserzione passa, significa che il metodo getElement() funziona
+correttamente e recupera gli elementi dal database in modo corretto.
+38
+
+
+--- Page 42 ---
+4.6
+GenreDAOTest
+I test effettuati hanno consentito di verificare il corretto funzionamento delle
+operazioni di rimozione e recupero sugli ”elementi” nel database. In particolare, i
+test hanno confermato che:
+• Il metodo removeElement() rimuove correttamente un elemento dal database.
+• Il metodo getElement() recupera correttamente un elemento dal database
+utilizzando l’ID.
+4.6
+GenreDAOTest
+I test nella classe GenreDAOTest sono progettati per verificare il corretto funziona-
+mento dei metodi relativi alla gestione dei generi associati agli elementi nel sistema.
+I test coprono vari scenari, tra cui l’associazione di generi agli elementi, l’aggiunta
+e la rimozione di generi, nonch´e il recupero dei generi per un dato elemento.
+Test di Setup e Teardown:
+• @BeforeAll e @AfterAll: Questi metodi vengono eseguiti prima e dopo tutti
+i test nella classe.
+• setUp(): Crea un elemento e un genere nel database, i cui ID e codici vengono
+salvati per essere utilizzati nei test successivi.
+• tearDown(): Rimuove i dati inseriti nel database durante i test, cancellando
+le associazioni e i dati generati.
+Nel dettaglio dei test:
+Test: associateGenreWithElementTest()
+• Scopo: Verificare che un genere possa essere correttamente associato a un
+elemento.
+• Preparazione: L’ID dell’elemento generatedElementId e il codice del genere
+generatedGenreCode sono gi`a presenti nel database.
+• Esecuzione: Viene chiamato il metodo associateGenreWithElement(generatedElementId,
+generatedGenreCode).
+• Verifica:
+L’asserzione assertTrue(result) verifica che l’associazione sia
+riuscita.
+Test: addGenreTest()
+• Scopo: Verificare che un nuovo genere possa essere aggiunto al database.
+• Preparazione: Non `e necessaria alcuna preparazione in quanto il test si con-
+centra sull’aggiunta di un nuovo genere.
+• Esecuzione: Viene chiamato il metodo addGenre(new Genre("Insert Test")).
+• Verifica: L’asserzione assertTrue(result) verifica che il genere sia stato
+aggiunto correttamente.
+39
+
+
+--- Page 43 ---
+4.7
+PeriodicPublicationDAOTest
+Test: getAllGenresTest()
+• Scopo: Verificare che tutti i generi possano essere recuperati correttamente.
+• Preparazione: I generi esistenti sono gi`a nel database, incluso quello inserito
+nel test precedente.
+• Esecuzione: Viene chiamato il metodo getAllGenres() per recuperare tutti
+i generi.
+• Verifica: L’asserzione assertNotNull(result) verifica che la lista di generi
+non sia vuota.
+Test: getGenresForElementTest()
+• Scopo: Verificare che i generi associati a un elemento possano essere recuperati
+correttamente.
+• Preparazione: Un’associazione tra l’elemento generatedElementId e il genere
+generatedGenreCode viene inserita nella tabella elementgenres.
+• Esecuzione: Viene chiamato il metodo getGenresForElement(generatedElementId).
+• Verifica: L’asserzione assertNotNull(result) verifica che la lista di generi
+associati all’elemento non sia vuota.
+Test: removeGenreFromElementTest()
+• Scopo: Verificare che un genere possa essere rimosso da un elemento.
+• Preparazione: Un’associazione tra l’elemento generatedElementId e il genere
+generatedGenreCode viene inserita nella tabella elementgenres.
+• Esecuzione: Viene chiamato il metodo removeGenreFromElement(generatedElementId,
+generatedGenreCode).
+• Verifica: L’asserzione assertTrue(result) verifica che la rimozione sia rius-
+cita.
+4.7
+PeriodicPublicationDAOTest
+I test nella classePeriodicPublicationDAOTest sono stati progettati con lo scopo
+di testare l’aggiunta di un elemento PeriodicPublication all’interno del database
+e di un suo eventuale aggiornamento.
+4.8
+UserDAOTest
+I test nella classe UserDAOTest sono stati progettati per verificare il corretto
+funzionamento della classe UserDAO.
+40
+
+
+--- Page 44 ---
+4.9
+MainServiceTest
+4.9
+MainServiceTest
+I test della classe MainServiceTest sono stati progettati per verificare il corretto
+funzionamento della classe MainService.
+4.10
+UserServiceTest
+I test della classe UserServiceTest sono stati progettati per verificare il corretto
+funzionamento della classe UserService.
+Questi test controllano la corretta implementazione degli Use Case 1, 4, 5 e 6,
+assicurando che vengano rispettati tutti i flussi alternativi.
+4.11
+LibraryUserServiceTest
+I test della classe LibraryUserServiceTest sono stati progettati per verificare il
+corretto funzionamento della classe LibraryUserService.
+Questi test controllano la corretta implementazione degli Use Case 7. 8 e 9, assicu-
+rando che vengano rispettati tutti i flussi alternativi.
+4.12
+LibraryAdminServiceTest
+I test della classe LibraryAdminServiceTest sono stati progettati per verificare
+il corretto funzionamento della classe LibraryAdminService.
+Questi test controllano la corretta implementazione degli Use Case 10, 11, 12 e 13,
+assicurando che vengano rispettati tutti i flussi alternativi.
+41
+
+
+--- Page 45 ---
+4.13
+Risultati Maven
+4.13
+Risultati Maven
+I risultati ottenuti tramite i test effettuati con Maven sono i seguenti:
+42
+
+
+--- Page 46 ---
+4.13
+Risultati Maven
+43
+
+
+--- Page 47 ---
+4.13
+Risultati Maven
+Figure 24: Risultati dei test
+44
+

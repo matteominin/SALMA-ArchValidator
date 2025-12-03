@@ -1,0 +1,50 @@
+{
+  "pdfPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/Knowledge_Base/25-07-11_LattanziTrenta/validation_report_SWE_PROGETTO_VIDEOGIOCHI.pdf",
+  "texPath": "/Users/matteominin/Desktop/tesi/pdf_extractor/Knowledge_Base/25-07-11_LattanziTrenta/validation_report_SWE_PROGETTO_VIDEOGIOCHI.tex",
+  "summary": {
+    "requirements_extracted": 16,
+    "requirements_by_type": {
+      "functional": 13,
+      "non_functional": 1,
+      "constraint": 1,
+      "goal": 1
+    },
+    "requirements_quality": {
+      "well_defined": 9,
+      "needs_detail": 5,
+      "vague": 2
+    },
+    "use_cases_extracted": 4,
+    "use_cases_explicit": 4,
+    "use_cases_implicit": 0,
+    "architecture_components": 8,
+    "architecture_pattern": "Layered Architecture",
+    "tests_extracted": 57,
+    "tests_by_type": {
+      "unit_like_domain": 7,
+      "integration_business_logic": 34,
+      "integration_dao": 16
+    },
+    "traceability_coverage_percentage": 100.0,
+    "traceability_details": {
+      "requirements_covered": 16,
+      "requirements_uncovered": 0,
+      "use_cases_fully_tested_main_flow": 4,
+      "use_cases_partially_tested_alt_flows": 4,
+      "orphan_requirements": 0,
+      "orphan_tests": 0
+    },
+    "feature_coverage_percentage": 78.0,
+    "feature_details": {
+      "total_kb_features": 50,
+      "covered_features": 39,
+      "uncovered_features": 11
+    },
+    "validation_status": "PASSED WITH MINOR GAPS",
+    "critical_issues": 3,
+    "warnings": 6,
+    "recommendations_priority_1": 3,
+    "recommendations_priority_2": 3,
+    "recommendations_priority_3": 3
+  }
+}

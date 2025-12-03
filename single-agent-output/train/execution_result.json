@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "pdf_input": "/Users/matteominin/Desktop/tesi/pdf_extractor/Knowledge_Base/25-06-19_Ciabatti/SWE_Relazione_Ciabatti.pdf",
+  "output_directory": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764702778",
+  "raw_response_path": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764702778/raw_response.txt",
+  "latex_path": "/Users/matteominin/Desktop/tesi/pdf_extractor/report/1764702778/report.pdf",
+  "execution_stats": {
+    "start_time": "2025-12-02 20:12:58",
+    "end_time": "2025-12-02 20:15:44",
+    "total_time_seconds": 165.58,
+    "total_time_minutes": 2.76,
+    "pdf_extraction_time_seconds": 0.04,
+    "api_call_time_seconds": 164.6,
+    "latex_compilation_time_seconds": 0.94
+  },
+  "token_stats": {
+    "model": "gpt-5.1",
+    "input_tokens": 31188,
+    "output_tokens": 15062,
+    "total_tokens": 46250,
+    "estimated_cost": {
+      "input_cost_usd": 0.4678,
+      "output_cost_usd": 0.6778,
+      "total_cost_usd": 1.1456,
+      "cost_per_1k_input": 0.015,
+      "cost_per_1k_output": 0.045
+    }
+  }
+}
